@@ -8,23 +8,86 @@
     "representer": false,
     "analyzer": false
   },
-  "blurb": "TODO: add blurb",
+  "blurb": "Odin is a general-purpose programming language with distinct typing built for high performance, modern systems and data-oriented programming. Odin is the C alternative for the Joy of Programming.",
   "version": 3,
   "online_editor": {
     "indent_style": "space",
     "indent_size": 4
   },
   "files": {
-    "solution": [],
-    "test": [],
-    "example": [],
-    "exemplar": []
+    "solution": [
+      "%{snake_slug}.odin"
+    ],
+    "test": [
+      "%{snake_slug}_test.odin"
+    ],
+    "example": [
+      ".meta/%{snake_slug}_example.odin"
+    ]
   },
   "exercises": {
     "concept": [],
-    "practice": []
+    "practice": [
+      {
+        "uuid": "2cfe5afe-e94f-459c-aae5-d23d89931dda",
+        "slug": "hello-world",
+        "name": "Hello World",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
+        "slug": "leap",
+        "name": "Leap",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      }
+    ]
   },
   "concepts": [],
-  "key_features": [],
-  "tags": []
+  "key_features": [
+    {
+      "title": "Simple",
+      "content": "Odin lets you focus on debugging your application rather than your programming language knowledge.",
+      "icon": "easy"
+    },
+    {
+      "title": "Performance",
+      "content": "Odin produces fast and memory efficient executables: you are free to manage memory yourself.",
+      "icon": "fast"
+    },
+    {
+      "title": "Safety",
+      "content": "Odin lets you write fast, clear code capable of handling all error conditions.",
+      "icon": "safe"
+    },
+    {
+      "title": "Cross-compile",
+      "content": "Odin can build for a plethora of targets and cross-compiling is a first class use case.",
+      "icon": "cross-platform"
+    }
+  ],
+  "tags": [
+    "paradigm/imperative",
+    "paradigm/procedural",
+    "typing/static",
+    "typing/strong",
+    "execution_mode/compiled",
+    "platform/windows",
+    "platform/mac",
+    "platform/linux",
+    "platform/ios",
+    "platform/android",
+    "platform/web",
+    "runtime/standalone_executable",
+    "used_for/backends",
+    "used_for/cross_platform_development",
+    "used_for/embedded_systems",
+    "used_for/financial_systems",
+    "used_for/frontends",
+    "used_for/games",
+    "used_for/scientific_calculations"
+  ]
 }
