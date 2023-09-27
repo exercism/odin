@@ -1,0 +1,32 @@
+{
+  "docs": [
+    {
+      "uuid": "ed917837-b09a-429c-836a-69f63e8f0abb",
+      "slug": "installation",
+      "path": "docs/INSTALLATION.md",
+      "title": "Installing Odin locally",
+      "blurb": "Learn how to install Odin locally to solve Exercism's exercises on your own machine"
+    },
+    {
+      "uuid": "cf13d739-4769-4e10-adf3-a231a9469efb",
+      "slug": "learning",
+      "path": "docs/LEARNING.md",
+      "title": "How to learn Odin",
+      "blurb": "An overview of how to get started from scratch with Odin"
+    },
+    {
+      "uuid": "089f2b69-4056-4ad2-bcb0-97ab9b4444c4",
+      "slug": "tests",
+      "path": "docs/TESTS.md",
+      "title": "Testing on the Odin track",
+      "blurb": "Learn how to test your Odin exercises on Exercism"
+    },
+    {
+      "uuid": "a9698853-af57-4498-a56a-739266ef9dc2",
+      "slug": "resources",
+      "path": "docs/RESOURCES.md",
+      "title": "Useful Odin resources",
+      "blurb": "A collection of useful resources to help you master Odin"
+    }
+  ]
+}

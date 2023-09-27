@@ -1,0 +1,30 @@
+{
+  "language": "Odin",
+  "slug": "odin",
+  "active": false,
+  "status": {
+    "concept_exercises": false,
+    "test_runner": false,
+    "representer": false,
+    "analyzer": false
+  },
+  "blurb": "TODO: add blurb",
+  "version": 3,
+  "online_editor": {
+    "indent_style": "space",
+    "indent_size": 4
+  },
+  "files": {
+    "solution": [],
+    "test": [],
+    "example": [],
+    "exemplar": []
+  },
+  "exercises": {
+    "concept": [],
+    "practice": []
+  },
+  "concepts": [],
+  "key_features": [],
+  "tags": []
+}
