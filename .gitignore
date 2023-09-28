@@ -3,3 +3,5 @@
 bin/configlet
 bin/configlet.exe
 bin/odinfmt
+bin/ols
+*.bin

@@ -28,7 +28,38 @@ Borring concepts from other C-based/C-adjacent language tracks:
 - https://github.com/exercism/generic-track
 - https://github.com/exercism/problem-specifications
 
-*Below is the previous `generic-track` readme; will delete later.*
+## Example Nix Config
+
+```nix
+{ pkgs }:
+let
+  inherit (pkgs) lib;
+
+  # TODO: Building odinfmt requires the nighly build of Odin itself
+  new_pkgs = import
+    (pkgs.fetchFromGitHub {
+      owner = "NixOS";
+      repo = "nixpkgs";
+      rev = "ef66aec42b5f9035a675496e9a7fe57b63505646";
+      # sha256 = lib.fakeSha256;
+      sha256 = "1j1ywwk1wzcd60dbam3pif8z0v695ssmm8g4aw9j01wl36pds31a";
+    })
+    { };
+
+  odin = new_pkgs.odin;
+in
+{
+  deps = [
+    odin
+    pkgs.ruby
+    pkgs.gh
+    pkgs.just
+    pkgs.jq
+  ];
+}
+```
+
+*Below is the previous generic track readme; will modify later.*
 
 ---
 
