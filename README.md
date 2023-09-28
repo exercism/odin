@@ -65,7 +65,7 @@ in
 
 # Exercism Odin Track
 
-[![configlet](https://github.com/exercism/odin/workflows/configlet/badge.svg)](https://github.com/exercism/odin/actions?query=workflow%3Aconfiglet) [![tests](https://github.com/exercism/odin/workflows/test/badge.svg)](https://github.com/exercism/odin/actions?query=workflow%3Atest)
+[![Configlet](https://github.com/exercism/odin/actions/workflows/configlet.yml/badge.svg)](https://github.com/exercism/odin/actions/workflows/configlet.yml) [![.github/workflows/test.yml](https://github.com/exercism/odin/actions/workflows/test.yml/badge.svg)](https://github.com/exercism/odin/actions/workflows/test.yml)
 
 Exercism exercises in Odin.
 
@@ -79,7 +79,7 @@ This command will iterate over all exercises and check to see if their exemplar/
 [`configlet`](https://exercism.org/docs/building/configlet) is an Exercism-wide tool for working with tracks. You can download it by running:
 
 ```shell
-$ ./bin/fetch-configlet
+./bin/fetch-configlet
 ```
 
 Run its [`lint` command](https://exercism.org/docs/building/configlet/lint) to verify if all exercises have all the necessary files and if config files are correct:
