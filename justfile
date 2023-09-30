@@ -16,3 +16,20 @@ test:
 
 lint:
   @echo "Linting..."
+
+alias gt := generate-test
+generate-test slug:
+  odin run \
+    src/generate_test.odin \
+    -file \
+    -show-timings \
+    -collection:shared=src
+
+check:
+  odin check \
+    src/ \
+    -vet \
+    # -vet-extra \
+    -strict-style \
+    -warnings-as-errors \
+    -collection:shared=src
