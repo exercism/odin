@@ -5,7 +5,7 @@ import "core:strings"
 
 TomlAssignment :: struct {
 	name: string,
-  value: string
+  value: string,
 }
 
 // This is lazy and only processes variable declaration lines :D
@@ -19,7 +19,7 @@ read_toml_lines :: proc(yaml: string) -> []TomlAssignment {
 
 		toml_assignment := TomlAssignment {
 			name = strings.trim_space(splits[0]),
-			value = strings.trim_space(splits[1])
+			value = strings.trim_space(splits[1]),
 		}
 
 		append(&toml_assignments, toml_assignment)
