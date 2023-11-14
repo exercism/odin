@@ -1,14 +1,14 @@
 # This workflow will do a clean install of the dependencies and run tests across different versions
 #
 # Replace <track> with the track name
-# Replace <image-name> with an image to run the jobs on
-# Replace <action to setup tooling> with a github action to setup tooling on the image
-# Replace <install dependencies> with a cli command to install the dependencies
+# Replace <image-name> with an image to@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} run the jobs on
+# Replace <action@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-reposito@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}ry"} to setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} tooling>@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} with a github action to setup tooling on the image
+# Replace <install dependencies> with a cli command to@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} install the dependencies
 #
-# Find Github Actions to setup tooling here:
-# - https://github.com/actions/?q=setup&type=&language=
+# Find Github Actions to@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} tooling here:
+# - https://github.com/actions/?q=setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}&type=&language=
 # - https://github.com/actions/starter-workflows/tree/main/ci
-# - https://github.com/marketplace?type=actions&query=setup
+# - https://github.com/marketplace?type=actions&query=setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
 #
 # Requires scripts:
 # - bin/test
@@ -26,11 +26,11 @@ jobs:
     runs-on: <image-name>
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout reposito@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}ry
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
-      - name: Use <setup tooling>
-        uses: <action to setup tooling>
+      - name: Use <setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} to@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}oling>
+        uses: <action@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-reposito@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}ry"} to setup@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"} tooling>@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
 
       - name: Install project dependencies
         run: <install dependencies>
