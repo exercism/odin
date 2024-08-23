@@ -33,7 +33,7 @@ jobs:
         uses: laytan/setup-odin@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release: dev-2024-08
+          release: false
           llvm-version: 14
 
       - name: Install project dependencies
