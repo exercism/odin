@@ -13,7 +13,7 @@
 # Requires scripts:
 # - bin/test
 
-name: <track> / Test
+name: odin / Test
 
 on:
   push:
@@ -23,17 +23,26 @@ on:
 
 jobs:
   ci:
-    runs-on: <image-name>
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
-      - name: Use <setup tooling>
-        uses: <action to setup tooling>
+      - name: Setup Odin
+        uses: laytan/setup-odin@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release: dev-2024-08
+          llvm-version: 14
 
       - name: Install project dependencies
-        run: <install dependencies>
+        run: bin/fetch-configlet
+
+      - name: Run the project linter
+        run: bin/configlet lint
 
       - name: Verify all exercises
-        run: bin/verify-exercises
+        run: bin/run-test.sh
+
+

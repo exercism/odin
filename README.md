@@ -2,7 +2,7 @@
 
 Official Exercism forum thread about this track: https://forum.exercism.org/t/new-track-odin-programming-language/7379
 
-Borring concepts from other C-based/C-adjacent language tracks:
+Borrowing concepts from other C-based/C-adjacent language tracks:
 - https://github.com/exercism/c
 - https://github.com/exercism/zig
 
