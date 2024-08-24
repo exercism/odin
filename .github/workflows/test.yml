@@ -50,3 +50,10 @@ jobs:
       - name: Apply code formatting to all .odin files
         run: bin/format-all.sh
 
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'G-J van Rooyen'
+          git config --global user.email 'gvrooyen@gmail.com'
+          git add .
+          git commit -m "Automated formatting"
+          git push
