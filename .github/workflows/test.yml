@@ -45,7 +45,7 @@ jobs:
         run: bin/configlet lint
 
       - name: Verify all exercises
-        run: bin/run-test.sh
+        run: bin/verify-exercises
 
       - name: Apply code formatting to all .odin files
         run: bin/format-all.sh
