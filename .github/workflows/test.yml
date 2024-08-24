@@ -33,7 +33,13 @@ jobs:
         uses: laytan/setup-odin@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+          # TODO: Pull a specific version of Odin compatible with the OS.
+          # The current setting pulls the latest version of Odin from the repo, and rebuilds it from
+          # scratch. This is slow, and clutters the action's log. Rather ensure that the OS has the
+          # right dependencies for a recent versioned release of the compiler.
           release: false
+
           llvm-version: 14
 
       - name: Install project dependencies
