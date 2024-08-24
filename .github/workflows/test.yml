@@ -1,9 +1,5 @@
-# This workflow will do a clean install of the dependencies and run tests across different versions
-#
-# Replace <track> with the track name
-# Replace <image-name> with an image to run the jobs on
-# Replace <action to setup tooling> with a github action to setup tooling on the image
-# Replace <install dependencies> with a cli command to install the dependencies
+# This workflow will do a clean install of the dependencies and run tests across different versions.
+# It will also apply automatic code formatting.
 #
 # Find Github Actions to setup tooling here:
 # - https://github.com/actions/?q=setup&type=&language=
@@ -51,4 +47,6 @@ jobs:
       - name: Verify all exercises
         run: bin/run-test.sh
 
+      - name: Apply code formatting to all .odin files
+        run: bin/format-all.sh
 

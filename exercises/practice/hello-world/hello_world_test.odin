@@ -4,7 +4,7 @@ import "core:testing"
 
 @(test)
 test :: proc(t: ^testing.T) {
-    expected := "Hello, World!"
+	expected := "Hello, World!"
 
-    testing.expect_value(t, hello_world(), expected)
+	testing.expect_value(t, hello_world(), expected)
 }

@@ -8,6 +8,7 @@ Borrowing concepts from other C-based/C-adjacent language tracks:
 
 ## TODO
 
+- Add actual verification steps to `bin/
 - Figure out how to build an Odin test runner (currently using bash script for this)
 - [Highlight.js support for Odin](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
 
