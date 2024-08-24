@@ -54,6 +54,4 @@ jobs:
         run: |
           git config --global user.name 'G-J van Rooyen'
           git config --global user.email 'gvrooyen@gmail.com'
-          git add .
-          git commit -m "Automated formatting"
-          git push
+          git diff --quiet && git diff --staged quiet || git commit -am "Automated formatting" && git push
