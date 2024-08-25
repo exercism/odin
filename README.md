@@ -6,9 +6,42 @@ Borrowing concepts from other C-based/C-adjacent language tracks:
 - https://github.com/exercism/c
 - https://github.com/exercism/zig
 
-## TODO
+## Contributing an Exercise
+The `bin/` subdirectory contains several scripts to help you contribute exercises that will run
+correctly on Exercism:
 
-- Add actual verification steps to `bin/
+- `configlet` is a tool to help track maintainers with the maintenance of their track. Fetch it by
+  running the `bin/fetch-configlet` script. Run `bin/configlet lint` to verify that the track is
+  properly structured.
+- `bin/fetch-ols-odinfmt.sh` will fetch the Odin language server (`ols`) that can assist with
+  verifying Odin code directly in your IDE. `odinfmt` is a tool that can format Odin code according
+  to the specification in `odinfmt.json`. `odinfmt` is automatically invoked by the build system
+  whenever new code is pushed to the repository.
+- `bin/format-all.sh` will run `odinfmt` on all `.odin` files in the repository.
+- `bin/run-test.sh` runs the tests for a specific exercise, or for all exercises if no exercise name is
+  provided.
+- `bin/verify-exercises` checks the integrity of all exercises, including tests. It is used by the
+  build system whenever new code is pushed to the repository.
+- `bin/gen-exercise.sh` can be used to generate a new exercise. More details follow below.
+
+### Creating a New Exercise
+1. Edit `config.json` to include the information about the new exercise. Add a new entry into the
+   `exercises` dictionary, either under `concept` or `practice`. You'll need the unique identifier
+   (`uuid`) which is best lifted from another track. This can also be used to populate the slug,
+   name, difficulty, and other fields that should typically be similar between tracks.
+2. Run `bin/gen-exercise.sh <slug>` to automatically generate the exercise skeleton in the
+   `exercises/practice/<slug>/` directory.
+3. Edit `exercises/practice/<slug>/.meta/config.json` and populate the `files.solution`,
+   `files.test`, and `files.example` arrays to point to the generated files. Add your Exercism
+   username to the `authors` array.
+4. `exercises/practice/<slug>/<slug>_test.odin` will already contain stubs for a minimum number of
+   standard tests for the exercise, but will likely need editing to invoke the right function in the
+   solution, and to correctly test the output. It is strongly recommended that you look at the tests
+   from a reference track (e.g. C or Zig) and include a more thorough set of tests.
+
+## TODO
+- Let `bin/gen-exercise.sh` automatically configure `.meta/config.json` when a new exercise skeleton
+  is generated.
 - Figure out how to build an Odin test runner (currently using bash script for this)
 - [Highlight.js support for Odin](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
 

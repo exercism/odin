@@ -15,6 +15,8 @@ function run_test() {
     meta=".meta"
     exercise_name="${1}"
     exercise_path="${exercises_path}/${exercise_name}"
+
+    echo "$exercise_name / $exercise_path"
     
     if [ -n "${exercise_name}" ] && [ -d "${exercise_path}" ]; then
         echo "Running test for exercise: ${exercise_name}"
