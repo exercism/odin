@@ -1,27 +1,96 @@
 # Odin
 
-Official Exercism forum thread about this track: https://forum.exercism.org/t/new-track-odin-programming-language/7379
+<br>
 
-Borrowing concepts from other C-based/C-adjacent language tracks:
-- https://github.com/exercism/c
-- https://github.com/exercism/zig
+Hi. &nbsp;👋🏽 &nbsp;👋 &nbsp;**We are happy you are here.**&nbsp; 🎉&nbsp;🌟
+
+<br>
+
+**`exercism/odin`** is one of many programming language tracks on [Exercism](exercism-website).
+This repo holds all the instructions, tests, code, and support files for Odin _exercises_ currently under development or implemented and available for students.
+
+🌟 &nbsp;&nbsp;Track exercises support the `dev-2024-08` release of Odin.
+
+Exercises are grouped into **concept** exercises which teach the Odin syllabus, which will eventually live [here][odin-syllabus], and **practice** exercises, which are unlocked by progressing in the syllabus tree &nbsp;🌴&nbsp;.
+Concept exercises are constrained to a small set of language or syntax features.
+Practice exercises are open-ended, and can be used to practice concepts learned, try out new techniques, and _play_. These two exercise groupings can be found in the track [config.json][config-json], and under the `odin/exercises` directory.
+
+<br><br>
+
+<div>
+<span>
+<img align="left" height="60" width="85" src="https://user-images.githubusercontent.com/5923094/204436863-2ebf34d1-4b16-486b-9e0a-add36f4c09c1.svg">
+</span>
+<span align="left">
+
+🌟🌟&nbsp; Please take a moment to read our [Code of Conduct][exercism-code-of-conduct]&nbsp;🌟🌟&nbsp;  
+It might also be helpful to look at [Being a Good Community Member][being-a-good-community-member] & [The words that we use][the-words-that-we-use].
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some defined roles in our community: [Contributors][exercism-contributors] **|** [Mentors][exercism-mentors] **|** [Maintainers][exercism-track-maintainers] **|** [Admins][exercism-admins]
+
+</span></div>
+
+<br>
+<img align="left" width="95" height="90" src="https://github.com/exercism/website-icons/blob/main/exercises/boutique-suggestions.svg">
+
+Here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;  
+We'd love if you did that via our [Exercism Community Forum][exercism-forum] where there is a [dedicated thread][odin-thread] for the new Odin track. 
+Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence].  
+_Thoughtful suggestions will likely result in faster & more enthusiastic responses from volunteers._
+
+<br>
+<img align="left" width="85" height="80" src="https://github.com/exercism/website-icons/blob/main/exercises/word-search.svg">
+
+✨&nbsp;🦄&nbsp; _**Want to jump directly into Exercism specifications & detail?**_  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Structure][exercism-track-structure] **|** [Tasks][exercism-tasks] **|** [Concepts][exercism-concepts] **|** [Concept Exercises][concept-exercises] **|** [Practice Exercises][practice-exercises] **|** [Presentation][exercise-presentation]  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Writing Style Guide][exercism-writing-style] **|** [Markdown Specification][exercism-markdown-specification] (_✨ version in [contributing][website-contributing-section] on exercism.org_)
+
+<br>
+<br>
+
+## Pre-launch Checklist
+Here is a list of practice exercises that we aim to implement before the Odin track goes live on Exercism:
+
+- ~~Hello World~~
+- ~~Leap~~
+- ~~Difference of Squares~~
+- ~~Grains~~
+- Resistor Color
+- Collatz Conjecture
+- Queen Attack
+- Darts
+- Resistor Color Duo
+- Hamming
+- Space Age
+- RNA Transcription
+- Binary
+- Eliud's Eggs
+- Two Fer
+- Raindrops
+- D&D Character
+- Perfect Numbers
+- High Scores
+- Pangram
+- Resistor Color Trio
+- Armstrong Numbers
+
+Other exercises are welcome too!
+It is recommended that a track has 20 exercises or more (not counting "Hello World") to go live.
 
 ## Contributing an Exercise
-The `bin/` subdirectory contains several scripts to help you contribute exercises that will run
-correctly on Exercism:
+The `bin/` subdirectory contains several scripts to help you contribute exercises that will run correctly on Exercism:
 
-- `configlet` is a tool to help track maintainers with the maintenance of their track. Fetch it by
-  running the `bin/fetch-configlet` script. Run `bin/configlet lint` to verify that the track is
-  properly structured.
-- `bin/fetch-ols-odinfmt.sh` will fetch the Odin language server (`ols`) that can assist with
-  verifying Odin code directly in your IDE. `odinfmt` is a tool that can format Odin code according
-  to the specification in `odinfmt.json`. `odinfmt` is automatically invoked by the build system
+- `configlet` is a tool to help track maintainers with the maintenance of their track.
+  Fetch it by running the `bin/fetch-configlet` script.
+  Run `bin/configlet lint` to verify that the track is properly structured.
+- `bin/fetch-ols-odinfmt.sh` will fetch the Odin language server (`ols`) that can assist with verifying Odin code directly in your IDE.
+  `odinfmt` is a tool that can format Odin code according to the specification in `odinfmt.json`.
+  Please run `odinfmt` before pushing your changes to the repository.
   whenever new code is pushed to the repository.
 - `bin/format-all.sh` will run `odinfmt` on all `.odin` files in the repository.
-- `bin/run-test.sh` runs the tests for a specific exercise, or for all exercises if no exercise name is
-  provided.
-- `bin/verify-exercises` checks the integrity of all exercises, including tests. It is used by the
-  build system whenever new code is pushed to the repository.
+- `bin/run-test.sh` runs the tests for a specific exercise, or for all exercises if no exercise name is provided.
+- `bin/verify-exercises` checks the integrity of all exercises, including tests.
+  It is used by the build system whenever new code is pushed to the repository.
 - `bin/gen-exercise.sh` can be used to generate a new exercise. More details follow below.
 
 ### Creating a New Exercise
@@ -138,3 +207,30 @@ Basic linting finished successfully:
 - Required track docs are present
 - Required shared exercise docs are present
 ```
+
+[being-a-good-community-member]: https://github.com/exercism/docs/tree/main/community/good-member
+[chestertons-fence]: https://github.com/exercism/docs/blob/main/community/good-member/chestertons-fence.md
+[concept-exercises]: https://github.com/exercism/docs/blob/main/building/tracks/concept-exercises.md
+[config-json]: https://github.com/exercism/odin/blob/main/config.json
+[exercise-presentation]: https://github.com/exercism/docs/blob/main/building/tracks/presentation.md
+[exercism-admins]: https://github.com/exercism/docs/blob/main/community/administrators.md
+[exercism-code-of-conduct]: https://exercism.org/docs/using/legal/code-of-conduct
+[exercism-concepts]: https://github.com/exercism/docs/blob/main/building/tracks/concepts.md
+[exercism-contributors]: https://github.com/exercism/docs/blob/main/community/contributors.md
+[exercism-forum]: https://forum.exercism.org/
+[exercism-markdown-specification]: https://github.com/exercism/docs/blob/main/building/markdown/markdown.md
+[exercism-mentors]: https://github.com/exercism/docs/tree/main/mentoring
+[exercism-tasks]: https://exercism.org/docs/building/product/tasks
+[exercism-track-maintainers]: https://github.com/exercism/docs/blob/main/community/maintainers.md
+[exercism-track-structure]: https://github.com/exercism/docs/tree/main/building/tracks
+[exercism-website]: https://exercism.org/
+[exercism-writing-style]: https://github.com/exercism/docs/blob/main/building/markdown/style-guide.md
+[freeing-maintainers]: https://exercism.org/blog/freeing-our-maintainers
+[practice-exercises]: https://github.com/exercism/docs/blob/main/building/tracks/practice-exercises.md
+[prs]: https://github.com/exercism/docs/blob/main/community/good-member/pull-requests.md
+[odin-release]: https://github.com/odin-lang/Odin/releases/tag/dev-2024-08
+[odin-syllabus]: https://exercism.org/tracks/odin/concepts
+[odin-thread]: https://forum.exercism.org/t/new-track-odin-programming-language/7379
+[suggesting-improvements]: https://github.com/exercism/docs/blob/main/community/good-member/suggesting-exercise-improvements.md
+[the-words-that-we-use]: https://github.com/exercism/docs/blob/main/community/good-member/words.md
+[website-contributing-section]: https://exercism.org/docs/building

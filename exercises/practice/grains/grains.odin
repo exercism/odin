@@ -2,7 +2,7 @@ package grains
 
 Error :: enum {
 	// Implement me!
-	NotImplemented
+	NotImplemented,
 }
 
 // Returns the number of grains on the specified square.

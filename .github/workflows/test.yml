@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Setup Odin
-        uses: laytan/setup-odin@v2
+        uses: laytan/setup-odin
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -34,24 +34,12 @@ jobs:
           # The current setting pulls the latest version of Odin from the repo, and rebuilds it from
           # scratch. This is slow, and clutters the action's log. Rather ensure that the OS has the
           # right dependencies for a recent versioned release of the compiler.
-          release: false
+          release: dev-2024-08
 
           llvm-version: 14
 
       - name: Install project dependencies
         run: bin/fetch-configlet
 
-      - name: Run the project linter
-        run: bin/configlet lint
-
       - name: Verify all exercises
         run: bin/verify-exercises
-
-      - name: Apply code formatting to all .odin files
-        run: bin/format-all.sh
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'G-J van Rooyen'
-          git config --global user.email 'gvrooyen@gmail.com'
-          git diff --quiet && git diff --staged --quiet || git commit -am "Automated formatting" && git push

@@ -2,7 +2,7 @@ package leap
 
 Error :: enum {
 	None = 0,
-	NotImplemented
+	NotImplemented,
 }
 
 is_leap_year :: proc(year: int) -> (bool, Error) {
