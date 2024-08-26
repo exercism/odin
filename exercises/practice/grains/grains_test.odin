@@ -94,5 +94,7 @@ test_returns_the_number_of_grains_on_the_square_square_greater_than_64_raises_an
 
 @(test)
 test_returns_the_total_number_of_grains_on_the_board :: proc(t: ^testing.T) {
-	testing.expect_value(t, total(), 18_446_744_073_709_551_615)
+	c, e := total()
+	testing.expect_value(t, c, 18_446_744_073_709_551_615)
+	testing.expect_value(t, e, Error.None)
 }

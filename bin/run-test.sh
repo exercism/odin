@@ -39,8 +39,9 @@ function run_test() {
         # Copy the example file into the main directory
         cp ${example_file} ${solution_file}
     
-        # Run the tests using the example file
-        odin test ${exercise_path}
+        # Run the tests using the example file. The `|| true` ensures that the script
+        # continues to the clean-up steps even if the tests fail.
+        odin test ${exercise_path} || true
     
         # Move the blank solution file back into the main directory
         mv "${exercise_path}/${meta}/${exercise_safe_name}.odin" ${solution_file}

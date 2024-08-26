@@ -1,18 +1,18 @@
 package grains
 
 Error :: enum {
-	None = 0
 	// Implement me!
+	NotImplemented
 }
 
 // Returns the number of grains on the specified square.
 square :: proc(n: int) -> (u64, Error) {
 	// Implement me!
-	return 0, .None
+	return 0, .NotImplemented
 }
 
 // Returns the total number of squares on the board.
-total :: proc() -> u64 {
+total :: proc() -> (u64, Error) {
 	// Implement me!
-	return 0
+	return 0, .NotImplemented
 }

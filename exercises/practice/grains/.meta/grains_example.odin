@@ -3,7 +3,7 @@ package grains
 Error :: enum {
 	None = 0,
 	InvalidSquare,
-	NotImplementedError,
+	NotImplemented,
 }
 
 /* Calculate the number of grains on the specified square and return the resulting count, as well
@@ -29,7 +29,7 @@ square :: proc(n: int) -> (u64, Error) {
 }
 
 // Returns the total number of squares on the board.
-total :: proc() -> u64 {
+total :: proc() -> (u64, Error) {
 	_, t := count(64)
-	return t
+	return t, .None
 }

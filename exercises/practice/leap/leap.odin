@@ -1,5 +1,11 @@
 package leap
 
-is_leap_year :: proc(year: int) -> bool {
-	return false
+Error :: enum {
+	// Implement me!
+	NotImplemented
+}
+
+is_leap_year :: proc(year: int) -> (bool, Error) {
+	// Implement me!
+	return false, .NotImplemented
 }
