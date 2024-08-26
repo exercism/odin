@@ -1,9 +1,17 @@
 {
-  "authors": ["gvrooyen"],
+  "authors": [
+    "gvrooyen"
+  ],
   "files": {
-    "solution": ["leap.odin"],
-    "test": ["leap_test.odin"],
-    "example": [".meta/leap_example.odin"]
+    "solution": [
+      "leap.odin"
+    ],
+    "test": [
+      "leap_test.odin"
+    ],
+    "example": [
+      ".meta/leap_example.odin"
+    ]
   },
   "blurb": "Determine whether a given year is a leap year.",
   "source": "CodeRanch Cattle Drive, Assignment 3",

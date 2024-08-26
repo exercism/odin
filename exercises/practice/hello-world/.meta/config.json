@@ -1,9 +1,17 @@
 {
-  "authors": ["gvrooyen"],
+  "authors": [
+    "gvrooyen"
+  ],
   "files": {
-    "solution": ["hello_world.odin"],
-    "test": ["hello_world_test.odin"],
-    "example": [".meta/hello_world_example.odin"]
+    "solution": [
+      "hello_world.odin"
+    ],
+    "test": [
+      "hello_world_test.odin"
+    ],
+    "example": [
+      ".meta/hello_world_example.odin"
+    ]
   },
   "blurb": "Exercism's classic introductory exercise. Just say \"Hello, World!\".",
   "source": "This is an exercise to introduce users to using Exercism",
