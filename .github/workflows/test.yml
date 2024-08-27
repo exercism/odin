@@ -1,13 +1,4 @@
-# This workflow will do a clean install of the dependencies and run tests across different versions.
-# It will also apply automatic code formatting.
-#
-# Find Github Actions to setup tooling here:
-# - https://github.com/actions/?q=setup&type=&language=
-# - https://github.com/actions/starter-workflows/tree/main/ci
-# - https://github.com/marketplace?type=actions&query=setup
-#
-# Requires scripts:
-# - bin/test
+# This workflow creates an Odin environment and runs all tests for all exercises.
 
 name: odin / Test
 
@@ -19,23 +10,22 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
+      - name: Update packages
+        run: sudo apt update
+
+      - name: Install Clang
+        run: sudo apt -y install clang
+
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Setup Odin
-        uses: laytan/setup-odin
+        uses: laytan/setup-odin@41f9612bfec760bbb68b05b5747f319afe7c48d8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-          # TODO: Pull a specific version of Odin compatible with the OS.
-          # The current setting pulls the latest version of Odin from the repo, and rebuilds it from
-          # scratch. This is slow, and clutters the action's log. Rather ensure that the OS has the
-          # right dependencies for a recent versioned release of the compiler.
-          release: dev-2024-08
-
           llvm-version: 14
 
       - name: Install project dependencies
