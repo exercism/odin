@@ -1,6 +1,6 @@
 # This workflow creates an Odin environment and runs all tests for all exercises.
 
-name: odin / Test
+name: odin/Test
 
 on:
   push:
