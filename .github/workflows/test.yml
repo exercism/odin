@@ -28,8 +28,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           llvm-version: 14
 
-      - name: Install project dependencies
-        run: bin/fetch-configlet
-
       - name: Verify all exercises
         run: bin/verify-exercises
