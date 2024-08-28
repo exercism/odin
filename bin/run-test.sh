@@ -15,11 +15,12 @@ function run_test() {
     meta=".meta"
     exercise_name="${1}"
     exercise_path="${exercises_path}/${exercise_name}"
+    tmp_path=`mktemp -d`
 
     echo "$exercise_name / $exercise_path"
     
     if [ -n "${exercise_name}" ] && [ -d "${exercise_path}" ]; then
-        echo "Running test for exercise: ${exercise_name}"
+        echo -e "Running test for exercise: ${exercise_name}\n"
     
         # Turn something like "hello-world" into "hello_world"
         exercise_safe_name=$(echo $exercise_name | to_snake_case)
@@ -33,21 +34,26 @@ function run_test() {
         # "exercises/practice/.meta/hello_world_example.odin"
         example_file="${exercise_path}/${meta}/${exercise_safe_name}_example.odin"
     
-        # Move the blank solution file into the meta directory for a bit
-        mv ${solution_file} ${exercise_path}/${meta}
+        # Copy the example and test files into the temporary directory
+        cp ${example_file} ${tmp_path}/${exercise_safe_name}.odin
+        cp ${test_file} ${tmp_path}
     
-        # Copy the example file into the main directory
-        cp ${example_file} ${solution_file}
-    
-        # Run the tests using the example file. The `|| true` ensures that the script
-        # continues to the clean-up steps even if the tests fail.
-        odin test ${exercise_path} || true
-    
-        # Move the blank solution file back into the main directory
-        mv "${exercise_path}/${meta}/${exercise_safe_name}.odin" ${solution_file}
+        # Run the tests using the example file to verify that it is a valid solution.
+        odin test ${tmp_path}
 
-        # Remove the built executable
-        rm -f ${exercise_name}
+        echo -e "Checking that the stub solution *fails* the tests\n"
+
+        # Copy the stub solution to the temporary directory
+        cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
+
+        # Run the test. If it passes, exit with a message and an error.
+        if odin test ${tmp_path} ; then
+            echo "ERROR: The stub solution must not pass the tests!"
+            exit 1
+        else
+            echo "SUCCESS: The stub solution failed the tests above as expected."
+        fi
+
     else
         echo "Running all tests"
         for exercise in $(ls $exercises_path)
@@ -56,5 +62,13 @@ function run_test() {
         done
     fi
 }
+
+# Delete the temp directory
+function cleanup {
+    rm -rf ${tmp_path}
+}
+
+# Register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
 
 run_test $@
