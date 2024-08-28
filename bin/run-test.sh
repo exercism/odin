@@ -3,11 +3,6 @@
 # Exit script if any subcommands fail
 set -e
 
-# Terminal color definitions
-COLOR_GREEN="$(tput setaf 2)$(tput bold)"
-COLOR_RED="$(tput setaf 1)$(tput bold)"
-COLOR_REST="$(tput sgr0)"
-
 # TODO: Pull info from config, similar to how the Zig track does it:
 # https://github.com/exercism/zig/blob/main/bin/run-tests
 
@@ -53,10 +48,10 @@ function run_test() {
 
         # Run the test. If it passes, exit with a message and an error.
         if odin test ${tmp_path} ; then
-            printf '%s\nERROR: The stub solution must not pass the tests!\n\n' $COLOR_RED
+            echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
         else
-            printf '%s\nSUCCESS: The stub solution failed the tests above as expected.\n\n' $COLOR_GREEN
+            echo -e '\nSUCCESS: The stub solution failed the tests above as expected.\n'
         fi
 
     else
@@ -64,7 +59,6 @@ function run_test() {
         for exercise in $(ls $exercises_path)
         do
             run_test $exercise
-            printf "%s" $COLOR_REST
         done
     fi
 }
