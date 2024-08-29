@@ -51,13 +51,14 @@ function run_test() {
         # Run the tests using the example file to verify that it is a valid solution.
         odin test ${tmp_path}
 
-        echo -e "Checking that the stub solution *fails* the tests\n"
+        echo -e "Checking that the stub solution *fails* the tests"
 
         # Copy the stub solution to the temporary directory
         cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
 
-        # Run the test. If it passes, exit with a message and an error.
-        if odin test ${tmp_path} ; then
+        # Run the test. If it passes, exit with a message and an error. Here we suppress the output
+        # of the test run to avoid seeing red "failed" messages when all is going well.
+        if odin test ${tmp_path} 2> /dev/null ; then
             echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
         else
