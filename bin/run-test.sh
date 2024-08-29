@@ -34,9 +34,19 @@ function run_test() {
         # "exercises/practice/.meta/hello_world_example.odin"
         example_file="${exercise_path}/${meta}/${exercise_safe_name}_example.odin"
     
-        # Copy the example and test files into the temporary directory
+        # Copy the example file into the temporary directory
         cp ${example_file} ${tmp_path}/${exercise_safe_name}.odin
-        cp ${test_file} ${tmp_path}
+
+        # Unskip all tests and write the processed test file to the temporary directory.
+        # The test file for the exercise often has several of the tests skippped initially, so that
+        # students can do test-driven development by enabling the next test, possibly see it fail,
+        # and then refining their solution. However, the test runner used by contributors and the CI
+        # pipeline always needs to run all tests.
+        #
+        # In Odin, a test can be skipped by commenting out the `@(test)` annotation preceding the
+        # test procedure. Here we unskip the test by searching for `\\ @(test)` lines and replacing
+        # them with `@test`.
+        sed s/"\/\/ @(test)"/"@(test)"/ ${test_file} > ${tmp_path}/${exercise_safe_name}_test.odin
     
         # Run the tests using the example file to verify that it is a valid solution.
         odin test ${tmp_path}
