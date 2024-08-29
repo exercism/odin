@@ -1,14 +1,12 @@
 package resistor_color
 
-Color :: enum {
-	// Implement me!
-}
+Color :: enum {}// Implement an enumeration of all the resistor colors.
+
 
 code :: proc(color: Color) -> int {
-	// Implement me!
-	return -1
+	#panic("Please implement the `code` procedure.")
 }
 
-colors :: proc() { // -> ?
-	// Implement me!
+colors :: proc() { 	// -> ?
+	#panic("Please implement the `colors` procedure.")
 }

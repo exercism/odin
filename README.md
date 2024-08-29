@@ -48,36 +48,10 @@ _Thoughtful suggestions will likely result in faster & more enthusiastic respons
 <br>
 <br>
 
-## Pre-launch Checklist
-Here is a list of practice exercises that we aim to implement before the Odin track goes live on Exercism:
-
-- ~~Hello World~~
-- ~~Leap~~
-- ~~Difference of Squares~~
-- ~~Grains~~
-- Resistor Color
-- Collatz Conjecture
-- Queen Attack
-- Darts
-- Resistor Color Duo
-- Hamming
-- Space Age
-- RNA Transcription
-- Binary
-- Eliud's Eggs
-- Two Fer
-- Raindrops
-- D&D Character
-- Perfect Numbers
-- High Scores
-- Pangram
-- Resistor Color Trio
-- Armstrong Numbers
-
-Other exercises are welcome too!
-It is recommended that a track has 20 exercises or more (not counting "Hello World") to go live.
-
 ## Contributing an Exercise
+If you are interested in contributing a new exercise, please have a look at [this issue][odin-backlog] to see which exercises are waiting on implementation.
+Leave a comment in the issue to notify other contributors which exercise you plan to implement.
+
 The `bin/` subdirectory contains several scripts to help you contribute exercises that will run correctly on Exercism:
 
 - `configlet` is a tool to help track maintainers with the maintenance of their track.
@@ -124,6 +98,7 @@ The `bin/` subdirectory contains several scripts to help you contribute exercise
 [freeing-maintainers]: https://exercism.org/blog/freeing-our-maintainers
 [practice-exercises]: https://github.com/exercism/docs/blob/main/building/tracks/practice-exercises.md
 [prs]: https://github.com/exercism/docs/blob/main/community/good-member/pull-requests.md
+[odin-backlog]: https://github.com/exercism/odin/issues/26
 [odin-release]: https://github.com/odin-lang/Odin/releases/tag/dev-2024-08
 [odin-syllabus]: https://exercism.org/tracks/odin/concepts
 [odin-thread]: https://forum.exercism.org/t/new-track-odin-programming-language/7379
