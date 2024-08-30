@@ -71,10 +71,11 @@ The `bin/` subdirectory contains several scripts to help you contribute exercise
 - Run `bin/configlet create --practice-exercise <slug>` to automatically generate the exercise skeleton in the `exercises/practice/<slug>/` directory and to update `config.json` to reference the new exercise.
   You can add `--author <your_exercism_username>` as option to mark yourself as the creator of this exercise (or add it later in the exercise's `.meta/config.json` file.)
 - Add a solution stub at the exercise's `<slug>.odin` file.
-  This is what users will start with when solving the exercise.
+  This is what students will begin with when they start the exercise. 
+  It should make it as easy as possible to understand what they need to solve, without revealing too much of the solution.
+  Stub functions should usually panic, e.g. `#panic("Please implement the <stub> function.")`.
 - Add tests to `<slug>_test.odin`.
   Verify that the slug solution would fail _all_ tests.
-  Consider adding an error return enumeration such as `NotImplemented` to ensure that the stub solution's return values are invalid for all test cases.
 - Implement a reference solution at `.meta/<slug>_example.odin`.
 - Use `bin/run_test.sh <slug>` to verify that your reference solution passes.
 

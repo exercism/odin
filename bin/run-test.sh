@@ -57,6 +57,12 @@ function run_test() {
         cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
 
         # Run the test. If it passes, exit with a message and an error.
+        # TODO: Check that the stub fails _all_ the tests.
+        # We only check for a single failed test here -- the stub solution could solve all the cases
+        # but only fail on the most complicated one. Since the purpose of this test is mostly to
+        # double-check that the example didn't accidentally get duplicated as the stub, this isn't
+        # too critical for now.
+
         if odin test ${tmp_path} ; then
             echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
