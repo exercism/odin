@@ -57,7 +57,7 @@ function run_test() {
         cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
 
         # Run the test. If it passes, exit with a message and an error.
-        if odin test ${tmp_path} ; then
+        if odin test ${tmp_path} 2> /dev/null ; then
             echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
         else
