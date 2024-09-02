@@ -63,7 +63,7 @@ function run_test() {
         # double-check that the example didn't accidentally get duplicated as the stub, this isn't
         # too critical for now.
 
-        if odin test ${tmp_path} ; then
+        if odin test ${tmp_path} 2> /dev/null ; then
             echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
         else

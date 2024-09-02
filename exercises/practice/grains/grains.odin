@@ -1,6 +1,6 @@
 package grains
 
-Error :: enum {}// Please inspect the tests to see which error states to enumerate here.
+Error :: enum {} // Please inspect the tests to see which error states to enumerate here.
 
 
 // Returns the number of grains on the specified square.

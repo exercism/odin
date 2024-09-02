@@ -13,20 +13,26 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Update packages
-        run: sudo apt update
+      - name: Download Clang
+        run: wget https://apt.llvm.org/llvm.sh
 
-      - name: Install Clang
-        run: sudo apt -y install clang
+      - name: Set install script permissions
+        run: chmod u+x llvm.sh
+
+      - name: Install Clang 18
+        run: sudo ./llvm.sh 18
+
+      - name: Setup default version
+        run: sudo ln /usr/bin/clang-18 /usr/bin/clang
 
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Setup Odin
-        uses: laytan/setup-odin@41f9612bfec760bbb68b05b5747f319afe7c48d8
+        uses: laytan/setup-odin@3df60bd622575fda7efa4a3ec928f446bcae1a0a
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          llvm-version: 14
+          llvm-version: 18
 
       - name: Verify all exercises
         run: bin/verify-exercises
