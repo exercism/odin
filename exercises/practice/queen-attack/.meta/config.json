@@ -1,5 +1,7 @@
 {
-  "authors": [],
+  "authors": [
+    "gvrooyen"
+  ],
   "files": {
     "solution": [
       "queen_attack.odin"
