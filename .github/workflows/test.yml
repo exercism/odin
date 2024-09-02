@@ -23,7 +23,7 @@ jobs:
         run: sudo ./llvm.sh 18
 
       - name: Setup default version
-        run: sudo ln /usr/bin/clang-18 /usr/bin/clang
+        run: sudo ln -f /usr/bin/clang-18 /usr/bin/clang
 
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
