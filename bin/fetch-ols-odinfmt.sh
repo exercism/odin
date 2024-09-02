@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # version="refs/heads/master"
-version="46892948312c14b44600ae9f557e86bd8c792343"
+version="e2f4f96cd46b70360f3caa58acc4af14eb0e8688"
 bin_dir="bin"
 name="ols"
 

@@ -26,27 +26,49 @@
     ]
   },
   "exercises": {
-    "concept": [],
     "practice": [
       {
-        "uuid": "2cfe5afe-e94f-459c-aae5-d23d89931dda",
         "slug": "hello-world",
         "name": "Hello World",
+        "uuid": "2cfe5afe-e94f-459c-aae5-d23d89931dda",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
       },
       {
-        "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
         "slug": "leap",
         "name": "Leap",
+        "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "difference-of-squares",
+        "name": "Difference Of Squares",
+        "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "grains",
+        "name": "Grains",
+        "uuid": "b5b9be18-9141-4176-8f8c-3dd14d14bed5",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "resistor-color",
+        "name": "Resistor Color",
+        "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
       }
     ]
   },
-  "concepts": [],
   "key_features": [
     {
       "title": "Simple",
@@ -67,21 +89,31 @@
       "title": "Cross-compile",
       "content": "Odin can build for a plethora of targets and cross-compiling is a first class use case.",
       "icon": "cross-platform"
+    },
+    {
+      "title": "Modern",
+      "content": "Odin is designed from the bottom up for the modern computer.",
+      "icon": "powerful"
+    },
+    {
+      "title": "Fun",
+      "content": "Odin is the C alternative for the Joy of Programming.",
+      "icon": "fun"
     }
   ],
   "tags": [
+    "execution_mode/compiled",
     "paradigm/imperative",
     "paradigm/procedural",
+    "platform/android",
+    "platform/ios",
+    "platform/linux",
+    "platform/mac",
+    "platform/web",
+    "platform/windows",
+    "runtime/standalone_executable",
     "typing/static",
     "typing/strong",
-    "execution_mode/compiled",
-    "platform/windows",
-    "platform/mac",
-    "platform/linux",
-    "platform/ios",
-    "platform/android",
-    "platform/web",
-    "runtime/standalone_executable",
     "used_for/backends",
     "used_for/cross_platform_development",
     "used_for/embedded_systems",

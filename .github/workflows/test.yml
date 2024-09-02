@@ -1,19 +1,6 @@
-# This workflow will do a clean install of the dependencies and run tests across different versions
-#
-# Replace <track> with the track name
-# Replace <image-name> with an image to run the jobs on
-# Replace <action to setup tooling> with a github action to setup tooling on the image
-# Replace <install dependencies> with a cli command to install the dependencies
-#
-# Find Github Actions to setup tooling here:
-# - https://github.com/actions/?q=setup&type=&language=
-# - https://github.com/actions/starter-workflows/tree/main/ci
-# - https://github.com/marketplace?type=actions&query=setup
-#
-# Requires scripts:
-# - bin/test
+# This workflow creates an Odin environment and runs all tests for all exercises.
 
-name: <track> / Test
+name: odin/Test
 
 on:
   push:
@@ -23,17 +10,23 @@ on:
 
 jobs:
   ci:
-    runs-on: <image-name>
+    runs-on: ubuntu-22.04
 
     steps:
+      - name: Update packages
+        run: sudo apt update
+
+      - name: Install Clang
+        run: sudo apt -y install clang
+
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
-      - name: Use <setup tooling>
-        uses: <action to setup tooling>
-
-      - name: Install project dependencies
-        run: <install dependencies>
+      - name: Setup Odin
+        uses: laytan/setup-odin@41f9612bfec760bbb68b05b5747f319afe7c48d8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          llvm-version: 14
 
       - name: Verify all exercises
         run: bin/verify-exercises

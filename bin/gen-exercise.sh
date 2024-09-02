@@ -99,8 +99,8 @@ EOL
     # Make the example file a simple copy of the solution file
     cp ${solution_file} ${example_file}
 
-    echo "Formatting new Odin files:"
-    bin/odinfmt -w ${exercises_path}
+    # echo "Formatting new Odin files:"
+    # bin/odinfmt -w ${exercises_path}
 
     echo "Be sure to implement the following files:"
     echo -e "\t${solution_file}"

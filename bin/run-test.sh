@@ -15,9 +15,12 @@ function run_test() {
     meta=".meta"
     exercise_name="${1}"
     exercise_path="${exercises_path}/${exercise_name}"
+    tmp_path=`mktemp -d`
+
+    echo "$exercise_name / $exercise_path"
     
     if [ -n "${exercise_name}" ] && [ -d "${exercise_path}" ]; then
-        echo "Running test for exercise: ${exercise_name}"
+        echo -e "Running test for exercise: ${exercise_name}\n"
     
         # Turn something like "hello-world" into "hello_world"
         exercise_safe_name=$(echo $exercise_name | to_snake_case)
@@ -31,20 +34,42 @@ function run_test() {
         # "exercises/practice/.meta/hello_world_example.odin"
         example_file="${exercise_path}/${meta}/${exercise_safe_name}_example.odin"
     
-        # Move the blank solution file into the meta directory for a bit
-        mv ${solution_file} ${exercise_path}/${meta}
-    
-        # Copy the example file into the main directory
-        cp ${example_file} ${solution_file}
-    
-        # Run the tests using the example file
-        odin test ${exercise_path}
-    
-        # Move the blank solution file back into the main directory
-        mv "${exercise_path}/${meta}/${exercise_safe_name}.odin" ${solution_file}
+        # Copy the example file into the temporary directory
+        cp ${example_file} ${tmp_path}/${exercise_safe_name}.odin
 
-        # Remove the built executable
-        rm -f ${exercise_name}
+        # Unskip all tests and write the processed test file to the temporary directory.
+        # The test file for the exercise often has several of the tests skippped initially, so that
+        # students can do test-driven development by enabling the next test, possibly see it fail,
+        # and then refining their solution. However, the test runner used by contributors and the CI
+        # pipeline always needs to run all tests.
+        #
+        # In Odin, a test can be skipped by commenting out the `@(test)` annotation preceding the
+        # test procedure. Here we unskip the test by searching for `\\ @(test)` lines and replacing
+        # them with `@test`.
+        sed s/"\/\/ @(test)"/"@(test)"/ ${test_file} > ${tmp_path}/${exercise_safe_name}_test.odin
+    
+        # Run the tests using the example file to verify that it is a valid solution.
+        odin test ${tmp_path}
+
+        echo -e "Checking that the stub solution *fails* the tests\n"
+
+        # Copy the stub solution to the temporary directory
+        cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
+
+        # Run the test. If it passes, exit with a message and an error.
+        # TODO: Check that the stub fails _all_ the tests.
+        # We only check for a single failed test here -- the stub solution could solve all the cases
+        # but only fail on the most complicated one. Since the purpose of this test is mostly to
+        # double-check that the example didn't accidentally get duplicated as the stub, this isn't
+        # too critical for now.
+
+        if odin test ${tmp_path} ; then
+            echo -e '\nERROR: The stub solution must not pass the tests!\n'
+            exit 1
+        else
+            echo -e '\nSUCCESS: The stub solution failed the tests above as expected.\n'
+        fi
+
     else
         echo "Running all tests"
         for exercise in $(ls $exercises_path)
@@ -53,5 +78,13 @@ function run_test() {
         done
     fi
 }
+
+# Delete the temp directory
+function cleanup {
+    rm -rf ${tmp_path}
+}
+
+# Register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
 
 run_test $@
