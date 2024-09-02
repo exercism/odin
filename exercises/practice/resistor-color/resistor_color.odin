@@ -1,6 +1,6 @@
 package resistor_color
 
-Color :: enum {}// Implement an enumeration of all the resistor colors.
+Color :: enum {} // Implement an enumeration of all the resistor colors.
 
 
 code :: proc(color: Color) -> int {
