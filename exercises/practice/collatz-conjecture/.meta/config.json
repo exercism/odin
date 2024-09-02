@@ -1,5 +1,7 @@
 {
-  "authors": [],
+  "authors": [
+    "gvrooyen"
+  ],
   "files": {
     "solution": [
       "collatz_conjecture.odin"
