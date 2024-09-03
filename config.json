@@ -75,9 +75,18 @@
         "prerequisites": [],
         "difficulty": 1
       },
+      {
         "slug": "darts",
         "name": "Darts",
         "uuid": "c428615a-8c11-4159-b3bd-3c352c244e85",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "hamming",
+        "name": "Hamming",
+        "uuid": "759117a1-5b63-4d71-8f98-f7a0d11ed74b",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
