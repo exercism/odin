@@ -33,6 +33,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           llvm-version: 18
+          release: dev-2024-09
 
       - name: Verify all exercises
         run: bin/verify-exercises
