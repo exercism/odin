@@ -51,11 +51,12 @@ function run_test() {
         # Run the tests using the example file to verify that it is a valid solution.
         odin test ${tmp_path}
 
-        echo -e "Checking that the stub solution *fails* the tests\n"
+        echo -e "Checking that the stub solution *fails* the tests"
 
         # Copy the stub solution to the temporary directory
         cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
 
+<<<<<<< HEAD
         # Run the test. If it passes, exit with a message and an error.
         # TODO: Check that the stub fails _all_ the tests.
         # We only check for a single failed test here -- the stub solution could solve all the cases
@@ -63,6 +64,10 @@ function run_test() {
         # double-check that the example didn't accidentally get duplicated as the stub, this isn't
         # too critical for now.
 
+=======
+        # Run the test. If it passes, exit with a message and an error. Here we suppress the output
+        # of the test run to avoid seeing red "failed" messages when all is going well.
+>>>>>>> collatz-conjecture
         if odin test ${tmp_path} 2> /dev/null ; then
             echo -e '\nERROR: The stub solution must not pass the tests!\n'
             exit 1
