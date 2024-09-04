@@ -68,6 +68,7 @@
         "difficulty": 1
       },
       {
+<<<<<<< HEAD
         "slug": "collatz-conjecture",
         "name": "Collatz Conjecture",
         "uuid": "d87d43a6-91c0-4a60-a54e-86b86050436b",
@@ -95,6 +96,14 @@
         "slug": "queen-attack",
         "name": "Queen Attack",
         "uuid": "500f0268-3236-4794-90bc-c63384f71b43",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "resistor-color-duo",
+        "name": "Resistor Color Duo",
+        "uuid": "b945c3c5-19f6-4e34-9612-45c1241545ef",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
