@@ -68,7 +68,6 @@
         "difficulty": 1
       },
       {
-<<<<<<< HEAD
         "slug": "collatz-conjecture",
         "name": "Collatz Conjecture",
         "uuid": "d87d43a6-91c0-4a60-a54e-86b86050436b",
@@ -104,6 +103,14 @@
         "slug": "resistor-color-duo",
         "name": "Resistor Color Duo",
         "uuid": "b945c3c5-19f6-4e34-9612-45c1241545ef",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "space-age",
+        "name": "Space Age",
+        "uuid": "2e4aeee6-e53d-409f-9eaa-67ca4daabc55",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
