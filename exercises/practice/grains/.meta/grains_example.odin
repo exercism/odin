@@ -1,15 +1,9 @@
 package grains
 
-Error :: enum {
-	None = 0,
-	InvalidSquare,
-	NotImplemented,
-}
-
 /* Calculate the number of grains on the specified square and return the resulting count, as well
    as the sum of grains on this and all previous squares.
 */
-count :: proc(n: int) -> (u64, u64) {
+count :: proc(n: int) -> (on_square: u64, total: u64) {
 	acc: u64 = 1
 	val: u64 = 1
 
@@ -22,14 +16,14 @@ count :: proc(n: int) -> (u64, u64) {
 }
 
 // Returns the number of grains on the specified square.
-square :: proc(n: int) -> (u64, Error) {
-	if n < 1 || n > 64 do return 0, .InvalidSquare
+square :: proc(n: int) -> (result: u64, ok: bool) {
+	if n < 1 || n > 64 do return 0, false
 	c, _ := count(n)
-	return c, .None
+	return c, true
 }
 
 // Returns the total number of squares on the board.
-total :: proc() -> (u64, Error) {
+total :: proc() -> (result: u64, ok: bool) {
 	_, t := count(64)
-	return t, .None
+	return t, true
 }
