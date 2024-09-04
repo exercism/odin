@@ -9,35 +9,35 @@ import "core:testing"
 
 @(test)
 test_zero_steps_for_one :: proc(t: ^testing.T) {
-	s, e := steps(1)
+	s, ok := steps(1)
 	testing.expect_value(t, s, 0)
-	testing.expect_value(t, e, Error.None)
+	testing.expect(t, ok)
 }
 
 @(test)
 test_divide_if_even :: proc(t: ^testing.T) {
-	s, e := steps(16)
+	s, ok := steps(16)
 	testing.expect_value(t, s, 4)
-	testing.expect_value(t, e, Error.None)
+	testing.expect(t, ok)
 }
 
 @(test)
 test_even_and_odd_steps :: proc(t: ^testing.T) {
-	s, e := steps(12)
+	s, ok := steps(12)
 	testing.expect_value(t, s, 9)
-	testing.expect_value(t, e, Error.None)
+	testing.expect(t, ok)
 }
 
 @(test)
 test_large_number_of_even_and_odd_steps :: proc(t: ^testing.T) {
-	s, e := steps(1_000_000)
+	s, ok := steps(1_000_000)
 	testing.expect_value(t, s, 152)
-	testing.expect_value(t, e, Error.None)
+	testing.expect(t, ok)
 }
 
 @(test)
 test_zero_is_an_error :: proc(t: ^testing.T) {
-	s, e := steps(0)
+	s, ok := steps(0)
 	testing.expect_value(t, s, 0)
-	testing.expect_value(t, e, Error.IllegalArgument)
+	testing.expect(t, !ok)
 }
