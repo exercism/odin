@@ -14,28 +14,28 @@ test_zero_steps_for_one :: proc(t: ^testing.T) {
 	testing.expect(t, ok)
 }
 
-@(test)
+// @(test)
 test_divide_if_even :: proc(t: ^testing.T) {
 	s, ok := steps(16)
 	testing.expect_value(t, s, 4)
 	testing.expect(t, ok)
 }
 
-@(test)
+// @(test)
 test_even_and_odd_steps :: proc(t: ^testing.T) {
 	s, ok := steps(12)
 	testing.expect_value(t, s, 9)
 	testing.expect(t, ok)
 }
 
-@(test)
+// @(test)
 test_large_number_of_even_and_odd_steps :: proc(t: ^testing.T) {
 	s, ok := steps(1_000_000)
 	testing.expect_value(t, s, 152)
 	testing.expect(t, ok)
 }
 
-@(test)
+// @(test)
 test_zero_is_an_error :: proc(t: ^testing.T) {
 	s, ok := steps(0)
 	testing.expect_value(t, s, 0)
