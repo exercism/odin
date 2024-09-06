@@ -5,9 +5,9 @@
 
 package rna_transcription
 
-import "core:testing"
 import "core:log"
 import "core:mem"
+import "core:testing"
 
 @(test)
 test_empty_rna_sequence :: proc(t: ^testing.T) {

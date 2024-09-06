@@ -8,11 +8,16 @@ to_rna :: proc(dna: string) -> (rna: string, ok: bool) {
 
 	for x in dna {
 		switch x {
-		case 'G': strings.write_byte(&b, 'C')
-		case 'C': strings.write_byte(&b, 'G')
-		case 'T': strings.write_byte(&b, 'A')
-		case 'A': strings.write_byte(&b, 'U')
-		case: return "", false
+		case 'G':
+			strings.write_byte(&b, 'C')
+		case 'C':
+			strings.write_byte(&b, 'G')
+		case 'T':
+			strings.write_byte(&b, 'A')
+		case 'A':
+			strings.write_byte(&b, 'U')
+		case:
+			return "", false
 		}
 	}
 	rna = strings.to_string(b)
