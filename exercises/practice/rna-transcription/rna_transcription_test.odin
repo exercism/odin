@@ -5,7 +5,6 @@
 
 package rna_transcription
 
-import "core:log"
 import "core:mem"
 import "core:testing"
 
