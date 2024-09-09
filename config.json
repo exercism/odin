@@ -66,6 +66,94 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
+      },
+      {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "uuid": "d87d43a6-91c0-4a60-a54e-86b86050436b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "darts",
+        "name": "Darts",
+        "uuid": "c428615a-8c11-4159-b3bd-3c352c244e85",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "hamming",
+        "name": "Hamming",
+        "uuid": "759117a1-5b63-4d71-8f98-f7a0d11ed74b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "queen-attack",
+        "name": "Queen Attack",
+        "uuid": "500f0268-3236-4794-90bc-c63384f71b43",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "resistor-color-duo",
+        "name": "Resistor Color Duo",
+        "uuid": "b945c3c5-19f6-4e34-9612-45c1241545ef",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "space-age",
+        "name": "Space Age",
+        "uuid": "2e4aeee6-e53d-409f-9eaa-67ca4daabc55",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "rna-transcription",
+        "name": "RNA Transcription",
+        "uuid": "285a177c-54d9-43ec-be35-af24de8495fd",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "eliuds-eggs",
+        "name": "Eliud's Eggs",
+        "uuid": "af0818fb-e7b1-4dd3-9780-b71a61ef80ad",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "raindrops",
+        "name": "Raindrops",
+        "uuid": "6e40cd45-7923-49ea-9267-1a3286ec99c7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "dnd-character",
+        "name": "D&D Character",
+        "uuid": "15654c1f-b8ba-4d18-9e39-a7f6c27b2a51",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "slug": "perfect-numbers",
+        "name": "Perfect Numbers",
+        "uuid": "ab9aa9bd-c6a1-4989-a1a5-b761818f38a3",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
       }
     ]
   },

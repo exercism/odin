@@ -51,7 +51,7 @@ function run_test() {
         # Run the tests using the example file to verify that it is a valid solution.
         odin test ${tmp_path}
 
-        echo -e "Checking that the stub solution *fails* the tests\n"
+        echo -e "Checking that the stub solution *fails* the tests"
 
         # Copy the stub solution to the temporary directory
         cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
