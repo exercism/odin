@@ -66,6 +66,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
+      },
+      {
+        "slug": "binary",
+        "name": "Binary",
+        "uuid": "8d63f469-dadf-4809-80b6-604089be8cb4",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
       }
     ]
   },

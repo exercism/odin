@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "pjlast"
+  ],
+  "files": {
+    "solution": [
+      "binary.odin"
+    ],
+    "test": [
+      "binary_test.odin"
+    ],
+    "example": [
+      ".meta/binary_example.odin"
+    ]
+  },
+  "blurb": "Convert a binary number, represented as a string (e.g. '101010'), to its decimal equivalent using first principles.",
+  "source": "All of Computer Science",
+  "source_url": "https://www.wolframalpha.com/examples/mathematics/numbers/base-conversions"
+}
