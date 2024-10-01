@@ -26,7 +26,7 @@ jobs:
         run: sudo ln -f /usr/bin/clang-18 /usr/bin/clang
 
       - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
 
       - name: Setup Odin
         uses: laytan/setup-odin@3df60bd622575fda7efa4a3ec928f446bcae1a0a
