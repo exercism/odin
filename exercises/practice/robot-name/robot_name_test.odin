@@ -87,11 +87,7 @@ dfs_fill_names :: proc(storage: ^RobotStorage) {
 		depth += 1
 		if depth == NAME_LENGTH {
 			key := string(current)
-			storage.names[key] = true
-			n := len(storage.names)
-			if n % 8673 == 0 {
-				fmt.printfln("[%d] '%s',", n, key)
-			}
+			storage.names[strings.clone(key)] = true
 			depth -= 1
 			continue
 		}
@@ -116,3 +112,4 @@ test_collisions :: proc(t: ^testing.T) {
 	r, e := new_robot(&storage)
 	testing.expect_value(t, e, Error.CouldNotCreateName)
 }
+
