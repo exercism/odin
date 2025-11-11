@@ -1,41 +1,57 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Exit script if any subcommands fail
-set -e
+set -euo pipefail
 
 # TODO: Pull info from config, similar to how the Zig track does it:
 # https://github.com/exercism/zig/blob/main/bin/run-tests
 
-function to_snake_case() {
-    tr ' ' '_' | tr '-' '_'| sed -r 's/([a-z0-9])([A-Z])/\1_\2/g' | sed -r 's/[^a-zA-Z0-9_]//g' | tr '[:upper:]' '[:lower:]'
+to_snake_case() {
+    sed -E '
+        s/[ -]/_/g
+        s/([a-z0-9])([A-Z])/\1_\2/g
+        s/[^a-zA-Z0-9_]//g
+        s/[[:upper:]]/[[:lower:]]/g
+    ' <<< "${1:-}"
 }
 
-function run_test() {
-    exercises_path="exercises/practice"
-    meta=".meta"
-    exercise_name="${1}"
-    exercise_path="${exercises_path}/${exercise_name}"
-    tmp_path=`mktemp -d`
+exercises_path="exercises/practice"
+meta=".meta"
+
+# Delete the temp directory
+function cleanup {
+    rm -rf "${tmp_path}"
+}
+# Register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
+
+
+run_test() {
+    local exercise_name="${1:-}"    # due to `set -u`, provide a default value
+    local exercise_path="${exercises_path}/${exercise_name}"
+    local exercise_safe_name solution_file test_file example_file
+    local -g tmp_path   # the cleanup function needs a global variable
+    tmp_path=$(mktemp -d)
 
     echo "$exercise_name / $exercise_path"
-    
-    if [ -n "${exercise_name}" ] && [ -d "${exercise_path}" ]; then
-        echo -e "Running test for exercise: ${exercise_name}\n"
-    
+
+    if [[ -n "${exercise_name}" ]] && [[ -d "${exercise_path}" ]]; then
+        echo "Running test for exercise: ${exercise_name}"
+
         # Turn something like "hello-world" into "hello_world"
-        exercise_safe_name=$(echo $exercise_name | to_snake_case)
-    
+        exercise_safe_name=$(to_snake_case "$exercise_name")
+
         # "exercises/practice/hello_world.odin"
         solution_file="${exercise_path}/${exercise_safe_name}.odin"
-    
+
         # "exercises/practice/hello_world_test.odin"
         test_file="${exercise_path}/${exercise_safe_name}_test.odin"
-    
+
         # "exercises/practice/.meta/hello_world_example.odin"
         example_file="${exercise_path}/${meta}/${exercise_safe_name}_example.odin"
-    
+
         # Copy the example file into the temporary directory
-        cp ${example_file} ${tmp_path}/${exercise_safe_name}.odin
+        cp "${example_file}" "${tmp_path}/${exercise_safe_name}.odin"
 
         # Unskip all tests and write the processed test file to the temporary directory.
         # The test file for the exercise often has several of the tests skippped initially, so that
@@ -46,15 +62,18 @@ function run_test() {
         # In Odin, a test can be skipped by commenting out the `@(test)` annotation preceding the
         # test procedure. Here we unskip the test by searching for `\\ @(test)` lines and replacing
         # them with `@test`.
-        sed s/"\/\/ @(test)"/"@(test)"/ ${test_file} > ${tmp_path}/${exercise_safe_name}_test.odin
-    
-        # Run the tests using the example file to verify that it is a valid solution.
-        odin test ${tmp_path}
+        sed 's,// @(test),@(test),' "${test_file}" > "${tmp_path}/${exercise_safe_name}_test.odin"
 
-        echo -e "Checking that the stub solution *fails* the tests\n"
+        ls -l
+        # Run the tests using the example file to verify that it is a valid solution.
+        odin test "${tmp_path}"
+
+        ls -l
+
+        echo "Checking that the Stub file *fails* the tests"
 
         # Copy the stub solution to the temporary directory
-        cp ${solution_file} ${tmp_path}/${exercise_safe_name}.odin
+        cp "${solution_file}" "${tmp_path}/${exercise_safe_name}.odin"
 
         # Run the test. If it passes, exit with a message and an error.
         # TODO: Check that the stub fails _all_ the tests.
@@ -62,29 +81,24 @@ function run_test() {
         # but only fail on the most complicated one. Since the purpose of this test is mostly to
         # double-check that the example didn't accidentally get duplicated as the stub, this isn't
         # too critical for now.
-
-        if odin test ${tmp_path} 2> /dev/null ; then
-            echo -e '\nERROR: The stub solution must not pass the tests!\n'
+        # glennj notes: this invocation seems to leave a tmp file behind
+        if odin test "${tmp_path}" 2>/dev/null ; then
+            echo >&2
+            echo >&2 'ERROR: The stub file must not pass the tests!'
             exit 1
         else
-            echo -e '\nSUCCESS: The stub solution failed the tests above as expected.\n'
+            echo
+            echo 'SUCCESS: The stub file failed the tests above as expected.'
         fi
+
+        ls -l
 
     else
         echo "Running all tests"
-        for exercise in $(ls $exercises_path)
-        do
-            run_test $exercise
+        for exercise in "$exercises_path"/*/; do
+            run_test "$(basename "$exercise")"
         done
     fi
 }
 
-# Delete the temp directory
-function cleanup {
-    rm -rf ${tmp_path}
-}
-
-# Register the cleanup function to be called on the EXIT signal
-trap cleanup EXIT
-
-run_test $@
+run_test "$@"

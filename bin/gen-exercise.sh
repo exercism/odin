@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Exit script if any subcommands fail
 set -e
@@ -23,7 +23,7 @@ elif [ -d "${exercise_path}" ]; then
     echo "Exercise already exists: ${exercise_name}"
 elif [ -n "${exercise_name}" ]; then
     echo "Generating test for exercise: ${exercise_name}"
-    
+
     bin/configlet sync --update --yes --docs --metadata --exercise ${exercise_name}
     bin/configlet sync --update --tests include --exercise ${exercise_name}
 
@@ -60,7 +60,7 @@ EOL
 
         cat >> ${solution_file} <<EOL
 ${safe_unique_property} :: proc() -> string {
-	return "TODO: Implement me!"
+    return "TODO: Implement me!"
 }
 
 EOL
@@ -86,11 +86,11 @@ EOL
         cat >> ${test_file} <<EOL
 @(test)
 test_${description} :: proc(t: ^testing.T) {
-	expected := ${expected}
+    expected := ${expected}
     input := \`${input}\`
     result := ${property}(input)
 
-	testing.expect_value(t, result, expected)
+    testing.expect_value(t, result, expected)
 }
 
 EOL
@@ -107,7 +107,7 @@ EOL
     echo -e "\t${test_file}"
     echo -e "\t${example_file}"
     echo ""
-    
+
     echo "Running configlet lint:"
     bin/configlet lint
 fi
