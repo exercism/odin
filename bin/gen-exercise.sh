@@ -4,7 +4,7 @@
 # Concept exercises don't have canonical data.
 
 # Exit script if any subcommands fail
-set -euo pipefail
+set -eo pipefail
 
 die() {
     echo "$*" >&2
@@ -23,16 +23,28 @@ get_cache_dir() {
     # find where configlet puts the canonical data
     # ref: https://nim-lang.org/docs/appdirs.html#getCacheDir
     # and: https://stackoverflow.com/q/394230/7552
-    [[ -n "$XDG_CACHE_HOME" && -d "$XDG_CACHE_HOME" ]] && return "$XDG_CACHE_HOME"
+    if [[ -n "$XDG_CACHE_HOME" && -d "$XDG_CACHE_HOME" ]]; then
+        echo "$XDG_CACHE_HOME"
+        return
+    fi
     case "$OSTYPE" in
         msys* | cygwin*)
-            [[ -n "$LOCALAPPDATA" && -d "$LOCALAPPDATA" ]] && return "$LOCALAPPDATA"
+            if [[ -n "$LOCALAPPDATA" && -d "$LOCALAPPDATA" ]]; then
+                echo "$LOCALAPPDATA"
+                return
+            fi
             ;;
         darwin*)
-            [[ -n "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]] && return "$HOME/Library/Caches"
+            if [[ -n "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]]; then
+                echo "$HOME/Library/Caches"
+                return
+            fi
             ;;
         *)  # lump all the other *nix systems
-            [[ -n "$HOME/.cache" && -d "$HOME/.cache" ]] && return "$HOME/.cache"
+            if [[ -n "$HOME/.cache" && -d "$HOME/.cache" ]]; then
+                echo "$HOME/.cache"
+                return
+            fi
             ;;
     esac
     die "Can't find the cache directory that configlet uses"
