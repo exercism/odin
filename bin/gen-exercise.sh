@@ -78,7 +78,7 @@ get_from_config() {
 solution_file=$(get_from_config 'solution')
 
 # The example solution (for use in tests)
-# "exercises/practice/.meta/hello_world_example.odin"
+# "exercises/practice/.meta/example.odin"
 example_file=$(get_from_config 'example')
 
 # The test the solution will run against
