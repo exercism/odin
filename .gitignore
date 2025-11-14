@@ -7,3 +7,4 @@ bin/ols
 bin/ols.exe
 *.bin
 tmp.*
+.vscode/
