@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
+usage() {
+    echo "Usage: $0 [path/to/exercise]" >&2
+    exit 1
+}
+
 # Exit script if any subcommands fail
 set -euo pipefail
 
-exercises_path="exercises/practice"
+cd "$(realpath "$(dirname "$0")/..")"
 
 # Delete the temp directory
 function cleanup {
-    rm -rf "${tmp_path}"
+    [[ -v tmp_path ]] && rm -rf "${tmp_path}"
 }
 # Register the cleanup function to be called on the EXIT signal
 trap cleanup EXIT
@@ -17,22 +22,25 @@ get_from_config() {
 }
 
 run_test() {
-    local exercise_name="${1:-}"    # due to `set -u`, provide a default value
+    local exercise_path="${1:-}"    # due to `set -u`, provide a default value
 
-    if [[ -z "${exercise_name}" ]]; then
+    if [[ -z "${exercise_path}" ]]; then
         echo "Running all tests"
-        for exercise in "$exercises_path"/*/; do
-            run_test "$(basename "$exercise")"
+        shopt -s nullglob
+        for exercise in exercises/{practice,concept}/*/; do
+            run_test "$exercise"
         done
         return
     fi
 
+    ## test one exercise
+    local exercise_name
+    exercise_name=$(basename "${exercise_path}")
     echo "Running test for exercise: ${exercise_name}"
 
-    local exercise_path="${exercises_path}/${exercise_name}"
     if ! [[ -d "${exercise_path}" ]]; then
-        echo "unknown exercise: ${exercise_name}" >&2
-        exit 1
+        echo "no such exercise directory: ${exercise_name}" >&2
+        usage
     fi
 
     local config="${exercise_path}/.meta/config.json"

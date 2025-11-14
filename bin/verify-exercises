@@ -15,9 +15,12 @@
 # The path to the solution/example/exemplar files can be found in the exercise's
 # .meta/config.json file, or possibly inferred from the exercise's directory name.
 
-for exercise_dir in ./exercises/{concept,practice}/*/; do
+cd "$(realpath "$(dirname "$0")/..")"
+shopt -s nullglob
+
+for exercise_dir in exercises/{concept,practice}/*/; do
     if [[ -d $exercise_dir ]]; then
         echo "Checking $(basename "${exercise_dir}") exercise..."
-        bin/run-test.sh "$(basename "${exercise_dir}")"
+        bin/run-test.sh "${exercise_dir}"
     fi
 done
