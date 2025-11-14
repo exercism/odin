@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Note that this is for generating practice exercises only.
+# Concept exercises don't have canonical data.
+
 # Exit script if any subcommands fail
 set -euo pipefail
 
@@ -16,6 +19,25 @@ to_snake_case() {
     ' | tr '[:upper:]' '[:lower:]'
 }
 
+get_cache_dir() {
+    # find where configlet puts the canonical data
+    # ref: https://nim-lang.org/docs/appdirs.html#getCacheDir
+    # and: https://stackoverflow.com/q/394230/7552
+    [[ -n "$XDG_CACHE_HOME" && -d "$XDG_CACHE_HOME" ]] && return "$XDG_CACHE_HOME"
+    case "$OSTYPE" in
+        msys* | cygwin*)
+            [[ -n "$LOCALAPPDATA" && -d "$LOCALAPPDATA" ]] && return "$LOCALAPPDATA"
+            ;;
+        darwin*)
+            [[ -n "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]] && return "$HOME/Library/Caches"
+            ;;
+        *)  # lump all the other *nix systems
+            [[ -n "$HOME/.cache" && -d "$HOME/.cache" ]] && return "$HOME/.cache"
+            ;;
+    esac
+    die "Can't find the cache directory that configlet uses"
+}
+
 exercise_name="${1:-}"
 exercises_path="exercises"
 practice_exercises_path="${exercises_path}/practice"
@@ -24,7 +46,7 @@ exercise_path="${practice_exercises_path}/${exercise_name}"
 [[ -n "${exercise_name}" ]] || die "Must give an exercise name to generate"
 [[ -d "${exercise_path}" ]] && die "Exercise already exists: ${exercise_name}"
 
-configlet_cache="$HOME/.cache/exercism/configlet/problem-specifications/exercises"
+configlet_cache="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises"
 snake_name=${exercise_name//-/_}
 
 canonical_data_path="${configlet_cache}/${exercise_name}/canonical-data.json"
@@ -80,7 +102,7 @@ do
 
     cat >> "${solution_file}" <<EOL
 ${safe_unique_property} :: proc() -> string {
-return "TODO: Implement me!"
+    #panic("Please implement the `${safe_unique_property}` procedure.")
 }
 
 EOL
