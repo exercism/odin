@@ -10,7 +10,7 @@
       "grains_test.odin"
     ],
     "example": [
-      ".meta/grains_example.odin"
+      ".meta/example.odin"
     ]
   },
   "blurb": "Calculate the number of grains of wheat on a chessboard given that the number on each square doubles.",

@@ -10,7 +10,7 @@
       "resistor_color_test.odin"
     ],
     "example": [
-      ".meta/resistor_color_example.odin"
+      ".meta/example.odin"
     ]
   },
   "blurb": "Convert a resistor band's color to its numeric representation.",

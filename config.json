@@ -22,7 +22,7 @@
       "%{snake_slug}_test.odin"
     ],
     "example": [
-      ".meta/%{snake_slug}_example.odin"
+      ".meta/example.odin"
     ]
   },
   "exercises": {

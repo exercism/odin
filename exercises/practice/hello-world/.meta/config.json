@@ -10,7 +10,7 @@
       "hello_world_test.odin"
     ],
     "example": [
-      ".meta/hello_world_example.odin"
+      ".meta/example.odin"
     ]
   },
   "blurb": "Exercism's classic introductory exercise. Just say \"Hello, World!\".",
