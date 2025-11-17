@@ -4,31 +4,29 @@
 //
 package high_scores
 
-import "core:slice"
-
 // Complete the HighScores data structure.
-HighScores :: struct {}
+High_Scores :: struct {}
 
-new_scores :: proc(initial_values: []int) -> HighScores {
+new_scores :: proc(initial_values: []int) -> High_Scores {
 	#panic("Implement this procedure.")
 }
 
-destroy_scores :: proc(s: ^HighScores) {
+destroy_scores :: proc(s: ^High_Scores) {
 	#panic("Implement this procedure.")
 }
 
-scores :: proc(s: HighScores) -> []int {
+scores :: proc(s: High_Scores) -> []int {
 	#panic("Implement this procedure.")
 }
 
-latest :: proc(s: HighScores) -> int {
+latest :: proc(s: High_Scores) -> int {
 	#panic("Implement this procedure.")
 }
 
-personal_best :: proc(s: HighScores) -> int {
+personal_best :: proc(s: High_Scores) -> int {
 	#panic("Implement this procedure.")
 }
 
-personal_top_three :: proc(s: HighScores) -> []int {
+personal_top_three :: proc(s: High_Scores) -> []int {
 	#panic("Implement this procedure.")
 }

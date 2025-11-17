@@ -2,23 +2,31 @@ package high_scores
 
 import "core:slice"
 
-HighScores :: struct {
+// Note: We could have implemented High_Scores ust as `High_Scores :: [dynamic]int`
+// or even High_Scores :: []int` but this doesn't seem to match the spirit of the
+// exercise as implemented in other tracks like Javascript where a real
+// implementation would have additional methods/functions such as `record_new_score()`.
+
+High_Scores :: struct {
 	values: [dynamic]int,
 }
 
-new_scores :: proc(initial_values: []int) -> HighScores {
 
-	scores: HighScores
+new_scores :: proc(initial_values: []int) -> High_Scores {
+
+	scores: High_Scores
 	append(&scores.values, ..initial_values)
 	return scores
 }
 
-destroy_scores :: proc(s: ^HighScores) {
+
+destroy_scores :: proc(s: ^High_Scores) {
 
 	delete(s.values)
 }
 
-scores :: proc(s: HighScores) -> []int {
+
+scores :: proc(s: High_Scores) -> []int {
 
 	scores := make([]int, len(s.values))
 	for i in 0 ..< len(s.values) {
@@ -27,7 +35,8 @@ scores :: proc(s: HighScores) -> []int {
 	return scores
 }
 
-latest :: proc(s: HighScores) -> int {
+
+latest :: proc(s: High_Scores) -> int {
 
 	if len(s.values) == 0 {
 		return 0
@@ -35,7 +44,8 @@ latest :: proc(s: HighScores) -> int {
 	return s.values[len(s.values) - 1]
 }
 
-personal_best :: proc(s: HighScores) -> int {
+
+personal_best :: proc(s: High_Scores) -> int {
 
 	if len(s.values) == 0 {
 		return 0
@@ -47,7 +57,8 @@ personal_best :: proc(s: HighScores) -> int {
 	return best
 }
 
-personal_top_three :: proc(s: HighScores) -> []int {
+
+personal_top_three :: proc(s: High_Scores) -> []int {
 
 	// We make a copy of the scores before sorting in
 	// place so we don't accidentally reorder the original.
