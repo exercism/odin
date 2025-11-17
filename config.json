@@ -36,6 +36,14 @@
         "difficulty": 1
       },
       {
+        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
+        "slug": "two-fer",
+        "name": "Two Fer",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
         "slug": "leap",
         "name": "Leap",
         "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
