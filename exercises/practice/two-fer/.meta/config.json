@@ -10,7 +10,7 @@
       "two_fer_test.odin"
     ],
     "example": [
-      ".meta/two_fer_example.odin"
+      ".meta/example.odin"
     ]
   },
   "blurb": "Create a sentence of the form \"One for X, one for me.\".",
