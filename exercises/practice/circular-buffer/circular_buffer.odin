@@ -4,11 +4,7 @@ package circular_buffer
 Buffer :: struct {}
 
 // Populate the Error enum to match output of test cases.
-Error :: enum {
-	None,
-	BufferEmpty,
-	BufferFull,
-}
+Error :: enum {}
 
 new_buffer :: proc(capacity: int) -> Buffer {
 	#panic("implement this procedure")
