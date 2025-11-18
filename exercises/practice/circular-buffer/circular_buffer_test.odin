@@ -1,7 +1,36 @@
 package circular_buffer
 
-import "core:crypto/legacy/keccak"
 import "core:testing"
+
+// This helper function performs a read and check the result.
+expect_read :: proc(
+	t: ^testing.T,
+	buffer: ^Buffer,
+	exp_value: int,
+	exp_error: Error,
+	caller_loc := #caller_location,
+) {
+
+	rd_value, rd_error := read(buffer)
+	testing.expect_value(t, rd_error, exp_error, loc = caller_loc)
+	// We only need to test the value if there was no error.
+	if rd_error == .None {
+		testing.expect_value(t, rd_value, exp_value, loc = caller_loc)
+	}
+}
+
+// This helper function performes a write and check the result.
+expect_write :: proc(
+	t: ^testing.T,
+	buffer: ^Buffer,
+	wr_value: int,
+	exp_error: Error,
+	caller_loc := #caller_location,
+) {
+
+	wr_error := write(buffer, wr_value)
+	testing.expect_value(t, wr_error, exp_error, loc = caller_loc)
+}
 
 @(test)
 test_reading_empty_buffer_should_fail :: proc(t: ^testing.T) {
@@ -9,8 +38,7 @@ test_reading_empty_buffer_should_fail :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	rd_value, rd_error := read(&buffer)
-	testing.expect_value(t, rd_error, Error.BufferEmpty)
+	expect_read(t, &buffer, 0, .BufferEmpty)
 }
 
 @(test)
@@ -19,12 +47,8 @@ test_can_read_an_item_just_written :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error := write(&buffer, 1)
-	testing.expect_value(t, wr_error, Error.None)
-
-	rd_value, rd_error := read(&buffer)
-	testing.expect_value(t, rd_error, Error.None)
-	testing.expect_value(t, rd_value, 1)
+	expect_write(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 1, .None)
 }
 
 @(test)
@@ -33,15 +57,9 @@ test_each_item_may_only_be_read_once :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error := write(&buffer, 1)
-	testing.expect_value(t, wr_error, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.BufferEmpty)
+	expect_write(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 0, .BufferEmpty)
 }
 
 @(test)
@@ -50,19 +68,10 @@ test_items_are_read_in_the_order_they_are_written :: proc(t: ^testing.T) {
 	buffer := new_buffer(2)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 2)
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 2, .None)
 }
 
 @(test)
@@ -71,11 +80,8 @@ test_full_buffer_cant_be_written_to :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.BufferFull)
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .BufferFull)
 }
 
 @(test)
@@ -84,19 +90,10 @@ test_a_read_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 2)
+	expect_write(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 2, .None)
 }
 
 @(test)
@@ -107,26 +104,12 @@ test_read_position_is_maintained_even_across_multiple_writes :: proc(
 	buffer := new_buffer(3)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	wr_error3 := write(&buffer, 3)
-	testing.expect_value(t, wr_error3, Error.None)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 2)
-
-	rd_value3, rd_error3 := read(&buffer)
-	testing.expect_value(t, rd_error3, Error.None)
-	testing.expect_value(t, rd_value3, 3)
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 3, .None)
+	expect_read(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 3, .None)
 }
 
 @(test)
@@ -135,13 +118,9 @@ test_items_cleared_out_of_buffer_cant_be_read :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
 	clear(&buffer)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.BufferEmpty)
+	expect_read(t, &buffer, 0, .BufferEmpty)
 }
 
 @(test)
@@ -150,17 +129,10 @@ test_clear_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
 	clear(&buffer)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 2)
+	expect_write(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 2, .None)
 }
 
 @(test)
@@ -170,13 +142,8 @@ test_clear_does_nothing_on_empty_buffer :: proc(t: ^testing.T) {
 	defer destroy_buffer(&buffer)
 
 	clear(&buffer)
-
-	wr_error := write(&buffer, 1)
-	testing.expect_value(t, wr_error, Error.None)
-
-	rd_value, rd_error := read(&buffer)
-	testing.expect_value(t, rd_error, Error.None)
-	testing.expect_value(t, rd_value, 1)
+	expect_write(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 1, .None)
 }
 
 @(test)
@@ -185,18 +152,10 @@ test_overwrite_acts_like_write_on_non_full_buffer :: proc(t: ^testing.T) {
 	buffer := new_buffer(2)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
 	overwrite(&buffer, 2)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 2)
+	expect_read(t, &buffer, 1, .None)
+	expect_read(t, &buffer, 2, .None)
 }
 
 @(test)
@@ -205,21 +164,11 @@ test_overwrite_replaces_the_oldest_item_on_full_buffer :: proc(t: ^testing.T) {
 	buffer := new_buffer(2)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
 	overwrite(&buffer, 3)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 2)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 3)
+	expect_read(t, &buffer, 2, .None)
+	expect_read(t, &buffer, 3, .None)
 }
 
 @(test)
@@ -230,35 +179,15 @@ test_overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read :: 
 	buffer := new_buffer(3)
 	defer destroy_buffer(&buffer)
 
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
-	wr_error3 := write(&buffer, 3)
-	testing.expect_value(t, wr_error3, Error.None)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 1)
-
-	wr_error4 := write(&buffer, 4)
-	testing.expect_value(t, wr_error4, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
+	expect_write(t, &buffer, 3, .None)
+	expect_read(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 4, .None)
 	overwrite(&buffer, 5)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 3)
-
-	rd_value3, rd_error3 := read(&buffer)
-	testing.expect_value(t, rd_error3, Error.None)
-	testing.expect_value(t, rd_value3, 4)
-
-	rd_value4, rd_error4 := read(&buffer)
-	testing.expect_value(t, rd_error4, Error.None)
-	testing.expect_value(t, rd_value4, 5)
+	expect_read(t, &buffer, 3, .None)
+	expect_read(t, &buffer, 4, .None)
+	expect_read(t, &buffer, 5, .None)
 }
 
 @(test)
@@ -268,25 +197,11 @@ test_initial_clear_does_not_affect_wrapping_around :: proc(t: ^testing.T) {
 	defer destroy_buffer(&buffer)
 
 	clear(&buffer)
-
-	wr_error1 := write(&buffer, 1)
-	testing.expect_value(t, wr_error1, Error.None)
-
-	wr_error2 := write(&buffer, 2)
-	testing.expect_value(t, wr_error2, Error.None)
-
+	expect_write(t, &buffer, 1, .None)
+	expect_write(t, &buffer, 2, .None)
 	overwrite(&buffer, 3)
-
 	overwrite(&buffer, 4)
-
-	rd_value1, rd_error1 := read(&buffer)
-	testing.expect_value(t, rd_error1, Error.None)
-	testing.expect_value(t, rd_value1, 3)
-
-	rd_value2, rd_error2 := read(&buffer)
-	testing.expect_value(t, rd_error2, Error.None)
-	testing.expect_value(t, rd_value2, 4)
-
-	rd_value3, rd_error3 := read(&buffer)
-	testing.expect_value(t, rd_error3, Error.BufferEmpty)
+	expect_read(t, &buffer, 3, .None)
+	expect_read(t, &buffer, 4, .None)
+	expect_read(t, &buffer, 0, .BufferEmpty)
 }
