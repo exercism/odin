@@ -10,7 +10,7 @@
       "leap_test.odin"
     ],
     "example": [
-      ".meta/leap_example.odin"
+      ".meta/example.odin"
     ]
   },
   "blurb": "Determine whether a given year is a leap year.",

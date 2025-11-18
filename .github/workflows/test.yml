@@ -26,14 +26,14 @@ jobs:
         run: sudo ln -f /usr/bin/clang-18 /usr/bin/clang
 
       - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Odin
-        uses: laytan/setup-odin@3df60bd622575fda7efa4a3ec928f446bcae1a0a
+        uses: laytan/setup-odin@1e0d12e3bffd1aa07e586a3d9effb2d991a19d36
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           llvm-version: 18
-          release: dev-2024-09
+          release: dev-2025-10
 
       - name: Verify all exercises
         run: bin/verify-exercises

@@ -76,7 +76,7 @@ The `bin/` subdirectory contains several scripts to help you contribute exercise
   Stub functions should usually panic, e.g. `#panic("Please implement the <stub> function.")`.
 - Add tests to `<slug>_test.odin`.
   Verify that the slug solution would fail _all_ tests.
-- Implement a reference solution at `.meta/<slug>_example.odin`.
+- Implement a reference solution at `.meta/example.odin`.
 - Use `bin/run_test.sh <slug>` to verify that your reference solution passes.
 
 [being-a-good-community-member]: https://github.com/exercism/docs/tree/main/community/good-member

@@ -3,7 +3,7 @@
 # Synopsis:
 # Test the track's exercises.
 #
-# At a minimum, this file must check if the example/exemplar solution of each 
+# At a minimum, this file must check if the example/exemplar solution of each
 # Practice/Concept Exercise passes the exercise's tests.
 #
 # To check this, you usually have to (temporarily) replace the exercise's solution files
@@ -15,21 +15,12 @@
 # The path to the solution/example/exemplar files can be found in the exercise's
 # .meta/config.json file, or possibly inferred from the exercise's directory name.
 
-# Example:
-# ./bin/test
+cd "$(realpath "$(dirname "$0")/..")"
+shopt -s nullglob
 
-# Verify the Concept Exercises
-for concept_exercise_dir in ./exercises/concept/*/; do
-    if [ -d $concept_exercise_dir ]; then
-        echo "Checking $(basename "${concept_exercise_dir}") exercise..."
-        bin/run-test.sh "$(basename "${concept_exercise_dir}")"
-    fi
-done
-
-# Verify the Practice Exercises
-for practice_exercise_dir in ./exercises/practice/*/; do
-    if [ -d $practice_exercise_dir ]; then
-        echo "Checking $(basename "${practice_exercise_dir}") exercise..."
-        bin/run-test.sh "$(basename "${practice_exercise_dir}")"
+for exercise_dir in exercises/{concept,practice}/*/; do
+    if [[ -d $exercise_dir ]]; then
+        echo "Checking $(basename "${exercise_dir}") exercise..."
+        bin/run-test.sh "${exercise_dir}"
     fi
 done

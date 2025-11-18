@@ -22,7 +22,7 @@
       "%{snake_slug}_test.odin"
     ],
     "example": [
-      ".meta/%{snake_slug}_example.odin"
+      ".meta/example.odin"
     ]
   },
   "exercises": {
@@ -31,6 +31,14 @@
         "slug": "hello-world",
         "name": "Hello World",
         "uuid": "2cfe5afe-e94f-459c-aae5-d23d89931dda",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
+        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
+        "slug": "two-fer",
+        "name": "Two Fer",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
@@ -66,6 +74,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
+      },
+      {
+        "slug": "high-scores",
+        "name": "High Scores",
+        "uuid": "1eb2ad7e-4580-4be7-9ead-28a363a5af8e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
       }
     ]
   },
