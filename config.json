@@ -36,9 +36,9 @@
         "difficulty": 1
       },
       {
-        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "slug": "two-fer",
         "name": "Two Fer",
+        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
@@ -82,6 +82,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
+      },
+      {
+        "slug": "circular-buffer",
+        "name": "Circular Buffer",
+        "uuid": "d6b52000-764d-45ec-85fb-3b453f88c325",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
       }
     ]
   },
