@@ -1,15 +1,26 @@
 # Tests
 
-<!-- TODO: write document
+Odin exercises within your exercism project directory can be run by changing to the exercise directory, and running `odin test .`.
 
-  This document should describe everything related to running tests in the track.
+```bash
+$ cd "$(exercism workspace)"/odin/leap
+$ odin test .
+```
 
-  If your track uses skipped tests, this document can explain why thet is used and
-  how to unskip tests.
+## Skipped Tests
 
-  This document can also link to the testing framework documentation.
+`odin test` runs each procedure that has the `@(test)` attribute.
 
-  The contents of this document are displayed on the track's documentation
-  page at `https://exercism.org/docs/tracks/<track>/tests`.
+In the test suite, you will notice most of these attributes are commented.
+This is to promote [Test Driven Development][tdd]:
 
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+- you write just enough code to pass the first test;
+- then you uncomment the next test attribute, and write just enough code to pass that test;
+- repeat until your code passes all the tests.
+
+## References
+
+For more details, see [The Test Runner][test-runner] documentation, and `odin test -help`.
+
+[tdd]: https://exercism.org/docs/tracks/python/test-driven-development
+[test-runner]: https://odin-lang.org/docs/testing/#the-test-runner
