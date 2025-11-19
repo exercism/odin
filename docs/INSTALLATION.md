@@ -1,15 +1,7 @@
 # Installation
 
-<!-- TODO: write document
+Follow the instructions for your system on the installation page at [odin-lang.org][install].
 
-  This document should describe what the student needs to install
-  to allow working on the track on their local system using the CLI.
+As of November 2025, Exercism supports Odin the `dev-2025-10` monthly release.
 
-  You can include the installation instructions in this document, but
-  usually it is better to link to a resource with the official installation
-  instructions, to prevent the instructions from becoming outdated.
-
-  The contents of this document are displayed on the track's documentation
-  page at `https://exercism.org/docs/tracks/<track>/installation`.
-
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+[install]: https://odin-lang.org/docs/install/
