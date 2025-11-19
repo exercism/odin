@@ -16,7 +16,7 @@ test_scores :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_latest_score :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{100, 0, 90, 30}
@@ -28,7 +28,7 @@ test_latest_score :: proc(t: ^testing.T) {
 	testing.expect_value(t, result, expected)
 }
 
-@(test)
+// @(test)
 test_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40, 100, 70}
@@ -40,7 +40,7 @@ test_personal_best :: proc(t: ^testing.T) {
 	testing.expect_value(t, result, expected)
 }
 
-@(test)
+// @(test)
 test_personal_top_three_from_a_list_of_scores :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{10, 30, 90, 30, 100, 20, 10, 0, 30, 40, 40, 70, 70}
@@ -53,7 +53,7 @@ test_personal_top_three_from_a_list_of_scores :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_personal_top_three_highest_to_lowest :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{20, 10, 30}
@@ -66,7 +66,7 @@ test_personal_top_three_highest_to_lowest :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_personal_top_three_when_there_is_a_tie :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40, 20, 40, 30}
@@ -79,7 +79,7 @@ test_personal_top_three_when_there_is_a_tie :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_personal_top_three_when_there_are_less_than_three :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{30, 70}
@@ -92,7 +92,7 @@ test_personal_top_three_when_there_are_less_than_three :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_personal_top_three_when_there_is_only_one :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40}
@@ -105,7 +105,7 @@ test_personal_top_three_when_there_is_only_one :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_latest_score_after_personal_top_three :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{70, 50, 20, 30}
@@ -119,7 +119,7 @@ test_latest_score_after_personal_top_three :: proc(t: ^testing.T) {
 	testing.expect_value(t, result, expected)
 }
 
-@(test)
+// @(test)
 test_scores_after_personal_top_three :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{30, 50, 20, 70}
@@ -134,7 +134,7 @@ test_scores_after_personal_top_three :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-@(test)
+// @(test)
 test_latest_score_after_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{0, 70, 15, 25, 30}
@@ -147,7 +147,7 @@ test_latest_score_after_personal_best :: proc(t: ^testing.T) {
 	testing.expect_value(t, result, expected)
 }
 
-@(test)
+// @(test)
 test_scores_after_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{20, 70, 15, 25, 30}

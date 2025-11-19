@@ -21,6 +21,16 @@ get_from_config() {
     printf "%s/%s" "${exercise_path}" "$(jq --arg type "$1" -r '.files[$type][0]' "$config")"
 }
 
+check_skipped_tests() {
+    local test_file=$1
+    local count
+    count=$( grep -Ec '^[[:blank:]]*@\(test\)' "$test_file" )
+    if (( count != 1 )); then
+        printf '[ERROR] There should be exactly 1 unskipped test in %s\n\n' "${test_file}" >&2
+        exit 2
+    fi
+}
+
 run_test() {
     local exercise_path="${1:-}"    # due to `set -u`, provide a default value
 
@@ -55,6 +65,8 @@ run_test() {
 
     echo "$exercise_name / $exercise_path"
 
+    check_skipped_tests "${files[test]}"
+
     # Copy the example file into the temporary directory
     cp "${files[example]}" "${tmp_path}/${snake_name}.odin"
 
@@ -65,9 +77,8 @@ run_test() {
     # pipeline always needs to run all tests.
     #
     # In Odin, a test can be skipped by commenting out the `@(test)` annotation preceding the
-    # test procedure. Here we unskip the test by searching for `\\ @(test)` lines and replacing
-    # them with `@test`.
-    sed 's,// @(test),@(test),' "${files[test]}" > "${tmp_path}/${snake_name}_test.odin"
+    # test procedure. 
+    sed 's,//[[:space:]]*@(test),@(test),' "${files[test]}" > "${tmp_path}/${snake_name}_test.odin"
 
     # Run the tests using the example file to verify that it is a valid solution.
     odin test "${tmp_path}"

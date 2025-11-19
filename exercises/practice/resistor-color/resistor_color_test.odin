@@ -13,47 +13,47 @@ black :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Black), 0)
 }
 
-@(test)
+//@(test)
 brown :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Brown), 1)
 }
 
-@(test)
+//  @(test)
 red :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Red), 2)
 }
 
-@(test)
+// @(test)
 orange :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Orange), 3)
 }
 
-@(test)
+// @(test)
 yellow :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Yellow), 4)
 }
 
-@(test)
+// @(test)
 green :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Green), 5)
 }
 
-@(test)
+// @(test)
 blue :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Blue), 6)
 }
 
-@(test)
+// @(test)
 violet :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Violet), 7)
 }
 
-@(test)
+// @(test)
 grey :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.Grey), 8)
 }
 
-@(test)
+// @(test)
 white :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.White), 9)
 }
