@@ -36,9 +36,9 @@
         "difficulty": 1
       },
       {
-        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "slug": "two-fer",
         "name": "Two Fer",
+        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
@@ -82,6 +82,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
+      },
+      {
+        "slug": "two-bucket",
+        "name": "Two Bucket",
+        "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
       }
     ]
   },
