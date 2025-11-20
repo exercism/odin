@@ -10,29 +10,29 @@ Bucket :: struct {
 
 Result :: struct {
 	moves:       int,
-	goalBucket:  string,
-	otherBucket: int,
+	goal_bucket:  string,
+	other_bucket: int,
 }
 
 measure :: proc(
-	bucketOne: int,
-	bucketTwo: int,
+	bucket_one: int,
+	bucket_two: int,
 	goal: int,
-	startBucket: string,
+	start_bucket: string,
 ) -> (
 	result: Result,
 	valid: bool,
 ) {
-	if !isValid(bucketOne, bucketTwo, goal) {
+	if !isValid(bucket_one, bucket_two, goal) {
 		valid = false
 		return
 	}
 	valid = true
 
-	b1 := Bucket{"one", bucketOne, 0}
-	b2 := Bucket{"two", bucketTwo, 0}
+	b1 := Bucket{"one", bucket_one, 0}
+	b2 := Bucket{"two", bucket_two, 0}
 
-	if startBucket == "one" {
+	if start_bucket == "one" {
 		result = go_measure(&b1, &b2, goal)
 	} else {
 		result = go_measure(&b2, &b1, goal)
@@ -40,14 +40,14 @@ measure :: proc(
 	return
 }
 
-isValid :: proc(bucketOne: int, bucketTwo: int, goal: int) -> bool {
-	if goal > max(bucketOne, bucketTwo) {
+isValid :: proc(bucket_one: int, bucket_two: int, goal: int) -> bool {
+	if goal > max(bucket_one, bucket_two) {
 		return false
 	}
 
-	g := math.gcd(bucketOne, bucketTwo)
+	gcd := math.gcd(bucket_one, bucket_two)
 
-	if g > 1 && goal % g != 0 {
+	if gcd > 1 && goal % gcd != 0 {
 		return false
 	}
 
@@ -71,14 +71,14 @@ go_measure :: proc(
 		moves += 1
 	}
 
-	for true {
+	for {
 		if start.amount == goal {
 			result = Result{moves, start.name, other.amount}
-			break
+			return
 		}
 		if other.amount == goal {
 			result = Result{moves, other.name, start.amount}
-			break
+			return
 		}
 
 		if isEmpty(start) {
@@ -90,7 +90,7 @@ go_measure :: proc(
 		}
 		moves += 1
 	}
-	return result
+	return
 }
 
 isFull :: proc(bucket: ^Bucket) -> bool {

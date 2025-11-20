@@ -2,15 +2,15 @@ package two_bucket
 
 Result :: struct {
 	moves:       int,
-	goalBucket:  string,
-	otherBucket: int,
+	goal_bucket:  string,
+	other_bucket: int,
 }
 
 measure :: proc(
-	bucketOne: int,
-	bucketTwo: int,
+	bucket_one: int,
+	bucket_two: int,
 	goal: int,
-	startBucket: string,
+	start_bucket: string,
 ) -> (
 	Result,
 	bool,
