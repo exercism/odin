@@ -84,6 +84,14 @@
         "difficulty": 2
       },
       {
+        "slug": "circular-buffer",
+        "name": "Circular Buffer",
+        "uuid": "d6b52000-764d-45ec-85fb-3b453f88c325",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "two-bucket",
         "name": "Two Bucket",
         "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
