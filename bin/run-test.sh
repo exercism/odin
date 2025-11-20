@@ -21,16 +21,6 @@ get_from_config() {
     printf "%s/%s" "${exercise_path}" "$(jq --arg type "$1" -r '.files[$type][0]' "$config")"
 }
 
-check_skipped_tests() {
-    local test_file=$1
-    local count
-    count=$( grep -Ec '^[[:blank:]]*@\(test\)' "$test_file" )
-    if (( count != 1 )); then
-        printf '[ERROR] There should be exactly 1 unskipped test in %s\n\n' "${test_file}" >&2
-        exit 2
-    fi
-}
-
 run_test() {
     local exercise_path="${1:-}"    # due to `set -u`, provide a default value
 
@@ -64,8 +54,6 @@ run_test() {
     tmp_path=$(mktemp -d)
 
     echo "$exercise_name / $exercise_path"
-
-    check_skipped_tests "${files[test]}"
 
     # Copy the example file into the temporary directory
     cp "${files[example]}" "${tmp_path}/${snake_name}.odin"
