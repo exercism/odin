@@ -53,14 +53,26 @@ run_test() {
     local -g tmp_path   # the cleanup function needs a global variable
     tmp_path=$(mktemp -d)
 
+    echo
     echo "$exercise_name / $exercise_path"
 
-    # Copy the example file into the temporary directory
+    # Copy the source files into the temporary directory
     cp "${files[example]}" "${tmp_path}/${snake_name}.odin"
+    cp "${files[test]}" "${tmp_path}/${snake_name}_test.odin"
 
     # Run the tests using the example file to verify that it is a valid solution.
-    odin test "${tmp_path}"
+    local result status
+    result=$( odin test "${tmp_path}" 2>&1 )
+    status=$?
 
+    echo "$result"
+
+    case $status in 
+        0) [[ $result == 'No tests to run.' ]] && exit 1 ;;
+        *) exit $status ;;
+    esac
+
+    echo
     echo "Checking that the Stub file *fails* the tests"
 
     # Copy the stub solution to the temporary directory
@@ -74,11 +86,9 @@ run_test() {
     # too critical for now.
     # glennj notes: this invocation seems to leave a tmp file behind
     if odin test "${tmp_path}" 2>/dev/null ; then
-        echo >&2
         echo >&2 'ERROR: The stub file must not pass the tests!'
         exit 1
     else
-        echo
         echo 'SUCCESS: The stub file failed the tests above as expected.'
     fi
 }
