@@ -17,10 +17,22 @@
 
 cd "$(realpath "$(dirname "$0")/..")"
 shopt -s nullglob
+failures=()
 
 for exercise_dir in exercises/{concept,practice}/*/; do
     if [[ -d $exercise_dir ]]; then
         echo "Checking $(basename "${exercise_dir}") exercise..."
-        bin/run-test.sh "${exercise_dir}"
+        bin/run-test.sh "${exercise_dir}" || failures+=( "$(basename "${exercise_dir}")" )
     fi
 done
+
+if (( ${#failures[@]} > 0 )); then
+    {
+        echo '==========================='
+        echo '[ERROR] exercises failures!'
+        for f in "${failures[@]}"; do printf -- '- %s\n' "$f"; done
+    } >&2
+    exit 1
+fi
+
+exit 0
