@@ -76,8 +76,24 @@ echo "Generating test for exercise: ${exercise_name}"
 bin/fetch-configlet
 bin/configlet create --practice-exercise "${exercise_name}" --author "$author" --difficulty "$difficulty"
 
-canonical_data='{"cases": []}'
-[[ -f $canonical_data_path ]] && canonical_data=$(jq -c . "$canonical_data_path")
+if ! [[ -f $canonical_data_path ]]; then
+    canonical_data='{"cases": []}'
+else
+    # Some cases reimplement other cases. This jq invocation will filter out the
+    # superceded cases.
+    canonical_data=$(
+        jq '
+            .cases |= (
+                reduce .[] as $case ({};
+                    $case.reimplements as $r
+                    | if $r then del(.[$r]) else . end
+                    | .[$case.uuid] = $case
+                )
+                | [.[]]     # convert an object to a list of values
+            )
+        ' "$canonical_data_path"
+    )
+fi
 
 exercise_config="${exercise_path}/.meta/config.json"
 
@@ -101,7 +117,6 @@ test_file=$(get_from_config 'test')
 
 cat > "${solution_file}" <<EOL
 package ${snake_name}
-
 EOL
 
 mapfile -t unique_properties < <(
@@ -113,10 +128,10 @@ do
     safe_unique_property=$(to_snake_case <<< "${unique_property}")
 
     cat >> "${solution_file}" <<EOL
-${safe_unique_property} :: proc() -> string {
-    #panic("Please implement the `${safe_unique_property}` procedure.")
-}
 
+${safe_unique_property} :: proc() -> string {
+    #panic("Please implement the \`${safe_unique_property}\` procedure.")
+}
 EOL
 done
 
@@ -124,12 +139,12 @@ cat > "${test_file}" <<EOL
 package ${snake_name}
 
 import "core:testing"
-
 EOL
 
-canonical_data_length=$(echo "${canonical_data}" | jq '.cases | length')
+canonical_data_length=$( jq '.cases | length' <<< "${canonical_data}" )
+
 for ((i=0; i < canonical_data_length; i++)); do
-    case=$(echo "$canonical_data" | jq -c ".cases[$i]")
+    case=$( jq -c ".cases.[$i]" <<< "${canonical_data}" )
     description=$(echo "$case" | jq -r '.description // ""' | to_snake_case)
     property=$(echo "$case" | jq -r '.property // ""' | to_snake_case)
     input=$(echo "$case" | jq -c '.input // ""')
@@ -137,15 +152,15 @@ for ((i=0; i < canonical_data_length; i++)); do
 
     # TODO: Blindly copying input doesn't work most of the time, hence why this generator should be written in Odin itself
     cat >> "${test_file}" <<EOL
+
 @(test)
 test_${description} :: proc(t: ^testing.T) {
-expected := ${expected}
-input := \`${input}\`
-result := ${property}(input)
+    input := \`${input}\`
+    result := ${property}(input)
+    expected := ${expected}
 
-testing.expect_value(t, result, expected)
+    testing.expect_value(t, result, expected)
 }
-
 EOL
 done
 
