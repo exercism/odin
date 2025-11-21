@@ -106,6 +106,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
+      },
+      {
+        "slug": "acronym",
+        "name": "Acronym",
+        "uuid": "31f4ded1-c2cd-41de-a12c-e3cf8ded0a97",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
       }
     ]
   },
