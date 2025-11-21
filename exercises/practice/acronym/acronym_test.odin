@@ -1,0 +1,102 @@
+package acronym
+
+import "core:testing"
+
+@(test)
+test_basic :: proc(t: ^testing.T) {
+
+	expected := "PNG"
+	input := "Portable Network Graphics"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_lowercase_words :: proc(t: ^testing.T) {
+
+	expected := "ROR"
+	input := "Ruby on Rails"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_punctuation :: proc(t: ^testing.T) {
+
+	expected := "FIFO"
+	input := "First In, First Out"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_all_caps_word :: proc(t: ^testing.T) {
+
+	expected := "GIMP"
+	input := "GNU Image Manipulation Program"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_punctuation_without_whitespace :: proc(t: ^testing.T) {
+
+	expected := "CMOS"
+	input := "Complementary metal-oxide semiconductor"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_very_long_abbreviation :: proc(t: ^testing.T) {
+
+	expected := "ROTFLSHTMDCOALM"
+	input := "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_consecutive_delimiters :: proc(t: ^testing.T) {
+
+	expected := "SIMUFTA"
+	input := "Something - I made up from thin air"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_apostrophes :: proc(t: ^testing.T) {
+
+	expected := "HC"
+	input := "Halley's Comet"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
+test_underscore_emphasis :: proc(t: ^testing.T) {
+
+	expected := "TRNT"
+	input := "The Road _Not_ Taken"
+	result := abbreviate(input)
+	defer delete(result)
+
+	testing.expect_value(t, result, expected)
+}
