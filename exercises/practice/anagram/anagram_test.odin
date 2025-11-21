@@ -1,0 +1,241 @@
+package anagram
+
+import "core:slice"
+import "core:testing"
+
+@(test)
+test_no_matches :: proc(t: ^testing.T) {
+
+	expected := [?]string{}
+	word := "diaper"
+	candidates := [?]string{"hello", "world", "zombies", "pants"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+
+@(test)
+test_detects_two_anagrams :: proc(t: ^testing.T) {
+
+	expected := [?]string{"lemons", "melons"}
+	word := "solemn"
+	candidates := [?]string{"lemons", "cherry", "melons"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_does_not_detect_anagram_subsets :: proc(t: ^testing.T) {
+
+	expected := [?]string{}
+	word := "good"
+	candidates := [?]string{"dog", "goody"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_detects_anagram :: proc(t: ^testing.T) {
+
+	expected := [?]string{"inlets"}
+	word := "listen"
+	candidates := [?]string{"enlists", "google", "inlets", "banana"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_detects_three_anagrams :: proc(t: ^testing.T) {
+
+	expected := [?]string{"gallery", "regally", "largely"}
+	word := "allergy"
+	candidates := [?]string {
+		"gallery",
+		"ballerina",
+		"regally",
+		"clergy",
+		"largely",
+		"leading",
+	}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_detects_multiple_anagrams_with_different_case :: proc(t: ^testing.T) {
+
+	expected := [?]string{"Eons", "ONES"}
+	word := "nose"
+	candidates := [?]string{"Eons", "ONES"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_does_not_detect_non_anagrams_with_identical_checksum :: proc(
+	t: ^testing.T,
+) {
+
+	expected := [?]string{}
+	word := "mass"
+	candidates := [?]string{"last"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_detects_anagrams_case_insensitively :: proc(t: ^testing.T) {
+
+	expected := [?]string{"Carthorse"}
+	word := "Orchestra"
+	candidates := [?]string{"cashregister", "Carthorse", "radishes"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_detects_anagrams_using_case_insensitive_subject :: proc(t: ^testing.T) {
+
+	expected := [?]string{"carthorse"}
+	word := "Orchestra"
+	candidates := [?]string{"cashregister", "carthorse", "radishes"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+
+@(test)
+test_detects_anagrams_using_case_insensitive_possible_matches :: proc(
+	t: ^testing.T,
+) {
+
+	expected := [?]string{"Carthorse"}
+	word := "orchestra"
+	candidates := [?]string{"cashregister", "Carthorse", "radishes"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+
+@(test)
+test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(
+	t: ^testing.T,
+) {
+
+	expected := [?]string{}
+	word := "go"
+	candidates := [?]string{"goGoGO"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_anagrams_must_use_all_letters_exactly_once :: proc(t: ^testing.T) {
+
+	expected := [?]string{}
+	word := "tapper"
+	candidates := [?]string{"patter"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+
+@(test)
+test_words_are_not_anagrams_of_themselves :: proc(t: ^testing.T) {
+
+	expected := [?]string{}
+	word := "BANANA"
+	candidates := [?]string{"BANANA"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_different :: proc(
+	t: ^testing.T,
+) {
+
+	expected := [?]string{}
+	word := "BANANA"
+	candidates := [?]string{"Banana"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_different :: proc(
+	t: ^testing.T,
+) {
+
+	expected := [?]string{}
+	word := "BANANA"
+	candidates := [?]string{"banana"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_words_other_than_themselves_can_be_anagrams :: proc(t: ^testing.T) {
+
+	expected := [?]string{"Silent"}
+	word := "LISTEN"
+	candidates := [?]string{"LISTEN", "Silent"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_handles_case_of_greek_letters :: proc(t: ^testing.T) {
+
+	expected := [?]string{"ΒΓΑ", "γβα"}
+	word := "ΑΒΓ"
+	candidates := [?]string{"ΒΓΑ", "ΒΓΔ", "γβα", "αβγ"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
+
+@(test)
+test_different_characters_may_have_the_same_bytes :: proc(t: ^testing.T) {
+
+	expected := [?]string{}
+	word := "a⬂"
+	candidates := [?]string{"€a"}
+	result := find_anagrams(word, candidates[:])
+	defer delete(result)
+
+	testing.expect(t, slice.equal(result, expected[:]))
+}
