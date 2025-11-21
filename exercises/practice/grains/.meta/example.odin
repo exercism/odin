@@ -23,7 +23,9 @@ count :: proc(n: int) -> (u64, u64) {
 
 // Returns the number of grains on the specified square.
 square :: proc(n: int) -> (u64, Error) {
-	if n < 1 || n > 64 do return 0, .InvalidSquare
+	if n < 1 || n > 64 {
+		return 0, .InvalidSquare
+	}
 	c, _ := count(n)
 	return c, .None
 }

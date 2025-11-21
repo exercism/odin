@@ -8,7 +8,7 @@ test_reading_empty_buffer_should_fail :: proc(t: ^testing.T) {
 	buffer := new_buffer(1)
 	defer destroy_buffer(&buffer)
 
-	rd_value, rd_error := read(&buffer)
+	_, rd_error := read(&buffer)
 	testing.expect_value(t, rd_error, Error.BufferEmpty)
 }
 
@@ -139,7 +139,7 @@ test_items_cleared_out_of_buffer_cant_be_read :: proc(t: ^testing.T) {
 
 	clear(&buffer)
 
-	rd_value, rd_error := read(&buffer)
+	_, rd_error := read(&buffer)
 	testing.expect_value(t, rd_error, Error.BufferEmpty)
 }
 
