@@ -1,7 +1,7 @@
 package two_bucket
 
 Result :: struct {
-	moves:       int,
+	moves:        int,
 	goal_bucket:  string,
 	other_bucket: int,
 }

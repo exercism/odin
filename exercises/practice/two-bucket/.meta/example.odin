@@ -9,7 +9,7 @@ Bucket :: struct {
 }
 
 Result :: struct {
-	moves:       int,
+	moves:        int,
 	goal_bucket:  string,
 	other_bucket: int,
 }
