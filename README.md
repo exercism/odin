@@ -7,16 +7,13 @@ Hi. &nbsp;👋🏽 &nbsp;👋 &nbsp;**We are happy you are here.**&nbsp; 🎉&nb
 <br>
 
 **`exercism/odin`** is one of many programming language tracks on [Exercism](exercism-website).
-This repo holds the instructions, tests, code, and support files for Odin _exercises_ currently under development
-or implemented and available for students.
+This repo holds the instructions, tests, code, and support files for Odin _exercises_ currently under development or implemented and available for students.
 
-🌟 &nbsp;&nbsp;Track exercises support the `dev-2024-08` release of Odin.
+🌟 &nbsp;&nbsp;Track exercises support the `dev-2025-10` release of Odin.
 
-Exercises are grouped into **concept** exercises teaching the Odin syllabus, which will eventually live [here][odin-syllabus], and 
-**practice** exercises, which are unlocked by progressing in the syllabus tree &nbsp;🌴&nbsp;.
+Exercises are grouped into **concept** exercises teaching the Odin syllabus, which will eventually live [here][odin-syllabus], and **practice** exercises, which are unlocked by progressing in the syllabus tree &nbsp;🌴&nbsp;.
 Concept exercises are constrained to a small set of language or syntax features.
-Practice exercises are open-ended, and can be used to practice concepts learned, try out new techniques, and _play_. These two 
-exercise groupings can be found in the track [config.json][config-json], and under the `odin/exercises` directory.
+Practice exercises are open-ended, and can be used to practice concepts learned, try out new techniques, and _play_. These two exercise groupings can be found in the track [config.json][config-json], and under the `odin/exercises` directory.
 
 <br><br>
 
@@ -36,9 +33,9 @@ It might also be helpful to look at [Being a Good Community Member][being-a-good
 <br>
 <img align="left" width="95" height="90" src="https://github.com/exercism/website-icons/blob/main/exercises/boutique-suggestions.svg">
 
-Here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;  
+Are you here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;  
 We'd love if you did that via our [Exercism Community Forum][exercism-forum] where there is a [dedicated thread][odin-thread] for the new Odin track. 
-Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence].  
+Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence]. 
 _Thoughtful suggestions will likely result in faster & more enthusiastic responses from volunteers._
 
 <br>
@@ -100,6 +97,7 @@ To create a new exercise, follow the steps below:
    -  `gen-exercise.sh` attempted to populate the skeleton solution and test file from the problem specification but this tool is lacking right now. If the content of these files, doesn't look right, you can just remove it for now and use your exercise problem specification instead (see below).
 -  I would recommend looking at your exercise specification under the [Problem Specification repository][exercism-problem-specifications], under the subdirectory `exercises/<slug name>`, specifically the `canonical-data.json` file. It specifies the test suite your exercise should implement.
 -  I would also recommend using this [implemented Odin Exercise][odin-exercise-example] as an example of what each file should contain.
+- The purpose of the example solution is to prove that the problem can be solved. It doesn't necessarily have to be the most efficient or idiomatic code. Reviewer may still recommend changes but there are multiple path to solving an exercise.
 -  When coding, be consistent with the [Odin Style Guide][odin-style-guide]. Future version of the track tooling may enforce its convention.
 -  Do not comment out any of the tests. Some Exercism tracks use the convention that only the first test should be un-commented, following a TDD approach. Due to limitations with the tools, the Odin track follows the convention that all tests should be un-commented. You can read the [Odin Test documentation][odin-test-doc] for details.
 -  Once you have populated the tests and the example solution, run `bin/run-test.sh exercises/practice/<slug name>` to test your implementation. It should show you that first, your example pass all the tests and second, the student solution stub fails all the tests.
