@@ -61,9 +61,12 @@ run_test() {
     cp "${files[test]}" "${tmp_path}/${snake_name}_test.odin"
 
     # Run the tests using the example file to verify that it is a valid solution.
+    # Turn off `-e`, we don't want to abort if there's a non-zero status.
     local result status
-    result=$( odin test "${tmp_path}" 2>&1 )
+    set +e
+    result=$( odin test "${tmp_path}" -vet -strict-style -vet-tabs -disallow-do -warnings-as-errors 2>&1 )
     status=$?
+    set -e
 
     echo "$result"
 
@@ -84,6 +87,7 @@ run_test() {
     # but only fail on the most complicated one. Since the purpose of this test is mostly to
     # double-check that the example didn't accidentally get duplicated as the stub, this isn't
     # too critical for now.
+    # Note that we don't pass all the compile flags: we know it won't satisfy them.
     # glennj notes: this invocation seems to leave a tmp file behind
     if odin test "${tmp_path}" 2>/dev/null ; then
         echo >&2 'ERROR: The stub file must not pass the tests!'
