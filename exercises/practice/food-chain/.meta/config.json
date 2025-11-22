@@ -1,0 +1,17 @@
+{
+  "authors": ["hucancode"],
+  "files": {
+    "solution": [
+      "food_chain.odin"
+    ],
+    "test": [
+      "food_chain_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Generate the lyrics of the song 'I Know an Old Lady Who Swallowed a Fly'.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/There_Was_an_Old_Lady_Who_Swallowed_a_Fly"
+}
