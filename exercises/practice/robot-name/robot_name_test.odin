@@ -1,6 +1,5 @@
 package robotname
 
-import "core:fmt"
 import "core:strings"
 import "core:testing"
 import "core:text/regex"
@@ -109,7 +108,6 @@ test_collisions :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
 	dfs_fill_names(&storage)
-	r, e := new_robot(&storage)
+	_, e := new_robot(&storage)
 	testing.expect_value(t, e, Error.CouldNotCreateName)
 }
-

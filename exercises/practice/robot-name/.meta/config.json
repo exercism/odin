@@ -1,0 +1,16 @@
+{
+  "authors": ["hucancode"],
+  "files": {
+    "solution": [
+      "robot_name.odin"
+    ],
+    "test": [
+      "robot_name_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Manage robot factory settings.",
+  "source": "A debugging session with Paul Blackwell at gSchool."
+}
