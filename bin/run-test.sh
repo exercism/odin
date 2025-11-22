@@ -53,25 +53,29 @@ run_test() {
     local -g tmp_path   # the cleanup function needs a global variable
     tmp_path=$(mktemp -d)
 
+    echo
     echo "$exercise_name / $exercise_path"
 
-    # Copy the example file into the temporary directory
+    # Copy the source files into the temporary directory
     cp "${files[example]}" "${tmp_path}/${snake_name}.odin"
-
-    # Unskip all tests and write the processed test file to the temporary directory.
-    # The test file for the exercise often has several of the tests skippped initially, so that
-    # students can do test-driven development by enabling the next test, possibly see it fail,
-    # and then refining their solution. However, the test runner used by contributors and the CI
-    # pipeline always needs to run all tests.
-    #
-    # In Odin, a test can be skipped by commenting out the `@(test)` annotation preceding the
-    # test procedure. Here we unskip the test by searching for `\\ @(test)` lines and replacing
-    # them with `@test`.
-    sed 's,// @(test),@(test),' "${files[test]}" > "${tmp_path}/${snake_name}_test.odin"
+    cp "${files[test]}" "${tmp_path}/${snake_name}_test.odin"
 
     # Run the tests using the example file to verify that it is a valid solution.
-    odin test "${tmp_path}"
+    # Turn off `-e`, we don't want to abort if there's a non-zero status.
+    local result status
+    set +e
+    result=$( odin test "${tmp_path}" -vet -strict-style -vet-tabs -disallow-do -warnings-as-errors 2>&1 )
+    status=$?
+    set -e
 
+    echo "$result"
+
+    case $status in 
+        0) [[ $result == 'No tests to run.' ]] && exit 1 ;;
+        *) exit $status ;;
+    esac
+
+    echo
     echo "Checking that the Stub file *fails* the tests"
 
     # Copy the stub solution to the temporary directory
@@ -83,13 +87,12 @@ run_test() {
     # but only fail on the most complicated one. Since the purpose of this test is mostly to
     # double-check that the example didn't accidentally get duplicated as the stub, this isn't
     # too critical for now.
+    # Note that we don't pass all the compile flags: we know it won't satisfy them.
     # glennj notes: this invocation seems to leave a tmp file behind
     if odin test "${tmp_path}" 2>/dev/null ; then
-        echo >&2
         echo >&2 'ERROR: The stub file must not pass the tests!'
         exit 1
     else
-        echo
         echo 'SUCCESS: The stub file failed the tests above as expected.'
     fi
 }

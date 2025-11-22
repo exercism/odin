@@ -36,9 +36,9 @@
         "difficulty": 1
       },
       {
-        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "slug": "two-fer",
         "name": "Two Fer",
+        "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
@@ -79,6 +79,46 @@
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "1eb2ad7e-4580-4be7-9ead-28a363a5af8e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "circular-buffer",
+        "name": "Circular Buffer",
+        "uuid": "d6b52000-764d-45ec-85fb-3b453f88c325",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "two-bucket",
+        "name": "Two Bucket",
+        "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "roman-numerals",
+        "name": "Roman Numerals",
+        "uuid": "4994927a-7615-4c5a-a26d-a64c7440438c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "acronym",
+        "name": "Acronym",
+        "uuid": "31f4ded1-c2cd-41de-a12c-e3cf8ded0a97",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "bob",
+        "name": "Bob",
+        "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2

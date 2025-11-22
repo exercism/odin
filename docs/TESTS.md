@@ -1,15 +1,45 @@
 # Tests
 
-<!-- TODO: write document
+Odin exercises within your exercism project directory can be run by changing to the exercise directory, and running `odin test .`.
 
-  This document should describe everything related to running tests in the track.
+```sh
+cd "$(exercism workspace)"/odin/leap
+odin test .
+```
 
-  If your track uses skipped tests, this document can explain why thet is used and
-  how to unskip tests.
+## Enabling Language Checks
 
-  This document can also link to the testing framework documentation.
+While you are testing, Odin can "vet" your code: it can look for things like unused imports, 
 
-  The contents of this document are displayed on the track's documentation
-  page at `https://exercism.org/docs/tracks/<track>/tests`.
+Run your tests with
 
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+```sh
+odin test . -vet
+```
+
+For even more checks, add the `-strict-style` option.
+
+## Test Driven Development (TDD)
+
+`odin test` runs each procedure that has the `@(test)` attribute.
+
+In the test suite, you will notice each test procedure has this attribute.
+This means that when you launch the tests, each test procedure is going to run.
+
+Exercism generally promotes [Test Driven Development][tdd], where:
+
+- initially all tests except the first are configured to be skipped;
+- you write just enough code to pass the first test;
+- then you enable the next test, and write just enough code to make it pass;
+- repeat until your code passes all the tests.
+
+We (the maintainers) did not find an elegant programmatic way to execute a subset of the tests.
+The test file just became too unwieldy.
+To develop with TDD, you can edit the test file to simply comment out the tests you are not ready to execute, and uncomment them one-by-one as you code your solution.
+
+## References
+
+For more details, see the Odin [Test Runner][test-runner] documentation, and `odin test -help`.
+
+[tdd]: https://exercism.org/docs/using/solving-exercises/tdd
+[test-runner]: https://odin-lang.org/docs/testing/#the-test-runner

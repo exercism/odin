@@ -1,9 +1,3 @@
-/* These are the unit tests for the exercise. Only the tests for the `code()`
- * procedure are enabled to start with. You can enable the final test by
- * uncommenting the`@(test)` attribute of the `all_colors` test procedure. Your
- * solution should pass all tests before it is ready for submission.
- */
-
 package resistor_color
 
 import "core:testing"
@@ -58,7 +52,7 @@ white :: proc(t: ^testing.T) {
 	testing.expect_value(t, code(.White), 9)
 }
 
-// @(test)
+@(test)
 all_colors :: proc(t: ^testing.T) {
 	testing.expect_value(
 		t,
