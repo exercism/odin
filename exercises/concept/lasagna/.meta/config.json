@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "lasagna.odin"
+    ],
+    "test": [
+      "lasagna_test.odin"
+    ],
+    "exemplar": [
+      ".meta/example.odin"
+    ]
+  },
+  "forked_from": [
+    "go/lasagna",
+    "swift/lasagna"
+  ],
+  "blurb": "Learn about packages, variables, constants, and procedures by cooking lasagan."
+}

@@ -26,6 +26,15 @@
     ]
   },
   "exercises": {
+    "concept": [
+      {
+        "slug": "lasagna",
+        "name": "Bill's Lasagna",
+        "uuid": "bb20a9b3-708b-43ef-a4ef-0b3e89381b3c",
+        "concepts": ["basics"],
+        "prerequisites": []
+      }
+    ],
     "practice": [
       {
         "slug": "hello-world",
@@ -221,6 +230,13 @@
       }
     ]
   },
+  "concepts": [
+    {
+      "uuid": "895afd5f-6b4e-4e30-a082-c213022c7398",
+      "slug": "basics",
+      "name": "Basics"
+    }
+  ],
   "key_features": [
     {
       "title": "Simple",
