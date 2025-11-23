@@ -4,33 +4,41 @@ package rational_numbers
 Rational :: struct {}
 
 abs :: proc(a: Rational) -> Rational {
-	#panic("Please implement the `abs` procedure.")
+	// Please implement the `abs` procedure.
+	return Rational{0, 99}
 }
 
 add :: proc(a: Rational, b: Rational) -> Rational {
-	#panic("Please implement the `add` procedure.")
+	// Please implement the `add` procedure.
+	return Rational{0, 99}
 }
 
 div :: proc(a: Rational, b: Rational) -> Rational {
-	#panic("Please implement the `div` procedure.")
+	// Please implement the `div` procedure.
+	return Rational{0, 99}
 }
 
 exprational :: proc(a: Rational, power: int) -> Rational {
-	#panic("Please implement the `exprational` procedure.")
+	// Please implement the `exprational` procedure.
+	return Rational{0, 99}
 }
 
 expreal :: proc(x: f64, a: Rational) -> f64 {
-	#panic("Please implement the `expreal` procedure.")
+	// Please implement the `expreal` procedure.
+	return 0
 }
 
 mul :: proc(a: Rational, b: Rational) -> Rational {
-	#panic("Please implement the `mul` procedure.")
+	// Please implement the `mul` procedure.
+	return Rational{0, 99}
 }
 
 reduce :: proc(a: Rational) -> Rational {
-	#panic("Please implement the `reduce` procedure.")
+	// Please implement the `sub` procedure.
+	return Rational{0, 99}
 }
 
 sub :: proc(a: Rational, b: Rational) -> Rational {
-	#panic("Please implement the `sub` procedure.")
+	// Please implement the `sub` procedure.
+	return Rational{0, 99}
 }
