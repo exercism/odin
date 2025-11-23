@@ -1,6 +1,31 @@
 {
 	"$schema": "https://raw.githubusercontent.com/DanielGavin/ols/master/misc/odinfmt.schema.json",
-	"character_width": 80,
+	"_comments": [
+		"Since JSON doesn't support comments, this field describes why the settings below are the way they are for the Odin track.",
+		"The goal is to follow the Odin style guide (https://github.com/odin-lang/examples/wiki/Naming-and-style-convention) as closely as possible.",
+		"Note: odinfmt is a formatter with rough edges, the settings below are set to be consistent with the style guide, when possible.",
+		"Other style guidances are enforced by compiler flags `-vet -strict-style -vet-tabs -disallow-do -warnings-as-errors`",
+		"character_width: 100, The default is 80 but this results in very ugly code for long lines, use 100 prevent ungodly wrapping in most cases.",
+		"tabs: true, the style guide mandates tabs over spaces (what can I say!)",
+		"tabs_width: 4, not specified in the style guide but this is consistent with most other languages.",
+		"newline_limit: 1, limits the number of empty lines between code blocks. Not specified in the style guide but there is no reason to use more than one.",
+		"convert_do: true, convert do <stmt> to { <stmt> }. Not implemented in the current version, set to true because in future versions we would like to avoid do.",
+		"brace_style: _1TBS, What is typically called K&R (opening brace on the line with the proc/if/switch)",
+		"indent_case: false, specifies if case are indented from switch, false is consistent with Odin example code (https://github.com/odin-lang/examples)",
+		"sort_imports: true, makes it easier to find imports.",
+		"inline_single_stmt_case: false, doesn't aggregate a case and its online content on a single line, more explicit in my opinion",
+		"spaces_aorund_colons: false, false results in `a: int` which is consistent with the style guide.",
+		"space_single_line_blocks: true, put space inside brackets in statements like `if !okay { break }`, more readable."
+	],
+	"character_width": 100,
 	"tabs": true,
-	"tabs_width": 4
+	"tabs_width": 4,
+	"newline_limit": 1,
+	"convert_do": true,
+	"brace_style": "_1TBS",
+	"indent_cases": false,
+	"sort_imports": true,
+	"inline_single_stmt_case": false,
+	"spaces_around_colons": false,
+	"space_single_line_blocks": true
 }
