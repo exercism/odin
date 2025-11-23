@@ -18,7 +18,13 @@ function cleanup {
 trap cleanup EXIT
 
 get_from_config() {
-    jq --arg type "$1" --arg path "${exercise_path}" -r '
+    # Practice exercises configuration use 'example', but 
+    # ceoncept exercises use 'examplar'
+    param="$1"
+    if [[ "$1" == "example" && "$exercise_path" == *"concept"* ]]; then
+      param="exemplar"
+    fi
+    jq --arg type "$param" --arg path "${exercise_path}" -r '
         .files[$type] // [] | map([$path, .] | join("/"))[]
     ' "$config"
 }
