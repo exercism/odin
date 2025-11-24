@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-
-if [ $# -ne 1 ]; then
-    echo "Usage: bin/check-exercise.sh <path to exercise>"
-    exit 1
-fi
+die () { echo "$*" >&2; exit 1; }
 
 expected_number_of_tests () {
     num_tests=$(grep -c "description = " "${exercise_path}/.meta/tests.toml")
@@ -13,52 +9,19 @@ expected_number_of_tests () {
 }
 
 actual_number_of_tests () {
-    grep -c "@(test)" "${exercise_path}/${exercise_name}_test.odin"
+    grep -c "^[[:space:]]*@(test)" "${exercise_path}/${exercise_name}_test.odin"
 }
 
 create_temp_dir() {
-    TEMP_DIR=$(mktemp -d -t check-exercise-XXXXXXXX)
-    if [ $? -ne 0 ]; then
-        echo "Error: Failed to create temporary directory." >&2
-        exit 1
-    fi
+    TEMP_DIR=$(mktemp -d -t check-exercise-XXXXXXXX) \
+    || die "Error: Failed to create temporary directory."
 }
 
 cleanup_temp_dir() {
-    if [ -d "$TEMP_DIR" ]; then
-        # -r: recursively delete contents; -f: force deletion (no prompts)
-        rm -rf "$TEMP_DIR"
-    fi
+    # -r: recursively delete contents; -f: force deletion (no prompts)
+    # if directory does not exist, -f does not complain
+    rm -rf "$TEMP_DIR"
 }
-
-exercise_path="$1"
-exercise_name=$(basename "$1")
-exercise_name=${exercise_name/-/_}
-
-trap cleanup_temp_dir EXIT INT TERM
-create_temp_dir
-
-echo "Checking exercise: $exercise_name"
-
-num_expected_tests=$(expected_number_of_tests)
-echo "    Expected number of tests    : $num_expected_tests"
-
-num_actual_tests=$(actual_number_of_tests)
-echo "    Actual number of tests      : $num_actual_tests"
-
-if [[ $num_expected_tests != $num_actual_tests ]]; then
-  echo "Number of expected and actual tests doesn't match!"
-  exit 1
-fi
-
-test_output=$(bin/run-test.sh "$exercise_path" 2>&1)
-if  [ $? -eq 0 ]; then
-  echo "    Running tests               : okay"
-else
-  echo "    Running tests:"
-  echo "$test_output"
-  exit 1
-fi
 
 # There is a weird bug where `odinfmt srcfile > outfile` inserts an extra trailing blank
 # line where `odinfmt -w srcfile` doesn't. This theows the formatting comparisons off.
@@ -69,40 +32,59 @@ fi
 # Another (simpler) solution would be to just reformat automatically as part of
 # `check-exercise.sh`
 
-#bin/odinfmt "${exercise_path}/${exercise_name}.odin" > "$TEMP_DIR/${exercise_name}.odin"
-cp "${exercise_path}/${exercise_name}.odin" "$TEMP_DIR/${exercise_name}.odin"
-bin/odinfmt -w "$TEMP_DIR/${exercise_name}.odin"
-stub_diffs=$(diff "${exercise_path}/${exercise_name}.odin" "$TEMP_DIR/${exercise_name}.odin" 2>&1)
-if [ $? -eq 0 ]; then
-  echo "    Exercise stub formatting    : okay"
-else
-  echo "${exercise_path}/${exercise_name}.odin is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
-  echo $stub_diffs
-  exit 1
+check_format () {
+    file_type=$1
+    src_file=$2
+    tmp_file="${TEMP_DIR}/$(basename "${src_file}")"
+
+    cp "${src_file}" "${tmp_file}"
+    bin/odinfmt -w "${tmp_file}"
+    if diffs=$( diff "${src_file}" "${tmp_file}" ); then
+        log_result "Exercise ${file_type} formatting" okay
+    else
+        echo "${src_file} is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
+        echo "$diffs"
+        exit 1
+    fi
+}
+
+log_result () {
+    printf '    %-30s: %s\n' "$1" "$2"
+}
+
+if [[ $# -ne 1 || $1 == '-h' || $1 == '--help' ]]; then
+    die "Usage: bin/check-exercise.sh <path to exercise>"
 fi
 
-#bin/odinfmt "${exercise_path}/${exercise_name}_test.odin" > "$TEMP_DIR/${exercise_name}_test.odin"
-cp "${exercise_path}/${exercise_name}_test.odin" "$TEMP_DIR/${exercise_name}_test.odin"
-bin/odinfmt -w "$TEMP_DIR/${exercise_name}_test.odin"
-test_diffs=$(diff "${exercise_path}/${exercise_name}_test.odin" "$TEMP_DIR/${exercise_name}_test.odin" 2>&1)
-if [ $? -eq 0 ]; then
-  echo "    Exercise tests formatting   : okay"
-else
-  echo "${exercise_path}/${exercise_name}_test.odin is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
-  echo $test_diffs
-  exit 1
+exercise_path="$1"
+exercise_name=$(basename "$1")
+exercise_name=${exercise_name//-/_}
+
+trap cleanup_temp_dir EXIT INT TERM
+create_temp_dir
+
+echo "Checking exercise: $exercise_name"
+
+num_expected_tests=$(expected_number_of_tests)
+log_result "Expected number of tests" "$num_expected_tests"
+
+num_actual_tests=$(actual_number_of_tests)
+log_result "Actual number of tests" "$num_actual_tests"
+
+if (( num_expected_tests != num_actual_tests )); then
+    die "Number of expected and actual tests doesn't match!"
 fi
 
-#bin/odinfmt "${exercise_path}/.meta/example.odin" > "$TEMP_DIR/.meta/example.odin"
-cp "${exercise_path}/.meta/example.odin" "$TEMP_DIR/example.odin"
-bin/odinfmt -w  "$TEMP_DIR/example.odin"
-example_diffs=$(diff "${exercise_path}/.meta/example.odin" "$TEMP_DIR/example.odin" 2>&1)
-if [ $? -eq 0 ]; then
-  echo "    Exercise example formatting : okay"
+if test_output=$( bin/run-test.sh "$exercise_path" 2>&1 ); then
+    log_result "Running tests" okay
 else
-  echo "${exercise_path}/.meta/example.odin is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
-  echo $example_diffs
-  exit 1
+    log_result "Running tests" "NOT OK"
+    echo "$test_output"
+    exit 1
 fi
+
+check_format stub "${exercise_path}/${exercise_name}.odin"
+check_format tests "${exercise_path}/${exercise_name}_test.odin"
+check_format example "${exercise_path}/.meta/example.odin"
 
 echo "Exercise $exercise_name pass all the checks!"

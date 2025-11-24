@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "glennj"
+  ],
+  "files": {
+    "solution": [
+      "all_your_base.odin"
+    ],
+    "test": [
+      "all_your_base_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Convert a number, represented as a sequence of digits in one base, to any other base."
+}

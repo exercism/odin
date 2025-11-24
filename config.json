@@ -60,6 +60,14 @@
         "difficulty": 2
       },
       {
+        "slug": "all-your-base",
+        "name": "All Your Base",
+        "uuid": "ba5384bf-88eb-4246-b759-a57ae580dad7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "difference-of-squares",
         "name": "Difference Of Squares",
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
