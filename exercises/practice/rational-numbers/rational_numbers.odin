@@ -5,22 +5,22 @@ Rational :: struct {}
 
 abs :: proc(a: Rational) -> Rational {
 	// Please implement the `abs` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 add :: proc(a: Rational, b: Rational) -> Rational {
 	// Please implement the `add` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 div :: proc(a: Rational, b: Rational) -> Rational {
 	// Please implement the `div` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 exprational :: proc(a: Rational, power: int) -> Rational {
 	// Please implement the `exprational` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 expreal :: proc(x: f64, a: Rational) -> f64 {
@@ -30,15 +30,15 @@ expreal :: proc(x: f64, a: Rational) -> f64 {
 
 mul :: proc(a: Rational, b: Rational) -> Rational {
 	// Please implement the `mul` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 reduce :: proc(a: Rational) -> Rational {
 	// Please implement the `sub` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
 
 sub :: proc(a: Rational, b: Rational) -> Rational {
 	// Please implement the `sub` procedure.
-	return Rational{0, 99}
+	return Rational{}
 }
