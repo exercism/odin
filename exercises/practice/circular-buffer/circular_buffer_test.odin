@@ -99,9 +99,7 @@ test_a_read_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_read_position_is_maintained_even_across_multiple_writes :: proc(
-	t: ^testing.T,
-) {
+test_read_position_is_maintained_even_across_multiple_writes :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(3)
 	defer destroy_buffer(&buffer)

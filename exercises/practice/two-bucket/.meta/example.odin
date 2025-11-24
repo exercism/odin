@@ -54,13 +54,7 @@ isValid :: proc(bucket_one: int, bucket_two: int, goal: int) -> bool {
 	return true
 }
 
-go_measure :: proc(
-	start: ^Bucket,
-	other: ^Bucket,
-	goal: int,
-) -> (
-	result: Result,
-) {
+go_measure :: proc(start: ^Bucket, other: ^Bucket, goal: int) -> (result: Result) {
 	moves := 0
 
 	fill(start)

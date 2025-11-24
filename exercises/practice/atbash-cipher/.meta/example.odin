@@ -13,7 +13,6 @@ decode :: proc(sentence: string) -> string {
 	return encode_by_block(sentence, 0)
 }
 
-
 encode_by_block :: proc(sentence: string, block_size: int) -> string {
 
 	// We are assuming the sentence is in ASCII (0-255).
@@ -33,7 +32,6 @@ encode_by_block :: proc(sentence: string, block_size: int) -> string {
 	}
 	return string(coded_sentence[:])
 }
-
 
 encode_letter :: proc(l: byte) -> (byte, bool) {
 

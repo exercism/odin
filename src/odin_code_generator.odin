@@ -68,45 +68,16 @@ generate_function :: proc(b: ^strings.Builder, i: int, function: Function) {
 	}
 
 	w(b, i, true, `) -> {{`)
-	w(
-		b,
-		i + 1,
-		true,
-		`{}: {} = {}`,
-		function.ret.name,
-		function.ret.type,
-		function.ret.value,
-	)
+	w(b, i + 1, true, `{}: {} = {}`, function.ret.name, function.ret.type, function.ret.value)
 	w(b, i + 1, true, `return {}`, function.ret.name)
 	w(b, i, true, `}}`)
 }
 
-generate_argument :: proc(
-	b: ^strings.Builder,
-	i: int,
-	newline: bool,
-	argument: Argument,
-) {
+generate_argument :: proc(b: ^strings.Builder, i: int, newline: bool, argument: Argument) {
 	if argument.type == "string" {
-		w(
-			b,
-			i,
-			newline,
-			`{}: {} = "{}"`,
-			argument.name,
-			argument.type,
-			argument.value,
-		)
+		w(b, i, newline, `{}: {} = "{}"`, argument.name, argument.type, argument.value)
 	} else {
-		w(
-			b,
-			i,
-			newline,
-			`{}: {} = {}`,
-			argument.name,
-			argument.type,
-			argument.value,
-		)
+		w(b, i, newline, `{}: {} = {}`, argument.name, argument.type, argument.value)
 	}
 }
 
@@ -140,13 +111,7 @@ generate_test :: proc(b: ^strings.Builder, i: int, test: Test) {
 }
 
 // Write
-w :: proc(
-	b: ^strings.Builder,
-	ind := 0,
-	newline := true,
-	format: string,
-	args: ..any,
-) {
+w :: proc(b: ^strings.Builder, ind := 0, newline := true, format: string, args: ..any) {
 	indent(b, ind)
 	fmt.sbprintf(b, format, ..args)
 

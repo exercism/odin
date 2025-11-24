@@ -18,16 +18,5 @@ code :: proc(color: Color) -> int {
 }
 
 colors :: proc() -> [10]Color {
-	return [10]Color {
-		.Black,
-		.Brown,
-		.Red,
-		.Orange,
-		.Yellow,
-		.Green,
-		.Blue,
-		.Violet,
-		.Grey,
-		.White,
-	}
+	return [10]Color{.Black, .Brown, .Red, .Orange, .Yellow, .Green, .Blue, .Violet, .Grey, .White}
 }

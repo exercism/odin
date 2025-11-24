@@ -71,7 +71,6 @@ test_9_is_ix :: proc(t: ^testing.T) {
 	result := to_roman_numeral(decimal)
 	defer delete(result)
 
-
 	testing.expect_value(t, result, expected)
 }
 

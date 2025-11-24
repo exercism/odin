@@ -140,7 +140,6 @@ test_consecutive_strikes_each_get_the_two_roll_bonus :: proc(t: ^testing.T) {
 @(test)
 test_a_strike_in_the_last_frame_gets_a_two_roll_bonus_that_is_counted_once :: proc(t: ^testing.T) {
 
-
 	game := new_game()
 	rolls := [?]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 1}
 	apply_previous_rolls(t, &game, rolls[:])
@@ -230,7 +229,6 @@ test_rolls_cannot_score_negative_points :: proc(t: ^testing.T) {
 @(test)
 test_a_roll_cannot_score_more_than_10_points :: proc(t: ^testing.T) {
 
-
 	game := new_game()
 	error := roll(&game, 11)
 
@@ -293,7 +291,6 @@ test_two_bonus_rolls_after_a_strike_in_the_last_frame_can_score_more_than_10_poi
 test_the_second_bonus_rolls_after_a_strike_in_the_last_frame_cannot_be_a_strike_if_the_first_one_is_not_a_strike :: proc(
 	t: ^testing.T,
 ) {
-
 
 	game := new_game()
 	rolls := [?]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6}
