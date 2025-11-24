@@ -49,7 +49,7 @@
         "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 2
+        "difficulty": 1
       },
       {
         "slug": "difference-of-squares",
@@ -57,7 +57,7 @@
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "grains",
@@ -73,7 +73,7 @@
         "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "high-scores",
