@@ -188,5 +188,10 @@ echo -e "\t${test_file}"
 echo -e "\t${example_file}"
 echo ""
 
+# sort the practice exercises in config.json
+tmp=$(mktemp)
+jq '.exercises.practice |= sort_by(.difficulty, (.name | ascii_upcase))' config.json > "$tmp" \
+&& mv "$tmp" config.json
+
 echo "Running configlet lint:"
 bin/configlet lint
