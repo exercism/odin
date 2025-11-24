@@ -3,63 +3,49 @@ package grains
 import "core:testing"
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_1 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_1 :: proc(t: ^testing.T) {
 	c, e := square(1)
 	testing.expect_value(t, c, 1)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_2 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_2 :: proc(t: ^testing.T) {
 	c, e := square(2)
 	testing.expect_value(t, c, 2)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_3 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_3 :: proc(t: ^testing.T) {
 	c, e := square(3)
 	testing.expect_value(t, c, 4)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_4 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_4 :: proc(t: ^testing.T) {
 	c, e := square(4)
 	testing.expect_value(t, c, 8)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_16 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_16 :: proc(t: ^testing.T) {
 	c, e := square(16)
 	testing.expect_value(t, c, 32_768)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_32 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_32 :: proc(t: ^testing.T) {
 	c, e := square(32)
 	testing.expect_value(t, c, 2_147_483_648)
 	testing.expect_value(t, e, Error.None)
 }
 
 @(test)
-test_returns_the_number_of_grains_on_the_square_grains_on_square_64 :: proc(
-	t: ^testing.T,
-) {
+test_returns_the_number_of_grains_on_the_square_grains_on_square_64 :: proc(t: ^testing.T) {
 	c, e := square(64)
 	testing.expect_value(t, c, 9_223_372_036_854_775_808)
 	testing.expect_value(t, e, Error.None)

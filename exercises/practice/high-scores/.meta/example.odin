@@ -11,7 +11,6 @@ High_Scores :: struct {
 	values: [dynamic]int,
 }
 
-
 new_scores :: proc(initial_values: []int) -> High_Scores {
 
 	scores: High_Scores
@@ -19,12 +18,10 @@ new_scores :: proc(initial_values: []int) -> High_Scores {
 	return scores
 }
 
-
 destroy_scores :: proc(s: ^High_Scores) {
 
 	delete(s.values)
 }
-
 
 scores :: proc(s: High_Scores) -> []int {
 
@@ -35,7 +32,6 @@ scores :: proc(s: High_Scores) -> []int {
 	return scores
 }
 
-
 latest :: proc(s: High_Scores) -> int {
 
 	if len(s.values) == 0 {
@@ -43,7 +39,6 @@ latest :: proc(s: High_Scores) -> int {
 	}
 	return s.values[len(s.values) - 1]
 }
-
 
 personal_best :: proc(s: High_Scores) -> int {
 
@@ -56,7 +51,6 @@ personal_best :: proc(s: High_Scores) -> int {
 	}
 	return best
 }
-
 
 personal_top_three :: proc(s: High_Scores) -> []int {
 

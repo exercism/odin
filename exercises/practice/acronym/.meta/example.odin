@@ -16,7 +16,7 @@ abbreviate :: proc(phrase: string) -> string {
 	defer strings.builder_destroy(&buffer)
 	for {
 		capture, _, ok := regex.match_iterator(&iter)
-		if !ok {break}
+		if !ok { break }
 		first_letter := capture.groups[0][0]
 		strings.write_byte(&buffer, first_letter)
 	}

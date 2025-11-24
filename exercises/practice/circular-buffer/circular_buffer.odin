@@ -26,7 +26,6 @@ write :: proc(b: ^Buffer, value: int) -> Error {
 	#panic("implement this procedure")
 }
 
-
 overwrite :: proc(b: ^Buffer, value: int) {
 	#panic("implement this procedure")
 }
