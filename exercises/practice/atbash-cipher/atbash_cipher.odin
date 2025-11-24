@@ -1,9 +1,11 @@
 package atbash_cipher
 
 encode :: proc(sentence: string) -> string {
-	#panic("Implement the `encode` procedure.")
+	// Implement this procedure.
+	return ""
 }
 
 decode :: proc(sentence: string) -> string {
-	#panic("Implement the `decode` procedure.")
+	// Implement this procedure.
+	return ""
 }

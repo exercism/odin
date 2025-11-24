@@ -5,7 +5,6 @@ import "core:testing"
 @(test)
 test_encode_yes :: proc(t: ^testing.T) {
 
-
 	input := "yes"
 	result := encode(input)
 	defer delete(result)
@@ -16,7 +15,6 @@ test_encode_yes :: proc(t: ^testing.T) {
 
 @(test)
 test_encode_no :: proc(t: ^testing.T) {
-
 
 	input := "no"
 	result := encode(input)
@@ -29,7 +27,6 @@ test_encode_no :: proc(t: ^testing.T) {
 @(test)
 test_encode_OMG :: proc(t: ^testing.T) {
 
-
 	input := "OMG"
 	result := encode(input)
 	defer delete(result)
@@ -40,7 +37,6 @@ test_encode_OMG :: proc(t: ^testing.T) {
 
 @(test)
 test_encode_spaces :: proc(t: ^testing.T) {
-
 
 	input := "O M G"
 	result := encode(input)
@@ -53,7 +49,6 @@ test_encode_spaces :: proc(t: ^testing.T) {
 @(test)
 test_encode_mindblowingly :: proc(t: ^testing.T) {
 
-
 	input := "mindblowingly"
 	result := encode(input)
 	defer delete(result)
@@ -64,7 +59,6 @@ test_encode_mindblowingly :: proc(t: ^testing.T) {
 
 @(test)
 test_encode_numbers :: proc(t: ^testing.T) {
-
 
 	input := "Testing,1 2 3, testing."
 	result := encode(input)
@@ -77,7 +71,6 @@ test_encode_numbers :: proc(t: ^testing.T) {
 @(test)
 test_encode_deep_thought :: proc(t: ^testing.T) {
 
-
 	input := "Truth is fiction."
 	result := encode(input)
 	defer delete(result)
@@ -88,7 +81,6 @@ test_encode_deep_thought :: proc(t: ^testing.T) {
 
 @(test)
 test_encode_all_the_letters :: proc(t: ^testing.T) {
-
 
 	input := "The quick brown fox jumps over the lazy dog."
 	result := encode(input)
@@ -101,7 +93,6 @@ test_encode_all_the_letters :: proc(t: ^testing.T) {
 @(test)
 test_decode_exercism :: proc(t: ^testing.T) {
 
-
 	input := "vcvix rhn"
 	result := decode(input)
 	defer delete(result)
@@ -112,7 +103,6 @@ test_decode_exercism :: proc(t: ^testing.T) {
 
 @(test)
 test_decode_a_sentence :: proc(t: ^testing.T) {
-
 
 	input := "zmlyh gzxov rhlug vmzhg vkkrm thglm v"
 	result := decode(input)
@@ -125,7 +115,6 @@ test_decode_a_sentence :: proc(t: ^testing.T) {
 @(test)
 test_decode_numbers :: proc(t: ^testing.T) {
 
-
 	input := "gvhgr mt123 gvhgr mt"
 	result := decode(input)
 	defer delete(result)
@@ -136,7 +125,6 @@ test_decode_numbers :: proc(t: ^testing.T) {
 
 @(test)
 test_decode_all_the_letters :: proc(t: ^testing.T) {
-
 
 	input := "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
 	result := decode(input)
@@ -149,7 +137,6 @@ test_decode_all_the_letters :: proc(t: ^testing.T) {
 @(test)
 test_decode_with_too_many_spaces :: proc(t: ^testing.T) {
 
-
 	input := "vc vix    r hn"
 	result := decode(input)
 	defer delete(result)
@@ -160,7 +147,6 @@ test_decode_with_too_many_spaces :: proc(t: ^testing.T) {
 
 @(test)
 test_decode_with_no_spaces :: proc(t: ^testing.T) {
-
 
 	input := "zmlyhgzxovrhlugvmzhgvkkrmthglmv"
 	result := decode(input)
