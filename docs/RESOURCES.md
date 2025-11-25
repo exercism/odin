@@ -1,13 +1,23 @@
 # Resources
 
-<!-- TODO: write document
+In addition to the [Learning][learning] resources, here are some other places to help you on your journey with Odin:
 
-  This document should link to useful resources.
+* [Odin playground][play], experiment in a browser.
+* The [odin-lang/Odin][gh] GitHub repository.
+* Odin's [community][community] links (forum, discord, reddit, etc).
+* [Articles][articles] written by gingerBill, Odin's creator.
+  These provide some insight into the language's design principles.
+* [Style guide][style].
+* [Awesome Odin][awesome], a collection of links to Odin libraries and resources.
+* A [series of videos][vids] about Odin and using it for game development.
+  By Karl Zylinski, the author of the "Understanding Odin" book.
 
-  Feel free to link to any good resources you know, whether they
-  be websites, videos, mailing lists, etc.
-
-  The contents of this document are displayed on the track's documentation
-  page at `https://exercism.org/docs/tracks/<track>/resources`.
-
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+[learning]: ./learning
+[play]: https://codapi.org/odin/
+[gh]: https://github.com/odin-lang/Odin
+[forum]: https://forum.odin-lang.org
+[community]: https://odin-lang.org/community/
+[articles]: https://www.gingerbill.org/article/
+[awesome]: https://github.com/jakubtomsu/awesome-odin
+[style]: https://github.com/odin-lang/examples/wiki/Naming-and-style-convention
+[vids]: https://www.youtube.com/playlist?list=PLxE7SoPYTef38R_9CtFLRuaXhW8vqBV4P
