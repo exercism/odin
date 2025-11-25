@@ -1,13 +1,16 @@
 package difference_of_squares
 
 square_of_sum :: proc(n: int) -> int {
-	#panic("Please implement the `square_of_sum` procedure")
+	// Implement this procedure.
+	return 0
 }
 
 sum_of_squares :: proc(n: int) -> int {
-	#panic("Please implement the `sum_of_squares` procedure")
+	// Implement this procedure.
+	return 0
 }
 
 difference :: proc(n: int) -> int {
-	#panic("Please implement the `difference` procedure")
+	// Implement this procedure.
+	return 0
 }

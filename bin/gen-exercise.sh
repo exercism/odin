@@ -142,7 +142,8 @@ do
     cat >> "${solution_file}" <<EOL
 
 ${safe_unique_property} :: proc() -> string {
-    #panic("Please implement the \`${safe_unique_property}\` procedure.")
+    // Implement this procedure.
+    return ""
 }
 EOL
 done

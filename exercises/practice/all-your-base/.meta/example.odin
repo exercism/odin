@@ -9,8 +9,8 @@ Error :: enum {
 }
 
 rebase :: proc(input_base: int, digits: []int, output_base: int) -> ([]int, Error) {
-	if input_base < 2 {return nil, .Input_Base_Too_Small}
-	if output_base < 2 {return nil, .Output_Base_Too_Small}
+	if input_base < 2 { return nil, .Input_Base_Too_Small }
+	if output_base < 2 { return nil, .Output_Base_Too_Small }
 
 	decimal := 0
 	for digit in digits {

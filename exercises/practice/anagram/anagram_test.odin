@@ -15,7 +15,6 @@ test_no_matches :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-
 @(test)
 test_detects_two_anagrams :: proc(t: ^testing.T) {
 
@@ -57,14 +56,7 @@ test_detects_three_anagrams :: proc(t: ^testing.T) {
 
 	expected := [?]string{"gallery", "regally", "largely"}
 	word := "allergy"
-	candidates := [?]string {
-		"gallery",
-		"ballerina",
-		"regally",
-		"clergy",
-		"largely",
-		"leading",
-	}
+	candidates := [?]string{"gallery", "ballerina", "regally", "clergy", "largely", "leading"}
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
@@ -84,9 +76,7 @@ test_detects_multiple_anagrams_with_different_case :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_does_not_detect_non_anagrams_with_identical_checksum :: proc(
-	t: ^testing.T,
-) {
+test_does_not_detect_non_anagrams_with_identical_checksum :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
 	word := "mass"
@@ -121,11 +111,8 @@ test_detects_anagrams_using_case_insensitive_subject :: proc(t: ^testing.T) {
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-
 @(test)
-test_detects_anagrams_using_case_insensitive_possible_matches :: proc(
-	t: ^testing.T,
-) {
+test_detects_anagrams_using_case_insensitive_possible_matches :: proc(t: ^testing.T) {
 
 	expected := [?]string{"Carthorse"}
 	word := "orchestra"
@@ -136,11 +123,8 @@ test_detects_anagrams_using_case_insensitive_possible_matches :: proc(
 	testing.expect(t, slice.equal(result, expected[:]))
 }
 
-
 @(test)
-test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(
-	t: ^testing.T,
-) {
+test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
 	word := "go"
@@ -162,7 +146,6 @@ test_anagrams_must_use_all_letters_exactly_once :: proc(t: ^testing.T) {
 
 	testing.expect(t, slice.equal(result, expected[:]))
 }
-
 
 @(test)
 test_words_are_not_anagrams_of_themselves :: proc(t: ^testing.T) {

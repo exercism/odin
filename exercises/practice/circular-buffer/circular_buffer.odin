@@ -3,29 +3,36 @@ package circular_buffer
 // Complete the Buffer data structure.
 Buffer :: struct {}
 
-// Populate the Error enum to match output of test cases.
-Error :: enum {}
+Error :: enum {
+	None,
+	BufferEmpty,
+	BufferFull,
+	Unimplemented,
+}
 
 new_buffer :: proc(capacity: int) -> Buffer {
-	#panic("implement this procedure")
+	// implement this procedure.
+	return Buffer{}
 }
 
 destroy_buffer :: proc(b: ^Buffer) {
-	#panic("implement this procedure")
+	// implement this procedure.
 }
 
 clear :: proc(b: ^Buffer) {
-	#panic("implement this procedure")
+	// implement this procedure.
 }
 
 read :: proc(b: ^Buffer) -> (int, Error) {
-	#panic("implement this procedure")
+	// implement this procedure.
+	return 0, .Unimplemented
 }
 
 write :: proc(b: ^Buffer, value: int) -> Error {
-	#panic("implement this procedure")
+	// implement this procedure.
+	return .Unimplemented
 }
 
 overwrite :: proc(b: ^Buffer, value: int) {
-	#panic("implement this procedure")
+	// implement this procedure.
 }

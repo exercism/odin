@@ -24,16 +24,9 @@ div :: proc(a: Rational, b: Rational) -> Rational {
 
 exprational :: proc(a: Rational, power: int) -> Rational {
 	if power < 0 {
-		return reduce(
-			Rational {
-				intpow(a.denominator, -power),
-				intpow(a.numerator, -power),
-			},
-		)
+		return reduce(Rational{intpow(a.denominator, -power), intpow(a.numerator, -power)})
 	}
-	return reduce(
-		Rational{intpow(a.numerator, power), intpow(a.denominator, power)},
-	)
+	return reduce(Rational{intpow(a.numerator, power), intpow(a.denominator, power)})
 }
 
 expreal :: proc(x: f64, a: Rational) -> f64 {
@@ -45,9 +38,7 @@ nthroot :: proc(n: f64, root: f64) -> f64 {
 }
 
 mul :: proc(a: Rational, b: Rational) -> Rational {
-	return reduce(
-		Rational{a.numerator * b.numerator, a.denominator * b.denominator},
-	)
+	return reduce(Rational{a.numerator * b.numerator, a.denominator * b.denominator})
 }
 
 reduce :: proc(a: Rational) -> Rational {
