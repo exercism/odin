@@ -6,6 +6,7 @@ In addition to the [Learning][learning] resources, here are some other places to
 * Odin's [community][community] links (forum, discord, reddit, etc).
 * [Articles][articles] written by gingerBill, Odin's creator.
   These provide some insight into the language's design principles.
+* [Style guide][style]
 * [Awesome Odin][awesome], a collection of links to Odin libraries and resources.
 
 [learning]: ./learning
@@ -14,3 +15,4 @@ In addition to the [Learning][learning] resources, here are some other places to
 [community]: https://odin-lang.org/community/
 [articles]: https://www.gingerbill.org/article/
 [awesome]: https://github.com/jakubtomsu/awesome-odin
+[style]: https://github.com/odin-lang/examples/wiki/Naming-and-style-convention
