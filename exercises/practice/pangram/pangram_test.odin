@@ -1,4 +1,5 @@
 package pangram
+
 import "core:testing"
 
 @(test)

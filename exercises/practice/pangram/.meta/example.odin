@@ -1,17 +1,20 @@
 package pangram
+
 is_pangram :: proc(str: string) -> bool {
-	vis := 0
-	expected := (1 << 26) - 1
-	for i in 0 ..< len(str) {
-		c := str[i]
+	Alphabet :: bit_set['a' ..= 'z']
+	expected := Alphabet {
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	}
+	vis: Alphabet
+	for c in str {
 		if c >= 'a' && c <= 'z' {
-			c -= 'a'
+			vis += {c}
 		} else if c >= 'A' && c <= 'Z' {
-			c -= 'A'
+			vis += {c - 'A' + 'a'}
 		} else {
 			continue
 		}
-		vis |= 1 << c
 	}
 	return vis == expected
 }

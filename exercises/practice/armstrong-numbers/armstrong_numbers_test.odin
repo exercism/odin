@@ -1,4 +1,5 @@
 package armstrong_numbers
+
 import "core:testing"
 
 @(test)

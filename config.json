@@ -129,7 +129,7 @@
         "uuid": "8d6825a2-819e-4296-ade4-c019fe294522",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "food-chain",
@@ -137,7 +137,7 @@
         "uuid": "ac98f0f1-85b3-4510-bf26-c84fd8baa147",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "pangram",
@@ -145,7 +145,7 @@
         "uuid": "ba980dfc-99d3-4cda-9214-083c8d585d03",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "robot-name",
@@ -153,7 +153,7 @@
         "uuid": "fb0419f7-81d9-40a4-869c-9da05b4c3ef5",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       }
     ]
   },

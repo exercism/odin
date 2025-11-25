@@ -5,11 +5,8 @@ import "core:testing"
 import "core:text/regex"
 
 name_valid :: proc(name: string) -> bool {
-	pat, err := regex.create(`^[A-Z]{2}\d{3}$`)
+	pat, _ := regex.create(`^[A-Z]{2}\d{3}$`)
 	defer regex.destroy(pat)
-	if err != regex.Creation_Error.None {
-		return false
-	}
 	captures, matched := regex.match(pat, name)
 	defer regex.destroy(captures)
 	return matched
@@ -62,7 +59,9 @@ test_multiple_names :: proc(t: ^testing.T) {
 	}
 }
 
-dfs_fill_names :: proc(storage: ^RobotStorage) {
+// TODO: find a good way to solve this without assuming Robot_Storage will contains `names`
+// this code will not compile if user decide to use other name than `names` on Robot_Storage
+dfs_fill_names :: proc(storage: ^Robot_Storage) {
 	GO_BACK_SENTINEL := u8('-')
 	NAME_LENGTH := 5
 	LETTERS := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -109,5 +108,5 @@ test_collisions :: proc(t: ^testing.T) {
 	defer delete_storage(&storage)
 	dfs_fill_names(&storage)
 	_, e := new_robot(&storage)
-	testing.expect_value(t, e, Error.CouldNotCreateName)
+	testing.expect_value(t, e, Error.Could_Not_Create_Name)
 }
