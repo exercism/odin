@@ -1,0 +1,17 @@
+{
+  "authors": ["hucancode"],
+  "files": {
+    "solution": [
+      "armstrong_numbers.odin"
+    ],
+    "test": [
+      "armstrong_numbers_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Determine if a number is an Armstrong number.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Narcissistic_number"
+}

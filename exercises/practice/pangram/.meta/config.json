@@ -1,0 +1,17 @@
+{
+  "authors": ["hucancode"],
+  "files": {
+    "solution": [
+      "pangram.odin"
+    ],
+    "test": [
+      "pangram_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Determine if a sentence is a pangram.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Pangram"
+}
