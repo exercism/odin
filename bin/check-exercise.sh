@@ -13,7 +13,9 @@ actual_number_of_tests () {
 }
 
 create_temp_dir() {
-    TEMP_DIR=$(mktemp -d -t check-exercise-XXXXXXXX) \
+    # Need to create the tempdir relative to the current dir
+    # so that it can find the odinfmt config file.
+    TEMP_DIR=$(mktemp -d -p "$PWD" -t check-exercise-XXXXXXXX) \
     || die "Error: Failed to create temporary directory."
 }
 
