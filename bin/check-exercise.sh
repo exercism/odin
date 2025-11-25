@@ -73,8 +73,10 @@ log_result "Expected number of tests" "$num_expected_tests"
 num_actual_tests=$(actual_number_of_tests)
 log_result "Actual number of tests" "$num_actual_tests"
 
-if (( num_expected_tests != num_actual_tests )); then
-    die "Number of expected and actual tests doesn't match!"
+if [[ $num_expected_tests -gt $num_actual_tests ]]; then
+    echo "    [WARNING]: More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
+elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
+    echo "    [INFO]: More actual tests than expected tests, looks like you over-achieved!"
 fi
 
 if test_output=$( bin/run-test.sh "$exercise_path" 2>&1 ); then

@@ -15,5 +15,6 @@ measure :: proc(
 	Result,
 	bool,
 ) {
-	#panic("Please implement the  procedure.")
+	// Implement this procedure.
+	return Result{}, false
 }

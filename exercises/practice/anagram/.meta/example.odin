@@ -16,7 +16,7 @@ find_anagrams :: proc(word: string, candidates: []string) -> []string {
 
 		lc_candidate := strings.to_lower(candidate)
 		defer delete(lc_candidate)
-		if lc_word == lc_candidate {continue}
+		if lc_word == lc_candidate { continue }
 
 		candidate_letters := letters_in_order(candidate)
 		defer delete(candidate_letters)
@@ -28,7 +28,6 @@ find_anagrams :: proc(word: string, candidates: []string) -> []string {
 }
 
 letters_in_order :: proc(word: string) -> []rune {
-
 
 	lc_word := strings.to_lower(word)
 	defer delete(lc_word)

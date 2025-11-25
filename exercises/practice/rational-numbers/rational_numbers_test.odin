@@ -4,9 +4,7 @@ import "core:math"
 import "core:testing"
 
 @(test)
-test_arithmetic__addition__add_two_positive_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__addition__add_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
 
@@ -30,9 +28,7 @@ test_arithmetic__addition__add_a_positive_rational_number_and_a_negative_rationa
 }
 
 @(test)
-test_arithmetic__addition__add_two_negative_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__addition__add_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
 
@@ -43,9 +39,7 @@ test_arithmetic__addition__add_two_negative_rational_numbers :: proc(
 }
 
 @(test)
-test_arithmetic__addition__add_a_rational_number_to_its_additive_inverse :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__addition__add_a_rational_number_to_its_additive_inverse :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{-1, 2}
 
@@ -56,9 +50,7 @@ test_arithmetic__addition__add_a_rational_number_to_its_additive_inverse :: proc
 }
 
 @(test)
-test_arithmetic__subtraction__subtract_two_positive_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__subtraction__subtract_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
 
@@ -82,9 +74,7 @@ test_arithmetic__subtraction__subtract_a_positive_rational_number_and_a_negative
 }
 
 @(test)
-test_arithmetic__subtraction__subtract_two_negative_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__subtraction__subtract_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
 
@@ -95,9 +85,7 @@ test_arithmetic__subtraction__subtract_two_negative_rational_numbers :: proc(
 }
 
 @(test)
-test_arithmetic__subtraction__subtract_a_rational_number_from_itself :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__subtraction__subtract_a_rational_number_from_itself :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 2}
 
@@ -108,9 +96,7 @@ test_arithmetic__subtraction__subtract_a_rational_number_from_itself :: proc(
 }
 
 @(test)
-test_arithmetic__multiplication__multiply_two_positive_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__multiplication__multiply_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
 
@@ -134,9 +120,7 @@ test_arithmetic__multiplication__multiply_a_negative_rational_number_by_a_positi
 }
 
 @(test)
-test_arithmetic__multiplication__multiply_two_negative_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__multiplication__multiply_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
 
@@ -160,9 +144,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_its_reciprocal ::
 }
 
 @(test)
-test_arithmetic__multiplication__multiply_a_rational_number_by_1 :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__multiplication__multiply_a_rational_number_by_1 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 1}
 
@@ -173,9 +155,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_1 :: proc(
 }
 
 @(test)
-test_arithmetic__multiplication__multiply_a_rational_number_by_0 :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__multiplication__multiply_a_rational_number_by_0 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{0, 1}
 
@@ -186,9 +166,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_0 :: proc(
 }
 
 @(test)
-test_arithmetic__division__divide_two_positive_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__division__divide_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
 
@@ -212,9 +190,7 @@ test_arithmetic__division__divide_a_positive_rational_number_by_a_negative_ratio
 }
 
 @(test)
-test_arithmetic__division__divide_two_negative_rational_numbers :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__division__divide_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
 
@@ -225,9 +201,7 @@ test_arithmetic__division__divide_two_negative_rational_numbers :: proc(
 }
 
 @(test)
-test_arithmetic__division__divide_a_rational_number_by_1 :: proc(
-	t: ^testing.T,
-) {
+test_arithmetic__division__divide_a_rational_number_by_1 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 1}
 
@@ -238,9 +212,7 @@ test_arithmetic__division__divide_a_rational_number_by_1 :: proc(
 }
 
 @(test)
-test_absolute_value__absolute_value_of_a_positive_rational_number :: proc(
-	t: ^testing.T,
-) {
+test_absolute_value__absolute_value_of_a_positive_rational_number :: proc(t: ^testing.T) {
 	r := Rational{1, 2}
 
 	result := abs(r)
@@ -262,9 +234,7 @@ test_absolute_value__absolute_value_of_a_positive_rational_number_with_negative_
 }
 
 @(test)
-test_absolute_value__absolute_value_of_a_negative_rational_number :: proc(
-	t: ^testing.T,
-) {
+test_absolute_value__absolute_value_of_a_negative_rational_number :: proc(t: ^testing.T) {
 	r := Rational{-1, 2}
 
 	result := abs(r)
@@ -373,9 +343,7 @@ test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_an
 }
 
 @(test)
-test_exponentiation_of_a_rational_number__raise_zero_to_an_integer_power :: proc(
-	t: ^testing.T,
-) {
+test_exponentiation_of_a_rational_number__raise_zero_to_an_integer_power :: proc(t: ^testing.T) {
 	r := Rational{0, 1}
 	n := 5
 
@@ -386,9 +354,7 @@ test_exponentiation_of_a_rational_number__raise_zero_to_an_integer_power :: proc
 }
 
 @(test)
-test_exponentiation_of_a_rational_number__raise_one_to_an_integer_power :: proc(
-	t: ^testing.T,
-) {
+test_exponentiation_of_a_rational_number__raise_one_to_an_integer_power :: proc(t: ^testing.T) {
 	r := Rational{1, 1}
 	n := 4
 
@@ -515,9 +481,7 @@ test_reduction_to_lowest_terms__reduce_a_rational_number_with_a_negative_denomin
 }
 
 @(test)
-test_reduction_to_lowest_terms__reduce_zero_to_lowest_terms :: proc(
-	t: ^testing.T,
-) {
+test_reduction_to_lowest_terms__reduce_zero_to_lowest_terms :: proc(t: ^testing.T) {
 	r := Rational{0, 6}
 
 	result := reduce(r)
@@ -527,9 +491,7 @@ test_reduction_to_lowest_terms__reduce_zero_to_lowest_terms :: proc(
 }
 
 @(test)
-test_reduction_to_lowest_terms__reduce_an_integer_to_lowest_terms :: proc(
-	t: ^testing.T,
-) {
+test_reduction_to_lowest_terms__reduce_an_integer_to_lowest_terms :: proc(t: ^testing.T) {
 	r := Rational{-14, 7}
 
 	result := reduce(r)
@@ -539,9 +501,7 @@ test_reduction_to_lowest_terms__reduce_an_integer_to_lowest_terms :: proc(
 }
 
 @(test)
-test_reduction_to_lowest_terms__reduce_one_to_lowest_terms :: proc(
-	t: ^testing.T,
-) {
+test_reduction_to_lowest_terms__reduce_one_to_lowest_terms :: proc(t: ^testing.T) {
 	r := Rational{13, 13}
 
 	result := reduce(r)

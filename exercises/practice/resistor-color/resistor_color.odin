@@ -3,9 +3,11 @@ package resistor_color
 Color :: enum {} // Implement an enumeration of all the resistor colors.
 
 code :: proc(color: Color) -> int {
-	#panic("Please implement the `code` procedure.")
+	// Implement this procedure.
+	return 0
 }
 
+// Please fill in the return type.
 colors :: proc() { 	// -> ?
-	#panic("Please implement the `colors` procedure.")
+	// Implement this procedure.
 }
