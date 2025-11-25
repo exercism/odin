@@ -36,6 +36,14 @@
         "difficulty": 1
       },
       {
+        "slug": "leap",
+        "name": "Leap",
+        "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
@@ -44,9 +52,17 @@
         "difficulty": 1
       },
       {
-        "slug": "leap",
-        "name": "Leap",
-        "uuid": "cd710981-b7de-4a80-beda-f6b95420a4d6",
+        "slug": "all-your-base",
+        "name": "All Your Base",
+        "uuid": "ba5384bf-88eb-4246-b759-a57ae580dad7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "bob",
+        "name": "Bob",
+        "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -57,7 +73,7 @@
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "grains",
@@ -68,20 +84,52 @@
         "difficulty": 2
       },
       {
-        "slug": "resistor-color",
-        "name": "Resistor Color",
-        "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1
-      },
-      {
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "1eb2ad7e-4580-4be7-9ead-28a363a5af8e",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
+      },
+      {
+        "slug": "resistor-color",
+        "name": "Resistor Color",
+        "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "triangle",
+        "name": "Triangle",
+        "uuid": "b838c982-460a-46bb-bb3e-0e50ed99090b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "acronym",
+        "name": "Acronym",
+        "uuid": "31f4ded1-c2cd-41de-a12c-e3cf8ded0a97",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "anagram",
+        "name": "Anagram",
+        "uuid": "9f9c67a7-ce94-46af-9036-3751acebbcb5",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "atbash-cipher",
+        "name": "Atbash Cipher",
+        "uuid": "810131cd-859d-4119-a91c-ae4d4857e4ae",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
       },
       {
         "slug": "circular-buffer",
@@ -92,9 +140,9 @@
         "difficulty": 5
       },
       {
-        "slug": "two-bucket",
-        "name": "Two Bucket",
-        "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
+        "slug": "rational-numbers",
+        "name": "Rational Numbers",
+        "uuid": "9a66b396-5c35-49f7-917b-d6cf7c6be392",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
@@ -108,20 +156,20 @@
         "difficulty": 5
       },
       {
-        "slug": "acronym",
-        "name": "Acronym",
-        "uuid": "31f4ded1-c2cd-41de-a12c-e3cf8ded0a97",
+        "slug": "two-bucket",
+        "name": "Two Bucket",
+        "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
       },
       {
-        "slug": "bob",
-        "name": "Bob",
-        "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
+        "slug": "bowling",
+        "name": "Bowling",
+        "uuid": "85bedaa1-0898-4698-bf14-0a67ef9b7668",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 2
+        "difficulty": 9
       },
       {
         "slug": "armstrong-numbers",

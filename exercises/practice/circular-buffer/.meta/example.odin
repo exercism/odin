@@ -52,7 +52,6 @@ write :: proc(b: ^Buffer, value: int) -> Error {
 	return .None
 }
 
-
 overwrite :: proc(b: ^Buffer, value: int) {
 
 	if b.size == len(b.elements) {

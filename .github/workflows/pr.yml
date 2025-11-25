@@ -1,0 +1,54 @@
+# This workflow creates an Odin environment and validates the exercises that changed.
+name: odin/PR
+
+on: pull_request
+
+jobs:
+  pr:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Download Clang
+        run: wget https://apt.llvm.org/llvm.sh
+
+      - name: Set install script permissions
+        run: chmod u+x llvm.sh
+
+      - name: Install Clang 18
+        run: sudo ./llvm.sh 18
+
+      - name: Setup default version
+        run: sudo ln -f /usr/bin/clang-18 /usr/bin/clang
+
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup Odin
+        uses: laytan/setup-odin@1e0d12e3bffd1aa07e586a3d9effb2d991a19d36
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          llvm-version: 18
+          release: dev-2025-10
+
+      - name: Install odinfmt
+        run: bin/fetch-ols-odinfmt.sh
+
+      - name: Validate exercises
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Validate changed exercises.
+          # pr_endpoint will be like: `repos/exercism/odin/pulls/12345`
+          pr_endpoint=$(jq -r '"repos/\(.repository.full_name)/pulls/\(.pull_request.number)"' "$GITHUB_EVENT_PATH")
+          # 1. find the odin files in this PR
+          # 2. output the unique exercise paths
+          # 3. then send the paths one-by-one to the check script
+          gh api "$pr_endpoint/files" --paginate --jq '
+              map(
+                select (.filename | endswith(".odin"))
+                | .filename
+                | scan("^exercises/[^/]+/[^/]+")
+              )
+              | unique
+              | .[]
+          ' | xargs -L 1 -r bin/check-exercise.sh

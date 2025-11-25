@@ -57,17 +57,6 @@ all_colors :: proc(t: ^testing.T) {
 	testing.expect_value(
 		t,
 		colors(),
-		[10]Color {
-			.Black,
-			.Brown,
-			.Red,
-			.Orange,
-			.Yellow,
-			.Green,
-			.Blue,
-			.Violet,
-			.Grey,
-			.White,
-		},
+		[10]Color{.Black, .Brown, .Red, .Orange, .Yellow, .Green, .Blue, .Violet, .Grey, .White},
 	)
 }

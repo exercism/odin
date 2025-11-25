@@ -83,8 +83,20 @@ else
     # superceded cases.
     canonical_data=$(
         jq '
+            def concat($a; $b): if $a == "" then $b else $a + "__" + $b end ;
+
+            def test_cases($description):
+                if has("cases") then
+                    # this object has nested test cases
+                    .description as $d | .cases[] | test_cases(concat($description; $d))
+                else
+                    # emit this test case with an updated description
+                    .description |= concat($description; .)
+                end
+                ;
+
             .cases |= (
-                reduce .[] as $case ({};
+                reduce (.[] | test_cases("")) as $case ({};
                     $case.reimplements as $r
                     | if $r then del(.[$r]) else . end
                     | .[$case.uuid] = $case
@@ -175,6 +187,11 @@ echo -e "\t${solution_file}"
 echo -e "\t${test_file}"
 echo -e "\t${example_file}"
 echo ""
+
+# sort the practice exercises in config.json
+tmp=$(mktemp)
+jq '.exercises.practice |= sort_by(.difficulty, (.name | ascii_upcase))' config.json > "$tmp" \
+&& mv "$tmp" config.json
 
 echo "Running configlet lint:"
 bin/configlet lint
