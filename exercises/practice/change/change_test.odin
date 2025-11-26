@@ -3,22 +3,20 @@ package change
 import "core:fmt"
 import "core:testing"
 
-// expect_slices_match compares two slices using their string representation.
-// This is used instead of `testing.expect(t, slice.equal(value, expected))`
-// because the test report when a `testing.expect()` fails doesn't provide information
-// about the difference between 'value' and `expected` like `testing.expect_value()` does.
-expect_slices_match :: proc(
-	t: ^testing.T,
-	value: []int,
-	expected: []int,
-	loc := #caller_location,
-) {
+/* ------------------------------------------------------------
+ * A helper procedure to enable more helpful test failure output.
+ * Stringify the slices and compare the strings.
+ * If they don't match, the user will see the values.
+ */
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
+	result := fmt.aprintf("%v", actual) // this varname shows up in the test output
+	exp_str := fmt.aprintf("%v", expected)
+	defer {
+		delete(result)
+		delete(exp_str)
+	}
 
-	value_as_str := fmt.aprintf("%v", value)
-	defer delete(value_as_str)
-	expected_as_str := fmt.aprintf("%v", expected)
-	defer delete(expected_as_str)
-	testing.expect_value(t, value_as_str, expected_as_str)
+	testing.expect_value(t, result, exp_str)
 }
 
 @(test)
