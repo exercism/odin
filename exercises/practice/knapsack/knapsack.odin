@@ -6,5 +6,6 @@ Item :: struct {
 }
 
 maximum_value :: proc(maximum_weight: u32, items: []Item) -> u32 {
-	#panic("Please implement the `maximum_value` procedure")
+	// Implement this procedure.
+	return 0
 }
