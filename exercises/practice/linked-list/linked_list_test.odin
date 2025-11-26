@@ -9,7 +9,7 @@ test_pop_empty_list :: proc(t: ^testing.T) {
 	defer destroy_list(&list)
 
 	_, error := pop(&list)
-	testing.expect_value(t, error, Error.Cannot_Pop_Empty_List)
+	testing.expect_value(t, error, Error.Empty_List)
 }
 
 @(test)
@@ -19,7 +19,7 @@ test_shift_empty_list :: proc(t: ^testing.T) {
 	defer destroy_list(&list)
 
 	_, error := shift(&list)
-	testing.expect_value(t, error, Error.Cannot_Shift_empty_List)
+	testing.expect_value(t, error, Error.Empty_List)
 }
 
 @(test)

@@ -10,8 +10,7 @@ Node :: struct {}
 
 Error :: enum {
 	None,
-	Cannot_Shift_empty_List,
-	Cannot_Pop_Empty_List,
+	Empty_List,
 	Unimplemented,
 }
 

@@ -13,8 +13,7 @@ Node :: struct {
 
 Error :: enum {
 	None,
-	Cannot_Shift_empty_List,
-	Cannot_Pop_Empty_List,
+	Empty_List,
 	Unimplemented,
 }
 
@@ -78,7 +77,7 @@ push :: proc(l: ^List, value: int) {
 shift :: proc(l: ^List) -> (int, Error) {
 
 	if l.head == nil {
-		return 0, .Cannot_Shift_empty_List
+		return 0, .Empty_List
 	}
 	shifted_node := l.head
 	defer free(shifted_node)
@@ -96,7 +95,7 @@ shift :: proc(l: ^List) -> (int, Error) {
 pop :: proc(l: ^List) -> (int, Error) {
 
 	if l.head == nil {
-		return 0, .Cannot_Pop_Empty_List
+		return 0, .Empty_List
 	}
 	poped_node := l.tail
 	defer free(poped_node)
