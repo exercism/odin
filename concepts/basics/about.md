@@ -1,6 +1,6 @@
 # Basics About
 
-The Odin language is a statically typed, imperative language designed as a practical, modern, successor to C.
+The [Odin language][odin-website] is a statically typed, imperative language designed as a practical, modern, successor to C.
 GingerBill, Odin's creator, wanted a language that fixes most of the C language's annoyances while still providing the same, close-to-the-metal, performance-oriented experience.
 Odin includes additional, high-level features for data-programming, efficient memory management and comes with modern tooling.
 In addition, it interfaces seamlessly with any library providing a C ABI ([Application Binary Interface][application-binary-interface]).
@@ -118,4 +118,5 @@ fire_and_forget(what: string) {
 
 
 [application-binary-interface]: https://en.wikipedia.org/wiki/Application_binary_interface
+[odin-website]: https://odin-lang.org/
 
