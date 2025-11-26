@@ -172,9 +172,25 @@
         "difficulty": 5
       },
       {
+        "slug": "change",
+        "name": "Change",
+        "uuid": "b65806f6-4d94-43ca-83d4-841534b88547",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "d6b52000-764d-45ec-85fb-3b453f88c325",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "knapsack",
+        "name": "Knapsack",
+        "uuid": "3f378097-005d-42e4-90d7-1538161cfd27",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5

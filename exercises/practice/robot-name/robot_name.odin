@@ -3,7 +3,7 @@ package robotname
 import "core:fmt"
 import "core:math/rand"
 
-Robot_Storage :: struct { } // Please implement neccessary struct member to support your algorithm
+Robot_Storage :: struct {} // Please implement neccessary struct member to support your algorithm
 
 Robot :: struct {
 	name: string,
@@ -11,20 +11,23 @@ Robot :: struct {
 
 Error :: enum {
 	Could_Not_Create_Name,
+	Unimplemented,
 }
 
 make_storage :: proc() -> Robot_Storage {
-	#panic("Please implement the `make_storage` procedure.")
+	// Implement this procedure.
+	return Robot_Storage{}
 }
 
 delete_storage :: proc(storage: ^Robot_Storage) {
-	#panic("Please implement the `delete_storage` procedure.")
+	// Implement this procedure.
 }
 
 new_robot :: proc(storage: ^Robot_Storage) -> (Robot, Error) {
-	#panic("Please implement the `new_robot` procedure.")
+	// Implement this procedure.
+	return Robot{}, .Unimplemented
 }
 
 reset :: proc(storage: ^Robot_Storage, r: ^Robot) {
-	#panic("Please implement the `reset` procedure.")
+	// Implement this procedure.
 }

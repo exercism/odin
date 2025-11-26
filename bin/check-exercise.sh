@@ -67,16 +67,21 @@ create_temp_dir
 
 echo "Checking exercise: $exercise_name"
 
-num_expected_tests=$(expected_number_of_tests)
-log_result "Expected number of tests" "$num_expected_tests"
-
 num_actual_tests=$(actual_number_of_tests)
 log_result "Actual number of tests" "$num_actual_tests"
 
-if [[ $num_expected_tests -gt $num_actual_tests ]]; then
-    echo "    [WARNING]: More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
-elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
-    echo "    [INFO]: More actual tests than expected tests, looks like you over-achieved!"
+# Only practice exercises have a set of expected tests
+# documented in `.meta/tests.toml`
+if [[ "$exercise_path" == *"practice"* ]]; then
+
+    num_expected_tests=$(expected_number_of_tests)
+    log_result "Expected number of tests" "$num_expected_tests"
+
+    if [[ $num_expected_tests -gt $num_actual_tests ]]; then
+        echo "    [WARNING]: More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
+    elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
+        echo "    [INFO]: More actual tests than expected tests, looks like you over-achieved!"
+    fi
 fi
 
 if test_output=$( bin/run-test.sh "$exercise_path" 2>&1 ); then
