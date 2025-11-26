@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "linked_list.odin"
+    ],
+    "test": [
+      "linked_list_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Implement a doubly linked list.",
+  "source": "Classic computer science topic"
+}

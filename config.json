@@ -60,6 +60,14 @@
         "difficulty": 2
       },
       {
+        "slug": "armstrong-numbers",
+        "name": "Armstrong Numbers",
+        "uuid": "8d6825a2-819e-4296-ade4-c019fe294522",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "bob",
         "name": "Bob",
         "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
@@ -71,6 +79,14 @@
         "slug": "difference-of-squares",
         "name": "Difference Of Squares",
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "food-chain",
+        "name": "Food Chain",
+        "uuid": "ac98f0f1-85b3-4510-bf26-c84fd8baa147",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -92,6 +108,14 @@
         "difficulty": 2
       },
       {
+        "slug": "pangram",
+        "name": "Pangram",
+        "uuid": "ba980dfc-99d3-4cda-9214-083c8d585d03",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "proverb",
         "name": "Proverb",
         "uuid": "d715f76e-92df-40f1-ab44-ba8af2e8c9ad",
@@ -103,6 +127,14 @@
         "slug": "resistor-color",
         "name": "Resistor Color",
         "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "robot-name",
+        "name": "Robot Name",
+        "uuid": "fb0419f7-81d9-40a4-869c-9da05b4c3ef5",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -148,6 +180,14 @@
         "difficulty": 5
       },
       {
+        "slug": "linked-list",
+        "name": "Linked List",
+        "uuid": "a7ed81ea-a6f3-4ef8-90ca-7d71c7a57805",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "rational-numbers",
         "name": "Rational Numbers",
         "uuid": "9a66b396-5c35-49f7-917b-d6cf7c6be392",
@@ -178,38 +218,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
-      },
-      {
-        "slug": "armstrong-numbers",
-        "name": "Armstrong Numbers",
-        "uuid": "8d6825a2-819e-4296-ade4-c019fe294522",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2
-      },
-      {
-        "slug": "food-chain",
-        "name": "Food Chain",
-        "uuid": "ac98f0f1-85b3-4510-bf26-c84fd8baa147",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2
-      },
-      {
-        "slug": "pangram",
-        "name": "Pangram",
-        "uuid": "ba980dfc-99d3-4cda-9214-083c8d585d03",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2
-      },
-      {
-        "slug": "robot-name",
-        "name": "Robot Name",
-        "uuid": "fb0419f7-81d9-40a4-869c-9da05b4c3ef5",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2
       }
     ]
   },
