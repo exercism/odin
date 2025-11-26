@@ -92,6 +92,14 @@
         "difficulty": 2
       },
       {
+        "slug": "proverb",
+        "name": "Proverb",
+        "uuid": "d715f76e-92df-40f1-ab44-ba8af2e8c9ad",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "resistor-color",
         "name": "Resistor Color",
         "uuid": "ea5eb0a7-4a4a-4f08-b2e4-87a52bd64ce0",

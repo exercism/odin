@@ -18,7 +18,9 @@ function cleanup {
 trap cleanup EXIT
 
 get_from_config() {
-    printf "%s/%s" "${exercise_path}" "$(jq --arg type "$1" -r '.files[$type][0]' "$config")"
+    jq --arg type "$1" --arg path "${exercise_path}" -r '
+        .files[$type] // [] | map([$path, .] | join("/"))[]
+    ' "$config"
 }
 
 run_test() {
@@ -45,7 +47,7 @@ run_test() {
 
     local config="${exercise_path}/.meta/config.json"
     local -A files
-    for type in 'solution' 'example' 'test'; do
+    for type in 'solution' 'example' 'test' 'editor'; do
         files[$type]=$(get_from_config $type)
     done
 
@@ -58,7 +60,9 @@ run_test() {
 
     # Copy the source files into the temporary directory
     cp "${files[example]}" "${tmp_path}/${snake_name}.odin"
-    cp "${files[test]}" "${tmp_path}/${snake_name}_test.odin"
+    cp "${files[test]}" "${tmp_path}"
+    # shellcheck disable=SC2086
+    [[ -n ${files[editor]} ]] && (set -f; cp -t "${tmp_path}" ${files[editor]})
 
     # Run the tests using the example file to verify that it is a valid solution.
     # Turn off `-e`, we don't want to abort if there's a non-zero status.
