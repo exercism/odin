@@ -265,14 +265,12 @@ test_deletes_the_element_with_the_specified_value_from_the_list_re_assigns_tail 
 	push(&list, 71)
 	push(&list, 83)
 	push(&list, 79)
-	// Note: The problem specification was deleting 83 but that doesn't re-assigns the tail
-	// so I deleted 79 instead (which is in the tail position).
-	delete(&list, 79)
+	delete(&list, 83)
 
 	testing.expect_value(t, count(list), 2)
 
 	value, error := pop(&list)
-	testing.expect_value(t, value, 83)
+	testing.expect_value(t, value, 79)
 	testing.expect_value(t, error, Error.None)
 
 	value, error = pop(&list)
@@ -290,14 +288,12 @@ test_deletes_the_element_with_the_specified_value_from_the_list_re_assigns_head 
 	push(&list, 71)
 	push(&list, 83)
 	push(&list, 79)
-	// Note: The problem specification was deleting 83 but that doesn't re-assigns the tail
-	// so I deleted 71 instead (which is in the head position)
-	delete(&list, 71)
+	delete(&list, 83)
 
 	testing.expect_value(t, count(list), 2)
 
 	value, error := shift(&list)
-	testing.expect_value(t, value, 83)
+	testing.expect_value(t, value, 71)
 	testing.expect_value(t, error, Error.None)
 
 	value, error = shift(&list)
