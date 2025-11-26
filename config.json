@@ -140,6 +140,14 @@
         "difficulty": 5
       },
       {
+        "slug": "knapsack",
+        "name": "Knapsack",
+        "uuid": "3f378097-005d-42e4-90d7-1538161cfd27",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "rational-numbers",
         "name": "Rational Numbers",
         "uuid": "9a66b396-5c35-49f7-917b-d6cf7c6be392",
