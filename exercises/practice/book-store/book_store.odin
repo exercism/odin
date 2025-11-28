@@ -1,6 +1,6 @@
 package book_store
 
-total :: proc() -> string {
-    // Implement this procedure.
-    return ""
+total :: proc(books: []u32) -> u32 {
+	// Implement this procedure.
+	return 0
 }
