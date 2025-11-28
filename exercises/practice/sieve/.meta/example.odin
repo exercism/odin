@@ -29,8 +29,6 @@ primes :: proc(limit: int) -> []int {
 	}
 
 	primes: [dynamic]int
-	defer delete(primes)
-
 	for flag, i in flags {
 		if flag {
 			append(&primes, i)
