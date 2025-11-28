@@ -228,6 +228,14 @@
         "difficulty": 5
       },
       {
+        "slug": "sieve",
+        "name": "Sieve",
+        "uuid": "aff33286-6b23-4f7f-9ad8-34695aba99ec",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "two-bucket",
         "name": "Two Bucket",
         "uuid": "88cf2f6c-569e-4858-9bc1-d843e0bcb2a6",
