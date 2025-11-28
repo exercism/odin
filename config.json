@@ -196,6 +196,14 @@
         "difficulty": 5
       },
       {
+        "slug": "diamond",
+        "name": "Diamond",
+        "uuid": "83a7942f-a25e-48b9-9be3-80a1a7d4293a",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "knapsack",
         "name": "Knapsack",
         "uuid": "3f378097-005d-42e4-90d7-1538161cfd27",
