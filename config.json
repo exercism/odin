@@ -23,6 +23,9 @@
     ],
     "example": [
       ".meta/example.odin"
+    ],
+    "exemplar": [
+      ".meta/exemplar.odin"
     ]
   },
   "exercises": {
