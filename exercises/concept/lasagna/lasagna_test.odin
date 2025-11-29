@@ -3,6 +3,8 @@ package lasagna
 import "core:testing"
 
 @(test)
+/// description = Define the expected time spent in the oven
+/// task = 1
 test_oven_time :: proc(t: ^testing.T) {
 
 	expected := 40
@@ -12,6 +14,8 @@ test_oven_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Define the time required to prepare a layer
+/// task = 2
 test_layer_prep_time :: proc(t: ^testing.T) {
 
 	expected := 2
@@ -21,6 +25,8 @@ test_layer_prep_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Calculate the remaining oven time.
+// task = 3
 test_remaining_oven_time :: proc(t: ^testing.T) {
 
 	time_in_oven := 15
@@ -31,6 +37,8 @@ test_remaining_oven_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Calculate the preparation time in minutes
+/// task = 4
 test_preparation_time__one_layer :: proc(t: ^testing.T) {
 
 	layers := 1
@@ -42,6 +50,8 @@ test_preparation_time__one_layer :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Calculate the total working time in minutes
+/// task = 5
 test_preparation_time__two_layers :: proc(t: ^testing.T) {
 
 	layers := 2
