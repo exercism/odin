@@ -1,14 +1,10 @@
-# Basics About
-
-The Odin language is a statically typed, imperative language designed as a practical, modern, successor to C.
-GingerBill, Odin's creator, wanted a language that fixes most of the C language's annoyances while still providing the same, close-to-the-metal, performance-oriented experience.
-Odin includes additional, high-level features for data-programming, efficient memory management and comes with modern tooling.
-In addition, it interfaces seamlessly with any library providing a C ABI ([Application Binary Interface][application-binary-interface]).
-
-Odin's compiler suite comes with "battery included": a significant standard library and a set of game-oriented and graphics libraries such as OpenGL, SDL, Direct-X and Raylib.
-The compiler is available on Windows, MacOS, and Linux and supports Web Assembly.
+# Introduction
 
 In this concept, we will discuss the minimum you need to write a program in Odin: comments, packages, variables, constants, and procedures.
+
+Odin is a strongly typed language and supports the typical set of types: multiple size integer types (we will use `int` in this concept), floating points, boolean, and strings as well as arrays, records, maps (dictionaries), and pointers.
+Odin supports type inference and can infer types from an initial declaration is a value is provided.
+These will be discussed in later concepts.
 
 ## Comments
 
@@ -17,6 +13,15 @@ Odin uses standard comments from the `C` family.
 - Single line comments uses `//`.
 - Multi-line comments starts with `/*`, ends with `*/`, and can be nested.
 - Documentation comments uses `///` and can be placed before types or procedures definitions.
+
+```odin
+// a single line comment.
+
+/*
+ * This comment
+ * is spread over several lines.
+ */
+```
 
 ## Packages
 
@@ -38,8 +43,9 @@ Other packages can import the functionality defined in a package using an `impor
 import "cooking/gears"
 ```
 
-The import reference the path of the imported package relative to the location of the importing package. In our example,
-the Odin files for the `package` gears will be located two sub-directory below the lasagna `package`.
+The `import` statement references the path of the imported package relative to the location of the importing package.
+In our example, the Odin files for the `package` `gears` will be located two sub-directory below the lasagna `package`.
+The `import cooking/gears` above will make all public objects from `kitchen_gears.odin` and `outdoors_gears.odin` available with when prefixed with `gears.`.
 
 ```
 lasagna/
@@ -52,7 +58,7 @@ lasagna/
       ...
 ```
 
-If the package belongs to the standard library (`core`), just prefix the package name with `core:` and the compiler will automatically grab the code from the installation.
+If the package belongs to the standard library (`core`), just prefix the package name with `core:` and the compiler will automatically grab the code from the Odin installation.
 For example, the standard library `fmt` package can be imported with:
 
 ```
@@ -61,7 +67,7 @@ import "core:fmt"
 
 ## Variables
 
-Odin is statically typed and all variables must have a type but Odin supports type inference avoiding unnecessary redundancy.
+Odin is statically typed and all variables must have a type, however Odin supports type inference avoiding unnecessary redundancy.
 If a variable is not given an initial value, Odin will initialize it with the zero value for the type.
 The variable declaration and initialization form is:
 
@@ -84,7 +90,8 @@ Variables can be re-assigned using the standard assignment operator `=` as long 
 ## Constants
 
 Odin supports values that are evaluated at compile time, they are equivalent to a `C` `#define` statement.
-As with variables, constants have a type but constant types have a broader range than variable types, for example an integer constant will be compatible with an `int` or a `u64` (unsigned 64bit integer) variable as long as its value falls in the range associated with the type. If necessary, a type can be specified with the variable declaration , similar to the variable declarations.
+Constant values are typed but their types have a broader range than variable types, for example an integer constant will be compatible with an `int` or a `u64` (unsigned 64bit integer) variable as long as its value falls in the range associated with the type.
+If necessary, a type can be specified with the variable declaration, similar to the variable declarations.
 
 ```odin
 HOME :: "/users/rob"
@@ -94,18 +101,31 @@ ASCII_A : u8 : 65
 
 ## Procedures
 
-In Odin procedures can take zero or more parameters (each with a specified type) and can return any number of values (each with a specified type).
-Odin is an imperative language and doesn't have methods, all procedures are equivalent to `C` functions.
-Values are returned from a procedure using a `return` statement followed by one value for each return value.
-If the return values have names, then we can just assign values to them in the procedure and use a naked `return`.
-Named values are initialized with their type zero value.
-Arguments passed to the procedure during a call are read-only unless they are specified as a pointer.
+Odin is purely an imperative language and doesn't support Object Oriented style methods, just procedures (what `C` would call functions).
+Procedures can take zero or more parameters (each with a specified type) and can return zero or more values (each with a specified type).
+
+The `return` statement is used to return control to the caller, it is followed by the (comma separated) set of return values (if any).
+If the return values have names, they will be treated as (zero value initialized) local variables and you can just treat them as such.
+It is idiomatic with named return values to use a naked `return`.
+
+Arguments passed to the procedure during a call are read-only unless their type is specified as a pointer type or there are an implicit reference type (such as slices or maps discussed in later concepts).
+
+Odin doesn't support implicit procedure overloading (no two procedures, in a package, can have the same name). It provides a more limited explicit overloading (to be discussed in a later concept).
 
 ```odin
 // A procedure with two parameters and two return values.
+div :: proc(m: int, n: int) -> (int, int) {
+    quotient = m / n
+    remainder = m % n
+    return quotient, remainder
+}
+
+// The same procedure but using named return values.
 div :: proc(m: int, n: int) -> (quotient: int, remainder: int) {
     quotient = m / n
     remainder = m % n
+    // Naked return that implicitly returns the named return values
+    // quotient and remainder.
     return 
 }
 
@@ -115,7 +135,3 @@ fire_and_forget(what: string) {
   wipe_memory()
 }
 ```
-
-
-[application-binary-interface]: https://en.wikipedia.org/wiki/Application_binary_interface
-

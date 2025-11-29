@@ -12,6 +12,15 @@ test_oven_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+test_layer_prep_time :: proc(t: ^testing.T) {
+
+	expected := 2
+	result := LAYER_PREP_TIME
+
+	testing.expect_value(t, result, expected)
+}
+
+@(test)
 test_remaining_oven_time :: proc(t: ^testing.T) {
 
 	time_in_oven := 15
