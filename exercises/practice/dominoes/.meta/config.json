@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "hucancode"
+  ],
+  "files": {
+    "solution": [
+      "dominoes.odin"
+    ],
+    "test": [
+      "dominoes_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Make a chain of dominoes."
+}
