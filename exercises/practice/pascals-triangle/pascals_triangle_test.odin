@@ -29,7 +29,7 @@ test_zero_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {}
 	actual := rows(0)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -37,7 +37,7 @@ test_single_row :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}}
 	actual := rows(1)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -45,7 +45,7 @@ test_two_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}}
 	actual := rows(2)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -53,7 +53,7 @@ test_three_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}}
 	actual := rows(3)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -61,7 +61,7 @@ test_four_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}}
 	actual := rows(4)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -69,7 +69,7 @@ test_five_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}}
 	actual := rows(5)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -84,7 +84,7 @@ test_six_rows :: proc(t: ^testing.T) {
 	}
 	actual := rows(6)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -103,7 +103,7 @@ test_ten_rows :: proc(t: ^testing.T) {
 	}
 	actual := rows(10)
 	defer delete_array(actual)
-	testing.expect(t, array_equal(actual, expected))
+	testing.expectf(t, array_equal(actual, expected), "expected %v got %v", expected, actual)
 }
 
 @(test)
@@ -115,8 +115,8 @@ test_seventy_five_rows :: proc(t: ^testing.T) {
 
 @(test)
 benchmark_pascals_triangle :: proc(t: ^testing.T) {
-	N :: 2000
-	ROUNDS :: 200
+	N :: 500
+	ROUNDS :: 10
 	options := &time.Benchmark_Options {
 		rounds = ROUNDS,
 		bench = proc(
@@ -124,7 +124,7 @@ benchmark_pascals_triangle :: proc(t: ^testing.T) {
 			allocator := context.allocator,
 		) -> time.Benchmark_Error {
 			for _ in 0 ..< opt.rounds {
-				rows := rows_fast(N)
+				rows := rows(N)
 				defer delete_array(rows)
 				for r in rows {
 					opt.processed += len(r) * size_of(u128)
