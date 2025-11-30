@@ -244,6 +244,14 @@
         "difficulty": 5
       },
       {
+        "slug": "matching-brackets",
+        "name": "Matching Brackets",
+        "uuid": "704f1c2c-9d92-4870-888a-b13c5842e755",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "rational-numbers",
         "name": "Rational Numbers",
         "uuid": "9a66b396-5c35-49f7-917b-d6cf7c6be392",
@@ -276,20 +284,20 @@
         "difficulty": 5
       },
       {
-        "slug": "bowling",
-        "name": "Bowling",
-        "uuid": "85bedaa1-0898-4698-bf14-0a67ef9b7668",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 9
-      },
-      {
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "b4a91423-2a26-4ceb-ab55-684b67d1e9ae",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
+      },
+      {
+        "slug": "bowling",
+        "name": "Bowling",
+        "uuid": "85bedaa1-0898-4698-bf14-0a67ef9b7668",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 9
       }
     ]
   },
