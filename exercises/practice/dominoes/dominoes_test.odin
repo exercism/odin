@@ -3,18 +3,6 @@ package dominoes
 import "core:slice"
 import "core:testing"
 
-array_equal :: proc(a, b: []$T) -> bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i in 0 ..< len(a) {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
 can_build_chain :: proc(a, b: []Domino) -> bool {
 	normalize :: proc(a: []Domino) {
 		for &d in a {
@@ -35,7 +23,7 @@ can_build_chain :: proc(a, b: []Domino) -> bool {
 	normalize(b)
 	slice.sort_by(a, cmp)
 	slice.sort_by(b, cmp)
-	return array_equal(a, b)
+	return slice.equal(a, b)
 }
 
 is_valid :: proc(chain: []Domino) -> bool {
