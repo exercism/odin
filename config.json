@@ -156,6 +156,14 @@
         "difficulty": 2
       },
       {
+        "slug": "robot-simulator",
+        "name": "Robot Simulator",
+         "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
+         "practices": [],
+         "prerequisites": [],
+         "difficulty": 2
+      },
+      {
         "slug": "triangle",
         "name": "Triangle",
         "uuid": "b838c982-460a-46bb-bb3e-0e50ed99090b",
