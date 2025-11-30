@@ -274,6 +274,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
+      },
+      {
+        "slug": "pascals-triangle",
+        "name": "Pascal's Triangle",
+        "uuid": "98702ae2-f7d0-4a51-be33-7d68176927d0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
       }
     ]
   },
