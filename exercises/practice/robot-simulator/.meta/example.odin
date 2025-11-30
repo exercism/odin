@@ -7,14 +7,19 @@ Heading :: enum {
 	West,
 }
 
-Position :: struct {
-	x: int,
-	y: int,
-}
+Position :: [2]int
 
 Robot :: struct {
 	pos: Position,
 	hd:  Heading,
+}
+
+@(private = "file")
+steps := [Heading]Position {
+	.North = {0, 1},
+	.East  = {1, 0},
+	.South = {0, -1},
+	.West  = {-1, 0},
 }
 
 create_robot :: proc(x, y: int, dir: Heading) -> Robot {
@@ -31,16 +36,7 @@ follow_commands :: proc(r: ^Robot, cmds: string) {
 		case 'L':
 			r.hd = Heading((int(r.hd) - 1) %% len(Heading))
 		case 'A':
-			switch r.hd {
-			case .North:
-				r.pos.y += 1
-			case .East:
-				r.pos.x += 1
-			case .South:
-				r.pos.y -= 1
-			case .West:
-				r.pos.x -= 1
-			}
+			r.pos += steps[r.hd]
 		}
 	}
 }
