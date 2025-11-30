@@ -1,5 +1,5 @@
 {
-  "authors": [],
+  "authors": ["hucancode"],
   "files": {
     "solution": [
       "word_count.odin"
