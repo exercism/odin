@@ -1,7 +1,7 @@
 package pascals_triangle
 
-import "core:testing"
 import "core:log"
+import "core:testing"
 import "core:time"
 
 array_equal :: proc(a, b: [][]u128) -> bool {
@@ -119,8 +119,8 @@ test_seventy_five_rows :: proc(t: ^testing.T) {
 
 @(test)
 benchmark_pascals_triangle :: proc(t: ^testing.T) {
-	N :: 500
-	ROUNDS :: 50
+	N :: 2000
+	ROUNDS :: 200
 	options := &time.Benchmark_Options {
 		rounds = ROUNDS,
 		bench = proc(
@@ -128,7 +128,7 @@ benchmark_pascals_triangle :: proc(t: ^testing.T) {
 			allocator := context.allocator,
 		) -> time.Benchmark_Error {
 			for _ in 0 ..< opt.rounds {
-				rows := rows(N)
+				rows := rows_fast(N)
 				defer delete_array(rows)
 				for r in rows {
 					opt.processed += len(r) * size_of(u128)
