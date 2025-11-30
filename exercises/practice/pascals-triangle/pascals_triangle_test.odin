@@ -1,6 +1,7 @@
 package pascals_triangle
 
 import "core:log"
+import "core:slice"
 import "core:testing"
 import "core:time"
 
@@ -9,13 +10,8 @@ array_equal :: proc(a, b: [][]u128) -> bool {
 		return false
 	}
 	for i in 0 ..< len(a) {
-		if len(a[i]) != len(b[i]) {
+		if !slice.equal(a[i], b[i]) {
 			return false
-		}
-		for j in 0 ..< len(a[i]) {
-			if a[i][j] != b[i][j] {
-				return false
-			}
 		}
 	}
 	return true
