@@ -1,6 +1,8 @@
 package pascals_triangle
 
 import "core:testing"
+import "core:log"
+import "core:time"
 
 array_equal :: proc(a, b: [][]u128) -> bool {
 	if len(a) != len(b) {
@@ -113,4 +115,32 @@ test_seventy_five_rows :: proc(t: ^testing.T) {
 	actual := rows(75)
 	defer delete_array(actual)
 	testing.expect_value(t, actual[74][37], 17_46_130_564_335_626_209_832)
+}
+
+@(test)
+benchmark_pascals_triangle :: proc(t: ^testing.T) {
+	N :: 500
+	ROUNDS :: 50
+	options := &time.Benchmark_Options {
+		rounds = ROUNDS,
+		bench = proc(
+			opt: ^time.Benchmark_Options,
+			allocator := context.allocator,
+		) -> time.Benchmark_Error {
+			for _ in 0 ..< opt.rounds {
+				rows := rows(N)
+				defer delete_array(rows)
+				for r in rows {
+					opt.processed += len(r) * size_of(u128)
+				}
+			}
+			return nil
+		},
+	}
+	time.benchmark(options)
+	log.infof(
+		"Benchmark finished in %v, speed: %0.2f MB/s",
+		options.duration,
+		options.megabytes_per_second,
+	)
 }
