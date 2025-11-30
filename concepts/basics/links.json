@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://odin-lang.org/",
+    "description": "Odin Website"
+},
+{
+    "url": "https://odin-lang.org/docs/",
+    "description": "Official \"Getting Started\" Docs"
+  },
+  {
+    "url": "https://pkg.odin-lang.org/",
+    "description": "Odin Standard and Vendor Library documentation"
+  },
+  {
+    "url": "https://odin-lang.org/community/",
+    "description": "How to Connect with the Odin Community"
+  },
+  {
+    "url": "https://zylinski.se/posts/introduction-to-odin/",
+    "description": "An Introduction to Odin"
+  },
+  {
+    "url": "https://www.youtube.com/playlist?list=PLxE7SoPYTef38R_9CtFLRuaXhW8vqBV4P",
+    "description": "A Video Series on Programming with Odin"
+  },
+  {
+    "url": "https://codapi.org/odin/",
+    "description": "An Odin Playground"
+  },
+  {
+    "url": "https://www.gingerbill.org/series/memory-allocation-strategies/",
+    "description": "GingerBill on Memory Allocators"
+  },
+  {
+    "url": "https://github.com/jakubtomsu/awesome-odin",
+    "description": "Awesome Odin List"
+  }
+]
