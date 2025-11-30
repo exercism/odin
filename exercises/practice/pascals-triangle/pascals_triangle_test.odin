@@ -5,7 +5,7 @@ import "core:slice"
 import "core:testing"
 import "core:time"
 
-array_equal :: proc(a, b: [][]u128) -> bool {
+array_equal :: proc(a, b: [][]$T) -> bool {
 	if len(a) != len(b) {
 		return false
 	}
