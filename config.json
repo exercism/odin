@@ -244,6 +244,14 @@
         "difficulty": 5
       },
       {
+        "slug": "grade-school",
+        "name": "Grade School",
+        "uuid": "85e7a084-7bbc-4bef-9043-3eccbb10ed6e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "flatten-array",
         "name": "Flatten Array",
         "uuid": "b5b7acce-5ed1-4c2a-8354-177a5480a340",
