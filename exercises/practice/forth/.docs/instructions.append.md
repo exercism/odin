@@ -21,7 +21,7 @@ The words to be implemented are defined as:
 | `dup`  | `( a --- a a )`         | duplicate the value on the ToS       |
 | `drop` | `( a --- )`             | drop the value on the ToS            |
 | `swap` | `( a b --- b a )`       | swap the two values on the ToS       |
-|`over`  | `( a b c --- a b c b )` | copy the 2nd to the stack to the ToS |
+|`over`  | `( a b c --- a b c b )` | copy the 2nd value        to the ToS |
 
 If you want to play with an online forth interpreter or learn more about the words to be implemented try [Easy Forth][easy-forth]
 (specifically the Adding Some Numbers, Defining Words, and Stack Manipulation section).
