@@ -11,7 +11,7 @@ test_to_string__empty_set :: proc(t: ^testing.T) {
 		delete(set)
 		delete(result)
 	}
-	testing.expect_value(t, result, "{}")
+	testing.expect_value(t, result, "[]")
 }
 
 @(test)
@@ -24,7 +24,7 @@ test_to_string__non_empty_set :: proc(t: ^testing.T) {
 		delete(result)
 	}
 
-	testing.expect_value(t, result, "{1, 2, 3}")
+	testing.expect_value(t, result, "[1, 2, 3]")
 }
 
 @(test)
@@ -37,7 +37,7 @@ test_to_string__set_with_duplicates :: proc(t: ^testing.T) {
 		delete(result)
 	}
 
-	testing.expect_value(t, result, "{1}")
+	testing.expect_value(t, result, "[1]")
 }
 @(test)
 test_returns_true_if_the_set_contains_no_elements__sets_with_no_elements_are_empty :: proc(
@@ -396,7 +396,7 @@ test_unique_elements_can_be_added_to_a_set__add_to_empty_set :: proc(t: ^testing
 		delete(set_as_str)
 	}
 
-	testing.expect_value(t, set_as_str, "{3}")
+	testing.expect_value(t, set_as_str, "[3]")
 }
 
 @(test)
@@ -410,7 +410,7 @@ test_unique_elements_can_be_added_to_a_set__add_to_non_empty_set :: proc(t: ^tes
 		delete(set_as_str)
 	}
 
-	testing.expect_value(t, set_as_str, "{1, 2, 3, 4}")
+	testing.expect_value(t, set_as_str, "[1, 2, 3, 4]")
 }
 
 @(test)
@@ -426,7 +426,7 @@ test_unique_elements_can_be_added_to_a_set__adding_an_existing_element_does_not_
 		delete(set_as_str)
 	}
 
-	testing.expect_value(t, set_as_str, "{1, 2, 3}")
+	testing.expect_value(t, set_as_str, "[1, 2, 3]")
 }
 
 @(test)
@@ -445,7 +445,7 @@ test_intersection_returns_a_set_of_all_shared_elements__intersection_of_two_empt
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -464,7 +464,7 @@ test_intersection_returns_a_set_of_all_shared_elements__intersection_of_an_empty
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -483,7 +483,7 @@ test_intersection_returns_a_set_of_all_shared_elements__intersection_of_a_non_em
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -502,7 +502,7 @@ test_intersection_returns_a_set_of_all_shared_elements__intersection_of_two_sets
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -521,7 +521,7 @@ test_intersection_returns_a_set_of_all_shared_elements__intersection_of_two_sets
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{2, 3}")
+	testing.expect_value(t, result_as_str, "[2, 3]")
 }
 
 @(test)
@@ -540,7 +540,7 @@ test_difference_or_complement_of_a_set_is_a_set_of_all_elements_that_are_only_in
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -559,7 +559,7 @@ test_difference_or_complement_of_a_set_is_a_set_of_all_elements_that_are_only_in
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -578,7 +578,7 @@ test_difference_or_complement_of_a_set_is_a_set_of_all_elements_that_are_only_in
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{1, 2, 3, 4}")
+	testing.expect_value(t, result_as_str, "[1, 2, 3, 4]")
 }
 
 @(test)
@@ -597,7 +597,7 @@ test_difference_or_complement_of_a_set_is_a_set_of_all_elements_that_are_only_in
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{1, 3}")
+	testing.expect_value(t, result_as_str, "[1, 3]")
 }
 
 @(test)
@@ -616,7 +616,7 @@ test_difference_or_complement_of_a_set_is_a_set_of_all_elements_that_are_only_in
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -635,7 +635,7 @@ test_union_returns_a_set_of_all_elements_in_either_set__union_of_empty_sets_is_a
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{}")
+	testing.expect_value(t, result_as_str, "[]")
 }
 
 @(test)
@@ -654,7 +654,7 @@ test_union_returns_a_set_of_all_elements_in_either_set__union_of_an_empty_set_an
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{2}")
+	testing.expect_value(t, result_as_str, "[2]")
 }
 
 @(test)
@@ -673,7 +673,7 @@ test_union_returns_a_set_of_all_elements_in_either_set__union_of_a_non_empty_set
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{1, 3}")
+	testing.expect_value(t, result_as_str, "[1, 3]")
 }
 
 @(test)
@@ -692,5 +692,5 @@ test_union_returns_a_set_of_all_elements_in_either_set__union_of_non_empty_sets_
 		delete(result_as_str)
 	}
 
-	testing.expect_value(t, result_as_str, "{1, 2, 3}")
+	testing.expect_value(t, result_as_str, "[1, 2, 3]")
 }

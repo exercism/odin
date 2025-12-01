@@ -1,7 +1,7 @@
 package custom_set
 
+import "core:fmt"
 import "core:slice"
-import "core:strings"
 
 Marker :: struct {}
 
@@ -20,30 +20,12 @@ new_set :: proc(elements: ..int) -> Set {
 
 to_string :: proc(s: Set) -> string {
 
-	// Need to get the set elements in order.
-	elements := make([]int, len(s))
+	elements, err := slice.map_keys(s)
+	// We don;t expect the allocator to fail.
+	ensure(err == nil)
 	defer delete(elements)
-	i := 0
-	for element in s {
-		elements[i] = element
-		i += 1
-	}
 	slice.sort(elements)
-
-	// Now just write them out
-	buf := strings.builder_make()
-	strings.write_byte(&buf, '{')
-	first := true
-	for element in elements {
-		if first {
-			first = false
-		} else {
-			strings.write_string(&buf, ", ")
-		}
-		strings.write_int(&buf, element)
-	}
-	strings.write_byte(&buf, '}')
-	return strings.to_string(buf)
+	return fmt.aprintf("%v", elements)
 }
 
 is_empty :: proc(s: Set) -> bool {
@@ -53,8 +35,7 @@ is_empty :: proc(s: Set) -> bool {
 
 contains :: proc(s: Set, element: int) -> bool {
 
-	_, ok := s[element]
-	return ok
+	return element in s
 }
 
 is_subset :: proc(s: Set, other: Set) -> bool {
