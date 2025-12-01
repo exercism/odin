@@ -132,9 +132,25 @@
         "difficulty": 2
       },
       {
+        "slug": "pascals-triangle",
+        "name": "Pascal's Triangle",
+        "uuid": "98702ae2-f7d0-4a51-be33-7d68176927d0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "proverb",
         "name": "Proverb",
         "uuid": "d715f76e-92df-40f1-ab44-ba8af2e8c9ad",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {        
+        "slug": "pythagorean-triplet",
+        "name": "Pythagorean Triplet",
+        "uuid": "24006088-2288-4403-a311-523ed09d21e4",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -298,14 +314,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
-      },
-      {
-        "slug": "pascals-triangle",
-        "name": "Pascal's Triangle",
-        "uuid": "98702ae2-f7d0-4a51-be33-7d68176927d0",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2
       },
       {
         "slug": "dominoes",
