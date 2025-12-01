@@ -23,5 +23,5 @@ roster :: proc(self: ^School) -> []Grade {
 }
 
 delete_school :: proc(self: ^School) {
-
+	// Implement this procedure.
 }
