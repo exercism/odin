@@ -83,8 +83,7 @@ shift $((OPTIND - 1))
 
 exercise_name="${1:-}"
 exercises_path="exercises"
-actual_exercises_path="${exercises_path}/${extype}"
-exercise_path="${actual_exercises_path}/${exercise_name}"
+exercise_path="${exercises_path}/${extype}/${exercise_name}"
 
 [[ -n "${exercise_name}" ]] || die "Must give an exercise name to generate"
 [[ -d "${exercise_path}" ]] && die "Exercise already exists: ${exercise_name}"
