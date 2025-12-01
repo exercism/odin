@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "custom_set.odin"
+    ],
+    "test": [
+      "custom_set_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Create a custom set type."
+}

@@ -84,6 +84,14 @@
         "difficulty": 2
       },
       {
+        "slug": "custom-set",
+        "name": "Custom Set",
+        "uuid": "e16e5910-d220-4162-b352-928067a70662",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "difference-of-squares",
         "name": "Difference Of Squares",
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
@@ -174,10 +182,10 @@
       {
         "slug": "robot-simulator",
         "name": "Robot Simulator",
-         "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
-         "practices": [],
-         "prerequisites": [],
-         "difficulty": 2
+        "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
       },
       {
         "slug": "triangle",
