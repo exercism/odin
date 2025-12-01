@@ -23,20 +23,6 @@ Error :: enum {
 	Unimplemented,
 }
 
-// Implement the Forth_VM data structure to keep the state of the Forth Virtual Machine.
-Forth_VM :: struct {}
-
-// Creates a Forth Virtual Machine.
-create_forth_vm :: proc() -> Forth_VM {
-	// Implement this procedure.
-	return Forth_VM{}
-}
-
-// Reclaims the memory used by the Forth Virtual Machine.
-destroy_forth_vm :: proc(v: ^Forth_VM) {
-	// Implement this procedure.
-}
-
 // Evaluates fires a Forth VM and feeds it the user input lines.
 // It return the state of the Forth VM stack and an error if one occurs.
 evaluate :: proc(input: ..string) -> (output: []int, error: Error) {
