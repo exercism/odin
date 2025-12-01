@@ -20,9 +20,8 @@ add :: proc(self: ^School, student: string, grade: u8) -> bool {
 	if grade not_in self.grades {
 		self.grades[grade] = make([dynamic]string)
 	}
-	arr := &self.grades[grade]
-	if i, found := slice.binary_search(arr[:], student); !found {
-		inject_at(arr, i, student)
+	if i, found := slice.binary_search(self.grades[grade][:], student); !found {
+		inject_at(&self.grades[grade], i, student)
 	}
 	return true
 }
