@@ -220,6 +220,14 @@
         "difficulty": 5
       },
       {
+        "slug": "grade-school",
+        "name": "Grade School",
+        "uuid": "85e7a084-7bbc-4bef-9043-3eccbb10ed6e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "knapsack",
         "name": "Knapsack",
         "uuid": "3f378097-005d-42e4-90d7-1538161cfd27",

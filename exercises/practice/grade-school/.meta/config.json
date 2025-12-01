@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "hucancode"
+  ],
+  "files": {
+    "solution": [
+      "grade_school.odin"
+    ],
+    "test": [
+      "grade_school_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Given students' names along with the grade that they are in, create a roster for the school.",
+  "source": "A pairing session with Phil Battos at gSchool"
+}
