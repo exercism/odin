@@ -50,39 +50,88 @@ get_cache_dir() {
     die "Can't find the cache directory that configlet uses"
 }
 
+show_help() {
+    cat << EOL
+The tool to generate scaffolding for an exercise.
+
+Usage:
+  bin/gen-exercise.sh [options] <exercise slug name>
+
+Options:
+  -h                    Display this help text
+  -p                    Create a practice exercise (default)
+  -c                    Create a concept exercise
+  -a                    Specify the (github) author name
+  -d                    Specify the difficulty (practice exercise only)
+  -b                    Specify the exercise blurb (concept exercise only)
+EOL
+}
+
+extype=practice
+while getopts :hpca:d: opt; do
+    case $opt in
+        h) show_help; exit ;;
+        p) extype=practice ;;
+        c) extype=concept ;;
+        a) author=$OPTARG ;;
+        d) difficulty=$OPTARG ;;
+        b) blurb=$OPTARG ;;
+        ?) die "unknown option: -$OPTARG" ;;
+    esac
+done
+shift $((OPTIND - 1))
+
 exercise_name="${1:-}"
 exercises_path="exercises"
-practice_exercises_path="${exercises_path}/practice"
-exercise_path="${practice_exercises_path}/${exercise_name}"
+exercise_path="${exercises_path}/${extype}/${exercise_name}"
 
 [[ -n "${exercise_name}" ]] || die "Must give an exercise name to generate"
 [[ -d "${exercise_path}" ]] && die "Exercise already exists: ${exercise_name}"
 
-configlet_cache="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises"
 snake_name=${exercise_name//-/_}
 
-canonical_data_path="${configlet_cache}/${exercise_name}/canonical-data.json"
-if ! [[ -f $canonical_data_path ]]; then
+# Only practice exercises have problem specifications.
+if [[ "$extype" == "practice" ]]; then
+  configlet_cache="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises"
+  canonical_data_path="${configlet_cache}/${exercise_name}/canonical-data.json"
+  if ! [[ -f $canonical_data_path ]]; then
     echo "$exercise_name is not defined in problem-specifications"
     read -rp 'Do you want to continue? [y/N] ' answer
     [[ $answer == y* ]] || exit
+  fi
 fi
 
-read -rp 'What is your github userid? ' author
-read -rp 'What do you guess the difficulty is? ' difficulty
+if [[ -z "$author" ]]; then
+  read -rp 'What is your github userid? ' author
+fi
+if [[ "$extype" == "practice" && -z "$difficulty" ]]; then 
+  read -rp 'What do you guess the difficulty is? ' difficulty
+fi
+if [[ "$extype" == "concept" && -z "$blurb"  ]]; then
+  read -rp 'What is the exercise blurb? ' blurb
+fi
 
-echo "Generating test for exercise: ${exercise_name}"
+echo "Generating scaffolding for ${type} exercise: ${exercise_name}"
 
 bin/fetch-configlet
-bin/configlet create --practice-exercise "${exercise_name}" --author "$author" --difficulty "$difficulty"
-
-if ! [[ -f $canonical_data_path ]]; then
-    canonical_data='{"cases": []}'
+if [[ "$extype" == "practice" ]]; then
+  bin/configlet create --practice-exercise "${exercise_name}" --author "$author" --difficulty "$difficulty"
+elif [[ "$extype" == "concept"  ]]; then
+  bin/configlet create --concept-exercise "${exercise_name}" --author "$author"
 else
-    # Some cases reimplement other cases. This jq invocation will filter out the
-    # superceded cases.
-    canonical_data=$(
-        jq '
+  die "Invalid exercise type: ${type}"
+fi
+
+# Concept exercises don't have canonical data
+if [[ "$extype" == "practice" ]]; then
+
+  if ! [[ -f $canonical_data_path ]]; then
+      canonical_data='{"cases": []}'
+  else
+      # Some cases reimplement other cases. This jq invocation will filter out the
+      # superceded cases.
+      canonical_data=$(
+          jq '
             def concat($a; $b): if $a == "" then $b else $a + "__" + $b end ;
 
             def test_cases($description):
@@ -104,7 +153,8 @@ else
                 | [.[]]     # convert an object to a list of values
             )
         ' "$canonical_data_path"
-    )
+      )
+  fi
 fi
 
 exercise_config="${exercise_path}/.meta/config.json"
@@ -113,13 +163,19 @@ get_from_config() {
     printf "%s/%s" "${exercise_path}" "$(jq --arg type "$1" -r '.files[$type][0]' "$exercise_config")"
 }
 
+
 # The file that the user will edit to create their solution.
 # "exercises/practice/hello_world.odin"
 solution_file=$(get_from_config 'solution')
 
+if [[ "$extype" == "concept" ]]; then
+  example_config_field="exemplar"
+else
+  example_config_field="example"
+fi
 # The example solution (for use in tests)
 # "exercises/practice/.meta/example.odin"
-example_file=$(get_from_config 'example')
+example_file=$(get_from_config "$example_config_field")
 
 # The test the solution will run against
 # "exercises/practice/hello_world_test.odin"
@@ -131,12 +187,14 @@ cat > "${solution_file}" <<EOL
 package ${snake_name}
 EOL
 
-mapfile -t unique_properties < <(
-    jq -r '[.cases[].property] | unique[]' <<< "$canonical_data"
-)
+if [[ "$extype" == "practice" ]]; then
 
-for unique_property in "${unique_properties[@]}"
-do
+  mapfile -t unique_properties < <(
+    jq -r '[.cases[].property] | unique[]' <<< "$canonical_data"
+  )
+
+  for unique_property in "${unique_properties[@]}"
+  do
     safe_unique_property=$(to_snake_case <<< "${unique_property}")
 
     cat >> "${solution_file}" <<EOL
@@ -146,7 +204,13 @@ ${safe_unique_property} :: proc() -> string {
     return ""
 }
 EOL
-done
+  done
+else
+  cat >> "${solution_file}" <<EOL
+
+// Implement solution stub here.
+EOL
+fi
 
 cat > "${test_file}" <<EOL
 package ${snake_name}
@@ -154,9 +218,11 @@ package ${snake_name}
 import "core:testing"
 EOL
 
-canonical_data_length=$( jq '.cases | length' <<< "${canonical_data}" )
+if [[ "$extype" == "practice" ]]; then
 
-for ((i=0; i < canonical_data_length; i++)); do
+  canonical_data_length=$( jq '.cases | length' <<< "${canonical_data}" )
+
+  for ((i=0; i < canonical_data_length; i++)); do
     case=$( jq -c ".cases.[$i]" <<< "${canonical_data}" )
     description=$(echo "$case" | jq -r '.description // ""' | to_snake_case)
     property=$(echo "$case" | jq -r '.property // ""' | to_snake_case)
@@ -175,10 +241,61 @@ test_${description} :: proc(t: ^testing.T) {
     testing.expect_value(t, result, expected)
 }
 EOL
-done
+  done
+else
+  cat >> "${test_file}" <<EOL
+
+// Implement tests here.
+EOL
+fi
 
 # Make the example file a simple copy of the solution file
 cp "${solution_file}" "${example_file}"
+
+# Fix the scaffolding generated by configlet for concept exercises.
+if [[ "$extype" == "concept" ]]; then
+
+# Concept exercises must have a .docs/hints.md file
+  cat > "${exercise_path}/.docs/hints.md" <<EOL
+# Hints
+
+## General
+
+- <First General hint>
+- ...
+
+## 1. <First task>
+
+- <First hint for first task>
+...
+EOL
+
+# Blurb must be populated in /meta/config.json
+tmp=$(mktemp)
+jq '.blurb = "'"$blurb"'"' "${exercise_path}/.meta/config.json" >"$tmp" \
+&& mv "$tmp" "${exercise_path}/.meta/config.json"
+
+# Status is required in config.json
+tmp=$(mktemp)
+jq '.exercises.concept |= map(
+  .status //= "wip"
+)' config.json >"$tmp" \
+&& mv "$tmp" "config.json"
+
+# Need a minimum of text in instructions.md and
+# introduction.md so that git doesn't throw them away.
+cat >> "${exercise_path}/.docs/introduction.md"<<EOL
+# Introduction
+
+The introduction to the exercise goes here.
+EOL
+
+cat >> "${exercise_path}/.docs/instructions.md"<<EOL
+# Instructions
+
+The instructions for the exercise go here.
+EOL
+fi
 
 # echo "Formatting new Odin files:"
 # bin/odinfmt -w "${exercises_path}"
@@ -187,12 +304,23 @@ echo "Be sure to implement the following files:"
 echo -e "\t${solution_file}"
 echo -e "\t${test_file}"
 echo -e "\t${example_file}"
+if [[ "$extype" == "concept" ]]; then
+  echo -e "\t${exercise_path}/.docs/instructions.md"
+  echo -e "\t${exercise_path}/.docs/introduction.md"
+  echo -e "\t${exercise_path}/.docs/hints.md"
+fi
 echo ""
 
-# sort the practice exercises in config.json
-tmp=$(mktemp)
-jq '.exercises.practice |= sort_by(.difficulty, (.name | ascii_upcase))' config.json > "$tmp" \
-&& mv "$tmp" config.json
+if [[ "$extype" == "practice" ]]; then
+  # sort the practice exercises in config.json
+  tmp=$(mktemp)
+  jq '.exercises.practice |= sort_by(.difficulty, (.name | ascii_upcase))' config.json > "$tmp" \
+  && mv "$tmp" config.json
+fi
 
 echo "Running configlet lint:"
 bin/configlet lint
+
+# Cleaning up temp directories
+rm -rf tmp.*
+
