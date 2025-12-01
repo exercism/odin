@@ -300,6 +300,14 @@
         "difficulty": 9
       },
       {
+        "slug": "pascals-triangle",
+        "name": "Pascal's Triangle",
+        "uuid": "98702ae2-f7d0-4a51-be33-7d68176927d0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "dominoes",
         "name": "Dominoes",
         "uuid": "7851d3c7-b7f0-4e32-a488-a9bdc81428eb",
