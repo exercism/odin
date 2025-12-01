@@ -132,9 +132,25 @@
         "difficulty": 2
       },
       {
+        "slug": "pascals-triangle",
+        "name": "Pascal's Triangle",
+        "uuid": "98702ae2-f7d0-4a51-be33-7d68176927d0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "proverb",
         "name": "Proverb",
         "uuid": "d715f76e-92df-40f1-ab44-ba8af2e8c9ad",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {        
+        "slug": "pythagorean-triplet",
+        "name": "Pythagorean Triplet",
+        "uuid": "24006088-2288-4403-a311-523ed09d21e4",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -154,6 +170,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
+      },
+      {
+        "slug": "robot-simulator",
+        "name": "Robot Simulator",
+         "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
+         "practices": [],
+         "prerequisites": [],
+         "difficulty": 2
       },
       {
         "slug": "triangle",
@@ -228,6 +252,14 @@
         "difficulty": 5
       },
       {
+        "slug": "flatten-array",
+        "name": "Flatten Array",
+        "uuid": "b5b7acce-5ed1-4c2a-8354-177a5480a340",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "knapsack",
         "name": "Knapsack",
         "uuid": "3f378097-005d-42e4-90d7-1538161cfd27",
@@ -239,6 +271,14 @@
         "slug": "linked-list",
         "name": "Linked List",
         "uuid": "a7ed81ea-a6f3-4ef8-90ca-7d71c7a57805",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "matching-brackets",
+        "name": "Matching Brackets",
+        "uuid": "704f1c2c-9d92-4870-888a-b13c5842e755",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
@@ -276,9 +316,25 @@
         "difficulty": 5
       },
       {
+        "slug": "word-count",
+        "name": "Word Count",
+        "uuid": "b4a91423-2a26-4ceb-ab55-684b67d1e9ae",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "bowling",
         "name": "Bowling",
         "uuid": "85bedaa1-0898-4698-bf14-0a67ef9b7668",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 9
+      },
+      {
+        "slug": "dominoes",
+        "name": "Dominoes",
+        "uuid": "7851d3c7-b7f0-4e32-a488-a9bdc81428eb",
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
