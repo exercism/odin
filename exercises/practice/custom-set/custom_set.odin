@@ -1,8 +1,8 @@
 package custom_set
 
-Marker :: struct {}
-
-Set :: map[int]Marker
+// Replace the definition of Set with your own.
+// Note: It doesn't have to be a `struct`.
+Set :: struct {}
 
 new_set :: proc(elements: ..int) -> Set {
 	// Implement this procedure.
