@@ -140,6 +140,14 @@
         "difficulty": 2
       },
       {
+        "slug": "protein-translation",
+        "name": "Protein Translation",
+        "uuid": "df6321a8-4972-43e3-82d2-ab5353af0d6c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "proverb",
         "name": "Proverb",
         "uuid": "d715f76e-92df-40f1-ab44-ba8af2e8c9ad",
@@ -147,7 +155,7 @@
         "prerequisites": [],
         "difficulty": 2
       },
-      {        
+      {
         "slug": "pythagorean-triplet",
         "name": "Pythagorean Triplet",
         "uuid": "24006088-2288-4403-a311-523ed09d21e4",
@@ -174,10 +182,10 @@
       {
         "slug": "robot-simulator",
         "name": "Robot Simulator",
-         "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
-         "practices": [],
-         "prerequisites": [],
-         "difficulty": 2
+        "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
       },
       {
         "slug": "triangle",
