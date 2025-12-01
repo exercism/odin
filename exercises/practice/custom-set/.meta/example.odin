@@ -21,7 +21,7 @@ new_set :: proc(elements: ..int) -> Set {
 to_string :: proc(s: Set) -> string {
 
 	elements, err := slice.map_keys(s)
-	// We don;t expect the allocator to fail.
+	// We don't expect the allocator to fail.
 	ensure(err == nil)
 	defer delete(elements)
 	slice.sort(elements)
