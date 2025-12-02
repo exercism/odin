@@ -1,9 +1,5 @@
 package forth
 
-import "core:slice"
-import "core:strconv"
-import "core:strings"
-
 // Forth is a low-level stack-based programming language. Words (primitives and user-defined)
 // are kept in a dictionary and pretty-much every word can be redefined.
 //
