@@ -127,6 +127,14 @@
         "difficulty": 2
       },
       {
+        "slug": "isbn-verifier",
+        "name": "ISBN Verifier",
+        "uuid": "256030e2-e954-42ac-9fdb-0bce5f532909",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "nucleotide-count",
         "name": "Nucleotide Count",
         "uuid": "edffe7bb-6ad6-406c-9926-b891ff53aa97",
@@ -158,7 +166,7 @@
         "prerequisites": [],
         "difficulty": 2
       },
-      {        
+      {
         "slug": "pythagorean-triplet",
         "name": "Pythagorean Triplet",
         "uuid": "24006088-2288-4403-a311-523ed09d21e4",
@@ -255,17 +263,17 @@
         "difficulty": 5
       },
       {
-        "slug": "grade-school",
-        "name": "Grade School",
-        "uuid": "85e7a084-7bbc-4bef-9043-3eccbb10ed6e",
+        "slug": "flatten-array",
+        "name": "Flatten Array",
+        "uuid": "b5b7acce-5ed1-4c2a-8354-177a5480a340",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
       },
       {
-        "slug": "flatten-array",
-        "name": "Flatten Array",
-        "uuid": "b5b7acce-5ed1-4c2a-8354-177a5480a340",
+        "slug": "grade-school",
+        "name": "Grade School",
+        "uuid": "85e7a084-7bbc-4bef-9043-3eccbb10ed6e",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
