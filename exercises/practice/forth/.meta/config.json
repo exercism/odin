@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "forth.odin"
+    ],
+    "test": [
+      "forth_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Implement an evaluator for a very simple subset of Forth."
+}
