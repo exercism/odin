@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "protein_translation.odin"
+    ],
+    "test": [
+      "protein_translation_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Translate RNA sequences into proteins.",
+  "source": "Tyler Long"
+}
