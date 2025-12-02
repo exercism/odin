@@ -3,17 +3,15 @@ package protein_translation
 import "core:fmt"
 import "core:testing"
 
-expect_value_as_string :: proc(
-	t: ^testing.T,
-	value: $T,
-	expected: string,
-	loc := #caller_location,
-) {
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
+	result := fmt.aprintf("%v", actual)
+	exp_str := fmt.aprintf("%v", expected)
+	defer {
+		delete(result)
+		delete(exp_str)
+	}
 
-	result := fmt.aprintf("%v", value)
-	defer delete(result)
-
-	testing.expect_value(t, result, expected, loc = loc)
+	testing.expect_value(t, result, exp_str)
 }
 
 @(test)
@@ -22,7 +20,7 @@ test_empty_rna_sequence_results_in_no_proteins :: proc(t: ^testing.T) {
 	result, ok := proteins("")
 	defer delete(result)
 
-	expect_value_as_string(t, result, "[]")
+	expect_slices_match(t, result, []string{})
 	testing.expect_value(t, ok, true)
 }
 
@@ -32,7 +30,7 @@ test_methionine_rna_sequence :: proc(t: ^testing.T) {
 	result, ok := proteins("AUG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Methionine"]`)
+	expect_slices_match(t, result, []string{"Methionine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -42,7 +40,7 @@ test_phenylalanine_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UUU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Phenylalanine"]`)
+	expect_slices_match(t, result, []string{"Phenylalanine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -52,7 +50,7 @@ test_phenylalanine_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UUC")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Phenylalanine"]`)
+	expect_slices_match(t, result, []string{"Phenylalanine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -62,7 +60,7 @@ test_leucine_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UUA")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Leucine"]`)
+	expect_slices_match(t, result, []string{"Leucine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -72,7 +70,7 @@ test_leucine_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UUG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Leucine"]`)
+	expect_slices_match(t, result, []string{"Leucine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -82,7 +80,7 @@ test_serine_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UCU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Serine"]`)
+	expect_slices_match(t, result, []string{"Serine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -92,7 +90,7 @@ test_serine_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UCC")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Serine"]`)
+	expect_slices_match(t, result, []string{"Serine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -102,7 +100,7 @@ test_serine_rna_sequence_3 :: proc(t: ^testing.T) {
 	result, ok := proteins("UCA")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Serine"]`)
+	expect_slices_match(t, result, []string{"Serine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -112,7 +110,7 @@ test_serine_rna_sequence_4 :: proc(t: ^testing.T) {
 	result, ok := proteins("UCG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Serine"]`)
+	expect_slices_match(t, result, []string{"Serine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -122,7 +120,7 @@ test_tyrosine_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UAU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tyrosine"]`)
+	expect_slices_match(t, result, []string{"Tyrosine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -132,7 +130,7 @@ test_tyrosine_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UAC")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tyrosine"]`)
+	expect_slices_match(t, result, []string{"Tyrosine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -142,7 +140,7 @@ test_cysteine_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UGU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Cysteine"]`)
+	expect_slices_match(t, result, []string{"Cysteine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -152,7 +150,7 @@ test_cysteine_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UGC")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Cysteine"]`)
+	expect_slices_match(t, result, []string{"Cysteine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -162,7 +160,7 @@ test_tryptophan_rna_sequence :: proc(t: ^testing.T) {
 	result, ok := proteins("UGG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tryptophan"]`)
+	expect_slices_match(t, result, []string{"Tryptophan"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -172,7 +170,7 @@ test_stop_codon_rna_sequence_1 :: proc(t: ^testing.T) {
 	result, ok := proteins("UAA")
 	defer delete(result)
 
-	expect_value_as_string(t, result, "[]")
+	expect_slices_match(t, result, []string{})
 	testing.expect_value(t, ok, true)
 }
 
@@ -182,7 +180,7 @@ test_stop_codon_rna_sequence_2 :: proc(t: ^testing.T) {
 	result, ok := proteins("UAG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, "[]")
+	expect_slices_match(t, result, []string{})
 	testing.expect_value(t, ok, true)
 }
 
@@ -192,7 +190,7 @@ test_stop_codon_rna_sequence_3 :: proc(t: ^testing.T) {
 	result, ok := proteins("UGA")
 	defer delete(result)
 
-	expect_value_as_string(t, result, "[]")
+	expect_slices_match(t, result, []string{})
 	testing.expect_value(t, ok, true)
 }
 
@@ -202,7 +200,7 @@ test_sequence_of_two_protein_codons_translates_into_proteins :: proc(t: ^testing
 	result, ok := proteins("UUUUUU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Phenylalanine", "Phenylalanine"]`)
+	expect_slices_match(t, result, []string{"Phenylalanine", "Phenylalanine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -212,7 +210,7 @@ test_sequence_of_two_different_protein_codons_translates_into_proteins :: proc(t
 	result, ok := proteins("UUAUUG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Leucine", "Leucine"]`)
+	expect_slices_match(t, result, []string{"Leucine", "Leucine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -222,7 +220,7 @@ test_translate_rna_strand_into_correct_protein_list :: proc(t: ^testing.T) {
 	result, ok := proteins("AUGUUUUGG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Methionine", "Phenylalanine", "Tryptophan"]`)
+	expect_slices_match(t, result, []string{"Methionine", "Phenylalanine", "Tryptophan"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -232,7 +230,7 @@ test_translation_stops_if_stop_codon_at_beginning_of_sequence :: proc(t: ^testin
 	result, ok := proteins("UAGUGG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, "[]")
+	expect_slices_match(t, result, []string{})
 	testing.expect_value(t, ok, true)
 }
 
@@ -242,7 +240,7 @@ test_translation_stops_if_stop_codon_at_end_of_two_codon_sequence :: proc(t: ^te
 	result, ok := proteins("UGGUAG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tryptophan"]`)
+	expect_slices_match(t, result, []string{"Tryptophan"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -252,7 +250,7 @@ test_translation_stops_if_stop_codon_at_end_of_three_codon_sequence :: proc(t: ^
 	result, ok := proteins("AUGUUUUAA")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Methionine", "Phenylalanine"]`)
+	expect_slices_match(t, result, []string{"Methionine", "Phenylalanine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -262,7 +260,7 @@ test_translation_stops_if_stop_codon_in_middle_of_three_codon_sequence :: proc(t
 	result, ok := proteins("UGGUAGUGG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tryptophan"]`)
+	expect_slices_match(t, result, []string{"Tryptophan"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -272,7 +270,7 @@ test_translation_stops_if_stop_codon_in_middle_of_six_codon_sequence :: proc(t: 
 	result, ok := proteins("UGGUGUUAUUAAUGGUUU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Tryptophan", "Cysteine", "Tyrosine"]`)
+	expect_slices_match(t, result, []string{"Tryptophan", "Cysteine", "Tyrosine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -282,7 +280,7 @@ test_sequence_of_two_non_stop_codons_does_not_translate_to_a_stop_codon :: proc(
 	result, ok := proteins("AUGAUG")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Methionine", "Methionine"]`)
+	expect_slices_match(t, result, []string{"Methionine", "Methionine"})
 	testing.expect_value(t, ok, true)
 }
 
@@ -310,6 +308,6 @@ test_incomplete_rna_sequence_can_translate_if_valid_until_a_stop_codon :: proc(t
 	result, ok := proteins("UUCUUCUAAUGGU")
 	defer delete(result)
 
-	expect_value_as_string(t, result, `["Phenylalanine", "Phenylalanine"]`)
+	expect_slices_match(t, result, []string{"Phenylalanine", "Phenylalanine"})
 	testing.expect_value(t, ok, true)
 }
