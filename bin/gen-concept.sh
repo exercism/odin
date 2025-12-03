@@ -24,23 +24,20 @@ to_snake_case() {
 read -rp 'What is your github userid? ' author
 read -rp 'What is the concept blurb? ' blurb
 
-conceptname=$1
-conceptslug=$(to_snake_case <<< "$conceptname")
-conceptpath="concepts/${conceptslug}"
+concept_name=$1
+concept_slug=$(to_snake_case <<< "$concept_name")
+conceptpath="concepts/${concept_slug}"
 
-echo ">$conceptname"
-echo ">>$conceptslug"
-
-if [[ -d "$conceptpath" ]]; then
-  die "Concept ${conceptname} directory already exist!"
+if [[ -d "$concept_path" ]]; then
+  die "Concept ${concept_name} directory already exist!"
 fi
 
-mkdir -p "$conceptpath"
-mkdir -p "$conceptpath/.meta"
+mkdir -p "$concept_path"
+mkdir -p "$concept_path/.meta"
 
 # Generate stub files for the concept
 
-cat >>"${conceptpath}/about.md"<<EOL
+cat >>"${concept_path}/about.md"<<EOL
 # About
 
 <!--
@@ -82,7 +79,7 @@ be support for marking parts as "advanced topics" to point them out to intereste
 EOL
 
 
-cat >>"${conceptpath}/introduction.md"<<EOL
+cat >>"${concept_path}/introduction.md"<<EOL
 # Introduction
 
 <!--
@@ -102,7 +99,7 @@ to the concept.
 -->
 EOL
 
-cat >>"${conceptpath}/links.json"<<EOL
+cat >>"${concept_path}/links.json"<<EOL
 
 // This file provides helpful links that provide more reading or information about a concept.
 //
@@ -113,6 +110,8 @@ cat >>"${conceptpath}/links.json"<<EOL
 // - description: a description of the link, which is shown as the link text.
 // Links can also optionally have an icon_url field, which can be used to customize the icon shown when the link is displayed.
 // If not specified, the icon defaults to the favicon.
+//
+// JSON does not support comments. PLEASE DELETE ALL THE C-STYLE COMMENTS FROM THE FINAL VERSION.
 [
   {
     "url": "https://odin-lang.org/docs/overview/",
@@ -121,7 +120,7 @@ cat >>"${conceptpath}/links.json"<<EOL
 ]
 EOL
 
-cat >>"${conceptpath}/.meta/config.json"<<EOL
+cat >>"${concept_path}/.meta/config.json"<<EOL
 {
   "blurb": "$blurb",
   "authors": ["$author"],
@@ -135,8 +134,8 @@ uuid=$(bin/configlet uuid)
 tmp=$(mktemp)
 jq \
   --arg uuid "$uuid" \
-  --arg name "$conceptname" \
-  --arg slug "$conceptslug" \
+  --arg name "$concept_name" \
+  --arg slug "$concept_slug" \
    '.concepts += [
       {
         "uuid": $uuid,
@@ -146,7 +145,7 @@ jq \
    ]' config.json > "$tmp" && mv "$tmp" config.json
 
 echo "Be sure to implement the following files:"
-echo -e "\t${conceptpath}/introduction.md"
-echo -e "\t${conceptpath}/about.md"
-echo -e "\t${conceptpath}/hint.md"
+echo -e "\t${concept_path}/introduction.md"
+echo -e "\t${concept_path}/about.md"
+echo -e "\t${concept_path}/hint.md"
 echo ""
