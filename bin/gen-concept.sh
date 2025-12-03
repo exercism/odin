@@ -26,7 +26,7 @@ read -rp 'What is the concept blurb? ' blurb
 
 concept_name=$1
 concept_slug=$(to_snake_case <<< "$concept_name")
-conceptpath="concepts/${concept_slug}"
+concept_path="concepts/${concept_slug}"
 
 if [[ -d "$concept_path" ]]; then
   die "Concept ${concept_name} directory already exist!"
@@ -147,5 +147,5 @@ jq \
 echo "Be sure to implement the following files:"
 echo -e "\t${concept_path}/introduction.md"
 echo -e "\t${concept_path}/about.md"
-echo -e "\t${concept_path}/hint.md"
+echo -e "\t${concept_path}/links.json"
 echo ""
