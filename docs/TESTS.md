@@ -9,7 +9,7 @@ odin test .
 
 ## Enabling Language Checks
 
-While you are testing, Odin can "vet" your code: it can look for things like unused imports, 
+While you are testing, Odin can "vet" your code: it can look for things like unused imports and variables.
 
 Run your tests with
 

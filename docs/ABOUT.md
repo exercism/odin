@@ -1,14 +1,20 @@
-# About
+# About Odin
 
-<!-- TODO: write document
+[Odin][odin] is a general-purpose programming language with distinct typing built for high performance, modern systems and data-oriented programming.
+Odin is the C alternative for the Joy of Programming.
 
-  This document contains a short introduction to the language.
+Odin was created by a games developer who became frustrated with certain aspects of C and C++, and who wanted a "better C".
+The goals of Odin:
 
-  The introduction should be relatively brief and touch upon what
-  makes the language interesting (and possibly unique). The goal
-  is to help students decide if they want to join this track.
+- simplicity: consistent, safe and user-friendly syntax.
+- high performance: explicit control over memory and data layout
+- designed for modern systems
+- joy
 
-  The contents of this document are displayed on the track page,
-  provided the student has not joined the track.
+Odin is a systems programming language in the same category as C, Go, Nim and Zig.
+Unlike Go and Nim, Odin uses manual memory management: the programmer must allocate memory and then free it.
+Odin provides mechanisms that make doing this quite simple.
 
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+Learn Odin for its promise of delivering high-performance applications with greater clarity and less friction than traditional systems languages.
+
+[odin]: https://odin-lang.org
