@@ -15,7 +15,9 @@ Category :: enum {
 	Choice,
 }
 
-score :: proc(dice: []int, category: Category) -> int {
+Roll :: [5]int
+
+score :: proc(dice: Roll, category: Category) -> int {
 	// Implement this procedure.
 	return -1
 }

@@ -18,22 +18,26 @@ Category :: enum {
 	Choice,
 }
 
-score :: proc(dice: []int, category: Category) -> (score: int) {
+Roll :: [5]int
+
+score :: proc(dice: Roll, category: Category) -> (score: int) {
+	dice := dice // shadowing to enable mutability
+
 	switch category {
 	case .Ones, .Twos, .Threes, .Fours, .Fives, .Sixes:
-		score = score_for(dice, int(category))
+		score = score_for(dice[:], int(category))
 	case .Full_House:
-		score = full_house(dice)
+		score = full_house(dice[:])
 	case .Four_Of_A_Kind:
-		score = four_of_a_kind(dice)
+		score = four_of_a_kind(dice[:])
 	case .Little_Straight:
-		score = straight(dice, []int{1, 2, 3, 4, 5})
+		score = straight(dice[:], []int{1, 2, 3, 4, 5})
 	case .Big_Straight:
-		score = straight(dice, []int{2, 3, 4, 5, 6})
+		score = straight(dice[:], []int{2, 3, 4, 5, 6})
 	case .Yacht:
-		score = yacht(dice)
+		score = yacht(dice[:])
 	case .Choice:
-		score = math.sum(dice)
+		score = math.sum(dice[:])
 	}
 	return
 }
@@ -78,5 +82,5 @@ full_house :: proc(dice: []int) -> int {
 	is_full :=
 		(dice[0] == dice[1] && dice[2] == dice[4]) || (dice[0] == dice[2] && dice[3] == dice[4])
 
-	return is_full ? score(dice, Category.Choice) : 0
+	return is_full ? math.sum(dice) : 0
 }
