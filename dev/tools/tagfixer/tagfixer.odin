@@ -5,7 +5,6 @@ import "core:fmt"
 import "core:os"
 import "core:strings"
 import "core:text/regex"
-import "core:text/regex/common"
 
 main :: proc() {
 
@@ -17,15 +16,22 @@ main :: proc() {
 	// Odin returns the JSON blob as a tree of `json.Value`
 	// and we cast it to the correct type based on the schema.
 	// If the canonical data file doesn't follow the schema we
-	// will get a casting error and that okay.
+	// will get a casting error and that's okay.
 
-	if len(os.args) != 3 {
-		fmt.eprintln("Usage: tagfixer <testfile_path> <canonical_data_path>")
+	if len(os.args) != 4 {
+		fmt.eprintln(
+			"Usage: tagfixer <testfile_path> <canonical_data_path> <updated_testfile_path>",
+		)
 		os.exit(1)
 	}
 
 	test_path := os.args[1]
 	cdata_path := os.args[2]
+	output_path := os.args[3]
+
+	// test_path := "example/rational_numbers_test.odin"
+	// cdata_path := "example/canonical-data.json"
+	// output_path := "example/updated_rational_numbers_test.odin"
 
 	test_src, test_ok := os.read_entire_file_from_filename(test_path)
 	if !test_ok {
@@ -34,7 +40,8 @@ main :: proc() {
 	}
 
 	json_data, json_err := read_canonical_data(cdata_path)
-	if err, ok := json_err.(string); ok {
+	switch err in json_err {
+	case string:
 		fmt.eprintln(err)
 		os.exit(1)
 	}
@@ -44,7 +51,12 @@ main :: proc() {
 	cases_array := root_object["cases"].(json.Array)
 	populate_test_descriptions(cases_array, "", "", &snk_to_eng)
 
-	add_descriptions_to_tests(string(test_src), snk_to_eng)
+	outfile, out_err := os.open(output_path, os.O_RDWR | os.O_CREATE | os.O_TRUNC, 0o644)
+	if out_err != nil {
+		fmt.eprintf("Unable to open output file %s\n", output_path)
+		os.exit(1)
+	}
+	add_descriptions_to_tests(string(test_src), snk_to_eng, outfile)
 
 }
 
@@ -72,7 +84,7 @@ to_snake_case :: proc(english: string) -> string {
 	// There is no procedure to replace portion of a string
 	// based on a regex in Odin so we have to do this the hard way.
 	//
-	// Actually Odin has `strings.o_snake_case()`, I will have
+	// Actually Odin has `strings.to_snake_case()`, I will have
 	// to test to see if it is compatible with the bash version.
 
 	buf := strings.builder_make()
@@ -85,7 +97,15 @@ to_snake_case :: proc(english: string) -> string {
 				strings.write_rune(&buf, '_')
 			}
 			strings.write_rune(&buf, char)
-		case char == ' ' || char == '-' || char == '_':
+		case char == ' ':
+			// Special case for nested cases, we separate each level
+			// with ": "
+			if prev == ':' {
+				strings.write_string(&buf, "__")
+			} else {
+				strings.write_rune(&buf, '_')
+			}
+		case char == '-' || char == '_':
 			strings.write_rune(&buf, '_')
 		case '0' < char && char <= '9':
 			strings.write_rune(&buf, char)
@@ -105,11 +125,34 @@ to_snake_case :: proc(english: string) -> string {
 rebuild_english :: proc(snake: string) -> string {
 
 	if len(snake) == 0 { return "" }
+	if len(snake) == 1 { return strings.to_upper(snake) }
 
-	english, _ := strings.replace_all(snake, "_", " ")
-	first_letter, _ := strings.substring(english, 0, 1)
-	other_letter, _ := strings.substring_from(english, 1)
-	return strings.concatenate({strings.to_upper(first_letter), other_letter})
+	// Caution with nested test cases: each level is separated with
+	// 2 underscores. When going back we separate the level (in english)
+	// with ": ".
+	buf := strings.builder_make()
+	first := true
+	for snk_level in strings.split(snake, "__") {
+		lc_eng_level, _ := strings.replace_all(snk_level, "_", " ")
+		english_level := capitalize(lc_eng_level)
+		if first {
+			first = false
+		} else {
+			strings.write_string(&buf, ": ")
+		}
+		strings.write_string(&buf, english_level)
+	}
+	return strings.to_string(buf)
+}
+
+capitalize :: proc(s: string) -> string {
+
+	if len(s) == 0 { return "" }
+	if len(s) == 1 { return strings.to_upper(s) }
+	first_letter, _ := strings.substring(s, 0, 1)
+	other_letters, _ := strings.substring_from(s, 1)
+	return strings.concatenate({strings.to_upper(first_letter), other_letters})
+
 }
 
 populate_test_descriptions :: proc(
@@ -143,7 +186,11 @@ Scan_State :: enum {
 	Found_Test_Signature,
 }
 
-add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]string) {
+add_descriptions_to_tests :: proc(
+	test_src: string,
+	snk_to_eng: map[string]string,
+	out: os.Handle,
+) {
 
 	state: Scan_State
 	proc_name: string
@@ -151,7 +198,8 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 	task_line: string
 	sign_line: string
 	comment_lines: [dynamic]string
-	proc_re, re_err := regex.create(`test_([a-zA-Z][a-zA-Z0-9_]+)\s*::\s*proc`)
+	// I found a couple of tests that didn't start with 'test_', accounting for that.
+	proc_re, re_err := regex.create(`(test_)?([a-zA-Z][a-zA-Z0-9_]+)\s*::\s*proc`)
 	ensure(re_err == nil)
 	capture := regex.preallocate_capture()
 
@@ -166,7 +214,7 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 				proc_name = ""
 				clear(&comment_lines)
 			} else {
-				fmt.println(line)
+				fmt.fprintln(out, line)
 			}
 		case .Found_Test_Attribute:
 			// There could already be a description populated.
@@ -177,7 +225,7 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 			} else if ng, ok := regex.match(proc_re, line, &capture); ok {
 				state = .Found_Test_Signature
 				sign_line = line
-				proc_name = capture.groups[1]
+				proc_name = capture.groups[ng - 1]
 			} else {
 				// There may be comment lines, keep them
 				// we will move them before @(test)
@@ -190,7 +238,7 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 			} else if ng, ok := regex.match(proc_re, line, &capture); ok {
 				state = .Found_Test_Signature
 				sign_line = line
-				proc_name = capture.groups[1]
+				proc_name = capture.groups[ng - 1]
 			} else {
 				// There may be comment lines, keep them
 				// we will move them before @(test)
@@ -200,7 +248,7 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 			if ng, ok := regex.match(proc_re, line, &capture); ok {
 				state = .Found_Test_Signature
 				sign_line = line
-				proc_name = capture.groups[1]
+				proc_name = capture.groups[ng - 1]
 			} else {
 				// There may be comment lines, keep them
 				// we will move them before @(test)
@@ -214,22 +262,28 @@ add_descriptions_to_tests :: proc(test_src: string, snk_to_eng: map[string]strin
 			//   // task_id = ... (only if we found a task line)
 			//   // procedure signature line
 			for comment in comment_lines {
-				fmt.println(comment)
+				fmt.fprintln(out, comment)
 			}
-			fmt.println("@(test)")
+			fmt.fprintln(out, "@(test)")
 			if len(desc_line) > 0 {
-				fmt.println(desc_line)
+				fmt.fprintln(out, desc_line)
 			} else {
 				desc_eng, ok := snk_to_eng[proc_name]
 				if !ok {
 					desc_eng = rebuild_english(proc_name)
+					fmt.eprintf(
+						"Warning: test name not mapped to canonical data, rebuild automatically\n    '%s' -> '%s'\n",
+						proc_name,
+						desc_eng,
+					)
 				}
-				fmt.printf("/// description = %s\n", desc_eng)
+				fmt.fprintf(out, "/// description = %s\n", desc_eng)
 			}
 			if len(task_line) > 0 {
-				fmt.println(task_line)
+				fmt.fprintln(out, task_line)
 			}
-			fmt.println(sign_line)
+			fmt.fprintln(out, sign_line)
+			fmt.fprintln(out, line)
 			state = .Ouside
 		}
 	}

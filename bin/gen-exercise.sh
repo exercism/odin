@@ -35,13 +35,13 @@ get_cache_dir() {
             fi
             ;;
         darwin*)
-            if [[ -n "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]]; then
+            if [[ -e "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]]; then
                 echo "$HOME/Library/Caches"
                 return
             fi
             ;;
         *)  # lump all the other *nix systems
-            if [[ -n "$HOME/.cache" && -d "$HOME/.cache" ]]; then
+            if [[ -e "$HOME/.cache" && -d "$HOME/.cache" ]]; then
                 echo "$HOME/.cache"
                 return
             fi

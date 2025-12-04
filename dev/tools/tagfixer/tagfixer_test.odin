@@ -71,3 +71,38 @@ test_rebuild_english__one_letter_string :: proc(t: ^testing.T) {
 	result := rebuild_english("a")
 	testing.expect_value(t, result, "A")
 }
+
+@(test)
+test_rebuild_english__real_example :: proc(t: ^testing.T) {
+
+	result := rebuild_english("arithmetic__addition__add_two_positive_rational_numbers")
+	testing.expect_value(t, result, "Arithmetic: Addition: Add two positive rational numbers")
+}
+
+@(test)
+test_capitalize__lower_case_words :: proc(t: ^testing.T) {
+
+	result := capitalize("hello world")
+	testing.expect_value(t, result, "Hello world")
+}
+
+@(test)
+test_capitalize__upper_case_words :: proc(t: ^testing.T) {
+
+	result := capitalize("Hello world")
+	testing.expect_value(t, result, "Hello world")
+}
+
+@(test)
+test_capitalize__empty_word :: proc(t: ^testing.T) {
+
+	result := capitalize("")
+	testing.expect_value(t, result, "")
+}
+
+@(test)
+test_capitalize__one_letter_word :: proc(t: ^testing.T) {
+
+	result := capitalize("a")
+	testing.expect_value(t, result, "A")
+}
