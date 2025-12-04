@@ -1,14 +1,21 @@
-# About
+# About Odin
 
-<!-- TODO: write document
+The [Odin language][odin-website] is a statically typed, imperative language designed as a practical, modern, successor to C.
+GingerBill, Odin's creator, wanted a practical language that fixes most of the C language's annoyances while still providing the same, close-to-the-metal, performance-oriented experience.
 
-  This document contains a short introduction to the language.
+The principles of Odin:
 
-  The introduction should be relatively brief and touch upon what
-  makes the language interesting (and possibly unique). The goal
-  is to help students decide if they want to join this track.
+- simplicity: consistent, safe and user-friendly syntax.
+- high performance: explicit control over memory and data layout
+- designed for modern systems
+- bring back the joy of programming
 
-  The contents of this document are displayed on the track page,
-  provided the student has not joined the track.
+Odin is a systems programming language in the same category as C, Go, Nim and Zig.
+Unlike Go and Nim, Odin uses manual memory management: the programmer must allocate memory and then free it.
+Odin builtin mechanisms make this quite simple.
 
-  See https://exercism.org/docs/building/tracks/docs for more information. -->
+Odin's compiler suite comes with "battery included": a significant standard library and a set of game-oriented and graphics libraries such as OpenGL, SDL, Direct-X and Raylib.
+
+Learn Odin for its promise of delivering high-performance applications with greater clarity and less friction than traditional systems languages.
+
+[odin-website]: https://odin-lang.org
