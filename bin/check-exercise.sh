@@ -12,27 +12,18 @@ actual_number_of_tests () {
     grep -c "^[[:space:]]*@(test)" "${exercise_path}/${exercise_name}_test.odin"
 }
 
-create_temp_dir() {
+create_temp_dir () {
     # Need to create the tempdir relative to the current dir
     # so that it can find the odinfmt config file.
-    TEMP_DIR=$(mktemp -d -p "$PWD" -t check-exercise-XXXXXXXX) \
+    TEMP_DIR=$(TMPDIR= mktemp -d -p "$PWD" -t check-exercise-XXXXXXXX) \
     || die "Error: Failed to create temporary directory."
 }
 
-cleanup_temp_dir() {
+cleanup_temp_dir () {
     # -r: recursively delete contents; -f: force deletion (no prompts)
     # if directory does not exist, -f does not complain
     rm -rf "$TEMP_DIR"
 }
-
-# There is a weird bug where `odinfmt srcfile > outfile` inserts an extra trailing blank
-# line where `odinfmt -w srcfile` doesn't. This theows the formatting comparisons off.
-# For now, we will just copy srcfile to outfile and run `odinfmt -w` to compare
-# the files.
-# Long Term we need to figure out if there is a bug in odimfmt.
-
-# Another (simpler) solution would be to just reformat automatically as part of
-# `check-exercise.sh`
 
 check_format () {
     file_type=$1

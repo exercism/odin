@@ -351,6 +351,14 @@
         "difficulty": 5
       },
       {
+        "slug": "yacht",
+        "name": "Yacht",
+        "uuid": "8005b5f5-0e84-4442-b7a9-ed82d5f504a8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "bowling",
         "name": "Bowling",
         "uuid": "85bedaa1-0898-4698-bf14-0a67ef9b7668",
@@ -366,7 +374,7 @@
         "prerequisites": [],
         "difficulty": 9
       },
-	  {
+      {
         "slug": "forth",
         "name": "Forth",
         "uuid": "5b6a2eb7-3e13-49fe-a8cb-adf9cef8cefe",
