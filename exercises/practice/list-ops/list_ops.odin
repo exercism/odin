@@ -39,14 +39,16 @@ ls_map :: proc(l: []$T, transform: proc(element: T) -> $U) -> []U {
 // element e of the list (left-to-right), initializing 'acc' with 'initial_value'.
 ls_foldl :: proc(l: []$T, initial_value: T, fn: proc(acc, element: T) -> T) -> T {
 	// Implement this procedure.
-	return -1
+	zero: T
+	return zero
 }
 
 // Returns the result of applying repeatively  'acc = fn(acc, e)' for each
 // element e of the list (right-to-left), initializing 'acc' with 'initial_value'.
 ls_foldr :: proc(l: []$T, initial_value: T, fn: proc(acc, element: T) -> T) -> T {
 	// Implement this procedure.
-	return -1
+	zero: T
+	return zero
 }
 
 // Returns a list with all the elements of the list in
