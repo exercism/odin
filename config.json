@@ -303,6 +303,14 @@
         "difficulty": 5
       },
       {
+        "slug": "list-ops",
+        "name": "List Ops",
+        "uuid": "06b5cb3e-14e4-4149-9fbc-f4bef623e644",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "matching-brackets",
         "name": "Matching Brackets",
         "uuid": "704f1c2c-9d92-4870-888a-b13c5842e755",

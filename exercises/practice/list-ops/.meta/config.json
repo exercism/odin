@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "list_ops.odin"
+    ],
+    "test": [
+      "list_ops_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Implement basic list operations."
+}
