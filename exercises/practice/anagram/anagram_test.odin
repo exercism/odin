@@ -4,6 +4,7 @@ import "core:slice"
 import "core:testing"
 
 @(test)
+/// description = no matches
 test_no_matches :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -16,6 +17,7 @@ test_no_matches :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects two anagrams
 test_detects_two_anagrams :: proc(t: ^testing.T) {
 
 	expected := [?]string{"lemons", "melons"}
@@ -28,6 +30,7 @@ test_detects_two_anagrams :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = does not detect anagram subsets
 test_does_not_detect_anagram_subsets :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -40,6 +43,7 @@ test_does_not_detect_anagram_subsets :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects anagram
 test_detects_anagram :: proc(t: ^testing.T) {
 
 	expected := [?]string{"inlets"}
@@ -52,6 +56,7 @@ test_detects_anagram :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects three anagrams
 test_detects_three_anagrams :: proc(t: ^testing.T) {
 
 	expected := [?]string{"gallery", "regally", "largely"}
@@ -64,6 +69,7 @@ test_detects_three_anagrams :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects multiple anagrams with different case
 test_detects_multiple_anagrams_with_different_case :: proc(t: ^testing.T) {
 
 	expected := [?]string{"Eons", "ONES"}
@@ -76,6 +82,7 @@ test_detects_multiple_anagrams_with_different_case :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = does not detect non-anagrams with identical checksum
 test_does_not_detect_non_anagrams_with_identical_checksum :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -88,6 +95,7 @@ test_does_not_detect_non_anagrams_with_identical_checksum :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = detects anagrams case-insensitively
 test_detects_anagrams_case_insensitively :: proc(t: ^testing.T) {
 
 	expected := [?]string{"Carthorse"}
@@ -100,6 +108,7 @@ test_detects_anagrams_case_insensitively :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects anagrams using case-insensitive subject
 test_detects_anagrams_using_case_insensitive_subject :: proc(t: ^testing.T) {
 
 	expected := [?]string{"carthorse"}
@@ -112,6 +121,7 @@ test_detects_anagrams_using_case_insensitive_subject :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = detects anagrams using case-insensitive possible matches
 test_detects_anagrams_using_case_insensitive_possible_matches :: proc(t: ^testing.T) {
 
 	expected := [?]string{"Carthorse"}
@@ -124,6 +134,7 @@ test_detects_anagrams_using_case_insensitive_possible_matches :: proc(t: ^testin
 }
 
 @(test)
+/// description = does not detect an anagram if the original word is repeated
 test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -136,6 +147,7 @@ test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(t: ^tes
 }
 
 @(test)
+/// description = anagrams must use all letters exactly once
 test_anagrams_must_use_all_letters_exactly_once :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -148,6 +160,7 @@ test_anagrams_must_use_all_letters_exactly_once :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = words are not anagrams of themselves
 test_words_are_not_anagrams_of_themselves :: proc(t: ^testing.T) {
 
 	expected := [?]string{}
@@ -160,6 +173,7 @@ test_words_are_not_anagrams_of_themselves :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = words are not anagrams of themselves even if letter case is partially different
 test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_different :: proc(
 	t: ^testing.T,
 ) {
@@ -174,6 +188,7 @@ test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_diffe
 }
 
 @(test)
+/// description = words are not anagrams of themselves even if letter case is completely different
 test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_different :: proc(
 	t: ^testing.T,
 ) {
@@ -188,6 +203,7 @@ test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_diff
 }
 
 @(test)
+/// description = words other than themselves can be anagrams
 test_words_other_than_themselves_can_be_anagrams :: proc(t: ^testing.T) {
 
 	expected := [?]string{"Silent"}
@@ -200,6 +216,7 @@ test_words_other_than_themselves_can_be_anagrams :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = handles case of greek letters
 test_handles_case_of_greek_letters :: proc(t: ^testing.T) {
 
 	expected := [?]string{"ΒΓΑ", "γβα"}
@@ -212,6 +229,7 @@ test_handles_case_of_greek_letters :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = different characters may have the same bytes
 test_different_characters_may_have_the_same_bytes :: proc(t: ^testing.T) {
 
 	expected := [?]string{}

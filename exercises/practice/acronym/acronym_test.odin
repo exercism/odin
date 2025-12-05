@@ -3,6 +3,7 @@ package acronym
 import "core:testing"
 
 @(test)
+/// description = basic
 test_basic :: proc(t: ^testing.T) {
 
 	expected := "PNG"
@@ -14,6 +15,7 @@ test_basic :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = lowercase words
 test_lowercase_words :: proc(t: ^testing.T) {
 
 	expected := "ROR"
@@ -25,6 +27,7 @@ test_lowercase_words :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = punctuation
 test_punctuation :: proc(t: ^testing.T) {
 
 	expected := "FIFO"
@@ -36,6 +39,7 @@ test_punctuation :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = all caps word
 test_all_caps_word :: proc(t: ^testing.T) {
 
 	expected := "GIMP"
@@ -47,6 +51,7 @@ test_all_caps_word :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = punctuation without whitespace
 test_punctuation_without_whitespace :: proc(t: ^testing.T) {
 
 	expected := "CMOS"
@@ -58,6 +63,7 @@ test_punctuation_without_whitespace :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = very long abbreviation
 test_very_long_abbreviation :: proc(t: ^testing.T) {
 
 	expected := "ROTFLSHTMDCOALM"
@@ -69,6 +75,7 @@ test_very_long_abbreviation :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = consecutive delimiters
 test_consecutive_delimiters :: proc(t: ^testing.T) {
 
 	expected := "SIMUFTA"
@@ -80,6 +87,7 @@ test_consecutive_delimiters :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = apostrophes
 test_apostrophes :: proc(t: ^testing.T) {
 
 	expected := "HC"
@@ -91,6 +99,7 @@ test_apostrophes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = underscore emphasis
 test_underscore_emphasis :: proc(t: ^testing.T) {
 
 	expected := "TRNT"
