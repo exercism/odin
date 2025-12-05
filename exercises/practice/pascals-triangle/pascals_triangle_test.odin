@@ -113,7 +113,12 @@ test_seventy_five_rows :: proc(t: ^testing.T) {
 	testing.expect_value(t, actual[74][37], 17_46_130_564_335_626_209_832)
 }
 
-@(test)
+// Optional Benchmarking Code
+// If you are using Exercism CLI Interface and want to test
+// the performance of your solution, uncomment the following
+// test attribute.
+
+// @(test)
 benchmark_pascals_triangle :: proc(t: ^testing.T) {
 	N :: 500
 	ROUNDS :: 10
