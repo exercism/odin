@@ -1,15 +1,15 @@
 # Tests
 
-<!-- TODO: write document
+To run the tests from within the exercise directory, run the command:
 
-  This document should contain instructions on how to run the exercise's tests.
+```sh
+odin test .
+```
 
-  The instructions should be short and to the point.
+While you are testing, Odin can "vet" your code: it can look for things like unused imports and variables. Run your tests with:
 
-  The docs/TESTS.md file can contain a more verbose description on how to run tests.
+```sh
+odin test . -vet
+```
 
-  When a student downloads an exercise via the CLI, this file's contents are
-  included into the HELP.md file.
-
-  See https://exercism.org/docs/building/tracks/shared-files for more information.
--->
+For more options, see `odin test -help`.
