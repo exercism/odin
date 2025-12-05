@@ -6,7 +6,7 @@ package list_ops
 // Returns a new list with 'other' appended to 'l'.
 ls_append :: proc(l: []$T, other: []T) -> []T {
 
-	new_list: [dynamic]T
+	new_list := make([dynamic]T, 0, len(l) + len(other))
 	append(&new_list, ..l)
 	append(&new_list, ..other)
 	return new_list[:]
@@ -15,7 +15,11 @@ ls_append :: proc(l: []$T, other: []T) -> []T {
 // Creates a new list by concatenating all the argument lists.
 ls_concat :: proc(lists: [][]$T) -> []T {
 
-	final_list: [dynamic]T
+	total_elements := 0
+	for list in lists {
+		total_elements += len(list)
+	}
+	final_list := make([dynamic]T, 0, total_elements)
 	for list in lists {
 		append(&final_list, ..list)
 	}
@@ -26,7 +30,7 @@ ls_concat :: proc(lists: [][]$T) -> []T {
 // predicate 'pred' is true.
 ls_filter :: proc(l: []$T, pred: proc(element: T) -> bool) -> []T {
 
-	filtered_list: [dynamic]T
+	filtered_list := make([dynamic]T, 0, len(l))
 	for element in l {
 		if pred(element) {
 			append(&filtered_list, element)
@@ -45,7 +49,7 @@ ls_length :: proc(l: []$T) -> int {
 // on each element of the list.
 ls_map :: proc(l: []$T, transform: proc(element: T) -> $U) -> []U {
 
-	mapped_list: [dynamic]U
+	mapped_list := make([dynamic]U, 0, len(l))
 	for element in l {
 		append(&mapped_list, transform(element))
 	}
@@ -78,7 +82,7 @@ ls_foldr :: proc(l: []$T, initial_value: T, fn: proc(acc, element: T) -> T) -> T
 // reverse order.
 ls_reverse :: proc(l: []$T) -> []T {
 
-	reversed_list: [dynamic]T
+	reversed_list := make([dynamic]T, 0, len(l))
 	for i := len(l) - 1; i >= 0; i -= 1 {
 		append(&reversed_list, l[i])
 	}
