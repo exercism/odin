@@ -78,13 +78,17 @@ cdata_file="$cdata_path/canonical-data.json"
 echo -e "Adding description tags to $test_file..."
 rm -f "$out_file"
 odin run dev/tools/tagfixer -- "$test_file" "$cdata_file" "$out_file"
-if ! diff "$test_file" "$out_file"; then
-    diff_exit_code=$?
-    if [ $diff_exit_code -gt 1 ]; then
-        echo "Error: can't run diff on $test_file and $out_file (Exit code $diff_exit_code)" >&2
-        exit $diff_exit_code
-    fi
-fi
-mv "$out_file" "$test_file"
+# if ! diff "$test_file" "$out_file"; then
+#     diff_exit_code=$?
+#     if [ $diff_exit_code -gt 1 ]; then
+#         echo "Error: can't run diff on $test_file and $out_file (Exit code $diff_exit_code)" >&2
+#         exit $diff_exit_code
+#     fi
+# fi
+# mv "$out_file" "$test_file"
+# echo ""
+# echo "Updated tags written to $test_file"
+
 echo ""
-echo "Updated tags written to $test_file"
+echo "Updated tags written to $out_file"
+echo "Check result and move to $test_file"

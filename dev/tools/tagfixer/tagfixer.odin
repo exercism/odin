@@ -3,6 +3,7 @@ package tagfixer
 import "core:encoding/json"
 import "core:fmt"
 import "core:os"
+import "core:slice"
 import "core:strings"
 import "core:text/regex"
 
@@ -56,8 +57,17 @@ main :: proc() {
 		fmt.eprintf("Unable to open output file %s\n", output_path)
 		os.exit(1)
 	}
-	add_descriptions_to_tests(string(test_src), snk_to_eng, outfile)
+	report := add_descriptions_to_tests(string(test_src), snk_to_eng, outfile)
 
+	// Report which tests were found in canonical data or were present (report[test] == true)
+	// and for which tests we had to make up a name (report[test] == false).
+	// We may hide this being a `--verbose` flag later.
+	fmt.println("Tag Report:")
+	for entry in report {
+		fmt.printf("- %s:\n")
+		fmt.printf("      '%v':\n")
+		fmt.printf("      '%s':\n")
+	}
 }
 
 Error :: union {
@@ -186,12 +196,28 @@ Scan_State :: enum {
 	Found_Test_Signature,
 }
 
+Desc_Source :: enum {
+	CData,
+	Rebuilt,
+	In_Original,
+}
+
+Report :: struct {
+	proc_name: string,
+	eng_name:  string,
+	source:    Desc_Source,
+}
+
+// Returns a list of test names that we found with a report flag:
+// - true: the test English description was found in the canonical data or was present
+// - false: the test description was not found and it reverted to `rebuild_english()`
 add_descriptions_to_tests :: proc(
 	test_src: string,
 	snk_to_eng: map[string]string,
 	out: os.Handle,
-) {
+) -> []Report {
 
+	report: [dynamic]Report
 	state: Scan_State
 	proc_name: string
 	desc_line: string
@@ -266,15 +292,24 @@ add_descriptions_to_tests :: proc(
 			}
 			fmt.fprintln(out, "@(test)")
 			if len(desc_line) > 0 {
+				desc_eng := remove_tag(desc_line)
+				append(
+					&report,
+					Report{proc_name = proc_name, eng_name = desc_eng, source = .In_Original},
+				)
 				fmt.fprintln(out, desc_line)
 			} else {
 				desc_eng, ok := snk_to_eng[proc_name]
 				if !ok {
 					desc_eng = rebuild_english(proc_name)
-					fmt.eprintf(
-						"Warning: test name not mapped to canonical data, rebuild automatically\n    '%s' -> '%s'\n",
-						proc_name,
-						desc_eng,
+					append(
+						&report,
+						Report{proc_name = proc_name, eng_name = desc_eng, source = .Rebuilt},
+					)
+				} else {
+					append(
+						&report,
+						Report{proc_name = proc_name, eng_name = desc_eng, source = .CData},
 					)
 				}
 				fmt.fprintf(out, "/// description = %s\n", desc_eng)
@@ -287,4 +322,15 @@ add_descriptions_to_tests :: proc(
 			state = .Ouside
 		}
 	}
+	return report[:]
+}
+
+remove_tag :: proc(s: string) -> string {
+
+	idx := strings.index(s, "escription =")
+	if idx < 0 {
+		return s
+	}
+	desc, _ := strings.substring_from(s, idx + 12)
+	return desc
 }
