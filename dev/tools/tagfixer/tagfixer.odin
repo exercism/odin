@@ -62,11 +62,10 @@ main :: proc() {
 	// Report which tests were found in canonical data or were present (report[test] == true)
 	// and for which tests we had to make up a name (report[test] == false).
 	// We may hide this being a `--verbose` flag later.
-	fmt.println("Tag Report:")
+	fmt.printf("\nTag Report\n==========\n")
 	for entry in report {
-		fmt.printf("- %s:\n")
-		fmt.printf("      '%v':\n")
-		fmt.printf("      '%s':\n")
+		fmt.printf("- %s:\n", entry.proc_name)
+		fmt.printf("      %-10v:'%s'\n", entry.source, entry.eng_name)
 	}
 }
 
@@ -137,12 +136,17 @@ rebuild_english :: proc(snake: string) -> string {
 	if len(snake) == 0 { return "" }
 	if len(snake) == 1 { return strings.to_upper(snake) }
 
+	snake_no_test := snake
+	if strings.starts_with(snake_no_test, "test_") {
+		snake_no_test, _ = strings.substring_from(snake_no_test, 5)
+	}
+
 	// Caution with nested test cases: each level is separated with
 	// 2 underscores. When going back we separate the level (in english)
 	// with ": ".
 	buf := strings.builder_make()
 	first := true
-	for snk_level in strings.split(snake, "__") {
+	for snk_level in strings.split(snake_no_test, "__") {
 		lc_eng_level, _ := strings.replace_all(snk_level, "_", " ")
 		english_level := capitalize(lc_eng_level)
 		if first {
@@ -181,6 +185,7 @@ populate_test_descriptions :: proc(
 		ext_desc_snk :=
 			test_desc_snk if prefix_snk == "" else strings.join({prefix_snk, test_desc_snk}, "__")
 		snk_to_eng[ext_desc_snk] = ext_desc_eng
+		//fmt.printf(">>>/%s/%s/\n", ext_desc_snk, ext_desc_eng)
 		if test_object["cases"] != nil {
 			sub_cases_array := test_object["cases"].(json.Array)
 			populate_test_descriptions(sub_cases_array, ext_desc_eng, ext_desc_snk, snk_to_eng)
@@ -199,7 +204,7 @@ Scan_State :: enum {
 Desc_Source :: enum {
 	CData,
 	Rebuilt,
-	In_Original,
+	Original,
 }
 
 Report :: struct {
@@ -225,11 +230,11 @@ add_descriptions_to_tests :: proc(
 	sign_line: string
 	comment_lines: [dynamic]string
 	// I found a couple of tests that didn't start with 'test_', accounting for that.
-	proc_re, re_err := regex.create(`(test_)?([a-zA-Z][a-zA-Z0-9_]+)\s*::\s*proc`)
+	proc_re, re_err := regex.create(`(test_)?([a-zA-Z0-9_]+)\s*::\s*proc`)
 	ensure(re_err == nil)
 	capture := regex.preallocate_capture()
 
-	for line in strings.split(string(test_src), "\n") {
+	for line, i in strings.split(string(test_src), "\n") {
 		switch state {
 		case .Ouside:
 			if strings.starts_with(line, "@(test)") {
@@ -291,11 +296,13 @@ add_descriptions_to_tests :: proc(
 				fmt.fprintln(out, comment)
 			}
 			fmt.fprintln(out, "@(test)")
+			// trimmed_proc_name := rm_prefix(proc_name, "test_")
+			//fmt.printf(">lookup>/%s/\n", trimmed_proc_name)
 			if len(desc_line) > 0 {
-				desc_eng := remove_tag(desc_line)
+				desc_eng := rm_prefix(desc_line, "/// description = ")
 				append(
 					&report,
-					Report{proc_name = proc_name, eng_name = desc_eng, source = .In_Original},
+					Report{proc_name = proc_name, eng_name = desc_eng, source = .Original},
 				)
 				fmt.fprintln(out, desc_line)
 			} else {
@@ -325,12 +332,16 @@ add_descriptions_to_tests :: proc(
 	return report[:]
 }
 
-remove_tag :: proc(s: string) -> string {
+rm_prefix :: proc(s: string, prefix: string) -> string {
 
-	idx := strings.index(s, "escription =")
-	if idx < 0 {
-		return s
+	if strings.starts_with(s, prefix) {
+		trimmed_str, _ := strings.substring_from(s, len(prefix))
+		return trimmed_str
 	}
-	desc, _ := strings.substring_from(s, idx + 12)
-	return desc
+	return s
+}
+
+add_prefix :: proc(s: string, prefix: string) -> string {
+
+	return strings.concatenate([]string{prefix, s})
 }

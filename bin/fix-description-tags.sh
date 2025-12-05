@@ -65,11 +65,12 @@ exercise_path=$1
 [[ -d "$exercise_path" ]] || die "$exercise_path doesn't exist"
 
 exercise_slug=$(basename "$exercise_path")
+exercise_snake_name=$(to_snake_case <<< "$exercise_slug")
 
-test_file="$exercise_path/${exercise_slug}_test.odin"
+test_file="$exercise_path/${exercise_snake_name}_test.odin"
 [[ -f "$test_file" ]] || die "$test_file doesn't exist"
 
-out_file="$exercise_path/updated_${exercise_slug}.odin"
+out_file="$exercise_path/updated_${exercise_snake_name}_test.odin"
 
 cdata_path="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises/$exercise_slug"
 cdata_file="$cdata_path/canonical-data.json"
@@ -78,6 +79,10 @@ cdata_file="$cdata_path/canonical-data.json"
 echo -e "Adding description tags to $test_file..."
 rm -f "$out_file"
 odin run dev/tools/tagfixer -- "$test_file" "$cdata_file" "$out_file"
+# There is an extra blank line at the end of out_file, remove it manually for now.
+sed -e '$!b' -e '/^\s*$/d' "$out_file" >"$out_file.tr"
+mv "$out_file.tr" "$out_file"
+
 # if ! diff "$test_file" "$out_file"; then
 #     diff_exit_code=$?
 #     if [ $diff_exit_code -gt 1 ]; then
@@ -90,5 +95,5 @@ odin run dev/tools/tagfixer -- "$test_file" "$cdata_file" "$out_file"
 # echo "Updated tags written to $test_file"
 
 echo ""
-echo "Updated tags written to $out_file"
-echo "Check result and move to $test_file"
+echo "Updated tags written to  :  $out_file"
+echo "Check result and move to :  $test_file"
