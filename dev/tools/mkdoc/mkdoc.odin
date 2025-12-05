@@ -58,8 +58,8 @@ split_file :: proc(content: string, aboutpath, cintropath, xintropath: string) -
 	xintro := open_file(xintropath, FILE_FLAGS) or_return
 	defer (os.close(xintro))
 
-	start := regex_compile(`\[/restrict/\]: \#\(([a-zA-Z,]*)\)`)
-	stop := regex_compile(`\[/all/\]: \#\(([a-zA-Z,]*)\)`)
+	start := regex_compile(`^\[/restrict/\]: \#\((\s*[a-zA-Z]*\s*(,\s*[a-zA-Z]*\s*)*)\)`)
+	stop := regex_compile(`^\[/all/\]: \#\(([a-zA-Z, \t]*)\)`)
 	capture := regex.preallocate_capture()
 
 	dest := Destination {

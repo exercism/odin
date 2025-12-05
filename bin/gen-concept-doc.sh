@@ -9,7 +9,7 @@
 # top-directory like the other scripts in `bin`.
 
 # Exit script if any subcommands fail
-set -eo pipefail
+set -eou pipefail
 
 die() {
     echo "$*" >&2
@@ -27,29 +27,19 @@ to_snake_case() {
 show_help() {
     cat << EOL
 
-This tool take the overall concept document and generates the concept 'about.md',
+This tool takes the overall document for a concept and generates the concept 'about.md',
 'introduction.md' files and the concept exercise 'introduction.md'.
-Warning: running mkdoc will overwrite the existing versions of these files.
 
-It is expected that the overall concept document is at
+Warning: running gen-concept-doc.sh will overwrite the existing versions of these files.
+
+It is expected that the overall concept document is located at
 'concepts/<concept-slug>/_introduction.md'.
 
-The top of the overall document goes in all 3 documents.
-A restrict tag '[/restrict/]: #(<options>)' will restrict
-the following sections to only some of the documents:
-
-options:
-  about : the concept 'about.md' document
-  cintro: the concept 'introduction.md' document
-  xintro: the exercise 'introduction.md' document
-
-A comma separated list of options will restrict the following
-section to the designated documents.
-For example the tag '[/restric/]: #(about, cintro)' will
-retrict these sections to the two concept documents.
+See 'dev/tools/mkdoc/example.md' for instructions on how to write
+the overall concept document.
 
 Usage:
-  bin/make-concept-doc.sh <concept-slug path> <exercise-slug path>
+  bin/gen-concept-doc.sh <concept-slug path> <exercise-slug path>
 
 EOL
     exit 1
@@ -71,10 +61,13 @@ about_path="${concept_path}/about.md"
 concept_intro_path="${concept_path}/introduction.md"
 exercise_intro_path="${exercise_path}/introduction.md"
 
-odin run dev/tools/mkdoc --  "$source_path" "$about_path" "$concept_intro_path" "$exercise_intro_path"
-
-echo -e "Source   : - ${source_path}"
-echo -e "Generated:"
-echo -e "           - ${about_path}"
-echo -e "           - ${concept_intro_path}"
-echo -e "           - ${exercise_intro_path}"
+if odin run dev/tools/mkdoc --  "$source_path" "$about_path" "$concept_intro_path" "$exercise_intro_path"
+then
+  echo -e "Source   : - ${source_path}"
+  echo -e "Generated:"
+  echo -e "           - ${about_path}"
+  echo -e "           - ${concept_intro_path}"
+  echo -e "           - ${exercise_intro_path}"
+else
+  echo "Error encountered while running mkdoc"
+fi
