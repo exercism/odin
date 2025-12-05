@@ -4,6 +4,7 @@ import "core:slice"
 import "core:testing"
 
 @(test)
+/// description = single bit one to decimal
 test_single_bit_one_to_decimal :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1}
@@ -17,6 +18,7 @@ test_single_bit_one_to_decimal :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = binary to single decimal
 test_binary_to_single_decimal :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1, 0, 1}
@@ -30,6 +32,7 @@ test_binary_to_single_decimal :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = single decimal to binary
 test_single_decimal_to_binary :: proc(t: ^testing.T) {
 	input_base := 10
 	digits := [?]int{5}
@@ -43,6 +46,7 @@ test_single_decimal_to_binary :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = binary to multiple decimal
 test_binary_to_multiple_decimal :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1, 0, 1, 0, 1, 0}
@@ -56,6 +60,7 @@ test_binary_to_multiple_decimal :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = decimal to binary
 test_decimal_to_binary :: proc(t: ^testing.T) {
 	input_base := 10
 	digits := [?]int{4, 2}
@@ -69,6 +74,7 @@ test_decimal_to_binary :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = trinary to hexadecimal
 test_trinary_to_hexadecimal :: proc(t: ^testing.T) {
 	input_base := 3
 	digits := [?]int{1, 1, 2, 0}
@@ -82,6 +88,7 @@ test_trinary_to_hexadecimal :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = hexadecimal to trinary
 test_hexadecimal_to_trinary :: proc(t: ^testing.T) {
 	input_base := 16
 	digits := [?]int{2, 10}
@@ -95,6 +102,7 @@ test_hexadecimal_to_trinary :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = 15-bit integer
 test_15_bit_integer :: proc(t: ^testing.T) {
 	input_base := 97
 	digits := [?]int{3, 46, 60}
@@ -108,6 +116,7 @@ test_15_bit_integer :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = empty list
 test_empty_list :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{}
@@ -121,6 +130,7 @@ test_empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = single zero
 test_single_zero :: proc(t: ^testing.T) {
 	input_base := 10
 	digits := [?]int{0}
@@ -134,6 +144,7 @@ test_single_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = multiple zeros
 test_multiple_zeros :: proc(t: ^testing.T) {
 	input_base := 10
 	digits := [?]int{0, 0, 0}
@@ -147,6 +158,7 @@ test_multiple_zeros :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = leading zeros
 test_leading_zeros :: proc(t: ^testing.T) {
 	input_base := 7
 	digits := [?]int{0, 6, 0}
@@ -160,6 +172,7 @@ test_leading_zeros :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = input base is one
 test_input_base_is_one :: proc(t: ^testing.T) {
 	input_base := 1
 	digits := [?]int{0}
@@ -170,6 +183,7 @@ test_input_base_is_one :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = input base is zero
 test_input_base_is_zero :: proc(t: ^testing.T) {
 	input_base := 0
 	digits := [?]int{}
@@ -180,6 +194,7 @@ test_input_base_is_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = input base is negative
 test_input_base_is_negative :: proc(t: ^testing.T) {
 	input_base := -2
 	digits := [?]int{1}
@@ -190,6 +205,7 @@ test_input_base_is_negative :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = negative digit
 test_negative_digit :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1, -1, 1, 0, 1, 0}
@@ -200,6 +216,7 @@ test_negative_digit :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = invalid positive digit
 test_invalid_positive_digit :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1, 2, 1, 0, 1, 0}
@@ -210,6 +227,7 @@ test_invalid_positive_digit :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = output base is one
 test_output_base_is_one :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1, 0, 1, 0, 1, 0}
@@ -220,6 +238,7 @@ test_output_base_is_one :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = output base is zero
 test_output_base_is_zero :: proc(t: ^testing.T) {
 	input_base := 10
 	digits := [?]int{7}
@@ -230,6 +249,7 @@ test_output_base_is_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = output base is negative
 test_output_base_is_negative :: proc(t: ^testing.T) {
 	input_base := 2
 	digits := [?]int{1}
@@ -240,6 +260,7 @@ test_output_base_is_negative :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = both bases are negative
 test_both_bases_are_negative :: proc(t: ^testing.T) {
 	input_base := -2
 	digits := [?]int{1}
