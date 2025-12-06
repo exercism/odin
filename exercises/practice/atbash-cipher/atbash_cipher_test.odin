@@ -136,7 +136,7 @@ test_decode__decode_numbers :: proc(t: ^testing.T) {
 
 @(test)
 /// description = decode -> decode all the letters
-test_decode__decode_all_the_letters :: proc(t -> ^testing.T) {
+test_decode__decode_all_the_letters :: proc(t: ^testing.T) {
 
 	input := "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
 	result := decode(input)
