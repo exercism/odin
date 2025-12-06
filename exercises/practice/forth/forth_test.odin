@@ -11,7 +11,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 		delete(exp_str)
 	}
 
-	testing.expect_value(t, result, exp_str)
+	testing.expect_value(t, result, exp_str, loc = loc)
 }
 
 @(test)
