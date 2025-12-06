@@ -3,7 +3,7 @@ package atbash_cipher
 import "core:testing"
 
 @(test)
-/// description = encode: encode yes
+/// description = encode -> encode yes
 test_encode__encode_yes :: proc(t: ^testing.T) {
 
 	input := "yes"
@@ -15,7 +15,7 @@ test_encode__encode_yes :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode no
+/// description = encode -> encode no
 test_encode__encode_no :: proc(t: ^testing.T) {
 
 	input := "no"
@@ -27,7 +27,7 @@ test_encode__encode_no :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode OMG
+/// description = encode -> encode OMG
 test_encode__encode_omg :: proc(t: ^testing.T) {
 
 	input := "OMG"
@@ -39,7 +39,7 @@ test_encode__encode_omg :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode spaces
+/// description = encode -> encode spaces
 test_encode__encode_spaces :: proc(t: ^testing.T) {
 
 	input := "O M G"
@@ -51,7 +51,7 @@ test_encode__encode_spaces :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode mindblowingly
+/// description = encode -> encode mindblowingly
 test_encode__encode_mindblowingly :: proc(t: ^testing.T) {
 
 	input := "mindblowingly"
@@ -63,7 +63,7 @@ test_encode__encode_mindblowingly :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode numbers
+/// description = encode -> encode numbers
 test_encode__encode_numbers :: proc(t: ^testing.T) {
 
 	input := "Testing,1 2 3, testing."
@@ -75,7 +75,7 @@ test_encode__encode_numbers :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode deep thought
+/// description = encode -> encode deep thought
 test_encode__encode_deep_thought :: proc(t: ^testing.T) {
 
 	input := "Truth is fiction."
@@ -87,7 +87,7 @@ test_encode__encode_deep_thought :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = encode: encode all the letters
+/// description = encode -> encode all the letters
 test_encode__encode_all_the_letters :: proc(t: ^testing.T) {
 
 	input := "The quick brown fox jumps over the lazy dog."
@@ -99,7 +99,7 @@ test_encode__encode_all_the_letters :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode exercism
+/// description = decode -> decode exercism
 test_decode__decode_exercism :: proc(t: ^testing.T) {
 
 	input := "vcvix rhn"
@@ -111,7 +111,7 @@ test_decode__decode_exercism :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode a sentence
+/// description = decode -> decode a sentence
 test_decode__decode_a_sentence :: proc(t: ^testing.T) {
 
 	input := "zmlyh gzxov rhlug vmzhg vkkrm thglm v"
@@ -123,7 +123,7 @@ test_decode__decode_a_sentence :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode numbers
+/// description = decode -> decode numbers
 test_decode__decode_numbers :: proc(t: ^testing.T) {
 
 	input := "gvhgr mt123 gvhgr mt"
@@ -135,8 +135,8 @@ test_decode__decode_numbers :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode all the letters
-test_decode__decode_all_the_letters :: proc(t: ^testing.T) {
+/// description = decode -> decode all the letters
+test_decode__decode_all_the_letters :: proc(t -> ^testing.T) {
 
 	input := "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
 	result := decode(input)
@@ -147,7 +147,7 @@ test_decode__decode_all_the_letters :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode with too many spaces
+/// description = decode -> decode with too many spaces
 test_decode__decode_with_too_many_spaces :: proc(t: ^testing.T) {
 
 	input := "vc vix    r hn"
@@ -159,7 +159,7 @@ test_decode__decode_with_too_many_spaces :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = decode: decode with no spaces
+/// description = decode -> decode with no spaces
 test_decode__decode_with_no_spaces :: proc(t: ^testing.T) {
 
 	input := "zmlyhgzxovrhlugvmzhgvkkrmthglmv"
