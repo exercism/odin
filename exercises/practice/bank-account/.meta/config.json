@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "hucancode"
+  ],
+  "files": {
+    "solution": [
+      "bank_account.odin"
+    ],
+    "test": [
+      "bank_account_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Simulate a bank account supporting opening/closing, withdraws, and deposits of money. Watch out for concurrent transactions!"
+}
