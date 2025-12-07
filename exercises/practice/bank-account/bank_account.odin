@@ -8,8 +8,7 @@ TransactionResult :: enum {
 	Not_Enough_Balance,
 }
 
-Account :: struct {
-} // Implement this struct
+Account :: struct {} // Implement this struct
 
 open :: proc(self: ^Account) -> TransactionResult {
 	// Implement this procedure.
