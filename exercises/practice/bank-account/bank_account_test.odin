@@ -134,7 +134,7 @@ test_cannot_withdraw_more_than_deposited :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_cannot_withdraw_negative :: proc(t: ^testing.T) {
+test_cannot_withdraw_zero :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
 	deposit(&account, 100)
@@ -143,7 +143,7 @@ test_cannot_withdraw_negative :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_cannot_deposit_negative :: proc(t: ^testing.T) {
+test_cannot_deposit_zero :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
 	result := deposit(&account, 0)
