@@ -16,6 +16,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 }
 
 @(test)
+/// description = append entries to a list and return the new list -> empty lists
 test_append_entries_to_a_list_and_return_the_new_list__empty_lists :: proc(t: ^testing.T) {
 
 	result := ls_append([]int{}, []int{})
@@ -25,6 +26,7 @@ test_append_entries_to_a_list_and_return_the_new_list__empty_lists :: proc(t: ^t
 }
 
 @(test)
+/// description = append entries to a list and return the new list -> list to empty list
 test_append_entries_to_a_list_and_return_the_new_list__list_to_empty_list :: proc(t: ^testing.T) {
 
 	result := ls_append([]int{}, []int{1, 2, 3, 4})
@@ -34,6 +36,7 @@ test_append_entries_to_a_list_and_return_the_new_list__list_to_empty_list :: pro
 }
 
 @(test)
+/// description = append entries to a list and return the new list -> empty list to list
 test_append_entries_to_a_list_and_return_the_new_list__empty_list_to_list :: proc(t: ^testing.T) {
 
 	result := ls_append([]int{1, 2, 3, 4}, []int{})
@@ -43,6 +46,7 @@ test_append_entries_to_a_list_and_return_the_new_list__empty_list_to_list :: pro
 }
 
 @(test)
+/// description = append entries to a list and return the new list -> non-empty lists
 test_append_entries_to_a_list_and_return_the_new_list__non_empty_lists :: proc(t: ^testing.T) {
 
 	result := ls_append([]int{1, 2}, []int{2, 3, 4, 5})
@@ -52,6 +56,7 @@ test_append_entries_to_a_list_and_return_the_new_list__non_empty_lists :: proc(t
 }
 
 @(test)
+/// description = concatenate a list of lists -> empty list
 test_concatenate_a_list_of_lists__empty_list :: proc(t: ^testing.T) {
 
 	result := ls_concat([][]int{})
@@ -61,6 +66,7 @@ test_concatenate_a_list_of_lists__empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = concatenate a list of lists -> list of lists
 test_concatenate_a_list_of_lists__list_of_lists :: proc(t: ^testing.T) {
 
 	input := [][]int{[]int{1, 2}, []int{3}, []int{}, []int{4, 5, 6}}
@@ -71,6 +77,7 @@ test_concatenate_a_list_of_lists__list_of_lists :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = concatenate a list of lists -> list of nested lists
 test_concatenate_a_list_of_lists__list_of_nested_lists :: proc(t: ^testing.T) {
 
 	input := [][][]int {
@@ -87,6 +94,7 @@ test_concatenate_a_list_of_lists__list_of_nested_lists :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = filter list returning only values that satisfy the filter function -> empty list
 test_filter_list_returning_only_values_that_satisfy_the_filter_function__empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -99,6 +107,7 @@ test_filter_list_returning_only_values_that_satisfy_the_filter_function__empty_l
 }
 
 @(test)
+/// description = filter list returning only values that satisfy the filter function -> non-empty list
 test_filter_list_returning_only_values_that_satisfy_the_filter_function__non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -111,6 +120,7 @@ test_filter_list_returning_only_values_that_satisfy_the_filter_function__non_emp
 }
 
 @(test)
+/// description = returns the length of a list -> empty list
 test_returns_the_length_of_a_list__empty_list :: proc(t: ^testing.T) {
 
 	result := ls_length([]int{})
@@ -119,6 +129,7 @@ test_returns_the_length_of_a_list__empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = returns the length of a list -> non-empty list
 test_returns_the_length_of_a_list__non_empty_list :: proc(t: ^testing.T) {
 
 	result := ls_length([]int{1, 2, 3, 4})
@@ -127,6 +138,7 @@ test_returns_the_length_of_a_list__non_empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = return a list of elements whose values equal the list value transformed by the mapping function -> empty list
 test_return_a_list_of_elements_whose_values_equal_the_list_value_transformed_by_the_mapping_function__empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -139,6 +151,7 @@ test_return_a_list_of_elements_whose_values_equal_the_list_value_transformed_by_
 }
 
 @(test)
+/// description = return a list of elements whose values equal the list value transformed by the mapping function -> non-empty list
 test_return_a_list_of_elements_whose_values_equal_the_list_value_transformed_by_the_mapping_function__non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -151,6 +164,7 @@ test_return_a_list_of_elements_whose_values_equal_the_list_value_transformed_by_
 }
 
 @(test)
+/// description = folds (reduces) the given list from the left with a function -> empty list
 test_folds_reduces_the_given_list_from_the_left_with_a_function__empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -162,6 +176,7 @@ test_folds_reduces_the_given_list_from_the_left_with_a_function__empty_list :: p
 }
 
 @(test)
+/// description = folds (reduces) the given list from the left with a function -> direction independent function applied to non-empty list
 test_folds_reduces_the_given_list_from_the_left_with_a_function__direction_independent_function_applied_to_non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -173,6 +188,7 @@ test_folds_reduces_the_given_list_from_the_left_with_a_function__direction_indep
 }
 
 @(test)
+/// description = folds (reduces) the given list from the left with a function -> direction dependent function applied to non-empty list
 test_folds_reduces_the_given_list_from_the_left_with_a_function__direction_dependent_function_applied_to_non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -186,6 +202,7 @@ test_folds_reduces_the_given_list_from_the_left_with_a_function__direction_depen
 }
 
 @(test)
+/// description = folds (reduces) the given list from the right with a function -> empty list
 test_folds_reduces_the_given_list_from_the_right_with_a_function__empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -197,6 +214,7 @@ test_folds_reduces_the_given_list_from_the_right_with_a_function__empty_list :: 
 }
 
 @(test)
+/// description = folds (reduces) the given list from the right with a function -> direction independent function applied to non-empty list
 test_folds_reduces_the_given_list_from_the_right_with_a_function__direction_independent_function_applied_to_non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -208,6 +226,7 @@ test_folds_reduces_the_given_list_from_the_right_with_a_function__direction_inde
 }
 
 @(test)
+/// description = folds (reduces) the given list from the right with a function -> direction dependent function applied to non-empty list
 test_folds_reduces_the_given_list_from_the_right_with_a_function__direction_dependent_function_applied_to_non_empty_list :: proc(
 	t: ^testing.T,
 ) {
@@ -221,6 +240,7 @@ test_folds_reduces_the_given_list_from_the_right_with_a_function__direction_depe
 }
 
 @(test)
+/// description = reverse the elements of the list -> empty list
 test_reverse_the_elements_of_the_list__empty_list :: proc(t: ^testing.T) {
 
 	result := ls_reverse([]int{})
@@ -230,6 +250,7 @@ test_reverse_the_elements_of_the_list__empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = reverse the elements of the list -> non-empty list
 test_reverse_the_elements_of_the_list__non_empty_list :: proc(t: ^testing.T) {
 
 	result := ls_reverse([]int{1, 3, 5, 7})
@@ -239,6 +260,7 @@ test_reverse_the_elements_of_the_list__non_empty_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = reverse the elements of the list -> list of lists is not flattened
 test_reverse_the_elements_of_the_list__list_of_lists_is_not_flattened :: proc(t: ^testing.T) {
 
 	input := [][]int{[]int{1, 2}, []int{3}, []int{}, []int{4, 5, 6}}

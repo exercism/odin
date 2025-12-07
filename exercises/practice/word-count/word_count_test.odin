@@ -10,6 +10,7 @@ delete_map_and_key :: proc(m: map[string]$T) {
 }
 
 @(test)
+/// description = count one word
 test_count_one_word :: proc(t: ^testing.T) {
 	input := "word"
 	word_counts := count_word(input)
@@ -19,7 +20,8 @@ test_count_one_word :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_one_of_each_word :: proc(t: ^testing.T) {
+/// description = count one of each word
+test_count_one_of_each_word :: proc(t: ^testing.T) {
 	input := "one of each"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -30,6 +32,7 @@ test_one_of_each_word :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = multiple occurrences of a word
 test_multiple_occurrences_of_a_word :: proc(t: ^testing.T) {
 	input := "one fish two fish red fish blue fish"
 	word_counts := count_word(input)
@@ -43,7 +46,8 @@ test_multiple_occurrences_of_a_word :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_handle_cramped_list :: proc(t: ^testing.T) {
+/// description = handles cramped lists
+test_handles_cramped_lists :: proc(t: ^testing.T) {
 	input := "one,two,three"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -54,7 +58,8 @@ test_handle_cramped_list :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_handle_expanded_list :: proc(t: ^testing.T) {
+/// description = handles expanded lists
+test_handles_expanded_lists :: proc(t: ^testing.T) {
 	input := "one,\ntwo,\nthree"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -65,6 +70,7 @@ test_handle_expanded_list :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = ignore punctuation
 test_ignore_punctuation :: proc(t: ^testing.T) {
 	input := "car: carpet as java: javascript!!&@$%^&"
 	word_counts := count_word(input)
@@ -78,6 +84,7 @@ test_ignore_punctuation :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = include numbers
 test_include_numbers :: proc(t: ^testing.T) {
 	input := "testing, 1, 2 testing"
 	word_counts := count_word(input)
@@ -89,6 +96,7 @@ test_include_numbers :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = normalize case
 test_normalize_case :: proc(t: ^testing.T) {
 	input := "go Go GO Stop stop"
 	word_counts := count_word(input)
@@ -99,6 +107,7 @@ test_normalize_case :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = with apostrophes
 test_with_apostrophes :: proc(t: ^testing.T) {
 	input := "'First: don't laugh. Then: don't cry. You're getting it.'"
 	word_counts := count_word(input)
@@ -115,6 +124,7 @@ test_with_apostrophes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = with quotations
 test_with_quotations :: proc(t: ^testing.T) {
 	input := "Joe can't tell between 'large' and large."
 	word_counts := count_word(input)
@@ -129,7 +139,8 @@ test_with_quotations :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_substring_from_the_beginning :: proc(t: ^testing.T) {
+/// description = substrings from the beginning
+test_substrings_from_the_beginning :: proc(t: ^testing.T) {
 	input := "Joe can't tell between app, apple and a."
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -145,7 +156,8 @@ test_substring_from_the_beginning :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_multiple_spaces :: proc(t: ^testing.T) {
+/// description = multiple spaces not detected as a word
+test_multiple_spaces_not_detected_as_a_word :: proc(t: ^testing.T) {
 	input := " multiple   whitespaces"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -155,7 +167,8 @@ test_multiple_spaces :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_alternating_word_separators :: proc(t: ^testing.T) {
+/// description = alternating word separators not detected as a word
+test_alternating_word_separators_not_detected_as_a_word :: proc(t: ^testing.T) {
 	input := ",\n,one,\n ,two \n 'three'"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)
@@ -166,7 +179,8 @@ test_alternating_word_separators :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_quotation_for_word_with_apostrophes :: proc(t: ^testing.T) {
+/// description = quotation for word with apostrophe
+test_quotation_for_word_with_apostrophe :: proc(t: ^testing.T) {
 	input := "can, can't, 'can't'"
 	word_counts := count_word(input)
 	defer delete_map_and_key(word_counts)

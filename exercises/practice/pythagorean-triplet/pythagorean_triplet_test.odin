@@ -15,7 +15,8 @@ array_equal :: proc(a, b: []$T) -> bool {
 }
 
 @(test)
-test_triplets_sum_12 :: proc(t: ^testing.T) {
+/// description = triplets whose sum is 12
+test_triplets_whose_sum_is_12 :: proc(t: ^testing.T) {
 	expected: []Triplet = {{3, 4, 5}}
 	actual := triplets_with_sum(12)
 	defer delete(actual)
@@ -23,7 +24,8 @@ test_triplets_sum_12 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_sum_108 :: proc(t: ^testing.T) {
+/// description = triplets whose sum is 108
+test_triplets_whose_sum_is_108 :: proc(t: ^testing.T) {
 	expected: []Triplet = {{27, 36, 45}}
 	actual := triplets_with_sum(108)
 	defer delete(actual)
@@ -31,7 +33,8 @@ test_triplets_sum_108 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_sum_1000 :: proc(t: ^testing.T) {
+/// description = triplets whose sum is 1000
+test_triplets_whose_sum_is_1000 :: proc(t: ^testing.T) {
 	expected: []Triplet = {{200, 375, 425}}
 	actual := triplets_with_sum(1000)
 	defer delete(actual)
@@ -39,7 +42,8 @@ test_triplets_sum_1000 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_no_match_1001 :: proc(t: ^testing.T) {
+/// description = no matching triplets for 1001
+test_no_matching_triplets_for_1001 :: proc(t: ^testing.T) {
 	expected: []Triplet = {}
 	actual := triplets_with_sum(1001)
 	defer delete(actual)
@@ -47,7 +51,8 @@ test_triplets_no_match_1001 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_sum_90 :: proc(t: ^testing.T) {
+/// description = triplets whose sum is 90
+test_triplets_whose_sum_is_90 :: proc(t: ^testing.T) {
 	expected: []Triplet = {{9, 40, 41}, {15, 36, 39}}
 	actual := triplets_with_sum(90)
 	defer delete(actual)
@@ -55,7 +60,8 @@ test_triplets_sum_90 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_sum_840 :: proc(t: ^testing.T) {
+/// description = triplets whose sum is 840
+test_triplets_whose_sum_is_840 :: proc(t: ^testing.T) {
 	expected: []Triplet = {
 		{40, 399, 401},
 		{56, 390, 394},
@@ -72,7 +78,8 @@ test_triplets_sum_840 :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_triplets_large :: proc(t: ^testing.T) {
+/// description = triplets for large number
+test_triplets_for_large_number :: proc(t: ^testing.T) {
 	expected: []Triplet = {
 		{1200, 14375, 14425},
 		{1875, 14000, 14125},

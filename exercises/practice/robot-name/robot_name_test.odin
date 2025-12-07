@@ -13,7 +13,8 @@ name_valid :: proc(name: string) -> bool {
 }
 
 @(test)
-test_name_valid :: proc(t: ^testing.T) {
+/// description = Name is valid
+test_name_is_valid :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
 	r, e := new_robot(&storage)
@@ -22,6 +23,7 @@ test_name_valid :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Successive robots have different names
 test_successive_robots_have_different_names :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
@@ -33,6 +35,7 @@ test_successive_robots_have_different_names :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Reset name
 test_reset_name :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
@@ -45,6 +48,7 @@ test_reset_name :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Multiple names
 test_multiple_names :: proc(t: ^testing.T) {
 	n := 100
 	storage := make_storage()
@@ -103,7 +107,8 @@ dfs_fill_names :: proc(storage: ^Robot_Storage) {
 }
 
 @(test)
-test_collisions :: proc(t: ^testing.T) {
+/// description = No name collisions
+test_no_name_collisions :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
 	dfs_fill_names(&storage)
