@@ -21,6 +21,8 @@ open :: proc(self: ^Account) -> TransactionResult {
 		return .Account_Already_Open
 	}
 	self.is_open = true
+	sync.mutex_lock(&self.balance_mtx)
+	defer sync.mutex_unlock(&self.balance_mtx)
 	self.balance = 0
 	return .Success
 }
