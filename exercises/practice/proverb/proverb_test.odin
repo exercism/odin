@@ -21,6 +21,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 
 // ------------------------------------------------------------
 @(test)
+/// description = zero pieces
 test_zero_pieces :: proc(t: ^testing.T) {
 	expected := []string{}
 	input := []string{}
@@ -39,6 +40,7 @@ test_zero_pieces :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = one piece
 test_one_piece :: proc(t: ^testing.T) {
 	input := []string{"nail"}
 	expected := []string{"And all for the want of a nail."}
@@ -53,6 +55,7 @@ test_one_piece :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = two pieces
 test_two_pieces :: proc(t: ^testing.T) {
 	input := []string{"nail", "shoe"}
 	expected := []string {
@@ -70,6 +73,7 @@ test_two_pieces :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = three pieces
 test_three_pieces :: proc(t: ^testing.T) {
 	input := []string{"nail", "shoe", "horse"}
 	expected := []string {
@@ -88,6 +92,7 @@ test_three_pieces :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = full proverb
 test_full_proverb :: proc(t: ^testing.T) {
 	input := []string{"nail", "shoe", "horse", "rider", "message", "battle", "kingdom"}
 	expected := []string {
@@ -110,6 +115,7 @@ test_full_proverb :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = four pieces modernized
 test_four_pieces_modernized :: proc(t: ^testing.T) {
 	input := []string{"pin", "gun", "soldier", "battle"}
 	expected := []string {

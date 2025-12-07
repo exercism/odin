@@ -25,6 +25,7 @@ delete_array :: proc(a: [][]$T) {
 }
 
 @(test)
+/// description = zero rows
 test_zero_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {}
 	actual := rows(0)
@@ -33,6 +34,7 @@ test_zero_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = single row
 test_single_row :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}}
 	actual := rows(1)
@@ -41,6 +43,7 @@ test_single_row :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = two rows
 test_two_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}}
 	actual := rows(2)
@@ -49,6 +52,7 @@ test_two_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = three rows
 test_three_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}}
 	actual := rows(3)
@@ -57,6 +61,7 @@ test_three_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = four rows
 test_four_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}}
 	actual := rows(4)
@@ -65,6 +70,7 @@ test_four_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = five rows
 test_five_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}}
 	actual := rows(5)
@@ -73,6 +79,7 @@ test_five_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = six rows
 test_six_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {
 		{1},
@@ -88,6 +95,7 @@ test_six_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = ten rows
 test_ten_rows :: proc(t: ^testing.T) {
 	expected: [][]u128 = {
 		{1},
@@ -107,6 +115,7 @@ test_ten_rows :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = seventy five rows
 test_seventy_five_rows :: proc(t: ^testing.T) {
 	actual := rows(75)
 	defer delete_array(actual)

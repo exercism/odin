@@ -3,6 +3,7 @@ package knapsack
 import "core:testing"
 
 @(test)
+/// description = no items
 test_no_items :: proc(t: ^testing.T) {
 	result := maximum_value(100, nil)
 	expected: u32 = 0
@@ -10,6 +11,7 @@ test_no_items :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = one item, too heavy
 test_one_item_too_heavy :: proc(t: ^testing.T) {
 	items := [?]Item{{weight = 100, value = 1}}
 	result := maximum_value(10, items[:])
@@ -18,6 +20,7 @@ test_one_item_too_heavy :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = five items (cannot be greedy by weight)
 test_five_items_cannot_be_greedy_by_weight :: proc(t: ^testing.T) {
 	items := [?]Item {
 		{weight = 2, value = 5},
@@ -32,6 +35,7 @@ test_five_items_cannot_be_greedy_by_weight :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = five items (cannot be greedy by value)
 test_five_items_cannot_be_greedy_by_value :: proc(t: ^testing.T) {
 	items := [?]Item {
 		{weight = 2, value = 20},
@@ -46,6 +50,7 @@ test_five_items_cannot_be_greedy_by_value :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = example knapsack
 test_example_knapsack :: proc(t: ^testing.T) {
 	items := [?]Item {
 		{weight = 5, value = 10},
@@ -59,6 +64,7 @@ test_example_knapsack :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = 8 items
 test_8_items :: proc(t: ^testing.T) {
 	items := [?]Item {
 		{weight = 25, value = 350},
@@ -76,6 +82,7 @@ test_8_items :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = 15 items
 test_15_items :: proc(t: ^testing.T) {
 	items := [?]Item {
 		{weight = 70, value = 135},

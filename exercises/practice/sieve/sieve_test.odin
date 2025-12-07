@@ -20,6 +20,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 }
 
 @(test)
+/// description = no primes under two
 test_no_primes_under_two :: proc(t: ^testing.T) {
 	result := primes(1)
 	defer delete(result)
@@ -29,6 +30,7 @@ test_no_primes_under_two :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = find first prime
 test_find_first_prime :: proc(t: ^testing.T) {
 	result := primes(2)
 	defer delete(result)
@@ -38,6 +40,7 @@ test_find_first_prime :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = find primes up to 10
 test_find_primes_up_to_10 :: proc(t: ^testing.T) {
 	result := primes(10)
 	defer delete(result)
@@ -47,6 +50,7 @@ test_find_primes_up_to_10 :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = limit is prime
 test_limit_is_prime :: proc(t: ^testing.T) {
 	result := primes(13)
 	defer delete(result)
@@ -56,6 +60,7 @@ test_limit_is_prime :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = find primes up to 1000
 test_find_primes_up_to_1000 :: proc(t: ^testing.T) {
 	result := primes(1000)
 	defer delete(result)
