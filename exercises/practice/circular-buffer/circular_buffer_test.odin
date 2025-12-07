@@ -3,6 +3,7 @@ package circular_buffer
 import "core:testing"
 
 @(test)
+/// description = reading empty buffer should fail
 test_reading_empty_buffer_should_fail :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -13,6 +14,7 @@ test_reading_empty_buffer_should_fail :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = can read an item just written
 test_can_read_an_item_just_written :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -27,6 +29,7 @@ test_can_read_an_item_just_written :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = each item may only be read once
 test_each_item_may_only_be_read_once :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -44,6 +47,7 @@ test_each_item_may_only_be_read_once :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = items are read in the order they are written
 test_items_are_read_in_the_order_they_are_written :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(2)
@@ -65,6 +69,7 @@ test_items_are_read_in_the_order_they_are_written :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = full buffer can't be written to
 test_full_buffer_cant_be_written_to :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -78,6 +83,7 @@ test_full_buffer_cant_be_written_to :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = a read frees up capacity for another write
 test_a_read_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -99,6 +105,7 @@ test_a_read_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = read position is maintained even across multiple writes
 test_read_position_is_maintained_even_across_multiple_writes :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(3)
@@ -127,6 +134,7 @@ test_read_position_is_maintained_even_across_multiple_writes :: proc(t: ^testing
 }
 
 @(test)
+/// description = items cleared out of buffer can't be read
 test_items_cleared_out_of_buffer_cant_be_read :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -142,6 +150,7 @@ test_items_cleared_out_of_buffer_cant_be_read :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = clear frees up capacity for another write
 test_clear_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -161,6 +170,7 @@ test_clear_frees_up_capacity_for_another_write :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = clear does nothing on empty buffer
 test_clear_does_nothing_on_empty_buffer :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(1)
@@ -177,6 +187,7 @@ test_clear_does_nothing_on_empty_buffer :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = overwrite acts like write on non-full buffer
 test_overwrite_acts_like_write_on_non_full_buffer :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(2)
@@ -197,6 +208,7 @@ test_overwrite_acts_like_write_on_non_full_buffer :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = overwrite replaces the oldest item on full buffer
 test_overwrite_replaces_the_oldest_item_on_full_buffer :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(2)
@@ -220,6 +232,7 @@ test_overwrite_replaces_the_oldest_item_on_full_buffer :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = overwrite replaces the oldest item remaining in buffer following a read
 test_overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read :: proc(
 	t: ^testing.T,
 ) {
@@ -259,6 +272,7 @@ test_overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read :: 
 }
 
 @(test)
+/// description = initial clear does not affect wrapping around
 test_initial_clear_does_not_affect_wrapping_around :: proc(t: ^testing.T) {
 
 	buffer := new_buffer(2)

@@ -38,7 +38,8 @@ is_valid :: proc(chain: []Domino) -> bool {
 }
 
 @(test)
-test_empty_input :: proc(t: ^testing.T) {
+/// description = empty input = empty output
+test_empty_input_equals_empty_output :: proc(t: ^testing.T) {
 	dominoes := []Domino{}
 	result, ok := chain(dominoes)
 	defer delete(result)
@@ -54,7 +55,8 @@ test_empty_input :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_singleton_input :: proc(t: ^testing.T) {
+/// description = singleton input = singleton output
+test_singleton_input_equals_singleton_output :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 1}}
 	result, ok := chain(dominoes)
 	defer delete(result)
@@ -70,6 +72,7 @@ test_singleton_input :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = singleton that can't be chained
 test_singleton_that_cant_be_chained :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}}
 	result, ok := chain(dominoes)
@@ -78,6 +81,7 @@ test_singleton_that_cant_be_chained :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = three elements
 test_three_elements :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {3, 1}, {2, 3}}
 	result, ok := chain(dominoes)
@@ -94,6 +98,7 @@ test_three_elements :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = can reverse dominoes
 test_can_reverse_dominoes :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {1, 3}, {2, 3}}
 	result, ok := chain(dominoes)
@@ -110,6 +115,7 @@ test_can_reverse_dominoes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = can't be chained
 test_cant_be_chained :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {4, 1}, {2, 3}}
 	result, ok := chain(dominoes)
@@ -118,7 +124,8 @@ test_cant_be_chained :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_disconnected_simple :: proc(t: ^testing.T) {
+/// description = disconnected - simple
+test_disconnected___simple :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 1}, {2, 2}}
 	result, ok := chain(dominoes)
 	defer delete(result)
@@ -126,7 +133,8 @@ test_disconnected_simple :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_disconnected_double_loop :: proc(t: ^testing.T) {
+/// description = disconnected - double loop
+test_disconnected___double_loop :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {2, 1}, {3, 4}, {4, 3}}
 	result, ok := chain(dominoes)
 	defer delete(result)
@@ -134,7 +142,8 @@ test_disconnected_double_loop :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_disconnected_single_isolated :: proc(t: ^testing.T) {
+/// description = disconnected - single isolated
+test_disconnected___single_isolated :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {2, 3}, {3, 1}, {4, 4}}
 	result, ok := chain(dominoes)
 	defer delete(result)
@@ -142,6 +151,7 @@ test_disconnected_single_isolated :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = need backtrack
 test_need_backtrack :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {2, 3}, {3, 1}, {2, 4}, {2, 4}}
 	result, ok := chain(dominoes)
@@ -158,6 +168,7 @@ test_need_backtrack :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = separate loops
 test_separate_loops :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {2, 3}, {3, 1}, {1, 1}, {2, 2}, {3, 3}}
 	result, ok := chain(dominoes)
@@ -174,6 +185,7 @@ test_separate_loops :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = nine elements
 test_nine_elements :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {5, 3}, {3, 1}, {1, 2}, {2, 4}, {1, 6}, {2, 3}, {3, 4}, {5, 6}}
 	result, ok := chain(dominoes)
@@ -190,6 +202,7 @@ test_nine_elements :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = separate three-domino loops
 test_separate_three_domino_loops :: proc(t: ^testing.T) {
 	dominoes := []Domino{{1, 2}, {2, 3}, {3, 1}, {4, 5}, {5, 6}, {6, 4}}
 	result, ok := chain(dominoes)

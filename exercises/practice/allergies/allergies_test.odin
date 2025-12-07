@@ -6,6 +6,7 @@ import "core:testing"
 // Given an allergy score, determine if the person is allergic to a given allergen.
 
 @(test)
+/// description = testing for eggs allergy -> not allergic to anything
 test_testing_for_eggs_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Eggs)
 
@@ -13,6 +14,7 @@ test_testing_for_eggs_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for eggs allergy -> allergic only to eggs
 test_testing_for_eggs_allergy__allergic_only_to_eggs :: proc(t: ^testing.T) {
 	result := allergic_to(1, Allergen.Eggs)
 
@@ -20,6 +22,7 @@ test_testing_for_eggs_allergy__allergic_only_to_eggs :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for eggs allergy -> allergic to eggs and something else
 test_testing_for_eggs_allergy__allergic_to_eggs_and_something_else :: proc(t: ^testing.T) {
 	result := allergic_to(3, Allergen.Eggs)
 
@@ -27,6 +30,7 @@ test_testing_for_eggs_allergy__allergic_to_eggs_and_something_else :: proc(t: ^t
 }
 
 @(test)
+/// description = testing for eggs allergy -> allergic to something, but not eggs
 test_testing_for_eggs_allergy__allergic_to_something_but_not_eggs :: proc(t: ^testing.T) {
 	result := allergic_to(2, Allergen.Eggs)
 
@@ -34,6 +38,7 @@ test_testing_for_eggs_allergy__allergic_to_something_but_not_eggs :: proc(t: ^te
 }
 
 @(test)
+/// description = testing for eggs allergy -> allergic to everything
 test_testing_for_eggs_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Eggs)
 
@@ -41,6 +46,7 @@ test_testing_for_eggs_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for peanuts allergy -> not allergic to anything
 test_testing_for_peanuts_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Peanuts)
 
@@ -48,6 +54,7 @@ test_testing_for_peanuts_allergy__not_allergic_to_anything :: proc(t: ^testing.T
 }
 
 @(test)
+/// description = testing for peanuts allergy -> allergic only to peanuts
 test_testing_for_peanuts_allergy__allergic_only_to_peanuts :: proc(t: ^testing.T) {
 	result := allergic_to(2, Allergen.Peanuts)
 
@@ -55,6 +62,7 @@ test_testing_for_peanuts_allergy__allergic_only_to_peanuts :: proc(t: ^testing.T
 }
 
 @(test)
+/// description = testing for peanuts allergy -> allergic to peanuts and something else
 test_testing_for_peanuts_allergy__allergic_to_peanuts_and_something_else :: proc(t: ^testing.T) {
 	result := allergic_to(7, Allergen.Peanuts)
 
@@ -62,6 +70,7 @@ test_testing_for_peanuts_allergy__allergic_to_peanuts_and_something_else :: proc
 }
 
 @(test)
+/// description = testing for peanuts allergy -> allergic to something, but not peanuts
 test_testing_for_peanuts_allergy__allergic_to_something_but_not_peanuts :: proc(t: ^testing.T) {
 	result := allergic_to(5, Allergen.Peanuts)
 
@@ -69,6 +78,7 @@ test_testing_for_peanuts_allergy__allergic_to_something_but_not_peanuts :: proc(
 }
 
 @(test)
+/// description = testing for peanuts allergy -> allergic to everything
 test_testing_for_peanuts_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Peanuts)
 
@@ -76,6 +86,7 @@ test_testing_for_peanuts_allergy__allergic_to_everything :: proc(t: ^testing.T) 
 }
 
 @(test)
+/// description = testing for shellfish allergy -> not allergic to anything
 test_testing_for_shellfish_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Shellfish)
 
@@ -83,6 +94,7 @@ test_testing_for_shellfish_allergy__not_allergic_to_anything :: proc(t: ^testing
 }
 
 @(test)
+/// description = testing for shellfish allergy -> allergic only to shellfish
 test_testing_for_shellfish_allergy__allergic_only_to_shellfish :: proc(t: ^testing.T) {
 	result := allergic_to(4, Allergen.Shellfish)
 
@@ -90,6 +102,7 @@ test_testing_for_shellfish_allergy__allergic_only_to_shellfish :: proc(t: ^testi
 }
 
 @(test)
+/// description = testing for shellfish allergy -> allergic to shellfish and something else
 test_testing_for_shellfish_allergy__allergic_to_shellfish_and_something_else :: proc(
 	t: ^testing.T,
 ) {
@@ -99,6 +112,7 @@ test_testing_for_shellfish_allergy__allergic_to_shellfish_and_something_else :: 
 }
 
 @(test)
+/// description = testing for shellfish allergy -> allergic to something, but not shellfish
 test_testing_for_shellfish_allergy__allergic_to_something_but_not_shellfish :: proc(
 	t: ^testing.T,
 ) {
@@ -108,6 +122,7 @@ test_testing_for_shellfish_allergy__allergic_to_something_but_not_shellfish :: p
 }
 
 @(test)
+/// description = testing for shellfish allergy -> allergic to everything
 test_testing_for_shellfish_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Shellfish)
 
@@ -115,6 +130,7 @@ test_testing_for_shellfish_allergy__allergic_to_everything :: proc(t: ^testing.T
 }
 
 @(test)
+/// description = testing for strawberries allergy -> not allergic to anything
 test_testing_for_strawberries_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Strawberries)
 
@@ -122,6 +138,7 @@ test_testing_for_strawberries_allergy__not_allergic_to_anything :: proc(t: ^test
 }
 
 @(test)
+/// description = testing for strawberries allergy -> allergic only to strawberries
 test_testing_for_strawberries_allergy__allergic_only_to_strawberries :: proc(t: ^testing.T) {
 	result := allergic_to(8, Allergen.Strawberries)
 
@@ -129,6 +146,7 @@ test_testing_for_strawberries_allergy__allergic_only_to_strawberries :: proc(t: 
 }
 
 @(test)
+/// description = testing for strawberries allergy -> allergic to strawberries and something else
 test_testing_for_strawberries_allergy__allergic_to_strawberries_and_something_else :: proc(
 	t: ^testing.T,
 ) {
@@ -138,6 +156,7 @@ test_testing_for_strawberries_allergy__allergic_to_strawberries_and_something_el
 }
 
 @(test)
+/// description = testing for strawberries allergy -> allergic to something, but not strawberries
 test_testing_for_strawberries_allergy__allergic_to_something_but_not_strawberries :: proc(
 	t: ^testing.T,
 ) {
@@ -147,6 +166,7 @@ test_testing_for_strawberries_allergy__allergic_to_something_but_not_strawberrie
 }
 
 @(test)
+/// description = testing for strawberries allergy -> allergic to everything
 test_testing_for_strawberries_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Strawberries)
 
@@ -154,6 +174,7 @@ test_testing_for_strawberries_allergy__allergic_to_everything :: proc(t: ^testin
 }
 
 @(test)
+/// description = testing for tomatoes allergy -> not allergic to anything
 test_testing_for_tomatoes_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Tomatoes)
 
@@ -161,6 +182,7 @@ test_testing_for_tomatoes_allergy__not_allergic_to_anything :: proc(t: ^testing.
 }
 
 @(test)
+/// description = testing for tomatoes allergy -> allergic only to tomatoes
 test_testing_for_tomatoes_allergy__allergic_only_to_tomatoes :: proc(t: ^testing.T) {
 	result := allergic_to(16, Allergen.Tomatoes)
 
@@ -168,6 +190,7 @@ test_testing_for_tomatoes_allergy__allergic_only_to_tomatoes :: proc(t: ^testing
 }
 
 @(test)
+/// description = testing for tomatoes allergy -> allergic to tomatoes and something else
 test_testing_for_tomatoes_allergy__allergic_to_tomatoes_and_something_else :: proc(t: ^testing.T) {
 	result := allergic_to(56, Allergen.Tomatoes)
 
@@ -175,6 +198,7 @@ test_testing_for_tomatoes_allergy__allergic_to_tomatoes_and_something_else :: pr
 }
 
 @(test)
+/// description = testing for tomatoes allergy -> allergic to something, but not tomatoes
 test_testing_for_tomatoes_allergy__allergic_to_something_but_not_tomatoes :: proc(t: ^testing.T) {
 	result := allergic_to(40, Allergen.Tomatoes)
 
@@ -182,6 +206,7 @@ test_testing_for_tomatoes_allergy__allergic_to_something_but_not_tomatoes :: pro
 }
 
 @(test)
+/// description = testing for tomatoes allergy -> allergic to everything
 test_testing_for_tomatoes_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Tomatoes)
 
@@ -189,6 +214,7 @@ test_testing_for_tomatoes_allergy__allergic_to_everything :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = testing for chocolate allergy -> not allergic to anything
 test_testing_for_chocolate_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Chocolate)
 
@@ -196,6 +222,7 @@ test_testing_for_chocolate_allergy__not_allergic_to_anything :: proc(t: ^testing
 }
 
 @(test)
+/// description = testing for chocolate allergy -> allergic only to chocolate
 test_testing_for_chocolate_allergy__allergic_only_to_chocolate :: proc(t: ^testing.T) {
 	result := allergic_to(32, Allergen.Chocolate)
 
@@ -203,6 +230,7 @@ test_testing_for_chocolate_allergy__allergic_only_to_chocolate :: proc(t: ^testi
 }
 
 @(test)
+/// description = testing for chocolate allergy -> allergic to chocolate and something else
 test_testing_for_chocolate_allergy__allergic_to_chocolate_and_something_else :: proc(
 	t: ^testing.T,
 ) {
@@ -212,6 +240,7 @@ test_testing_for_chocolate_allergy__allergic_to_chocolate_and_something_else :: 
 }
 
 @(test)
+/// description = testing for chocolate allergy -> allergic to something, but not chocolate
 test_testing_for_chocolate_allergy__allergic_to_something_but_not_chocolate :: proc(
 	t: ^testing.T,
 ) {
@@ -221,6 +250,7 @@ test_testing_for_chocolate_allergy__allergic_to_something_but_not_chocolate :: p
 }
 
 @(test)
+/// description = testing for chocolate allergy -> allergic to everything
 test_testing_for_chocolate_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Chocolate)
 
@@ -228,6 +258,7 @@ test_testing_for_chocolate_allergy__allergic_to_everything :: proc(t: ^testing.T
 }
 
 @(test)
+/// description = testing for pollen allergy -> not allergic to anything
 test_testing_for_pollen_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Pollen)
 
@@ -235,6 +266,7 @@ test_testing_for_pollen_allergy__not_allergic_to_anything :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = testing for pollen allergy -> allergic only to pollen
 test_testing_for_pollen_allergy__allergic_only_to_pollen :: proc(t: ^testing.T) {
 	result := allergic_to(64, Allergen.Pollen)
 
@@ -242,6 +274,7 @@ test_testing_for_pollen_allergy__allergic_only_to_pollen :: proc(t: ^testing.T) 
 }
 
 @(test)
+/// description = testing for pollen allergy -> allergic to pollen and something else
 test_testing_for_pollen_allergy__allergic_to_pollen_and_something_else :: proc(t: ^testing.T) {
 	result := allergic_to(224, Allergen.Pollen)
 
@@ -249,6 +282,7 @@ test_testing_for_pollen_allergy__allergic_to_pollen_and_something_else :: proc(t
 }
 
 @(test)
+/// description = testing for pollen allergy -> allergic to something, but not pollen
 test_testing_for_pollen_allergy__allergic_to_something_but_not_pollen :: proc(t: ^testing.T) {
 	result := allergic_to(160, Allergen.Pollen)
 
@@ -256,6 +290,7 @@ test_testing_for_pollen_allergy__allergic_to_something_but_not_pollen :: proc(t:
 }
 
 @(test)
+/// description = testing for pollen allergy -> allergic to everything
 test_testing_for_pollen_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Pollen)
 
@@ -263,6 +298,7 @@ test_testing_for_pollen_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for cats allergy -> not allergic to anything
 test_testing_for_cats_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 	result := allergic_to(0, Allergen.Cats)
 
@@ -270,6 +306,7 @@ test_testing_for_cats_allergy__not_allergic_to_anything :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for cats allergy -> allergic only to cats
 test_testing_for_cats_allergy__allergic_only_to_cats :: proc(t: ^testing.T) {
 	result := allergic_to(128, Allergen.Cats)
 
@@ -277,6 +314,7 @@ test_testing_for_cats_allergy__allergic_only_to_cats :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = testing for cats allergy -> allergic to cats and something else
 test_testing_for_cats_allergy__allergic_to_cats_and_something_else :: proc(t: ^testing.T) {
 	result := allergic_to(192, Allergen.Cats)
 
@@ -284,6 +322,7 @@ test_testing_for_cats_allergy__allergic_to_cats_and_something_else :: proc(t: ^t
 }
 
 @(test)
+/// description = testing for cats allergy -> allergic to something, but not cats
 test_testing_for_cats_allergy__allergic_to_something_but_not_cats :: proc(t: ^testing.T) {
 	result := allergic_to(64, Allergen.Cats)
 
@@ -291,6 +330,7 @@ test_testing_for_cats_allergy__allergic_to_something_but_not_cats :: proc(t: ^te
 }
 
 @(test)
+/// description = testing for cats allergy -> allergic to everything
 test_testing_for_cats_allergy__allergic_to_everything :: proc(t: ^testing.T) {
 	result := allergic_to(255, Allergen.Cats)
 
@@ -311,6 +351,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 }
 
 @(test)
+/// description = list when: -> no allergies
 test_list_when__no_allergies :: proc(t: ^testing.T) {
 	result := list(0)
 	defer delete(result)
@@ -320,6 +361,7 @@ test_list_when__no_allergies :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> just eggs
 test_list_when__just_eggs :: proc(t: ^testing.T) {
 	result := list(1)
 	defer delete(result)
@@ -329,6 +371,7 @@ test_list_when__just_eggs :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> just peanuts
 test_list_when__just_peanuts :: proc(t: ^testing.T) {
 	result := list(2)
 	defer delete(result)
@@ -338,6 +381,7 @@ test_list_when__just_peanuts :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> just strawberries
 test_list_when__just_strawberries :: proc(t: ^testing.T) {
 	result := list(8)
 	defer delete(result)
@@ -347,6 +391,7 @@ test_list_when__just_strawberries :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> eggs and peanuts
 test_list_when__eggs_and_peanuts :: proc(t: ^testing.T) {
 	result := list(3)
 	defer delete(result)
@@ -356,6 +401,7 @@ test_list_when__eggs_and_peanuts :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> more than eggs but not peanuts
 test_list_when__more_than_eggs_but_not_peanuts :: proc(t: ^testing.T) {
 	result := list(5)
 	defer delete(result)
@@ -365,6 +411,7 @@ test_list_when__more_than_eggs_but_not_peanuts :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> lots of stuff
 test_list_when__lots_of_stuff :: proc(t: ^testing.T) {
 	result := list(248)
 	defer delete(result)
@@ -374,6 +421,7 @@ test_list_when__lots_of_stuff :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> everything
 test_list_when__everything :: proc(t: ^testing.T) {
 	result := list(255)
 	defer delete(result)
@@ -392,6 +440,7 @@ test_list_when__everything :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> no allergen score parts
 test_list_when__no_allergen_score_parts :: proc(t: ^testing.T) {
 	result := list(509)
 	defer delete(result)
@@ -401,6 +450,7 @@ test_list_when__no_allergen_score_parts :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = list when: -> no allergen score parts without highest valid score
 test_list_when__no_allergen_score_parts_without_highest_valid_score :: proc(t: ^testing.T) {
 	result := list(257)
 	defer delete(result)
