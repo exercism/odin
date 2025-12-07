@@ -133,7 +133,7 @@ if [[ "$extype" == "practice" ]]; then
       # superceded cases.
       canonical_data=$(
           jq '
-            def concat($a; $b): if $a == "" then $b else $a + "__" + $b end ;
+            def concat($a; $b): if $a == "" then $b else $a + " -> " + $b end ;
 
             def test_cases($description):
                 if has("cases") then
@@ -225,7 +225,8 @@ if [[ "$extype" == "practice" ]]; then
 
   for ((i=0; i < canonical_data_length; i++)); do
     case=$( jq -c ".cases.[$i]" <<< "${canonical_data}" )
-    description=$(echo "$case" | jq -r '.description // ""' | to_snake_case)
+    english_desc=$(echo "$case" | jq -r '.description // ""')
+    snake_desc=$(echo "$case" | jq -r '.description // ""' | to_snake_case)
     property=$(echo "$case" | jq -r '.property // ""' | to_snake_case)
     input=$(echo "$case" | jq -c '.input // ""')
     expected=$(echo "$case" | jq -c '.expected // ""')
@@ -234,7 +235,8 @@ if [[ "$extype" == "practice" ]]; then
     cat >> "${test_file}" <<EOL
 
 @(test)
-test_${description} :: proc(t: ^testing.T) {
+/// description = ${english_desc}
+test_${snake_desc} :: proc(t: ^testing.T) {
     input := \`${input}\`
     result := ${property}(input)
     expected := ${expected}
