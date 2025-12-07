@@ -12,22 +12,24 @@ TransactionResult :: enum {
 
 Account :: struct {
 	balance:     u32,
-	balance_mtx: sync.Mutex,
+	account_mtx: sync.Mutex,
 	is_open:     bool,
 }
 
 open :: proc(self: ^Account) -> TransactionResult {
+	sync.mutex_lock(&self.account_mtx)
+	defer sync.mutex_unlock(&self.account_mtx)
 	if self.is_open {
 		return .Account_Already_Open
 	}
 	self.is_open = true
-	sync.mutex_lock(&self.balance_mtx)
-	defer sync.mutex_unlock(&self.balance_mtx)
 	self.balance = 0
 	return .Success
 }
 
 close :: proc(self: ^Account) -> TransactionResult {
+	sync.mutex_lock(&self.account_mtx)
+	defer sync.mutex_unlock(&self.account_mtx)
 	if !self.is_open {
 		return .Account_Not_Open
 	}
@@ -36,36 +38,36 @@ close :: proc(self: ^Account) -> TransactionResult {
 }
 
 read_balance :: proc(self: ^Account) -> (u32, TransactionResult) {
+	sync.mutex_lock(&self.account_mtx)
+	defer sync.mutex_unlock(&self.account_mtx)
 	if !self.is_open {
 		return 0, .Account_Not_Open
 	}
-	sync.mutex_lock(&self.balance_mtx)
-	defer sync.mutex_unlock(&self.balance_mtx)
 	return self.balance, .Success
 }
 
 deposit :: proc(self: ^Account, amount: u32) -> TransactionResult {
-	if !self.is_open {
-		return .Account_Not_Open
-	}
 	if amount == 0 {
 		return .Invalid_Amount
 	}
-	sync.mutex_lock(&self.balance_mtx)
-	defer sync.mutex_unlock(&self.balance_mtx)
+	sync.mutex_lock(&self.account_mtx)
+	defer sync.mutex_unlock(&self.account_mtx)
+	if !self.is_open {
+		return .Account_Not_Open
+	}
 	self.balance += amount
 	return .Success
 }
 
 withdraw :: proc(self: ^Account, amount: u32) -> TransactionResult {
-	if !self.is_open {
-		return .Account_Not_Open
-	}
 	if amount == 0 {
 		return .Invalid_Amount
 	}
-	sync.mutex_lock(&self.balance_mtx)
-	defer sync.mutex_unlock(&self.balance_mtx)
+	sync.mutex_lock(&self.account_mtx)
+	defer sync.mutex_unlock(&self.account_mtx)
+	if !self.is_open {
+		return .Account_Not_Open
+	}
 	if self.balance >= amount {
 		self.balance -= amount
 		return .Success
