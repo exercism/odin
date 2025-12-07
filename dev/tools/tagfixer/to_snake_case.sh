@@ -4,6 +4,7 @@ to_snake_case() {
     sed -E '
         s/[ -]/_/g
         s/([[:lower:][:digit:]])([[:upper:]])/\1_\2/g
+        s/ = /_equals_/g
         s/[^[:alnum:]_]//g
     ' | tr '[:upper:]' '[:lower:]'
 }
