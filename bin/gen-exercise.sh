@@ -15,6 +15,7 @@ to_snake_case() {
     sed -E '
         s/[ -]/_/g
         s/([[:lower:][:digit:]])([[:upper:]])/\1_\2/g
+        s/=/_equals_/g
         s/[^[:alnum:]_]//g
     ' | tr '[:upper:]' '[:lower:]'
 }
@@ -68,7 +69,7 @@ EOL
 }
 
 extype=practice
-while getopts :hpca:d: opt; do
+while getopts :hpca:d:b: opt; do
     case $opt in
         h) show_help; exit ;;
         p) extype=practice ;;
@@ -111,7 +112,7 @@ if [[ "$extype" == "concept" && -z "$blurb"  ]]; then
   read -rp 'What is the exercise blurb? ' blurb
 fi
 
-echo "Generating scaffolding for ${type} exercise: ${exercise_name}"
+echo "Generating scaffolding for ${extype} exercise: ${exercise_name}"
 
 bin/fetch-configlet
 if [[ "$extype" == "practice" ]]; then
@@ -119,7 +120,7 @@ if [[ "$extype" == "practice" ]]; then
 elif [[ "$extype" == "concept"  ]]; then
   bin/configlet create --concept-exercise "${exercise_name}" --author "$author"
 else
-  die "Invalid exercise type: ${type}"
+  die "Invalid exercise type: ${extype}"
 fi
 
 # Concept exercises don't have canonical data

@@ -41,7 +41,7 @@ main :: proc() {
 	// We can read the tests metadata from the `canonical-data.json`` or the `tests.toml`` file.
 	// We don't need both methods for now but, since we have the code, let's allow both methods
 	// in case there are additional informations needed later.
-	read_metadata: proc(path: string) -> (Snake_English_Map, Error)
+	read_metadata: proc(path: string) -> (Snake_English_Map, bool, Error)
 	switch {
 	case strings.ends_with(metadata_path, ".json"):
 		read_metadata = read_canonical_data
@@ -51,7 +51,7 @@ main :: proc() {
 		fmt.eprintf("Expected metadata to be a .json or a .toml file but got%s\n", metadata_path)
 		os.exit(1)
 	}
-	snk_to_eng, err := read_metadata(metadata_path)
+	snk_to_eng, must_cap, err := read_metadata(metadata_path)
 	switch err in err {
 	case string:
 		fmt.eprintln(err)
@@ -63,7 +63,7 @@ main :: proc() {
 		fmt.eprintf("Unable to open output file %s\n", output_path)
 		os.exit(1)
 	}
-	report := add_descriptions_to_tests(string(test_src), snk_to_eng, outfile)
+	report := add_descriptions_to_tests(string(test_src), snk_to_eng, must_cap, outfile)
 
 	// Report which tests were found in canonical data or were present (report[test] == true)
 	// and for which tests we had to make up a name (report[test] == false).
@@ -114,6 +114,7 @@ Report :: struct {
 add_descriptions_to_tests :: proc(
 	test_src: string,
 	snk_to_eng: Snake_English_Map,
+	must_cap: bool,
 	out: os.Handle,
 ) -> []Report {
 
@@ -202,8 +203,9 @@ add_descriptions_to_tests :: proc(
 				fmt.fprintln(out, desc_line)
 			} else {
 				desc_eng, ok := snk_to_eng[proc_name]
+				//fmt.printf(">>search>>/%s/%s/\n", proc_name, desc_eng)
 				if !ok {
-					desc_eng = rebuild_english(proc_name)
+					desc_eng = rebuild_english(proc_name, must_cap)
 					append(
 						&report,
 						Report{proc_name = proc_name, eng_name = desc_eng, source = .Rebuilt},
@@ -237,10 +239,12 @@ to_snake_case :: proc(english: string) -> string {
 	// to test to see if it is compatible with the bash version.
 
 	// Nested case descriptions are separated by " -> ", let fix this first.
-	nst_english, _ := strings.replace_all(english, " -> ", "__")
+	mod_english, _ := strings.replace_all(english, " -> ", "__")
+	// Special cases
+	mod_english, _ = strings.replace_all(mod_english, " = ", "_equals_")
 	buf := strings.builder_make()
 	prev: rune
-	for char in nst_english {
+	for char in mod_english {
 		switch {
 		case 'A' <= char && char <= 'Z':
 			if '0' <= prev && prev <= '9' || 'a' <= prev && prev <= 'z' {
@@ -265,7 +269,7 @@ to_snake_case :: proc(english: string) -> string {
 	return snake_case
 }
 
-rebuild_english :: proc(snake: string) -> string {
+rebuild_english :: proc(snake: string, cap: bool) -> string {
 
 	if len(snake) == 0 { return "" }
 	if len(snake) == 1 { return strings.to_upper(snake) }
@@ -282,7 +286,7 @@ rebuild_english :: proc(snake: string) -> string {
 	first := true
 	for snk_level in strings.split(snake_no_test, "__") {
 		lc_eng_level, _ := strings.replace_all(snk_level, "_", " ")
-		english_level := capitalize(lc_eng_level)
+		english_level := capitalize(lc_eng_level) if cap else lc_eng_level
 		if first {
 			first = false
 		} else {
@@ -317,7 +321,7 @@ add_prefix :: proc(s: string, prefix: string) -> string {
 	return strings.concatenate([]string{prefix, s})
 }
 
-read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
+read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, bool, Error) {
 
 	TomlData :: struct {
 		uuid:         string,
@@ -331,7 +335,7 @@ read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
 	// data later.
 	tdata, tdata_ok := os.read_entire_file_from_filename(tests_toml_path)
 	if !tdata_ok {
-		return nil, fmt.aprintf("Unable to open file %s\n", tests_toml_path)
+		return nil, false, fmt.aprintf("Unable to open file %s\n", tests_toml_path)
 	}
 
 	uuid_re, re_err := regex.create(`\[([a-f0-9]+-[a-f0-9]+-[a-f0-9]+-[a-f0-9]+-[a-f0-9]+)\]`)
@@ -341,6 +345,7 @@ read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
 	in_entry: bool
 	entry := TomlData{}
 
+	must_cap := true
 	lineno := 0
 	for line in strings.split(string(tdata), "\n") {
 		lineno += 1
@@ -353,6 +358,9 @@ read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
 			case strings.starts_with(line, "description = "):
 				desc, _ := strings.substring(line, 15, len(line) - 1)
 				entry.desc = desc
+				if 'a' <= desc[0] && desc[0] <= 'z' {
+					must_cap = false
+				}
 			case strings.starts_with(line, "include = "):
 				include_as_str, _ := strings.substring(line, 10, len(line))
 				switch include_as_str {
@@ -361,7 +369,7 @@ read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
 				case "false":
 					entry.not_include = true
 				case:
-					return nil, fmt.aprintf(
+					return nil, false, fmt.aprintf(
 						"Invalid value for include '%s' on line %d",
 						include_as_str,
 						lineno,
@@ -392,41 +400,50 @@ read_toml_data :: proc(tests_toml_path: string) -> (Snake_English_Map, Error) {
 		}
 	}
 
-	return snk_to_eng, nil
+	return snk_to_eng, must_cap, nil
 }
 
-read_canonical_data :: proc(cdata_path: string) -> (Snake_English_Map, Error) {
+read_canonical_data :: proc(cdata_path: string) -> (Snake_English_Map, bool, Error) {
 
 	// Read the JSON data out of the canonical data file.
 	cdata, cdata_ok := os.read_entire_file_from_filename(cdata_path)
 	if !cdata_ok {
-		return nil, fmt.aprintf("Unable to open canonical data file %s\n", cdata_path)
+		return nil, false, fmt.aprintf("Unable to open canonical data file %s\n", cdata_path)
 	}
 
 	json_data, json_err := json.parse(cdata)
 	if json_err != .None {
-		return nil, fmt.aprintf("Failed to parse the canonical data as json: %v\n", json_err)
+		return nil, false, fmt.aprintf(
+			"Failed to parse the canonical data as json: %v\n",
+			json_err,
+		)
 	}
 
 	// Populate the Snake to English map.
 	snk_to_eng: Snake_English_Map
 	root_object := json_data.(json.Object)
 	cases_array := root_object["cases"].(json.Array)
-	populate_test_from_cdata(cases_array, "", "", &snk_to_eng)
+	must_cap := populate_test_from_json_data(cases_array, "", "", &snk_to_eng)
 
-	return snk_to_eng, nil
+	return snk_to_eng, must_cap, nil
 }
 
-populate_test_from_cdata :: proc(
+populate_test_from_json_data :: proc(
 	cases: json.Array,
 	prefix_eng: string,
 	prefix_snk: string,
 	snk_to_eng: ^Snake_English_Map,
-) {
+) -> bool {
 
+	// If any of the descriptions start with a lowercase, then we will not mark the metadata
+	// as "must be capitalize". We only test this for the first layer.
+	must_cap := true
 	for test in cases {
 		test_object := test.(json.Object)
 		test_desc_eng := test_object["description"].(string)
+		if 'a' <= test_desc_eng[0] && test_desc_eng[0] <= 'z' {
+			must_cap = false
+		}
 		test_desc_snk := to_snake_case(test_desc_eng)
 		ext_desc_eng :=
 			test_desc_eng if prefix_eng == "" else strings.join({prefix_eng, test_desc_eng}, " -> ")
@@ -436,9 +453,12 @@ populate_test_from_cdata :: proc(
 		//fmt.printf(">>>/%s/%s/\n", ext_desc_snk, ext_desc_eng)
 		if test_object["cases"] != nil {
 			sub_cases_array := test_object["cases"].(json.Array)
-			populate_test_from_cdata(sub_cases_array, ext_desc_eng, ext_desc_snk, snk_to_eng)
+			// Ignore the return parameter, we are only interested in knowing if the first
+			// level uses all capitalized words.
+			populate_test_from_json_data(sub_cases_array, ext_desc_eng, ext_desc_snk, snk_to_eng)
 		}
 	}
+	return must_cap
 }
 
 /*

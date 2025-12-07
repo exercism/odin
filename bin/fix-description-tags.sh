@@ -101,3 +101,16 @@ mv "$out_file.tr" "$out_file"
 echo ""
 echo "Updated tags written to  :  $out_file"
 echo "Check result and move to :  $test_file"
+
+# Making it easy for developers on Mac.
+if [[ $OSTYPE = darwin* && -x "/usr/bin/opendiff" ]]; then
+    echo "Opening files in opendiff for you ..."
+    /usr/bin/opendiff "$test_file" "$out_file"
+fi
+
+# REMOVE before merging
+read -rp 'Stash for Pull Request? (yes/no) ' stash_yn
+if [[ $stash_yn == yes ]]; then
+  mv "$out_file" "temp/${exercise_snake_name}_test.odin"
+  echo "moving $out_file to temp"
+fi

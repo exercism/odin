@@ -33,7 +33,7 @@ test_snake_case__special_chars :: proc(t: ^testing.T) {
 @(test)
 test_snake_case__real_example :: proc(t: ^testing.T) {
 
-	result := to_snake_case("Arithmetic: Addition: Add two positive rational numbers")
+	result := to_snake_case("Arithmetic -> Addition -> Add two positive rational numbers")
 	testing.expect_value(t, result, "arithmetic__addition__add_two_positive_rational_numbers")
 }
 
@@ -52,31 +52,38 @@ test_snake_case__empty_string :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_rebuild_english__plain_text :: proc(t: ^testing.T) {
+test_rebuild_english__plain_text_must_cap :: proc(t: ^testing.T) {
 
-	result := rebuild_english("a_beautiful_world")
+	result := rebuild_english("a_beautiful_world", true)
 	testing.expect_value(t, result, "A beautiful world")
+}
+
+@(test)
+test_rebuild_english__plain_text_not_must_cap :: proc(t: ^testing.T) {
+
+	result := rebuild_english("a_beautiful_world", false)
+	testing.expect_value(t, result, "a beautiful world")
 }
 
 @(test)
 test_rebuild_english__empty_string :: proc(t: ^testing.T) {
 
-	result := rebuild_english("")
+	result := rebuild_english("", false)
 	testing.expect_value(t, result, "")
 }
 
 @(test)
 test_rebuild_english__one_letter_string :: proc(t: ^testing.T) {
 
-	result := rebuild_english("a")
+	result := rebuild_english("a", true)
 	testing.expect_value(t, result, "A")
 }
 
 @(test)
 test_rebuild_english__real_example :: proc(t: ^testing.T) {
 
-	result := rebuild_english("arithmetic__addition__add_two_positive_rational_numbers")
-	testing.expect_value(t, result, "Arithmetic: Addition: Add two positive rational numbers")
+	result := rebuild_english("arithmetic__addition__add_two_positive_rational_numbers", true)
+	testing.expect_value(t, result, "Arithmetic -> Addition -> Add two positive rational numbers")
 }
 
 @(test)
