@@ -255,6 +255,14 @@
         "difficulty": 5
       },
       {
+        "slug": "binary-search",
+        "name": "Binary Search",
+        "uuid": "2f78a54b-08ca-407a-a5e3-f0f8afb66c94",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "book-store",
         "name": "Book Store",
         "uuid": "590c6355-dbb4-44a0-a2d7-98490055c7e9",
