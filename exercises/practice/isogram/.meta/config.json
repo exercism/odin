@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "hucancode"
+  ],
+  "files": {
+    "solution": [
+      "isogram.odin"
+    ],
+    "test": [
+      "isogram_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Determine if a word or phrase is an isogram.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Isogram"
+}
