@@ -9,3 +9,4 @@ bin/ols.exe
 tmp.*
 .vscode/
 **/out/
+dev/tools/tagfixer/example/updated_rational_numbers_test.odin

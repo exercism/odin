@@ -4,7 +4,7 @@ import "core:math"
 import "core:testing"
 
 @(test)
-/// description = Arithmetic: Addition: Add two positive rational numbers
+/// description = Arithmetic -> Addition -> Add two positive rational numbers
 test_arithmetic__addition__add_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
@@ -16,7 +16,7 @@ test_arithmetic__addition__add_two_positive_rational_numbers :: proc(t: ^testing
 }
 
 @(test)
-/// description = Arithmetic: Addition: Add a positive rational number and a negative rational number
+/// description = Arithmetic -> Addition -> Add a positive rational number and a negative rational number
 test_arithmetic__addition__add_a_positive_rational_number_and_a_negative_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -30,7 +30,7 @@ test_arithmetic__addition__add_a_positive_rational_number_and_a_negative_rationa
 }
 
 @(test)
-/// description = Arithmetic: Addition: Add two negative rational numbers
+/// description = Arithmetic -> Addition -> Add two negative rational numbers
 test_arithmetic__addition__add_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
@@ -42,7 +42,7 @@ test_arithmetic__addition__add_two_negative_rational_numbers :: proc(t: ^testing
 }
 
 @(test)
-/// description = Arithmetic: Addition: Add a rational number to its additive inverse
+/// description = Arithmetic -> Addition -> Add a rational number to its additive inverse
 test_arithmetic__addition__add_a_rational_number_to_its_additive_inverse :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{-1, 2}
@@ -54,7 +54,7 @@ test_arithmetic__addition__add_a_rational_number_to_its_additive_inverse :: proc
 }
 
 @(test)
-/// description = Arithmetic: Subtraction: Subtract two positive rational numbers
+/// description = Arithmetic -> Subtraction -> Subtract two positive rational numbers
 test_arithmetic__subtraction__subtract_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
@@ -66,7 +66,7 @@ test_arithmetic__subtraction__subtract_two_positive_rational_numbers :: proc(t: 
 }
 
 @(test)
-/// description = Arithmetic: Subtraction: Subtract a positive rational number and a negative rational number
+/// description = Arithmetic -> Subtraction -> Subtract a positive rational number and a negative rational number
 test_arithmetic__subtraction__subtract_a_positive_rational_number_and_a_negative_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -80,7 +80,7 @@ test_arithmetic__subtraction__subtract_a_positive_rational_number_and_a_negative
 }
 
 @(test)
-/// description = Arithmetic: Subtraction: Subtract two negative rational numbers
+/// description = Arithmetic -> Subtraction -> Subtract two negative rational numbers
 test_arithmetic__subtraction__subtract_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
@@ -92,7 +92,7 @@ test_arithmetic__subtraction__subtract_two_negative_rational_numbers :: proc(t: 
 }
 
 @(test)
-/// description = Arithmetic: Subtraction: Subtract a rational number from itself
+/// description = Arithmetic -> Subtraction -> Subtract a rational number from itself
 test_arithmetic__subtraction__subtract_a_rational_number_from_itself :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 2}
@@ -104,7 +104,7 @@ test_arithmetic__subtraction__subtract_a_rational_number_from_itself :: proc(t: 
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply two positive rational numbers
+/// description = Arithmetic -> Multiplication -> Multiply two positive rational numbers
 test_arithmetic__multiplication__multiply_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
@@ -116,7 +116,7 @@ test_arithmetic__multiplication__multiply_two_positive_rational_numbers :: proc(
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply a negative rational number by a positive rational number
+/// description = Arithmetic -> Multiplication -> Multiply a negative rational number by a positive rational number
 test_arithmetic__multiplication__multiply_a_negative_rational_number_by_a_positive_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -130,7 +130,7 @@ test_arithmetic__multiplication__multiply_a_negative_rational_number_by_a_positi
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply two negative rational numbers
+/// description = Arithmetic -> Multiplication -> Multiply two negative rational numbers
 test_arithmetic__multiplication__multiply_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
@@ -142,7 +142,7 @@ test_arithmetic__multiplication__multiply_two_negative_rational_numbers :: proc(
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply a rational number by its reciprocal
+/// description = Arithmetic -> Multiplication -> Multiply a rational number by its reciprocal
 test_arithmetic__multiplication__multiply_a_rational_number_by_its_reciprocal :: proc(
 	t: ^testing.T,
 ) {
@@ -156,7 +156,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_its_reciprocal ::
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply a rational number by 1
+/// description = Arithmetic -> Multiplication -> Multiply a rational number by 1
 test_arithmetic__multiplication__multiply_a_rational_number_by_1 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 1}
@@ -168,7 +168,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_1 :: proc(t: ^tes
 }
 
 @(test)
-/// description = Arithmetic: Multiplication: Multiply a rational number by 0
+/// description = Arithmetic -> Multiplication -> Multiply a rational number by 0
 test_arithmetic__multiplication__multiply_a_rational_number_by_0 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{0, 1}
@@ -180,7 +180,7 @@ test_arithmetic__multiplication__multiply_a_rational_number_by_0 :: proc(t: ^tes
 }
 
 @(test)
-/// description = Arithmetic: Division: Divide two positive rational numbers
+/// description = Arithmetic -> Division -> Divide two positive rational numbers
 test_arithmetic__division__divide_two_positive_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{2, 3}
@@ -192,7 +192,7 @@ test_arithmetic__division__divide_two_positive_rational_numbers :: proc(t: ^test
 }
 
 @(test)
-/// description = Arithmetic: Division: Divide a positive rational number by a negative rational number
+/// description = Arithmetic -> Division -> Divide a positive rational number by a negative rational number
 test_arithmetic__division__divide_a_positive_rational_number_by_a_negative_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -206,7 +206,7 @@ test_arithmetic__division__divide_a_positive_rational_number_by_a_negative_ratio
 }
 
 @(test)
-/// description = Arithmetic: Division: Divide two negative rational numbers
+/// description = Arithmetic -> Division -> Divide two negative rational numbers
 test_arithmetic__division__divide_two_negative_rational_numbers :: proc(t: ^testing.T) {
 	r1 := Rational{-1, 2}
 	r2 := Rational{-2, 3}
@@ -218,7 +218,7 @@ test_arithmetic__division__divide_two_negative_rational_numbers :: proc(t: ^test
 }
 
 @(test)
-/// description = Arithmetic: Division: Divide a rational number by 1
+/// description = Arithmetic -> Division -> Divide a rational number by 1
 test_arithmetic__division__divide_a_rational_number_by_1 :: proc(t: ^testing.T) {
 	r1 := Rational{1, 2}
 	r2 := Rational{1, 1}
@@ -230,7 +230,7 @@ test_arithmetic__division__divide_a_rational_number_by_1 :: proc(t: ^testing.T) 
 }
 
 @(test)
-/// description = Absolute value: Absolute value of a positive rational number
+/// description = Absolute value -> Absolute value of a positive rational number
 test_absolute_value__absolute_value_of_a_positive_rational_number :: proc(t: ^testing.T) {
 	r := Rational{1, 2}
 
@@ -241,7 +241,7 @@ test_absolute_value__absolute_value_of_a_positive_rational_number :: proc(t: ^te
 }
 
 @(test)
-/// description = Absolute value: Absolute value of a positive rational number with negative numerator and denominator
+/// description = Absolute value -> Absolute value of a positive rational number with negative numerator and denominator
 test_absolute_value__absolute_value_of_a_positive_rational_number_with_negative_numerator_and_denominator :: proc(
 	t: ^testing.T,
 ) {
@@ -254,7 +254,7 @@ test_absolute_value__absolute_value_of_a_positive_rational_number_with_negative_
 }
 
 @(test)
-/// description = Absolute value: Absolute value of a negative rational number
+/// description = Absolute value -> Absolute value of a negative rational number
 test_absolute_value__absolute_value_of_a_negative_rational_number :: proc(t: ^testing.T) {
 	r := Rational{-1, 2}
 
@@ -265,7 +265,7 @@ test_absolute_value__absolute_value_of_a_negative_rational_number :: proc(t: ^te
 }
 
 @(test)
-/// description = Absolute value: Absolute value of a negative rational number with negative denominator
+/// description = Absolute value -> Absolute value of a negative rational number with negative denominator
 test_absolute_value__absolute_value_of_a_negative_rational_number_with_negative_denominator :: proc(
 	t: ^testing.T,
 ) {
@@ -278,7 +278,7 @@ test_absolute_value__absolute_value_of_a_negative_rational_number_with_negative_
 }
 
 @(test)
-/// description = Absolute value: Absolute value of zero
+/// description = Absolute value -> Absolute value of zero
 test_absolute_value__absolute_value_of_zero :: proc(t: ^testing.T) {
 	r := Rational{0, 1}
 
@@ -289,7 +289,7 @@ test_absolute_value__absolute_value_of_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
-/// description = Absolute value: Absolute value of a rational number is reduced to lowest terms
+/// description = Absolute value -> Absolute value of a rational number is reduced to lowest terms
 test_absolute_value__absolute_value_of_a_rational_number_is_reduced_to_lowest_terms :: proc(
 	t: ^testing.T,
 ) {
@@ -302,7 +302,7 @@ test_absolute_value__absolute_value_of_a_rational_number_is_reduced_to_lowest_te
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a positive rational number to a positive integer power
+/// description = Exponentiation of a rational number -> Raise a positive rational number to a positive integer power
 test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_a_positive_integer_power :: proc(
 	t: ^testing.T,
 ) {
@@ -316,7 +316,7 @@ test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_a_
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a negative rational number to a positive integer power
+/// description = Exponentiation of a rational number -> Raise a negative rational number to a positive integer power
 test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_a_positive_integer_power :: proc(
 	t: ^testing.T,
 ) {
@@ -330,7 +330,7 @@ test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_a_
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a positive rational number to a negative integer power
+/// description = Exponentiation of a rational number -> Raise a positive rational number to a negative integer power
 test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_a_negative_integer_power :: proc(
 	t: ^testing.T,
 ) {
@@ -344,7 +344,7 @@ test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_a_
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a negative rational number to an even negative integer power
+/// description = Exponentiation of a rational number -> Raise a negative rational number to an even negative integer power
 test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_an_even_negative_integer_power :: proc(
 	t: ^testing.T,
 ) {
@@ -358,7 +358,7 @@ test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_an
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a negative rational number to an odd negative integer power
+/// description = Exponentiation of a rational number -> Raise a negative rational number to an odd negative integer power
 test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_an_odd_negative_integer_power :: proc(
 	t: ^testing.T,
 ) {
@@ -372,7 +372,7 @@ test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_an
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise zero to an integer power
+/// description = Exponentiation of a rational number -> Raise zero to an integer power
 test_exponentiation_of_a_rational_number__raise_zero_to_an_integer_power :: proc(t: ^testing.T) {
 	r := Rational{0, 1}
 	n := 5
@@ -384,7 +384,7 @@ test_exponentiation_of_a_rational_number__raise_zero_to_an_integer_power :: proc
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise one to an integer power
+/// description = Exponentiation of a rational number -> Raise one to an integer power
 test_exponentiation_of_a_rational_number__raise_one_to_an_integer_power :: proc(t: ^testing.T) {
 	r := Rational{1, 1}
 	n := 4
@@ -396,7 +396,7 @@ test_exponentiation_of_a_rational_number__raise_one_to_an_integer_power :: proc(
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a positive rational number to the power of zero
+/// description = Exponentiation of a rational number -> Raise a positive rational number to the power of zero
 test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_the_power_of_zero :: proc(
 	t: ^testing.T,
 ) {
@@ -410,7 +410,7 @@ test_exponentiation_of_a_rational_number__raise_a_positive_rational_number_to_th
 }
 
 @(test)
-/// description = Exponentiation of a rational number: Raise a negative rational number to the power of zero
+/// description = Exponentiation of a rational number -> Raise a negative rational number to the power of zero
 test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_the_power_of_zero :: proc(
 	t: ^testing.T,
 ) {
@@ -424,7 +424,7 @@ test_exponentiation_of_a_rational_number__raise_a_negative_rational_number_to_th
 }
 
 @(test)
-/// description = Exponentiation of a real number to a rational number: Raise a real number to a positive rational number
+/// description = Exponentiation of a real number to a rational number -> Raise a real number to a positive rational number
 test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_to_a_positive_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -439,7 +439,7 @@ test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_t
 }
 
 @(test)
-/// description = Exponentiation of a real number to a rational number: Raise a real number to a negative rational number
+/// description = Exponentiation of a real number to a rational number -> Raise a real number to a negative rational number
 test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_to_a_negative_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -454,7 +454,7 @@ test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_t
 }
 
 @(test)
-/// description = Exponentiation of a real number to a rational number: Raise a real number to a zero rational number
+/// description = Exponentiation of a real number to a rational number -> Raise a real number to a zero rational number
 test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_to_a_zero_rational_number :: proc(
 	t: ^testing.T,
 ) {
@@ -469,7 +469,7 @@ test_exponentiation_of_a_real_number_to_a_rational_number__raise_a_real_number_t
 }
 
 @(test)
-/// description = Reduction to lowest terms: Reduce a positive rational number to lowest terms
+/// description = Reduction to lowest terms -> Reduce a positive rational number to lowest terms
 test_reduction_to_lowest_terms__reduce_a_positive_rational_number_to_lowest_terms :: proc(
 	t: ^testing.T,
 ) {
@@ -482,7 +482,7 @@ test_reduction_to_lowest_terms__reduce_a_positive_rational_number_to_lowest_term
 }
 
 @(test)
-/// description = Reduction to lowest terms: Reduce places the minus sign on the numerator
+/// description = Reduction to lowest terms -> Reduce places the minus sign on the numerator
 test_reduction_to_lowest_terms__reduce_places_the_minus_sign_on_the_numerator :: proc(
 	t: ^testing.T,
 ) {
@@ -495,7 +495,7 @@ test_reduction_to_lowest_terms__reduce_places_the_minus_sign_on_the_numerator ::
 }
 
 @(test)
-/// description = Reduction to lowest terms: Reduce a negative rational number to lowest terms
+/// description = Reduction to lowest terms -> Reduce a negative rational number to lowest terms
 test_reduction_to_lowest_terms__reduce_a_negative_rational_number_to_lowest_terms :: proc(
 	t: ^testing.T,
 ) {
@@ -508,7 +508,7 @@ test_reduction_to_lowest_terms__reduce_a_negative_rational_number_to_lowest_term
 }
 
 @(test)
-/// description = Reduction to lowest terms: Reduce a rational number with a negative denominator to lowest terms
+/// description = Reduction to lowest terms -> Reduce a rational number with a negative denominator to lowest terms
 test_reduction_to_lowest_terms__reduce_a_rational_number_with_a_negative_denominator_to_lowest_terms :: proc(
 	t: ^testing.T,
 ) {
@@ -521,7 +521,7 @@ test_reduction_to_lowest_terms__reduce_a_rational_number_with_a_negative_denomin
 }
 
 @(test)
-/// description = Reduction to lowest terms: Reduce zero to lowest terms
+/// description = Reduction to lowest terms -> Reduce zero to lowest terms
 test_reduction_to_lowest_terms__reduce_zero_to_lowest_terms :: proc(t: ^testing.T) {
 	r := Rational{0, 6}
 
@@ -534,7 +534,7 @@ test_reduction_to_lowest_terms__reduce_zero_to_lowest_terms :: proc(t: ^testing.
 // This test has comments, we will move them
 // above the test attribute to make room for the description
 @(test)
-/// description = Reduction to lowest terms: Reduce an integer to lowest terms
+/// description = Reduction to lowest terms -> Reduce an integer to lowest terms
 test_reduction_to_lowest_terms__reduce_an_integer_to_lowest_terms :: proc(t: ^testing.T) {
 	r := Rational{-14, 7}
 

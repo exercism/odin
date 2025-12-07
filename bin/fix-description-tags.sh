@@ -72,13 +72,17 @@ test_file="$exercise_path/${exercise_snake_name}_test.odin"
 
 out_file="$exercise_path/updated_${exercise_snake_name}_test.odin"
 
-cdata_path="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises/$exercise_slug"
-cdata_file="$cdata_path/canonical-data.json"
-[[ -f "$cdata_file" ]] || die "$cdata_file doesn't exist"
+# tagfixer can use either canonical-data.json or tests.toml, using the 2nd for now.
+#metadata_path="$(get_cache_dir)/exercism/configlet/problem-specifications/exercises/$exercise_slug"
+#metadata_file="$metadata_path/canonical-data.json"
+metadata_path="$exercise_path/.meta"
+metadata_file="$metadata_path/tests.toml"
+
+[[ -f "$metadata_file" ]] || die "$metadata_file doesn't exist"
 
 echo -e "Adding description tags to $test_file..."
 rm -f "$out_file"
-odin run dev/tools/tagfixer -- "$test_file" "$cdata_file" "$out_file"
+odin run dev/tools/tagfixer -- "$test_file" "$metadata_file" "$out_file"
 # There is an extra blank line at the end of out_file, remove it manually for now.
 sed -e '$!b' -e '/^\s*$/d' "$out_file" >"$out_file.tr"
 mv "$out_file.tr" "$out_file"
