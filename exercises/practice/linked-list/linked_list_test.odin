@@ -246,7 +246,6 @@ test_deletes_the_only_element :: proc(t: ^testing.T) {
 	testing.expect_value(t, count(list), 0)
 }
 
-
 @(test)
 /// description = deletes the element with the specified value from the list
 test_deletes_the_element_with_the_specified_value_from_the_list :: proc(t: ^testing.T) {
