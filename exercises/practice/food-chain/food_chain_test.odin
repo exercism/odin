@@ -3,6 +3,7 @@ package food_chain
 import "core:testing"
 
 @(test)
+/// description = fly
 test_fly :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
@@ -11,6 +12,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = spider
 test_spider :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a spider.
 It wriggled and jiggled and tickled inside her.
@@ -21,6 +23,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = bird
 test_bird :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a bird.
 How absurd to swallow a bird!
@@ -32,6 +35,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = cat
 test_cat :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a cat.
 Imagine that, to swallow a cat!
@@ -44,6 +48,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = dog
 test_dog :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a dog.
 What a hog, to swallow a dog!
@@ -57,6 +62,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = goat
 test_goat :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a goat.
 Just opened her throat and swallowed a goat!
@@ -71,6 +77,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = cow
 test_cow :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a cow.
 I don't know how she swallowed a cow!
@@ -86,6 +93,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = horse
 test_horse :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a horse.
 She's dead, of course!`
@@ -94,6 +102,7 @@ She's dead, of course!`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = multiple verse
 test_multiple_verse :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.
@@ -113,6 +122,7 @@ I don't know why she swallowed the fly. Perhaps she'll die.`
 	testing.expect_value(t, actual, expected)
 }
 @(test)
+/// description = full song
 test_full_song :: proc(t: ^testing.T) {
 	expected := `I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.

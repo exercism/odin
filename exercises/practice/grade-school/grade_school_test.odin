@@ -16,6 +16,7 @@ grade_array_equal :: proc(a, b: []Grade) -> bool {
 }
 
 @(test)
+/// description = Roster is empty when no student is added
 test_roster_is_empty_when_no_student_is_added :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -26,6 +27,7 @@ test_roster_is_empty_when_no_student_is_added :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add a student
 test_add_a_student :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -33,6 +35,7 @@ test_add_a_student :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Student is added to the roster
 test_student_is_added_to_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -44,6 +47,7 @@ test_student_is_added_to_the_roster :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Adding multiple students in the same grade in the roster
 test_adding_multiple_students_in_the_same_grade_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -53,6 +57,7 @@ test_adding_multiple_students_in_the_same_grade_in_the_roster :: proc(t: ^testin
 }
 
 @(test)
+/// description = Multiple students in the same grade are added to the roster
 test_multiple_students_in_the_same_grade_are_added_to_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -66,6 +71,7 @@ test_multiple_students_in_the_same_grade_are_added_to_the_roster :: proc(t: ^tes
 }
 
 @(test)
+/// description = Cannot add student to same grade in the roster more than once
 test_cannot_add_student_to_same_grade_in_the_roster_more_than_once :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -76,6 +82,7 @@ test_cannot_add_student_to_same_grade_in_the_roster_more_than_once :: proc(t: ^t
 }
 
 @(test)
+/// description = Student not added to same grade in the roster more than once
 test_student_not_added_to_same_grade_in_the_roster_more_than_once :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -90,6 +97,7 @@ test_student_not_added_to_same_grade_in_the_roster_more_than_once :: proc(t: ^te
 }
 
 @(test)
+/// description = Adding students in multiple grades
 test_adding_students_in_multiple_grades :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -98,6 +106,7 @@ test_adding_students_in_multiple_grades :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Students in multiple grades are added to the roster
 test_students_in_multiple_grades_are_added_to_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -110,6 +119,7 @@ test_students_in_multiple_grades_are_added_to_the_roster :: proc(t: ^testing.T) 
 }
 
 @(test)
+/// description = Cannot add same student to multiple grades in the roster
 test_cannot_add_same_student_to_multiple_grades_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -124,6 +134,7 @@ test_cannot_add_same_student_to_multiple_grades_in_the_roster :: proc(t: ^testin
 }
 
 @(test)
+/// description = Student not added to multiple grades in the roster
 test_student_not_added_to_multiple_grades_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -142,6 +153,7 @@ test_student_not_added_to_multiple_grades_in_the_roster :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Students are sorted by grades in the roster
 test_students_are_sorted_by_grades_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -155,6 +167,7 @@ test_students_are_sorted_by_grades_in_the_roster :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Students are sorted by name in the roster
 test_students_are_sorted_by_name_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -168,6 +181,7 @@ test_students_are_sorted_by_name_in_the_roster :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Students are sorted by grades and then by name in the roster
 test_students_are_sorted_by_grades_and_then_by_name_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -189,6 +203,7 @@ test_students_are_sorted_by_grades_and_then_by_name_in_the_roster :: proc(t: ^te
 }
 
 @(test)
+/// description = Grade is empty if no students in the roster
 test_grade_is_empty_if_no_students_in_the_roster :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -198,6 +213,7 @@ test_grade_is_empty_if_no_students_in_the_roster :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Grade is empty if no students in that grade
 test_grade_is_empty_if_no_students_in_that_grade :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -211,6 +227,7 @@ test_grade_is_empty_if_no_students_in_that_grade :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Student not added to same grade more than once
 test_student_not_added_to_same_grade_more_than_once :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -224,6 +241,7 @@ test_student_not_added_to_same_grade_more_than_once :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Student not added to multiple grades
 test_student_not_added_to_multiple_grades :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -241,6 +259,7 @@ test_student_not_added_to_multiple_grades :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Student not added to other grade for multiple grades
 test_student_not_added_to_other_grade_for_multiple_grades :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)
@@ -258,6 +277,7 @@ test_student_not_added_to_other_grade_for_multiple_grades :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = Students are sorted by name in a grade
 test_students_are_sorted_by_name_in_a_grade :: proc(t: ^testing.T) {
 	school: School
 	defer delete_school(&school)

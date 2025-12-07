@@ -3,6 +3,7 @@ package diamond
 import "core:testing"
 
 @(test)
+/// description = Degenerate case with a single 'A' row
 test_degenerate_case_with_a_single_a_row :: proc(t: ^testing.T) {
 	result := rows('A')
 	defer delete(result)
@@ -12,6 +13,7 @@ test_degenerate_case_with_a_single_a_row :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Degenerate case with no row containing 3 distinct groups of spaces
 test_degenerate_case_with_no_row_containing_3_distinct_groups_of_spaces :: proc(t: ^testing.T) {
 	result := rows('B')
 	defer delete(result)
@@ -21,6 +23,7 @@ test_degenerate_case_with_no_row_containing_3_distinct_groups_of_spaces :: proc(
 }
 
 @(test)
+/// description = Smallest non-degenerate case with odd diamond side length
 test_smallest_non_degenerate_case_with_odd_diamond_side_length :: proc(t: ^testing.T) {
 	result := rows('C')
 	defer delete(result)
@@ -30,6 +33,7 @@ test_smallest_non_degenerate_case_with_odd_diamond_side_length :: proc(t: ^testi
 }
 
 @(test)
+/// description = Smallest non-degenerate case with even diamond side length
 test_smallest_non_degenerate_case_with_even_diamond_side_length :: proc(t: ^testing.T) {
 	result := rows('D')
 	defer delete(result)
@@ -46,6 +50,7 @@ test_smallest_non_degenerate_case_with_even_diamond_side_length :: proc(t: ^test
 }
 
 @(test)
+/// description = Largest possible diamond
 test_largest_possible_diamond :: proc(t: ^testing.T) {
 	result := rows('Z')
 	defer delete(result)

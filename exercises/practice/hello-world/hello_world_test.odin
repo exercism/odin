@@ -3,6 +3,7 @@ package hello_world
 import "core:testing"
 
 @(test)
+/// description = Say Hi!
 say_hi :: proc(t: ^testing.T) {
 	expected := "Hello, World!"
 

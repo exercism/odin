@@ -3,6 +3,7 @@ package clock
 import "core:testing"
 
 @(test)
+/// description = Create a new clock with an initial time -> on the hour
 test_create_a_new_clock_with_an_initial_time__on_the_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 8, minute = 0)
 	result := to_string(clock)
@@ -12,6 +13,7 @@ test_create_a_new_clock_with_an_initial_time__on_the_hour :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> past the hour
 test_create_a_new_clock_with_an_initial_time__past_the_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 11, minute = 9)
 	result := to_string(clock)
@@ -21,6 +23,7 @@ test_create_a_new_clock_with_an_initial_time__past_the_hour :: proc(t: ^testing.
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> midnight is zero hours
 test_create_a_new_clock_with_an_initial_time__midnight_is_zero_hours :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 24, minute = 0)
 	result := to_string(clock)
@@ -30,6 +33,7 @@ test_create_a_new_clock_with_an_initial_time__midnight_is_zero_hours :: proc(t: 
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> hour rolls over
 test_create_a_new_clock_with_an_initial_time__hour_rolls_over :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 25, minute = 0)
 	result := to_string(clock)
@@ -39,6 +43,7 @@ test_create_a_new_clock_with_an_initial_time__hour_rolls_over :: proc(t: ^testin
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> hour rolls over continuously
 test_create_a_new_clock_with_an_initial_time__hour_rolls_over_continuously :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 100, minute = 0)
 	result := to_string(clock)
@@ -48,6 +53,7 @@ test_create_a_new_clock_with_an_initial_time__hour_rolls_over_continuously :: pr
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> sixty minutes is next hour
 test_create_a_new_clock_with_an_initial_time__sixty_minutes_is_next_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 1, minute = 60)
 	result := to_string(clock)
@@ -57,6 +63,7 @@ test_create_a_new_clock_with_an_initial_time__sixty_minutes_is_next_hour :: proc
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> minutes roll over
 test_create_a_new_clock_with_an_initial_time__minutes_roll_over :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 0, minute = 160)
 	result := to_string(clock)
@@ -66,6 +73,7 @@ test_create_a_new_clock_with_an_initial_time__minutes_roll_over :: proc(t: ^test
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> minutes roll over continuously
 test_create_a_new_clock_with_an_initial_time__minutes_roll_over_continuously :: proc(
 	t: ^testing.T,
 ) {
@@ -77,6 +85,7 @@ test_create_a_new_clock_with_an_initial_time__minutes_roll_over_continuously :: 
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> hour and minutes roll over
 test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 25, minute = 160)
 	result := to_string(clock)
@@ -86,6 +95,7 @@ test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over :: proc
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> hour and minutes roll over continuously
 test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over_continuously :: proc(
 	t: ^testing.T,
 ) {
@@ -97,6 +107,7 @@ test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over_continu
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> hour and minutes roll over to exactly midnight
 test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over_to_exactly_midnight :: proc(
 	t: ^testing.T,
 ) {
@@ -108,6 +119,7 @@ test_create_a_new_clock_with_an_initial_time__hour_and_minutes_roll_over_to_exac
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative hour
 test_create_a_new_clock_with_an_initial_time__negative_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = -1, minute = 15)
 	result := to_string(clock)
@@ -117,6 +129,7 @@ test_create_a_new_clock_with_an_initial_time__negative_hour :: proc(t: ^testing.
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative hour rolls over
 test_create_a_new_clock_with_an_initial_time__negative_hour_rolls_over :: proc(t: ^testing.T) {
 	clock := create_clock(hour = -25, minute = 0)
 	result := to_string(clock)
@@ -126,6 +139,7 @@ test_create_a_new_clock_with_an_initial_time__negative_hour_rolls_over :: proc(t
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative hour rolls over continuously
 test_create_a_new_clock_with_an_initial_time__negative_hour_rolls_over_continuously :: proc(
 	t: ^testing.T,
 ) {
@@ -137,6 +151,7 @@ test_create_a_new_clock_with_an_initial_time__negative_hour_rolls_over_continuou
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative minutes
 test_create_a_new_clock_with_an_initial_time__negative_minutes :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 1, minute = -40)
 	result := to_string(clock)
@@ -146,6 +161,7 @@ test_create_a_new_clock_with_an_initial_time__negative_minutes :: proc(t: ^testi
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative minutes roll over
 test_create_a_new_clock_with_an_initial_time__negative_minutes_roll_over :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 1, minute = -160)
 	result := to_string(clock)
@@ -155,6 +171,7 @@ test_create_a_new_clock_with_an_initial_time__negative_minutes_roll_over :: proc
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative minutes roll over continuously
 test_create_a_new_clock_with_an_initial_time__negative_minutes_roll_over_continuously :: proc(
 	t: ^testing.T,
 ) {
@@ -166,6 +183,7 @@ test_create_a_new_clock_with_an_initial_time__negative_minutes_roll_over_continu
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative sixty minutes is previous hour
 test_create_a_new_clock_with_an_initial_time__negative_sixty_minutes_is_previous_hour :: proc(
 	t: ^testing.T,
 ) {
@@ -177,6 +195,7 @@ test_create_a_new_clock_with_an_initial_time__negative_sixty_minutes_is_previous
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative hour and minutes both roll over
 test_create_a_new_clock_with_an_initial_time__negative_hour_and_minutes_both_roll_over :: proc(
 	t: ^testing.T,
 ) {
@@ -188,6 +207,7 @@ test_create_a_new_clock_with_an_initial_time__negative_hour_and_minutes_both_rol
 }
 
 @(test)
+/// description = Create a new clock with an initial time -> negative hour and minutes both roll over continuously
 test_create_a_new_clock_with_an_initial_time__negative_hour_and_minutes_both_roll_over_continuously :: proc(
 	t: ^testing.T,
 ) {
@@ -199,6 +219,7 @@ test_create_a_new_clock_with_an_initial_time__negative_hour_and_minutes_both_rol
 }
 
 @(test)
+/// description = Add minutes -> add minutes
 test_add_minutes__add_minutes :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 10, minute = 0)
 	add(&clock, 3)
@@ -209,6 +230,7 @@ test_add_minutes__add_minutes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add no minutes
 test_add_minutes__add_no_minutes :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 6, minute = 41)
 	add(&clock, 0)
@@ -219,6 +241,7 @@ test_add_minutes__add_no_minutes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add to next hour
 test_add_minutes__add_to_next_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 0, minute = 45)
 	add(&clock, 40)
@@ -229,6 +252,7 @@ test_add_minutes__add_to_next_hour :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add more than one hour
 test_add_minutes__add_more_than_one_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 10, minute = 0)
 	add(&clock, 61)
@@ -239,6 +263,7 @@ test_add_minutes__add_more_than_one_hour :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add more than two hours with carry
 test_add_minutes__add_more_than_two_hours_with_carry :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 0, minute = 45)
 	add(&clock, 160)
@@ -249,6 +274,7 @@ test_add_minutes__add_more_than_two_hours_with_carry :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add across midnight
 test_add_minutes__add_across_midnight :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 23, minute = 59)
 	add(&clock, 2)
@@ -259,6 +285,7 @@ test_add_minutes__add_across_midnight :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Add minutes -> add more than one day (1500 min = 25 hrs)
 test_add_minutes__add_more_than_one_day_1500_min__25_hrs :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 5, minute = 32)
 	add(&clock, 1500)
@@ -269,6 +296,7 @@ test_add_minutes__add_more_than_one_day_1500_min__25_hrs :: proc(t: ^testing.T) 
 }
 
 @(test)
+/// description = Add minutes -> add more than two days
 test_add_minutes__add_more_than_two_days :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 1, minute = 1)
 	add(&clock, 3500)
@@ -279,6 +307,7 @@ test_add_minutes__add_more_than_two_days :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract minutes
 test_subtract_minutes__subtract_minutes :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 10, minute = 3)
 	subtract(&clock, 3)
@@ -289,6 +318,7 @@ test_subtract_minutes__subtract_minutes :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract to previous hour
 test_subtract_minutes__subtract_to_previous_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 10, minute = 3)
 	subtract(&clock, 30)
@@ -299,6 +329,7 @@ test_subtract_minutes__subtract_to_previous_hour :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract more than an hour
 test_subtract_minutes__subtract_more_than_an_hour :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 10, minute = 3)
 	subtract(&clock, 70)
@@ -309,6 +340,7 @@ test_subtract_minutes__subtract_more_than_an_hour :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract across midnight
 test_subtract_minutes__subtract_across_midnight :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 0, minute = 3)
 	subtract(&clock, 4)
@@ -319,6 +351,7 @@ test_subtract_minutes__subtract_across_midnight :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract more than two hours
 test_subtract_minutes__subtract_more_than_two_hours :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 0, minute = 0)
 	subtract(&clock, 160)
@@ -329,6 +362,7 @@ test_subtract_minutes__subtract_more_than_two_hours :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Subtract minutes -> subtract more than two hours with borrow
 test_subtract_minutes__subtract_more_than_two_hours_with_borrow :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 6, minute = 15)
 	subtract(&clock, 160)
@@ -339,6 +373,7 @@ test_subtract_minutes__subtract_more_than_two_hours_with_borrow :: proc(t: ^test
 }
 
 @(test)
+/// description = Subtract minutes -> subtract more than one day (1500 min = 25 hrs)
 test_subtract_minutes__subtract_more_than_one_day_1500_min__25_hrs :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 5, minute = 32)
 	subtract(&clock, 1500)
@@ -349,6 +384,7 @@ test_subtract_minutes__subtract_more_than_one_day_1500_min__25_hrs :: proc(t: ^t
 }
 
 @(test)
+/// description = Subtract minutes -> subtract more than two days
 test_subtract_minutes__subtract_more_than_two_days :: proc(t: ^testing.T) {
 	clock := create_clock(hour = 2, minute = 20)
 	subtract(&clock, 3000)
@@ -359,6 +395,7 @@ test_subtract_minutes__subtract_more_than_two_days :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with same time
 test_compare_two_clocks_for_equality__clocks_with_same_time :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 15, minute = 37)
 	clock2 := create_clock(hour = 15, minute = 37)
@@ -368,6 +405,7 @@ test_compare_two_clocks_for_equality__clocks_with_same_time :: proc(t: ^testing.
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks a minute apart
 test_compare_two_clocks_for_equality__clocks_a_minute_apart :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 15, minute = 36)
 	clock2 := create_clock(hour = 15, minute = 37)
@@ -377,6 +415,7 @@ test_compare_two_clocks_for_equality__clocks_a_minute_apart :: proc(t: ^testing.
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks an hour apart
 test_compare_two_clocks_for_equality__clocks_an_hour_apart :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 14, minute = 37)
 	clock2 := create_clock(hour = 15, minute = 37)
@@ -386,6 +425,7 @@ test_compare_two_clocks_for_equality__clocks_an_hour_apart :: proc(t: ^testing.T
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with hour overflow
 test_compare_two_clocks_for_equality__clocks_with_hour_overflow :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 10, minute = 37)
 	clock2 := create_clock(hour = 34, minute = 37)
@@ -395,6 +435,7 @@ test_compare_two_clocks_for_equality__clocks_with_hour_overflow :: proc(t: ^test
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with hour overflow by several days
 test_compare_two_clocks_for_equality__clocks_with_hour_overflow_by_several_days :: proc(
 	t: ^testing.T,
 ) {
@@ -406,6 +447,7 @@ test_compare_two_clocks_for_equality__clocks_with_hour_overflow_by_several_days 
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative hour
 test_compare_two_clocks_for_equality__clocks_with_negative_hour :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 22, minute = 40)
 	clock2 := create_clock(hour = -2, minute = 40)
@@ -415,6 +457,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_hour :: proc(t: ^test
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative hour that wraps
 test_compare_two_clocks_for_equality__clocks_with_negative_hour_that_wraps :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 17, minute = 3)
 	clock2 := create_clock(hour = -31, minute = 3)
@@ -424,6 +467,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_hour_that_wraps :: pr
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative hour that wraps multiple times
 test_compare_two_clocks_for_equality__clocks_with_negative_hour_that_wraps_multiple_times :: proc(
 	t: ^testing.T,
 ) {
@@ -435,6 +479,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_hour_that_wraps_multi
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with minute overflow
 test_compare_two_clocks_for_equality__clocks_with_minute_overflow :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 0, minute = 1)
 	clock2 := create_clock(hour = 0, minute = 1441)
@@ -444,6 +489,7 @@ test_compare_two_clocks_for_equality__clocks_with_minute_overflow :: proc(t: ^te
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with minute overflow by several days
 test_compare_two_clocks_for_equality__clocks_with_minute_overflow_by_several_days :: proc(
 	t: ^testing.T,
 ) {
@@ -455,6 +501,7 @@ test_compare_two_clocks_for_equality__clocks_with_minute_overflow_by_several_day
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative minute
 test_compare_two_clocks_for_equality__clocks_with_negative_minute :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 2, minute = 40)
 	clock2 := create_clock(hour = 3, minute = -20)
@@ -464,6 +511,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_minute :: proc(t: ^te
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative minute that wraps
 test_compare_two_clocks_for_equality__clocks_with_negative_minute_that_wraps :: proc(
 	t: ^testing.T,
 ) {
@@ -475,6 +523,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_minute_that_wraps :: 
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative minute that wraps multiple times
 test_compare_two_clocks_for_equality__clocks_with_negative_minute_that_wraps_multiple_times :: proc(
 	t: ^testing.T,
 ) {
@@ -486,6 +535,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_minute_that_wraps_mul
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative hours and minutes
 test_compare_two_clocks_for_equality__clocks_with_negative_hours_and_minutes :: proc(
 	t: ^testing.T,
 ) {
@@ -497,6 +547,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_hours_and_minutes :: 
 }
 
 @(test)
+/// description = Compare two clocks for equality -> clocks with negative hours and minutes that wrap
 test_compare_two_clocks_for_equality__clocks_with_negative_hours_and_minutes_that_wrap :: proc(
 	t: ^testing.T,
 ) {
@@ -508,6 +559,7 @@ test_compare_two_clocks_for_equality__clocks_with_negative_hours_and_minutes_tha
 }
 
 @(test)
+/// description = Compare two clocks for equality -> full clock and zeroed clock
 test_compare_two_clocks_for_equality__full_clock_and_zeroed_clock :: proc(t: ^testing.T) {
 	clock1 := create_clock(hour = 24, minute = 0)
 	clock2 := create_clock(hour = 0, minute = 0)

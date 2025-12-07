@@ -4,7 +4,8 @@ import "core:slice"
 import "core:testing"
 
 @(test)
-test_scores :: proc(t: ^testing.T) {
+/// description = List of scores
+test_list_of_scores :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{30, 50, 20, 70}
 	expected := [?]int{30, 50, 20, 70}
@@ -17,6 +18,7 @@ test_scores :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Latest score
 test_latest_score :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{100, 0, 90, 30}
@@ -29,6 +31,7 @@ test_latest_score :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Personal best
 test_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40, 100, 70}
@@ -41,7 +44,8 @@ test_personal_best :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_personal_top_three_from_a_list_of_scores :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Personal top three from a list of scores
+test_top_3_scores__personal_top_three_from_a_list_of_scores :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{10, 30, 90, 30, 100, 20, 10, 0, 30, 40, 40, 70, 70}
 	expected := [?]int{100, 90, 70}
@@ -54,7 +58,8 @@ test_personal_top_three_from_a_list_of_scores :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_personal_top_three_highest_to_lowest :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Personal top highest to lowest
+test_top_3_scores__personal_top_highest_to_lowest :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{20, 10, 30}
 	expected := [?]int{30, 20, 10}
@@ -67,7 +72,8 @@ test_personal_top_three_highest_to_lowest :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_personal_top_three_when_there_is_a_tie :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Personal top when there is a tie
+test_top_3_scores__personal_top_when_there_is_a_tie :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40, 20, 40, 30}
 	expected := [?]int{40, 40, 30}
@@ -80,7 +86,8 @@ test_personal_top_three_when_there_is_a_tie :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_personal_top_three_when_there_are_less_than_three :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Personal top when there are less than 3
+test_top_3_scores__personal_top_when_there_are_less_than_3 :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{30, 70}
 	expected := [?]int{70, 30}
@@ -93,7 +100,8 @@ test_personal_top_three_when_there_are_less_than_three :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_personal_top_three_when_there_is_only_one :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Personal top when there is only one
+test_top_3_scores__personal_top_when_there_is_only_one :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{40}
 	expected := [?]int{40}
@@ -106,7 +114,8 @@ test_personal_top_three_when_there_is_only_one :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_latest_score_after_personal_top_three :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Latest score after personal top scores
+test_top_3_scores__latest_score_after_personal_top_scores :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{70, 50, 20, 30}
 	expected := 30
@@ -120,7 +129,8 @@ test_latest_score_after_personal_top_three :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_scores_after_personal_top_three :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Scores after personal top scores
+test_top_3_scores__scores_after_personal_top_scores :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{30, 50, 20, 70}
 	expected := [?]int{30, 50, 20, 70}
@@ -135,7 +145,8 @@ test_scores_after_personal_top_three :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_latest_score_after_personal_best :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Latest score after personal best
+test_top_3_scores__latest_score_after_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{0, 70, 15, 25, 30}
 	expected := 30
@@ -148,7 +159,8 @@ test_latest_score_after_personal_best :: proc(t: ^testing.T) {
 }
 
 @(test)
-test_scores_after_personal_best :: proc(t: ^testing.T) {
+/// description = Top 3 scores -> Scores after personal best
+test_top_3_scores__scores_after_personal_best :: proc(t: ^testing.T) {
 
 	scores_list := [?]int{20, 70, 15, 25, 30}
 	expected := [?]int{20, 70, 15, 25, 30}

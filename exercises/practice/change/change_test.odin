@@ -20,6 +20,7 @@ expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #calle
 }
 
 @(test)
+/// description = change for 1 cent
 test_change_for_1_cent :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 5, 10, 25}
@@ -33,6 +34,7 @@ test_change_for_1_cent :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = single coin change
 test_single_coin_change :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 5, 10, 25, 100}
@@ -46,6 +48,7 @@ test_single_coin_change :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = multiple coin change
 test_multiple_coin_change :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 5, 10, 25, 100}
@@ -59,6 +62,7 @@ test_multiple_coin_change :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = change with Lilliputian Coins
 test_change_with_lilliputian_coins :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 4, 15, 20, 50}
@@ -72,6 +76,7 @@ test_change_with_lilliputian_coins :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = change with Lower Elbonia Coins
 test_change_with_lower_elbonia_coins :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 5, 10, 21, 25}
@@ -85,6 +90,7 @@ test_change_with_lower_elbonia_coins :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = large target values
 test_large_target_values :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 2, 5, 10, 20, 50, 100}
@@ -98,6 +104,7 @@ test_large_target_values :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = possible change without unit coins available
 test_possible_change_without_unit_coins_available :: proc(t: ^testing.T) {
 
 	coins := [?]int{2, 5, 10, 20, 50}
@@ -111,6 +118,7 @@ test_possible_change_without_unit_coins_available :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = another possible change without unit coins available
 test_another_possible_change_without_unit_coins_available :: proc(t: ^testing.T) {
 
 	coins := [?]int{4, 5}
@@ -124,6 +132,7 @@ test_another_possible_change_without_unit_coins_available :: proc(t: ^testing.T)
 }
 
 @(test)
+/// description = a greedy approach is not optimal
 test_a_greedy_approach_is_not_optimal :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 10, 11}
@@ -137,6 +146,7 @@ test_a_greedy_approach_is_not_optimal :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = no coins make 0 change
 test_no_coins_make_0_change :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 5, 10, 21, 25}
@@ -150,6 +160,7 @@ test_no_coins_make_0_change :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = error testing for change smaller than the smallest of coins
 test_error_testing_for_change_smaller_than_the_smallest_of_coins :: proc(t: ^testing.T) {
 
 	coins := [?]int{5, 10}
@@ -161,6 +172,7 @@ test_error_testing_for_change_smaller_than_the_smallest_of_coins :: proc(t: ^tes
 }
 
 @(test)
+/// description = error if no combination can add up to target
 test_error_if_no_combination_can_add_up_to_target :: proc(t: ^testing.T) {
 
 	coins := [?]int{5, 10}
@@ -171,6 +183,7 @@ test_error_if_no_combination_can_add_up_to_target :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = cannot find negative change values
 test_cannot_find_negative_change_values :: proc(t: ^testing.T) {
 
 	coins := [?]int{1, 2, 5}
