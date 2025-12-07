@@ -12,7 +12,8 @@
 set -eo pipefail
 
 test_file=example/rational_numbers_test.odin
-cdata_file=example/canonical-data.json
+#cdata_file=example/canonical-data.json
+cdata_file=example/tests.toml
 exp_out_file=example/expected_rational_numbers_test.odin
 out_file=example/updated_rational_numbers_test.odin
 
@@ -21,10 +22,9 @@ echo "Testing tagfixer..."
 rm -f "$out_file"
 odin run . -- "$test_file" "$cdata_file" "$out_file"
 
-diff -q "$out_file" "$exp_out_file" >/dev/null
-if [[ $? -ne 0 ]]; then
-  echo "  FAIL: generated file doesn't match expected results:"
-  diff -q "$out_file" "$exp_out_file"
-else
+if diff -w "$out_file" "$exp_out_file" >/dev/null; then
   echo "  PASS"
+else
+  echo "  FAIL: generated file doesn't match expected results:"
+  diff -w "$out_file" "$exp_out_file"
 fi

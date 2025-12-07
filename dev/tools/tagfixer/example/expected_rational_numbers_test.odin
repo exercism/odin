@@ -579,3 +579,4 @@ unique_26_characters_but_not_pangram :: proc(t: ^testing.T) {
 non_alphanumeric_printable :: proc(t: ^testing.T) {
 	testing.expect(t, !is_pangram(" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"))
 }
+

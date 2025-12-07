@@ -20,6 +20,7 @@ to_snake_case() {
     sed -E '
         s/[ -]/_/g
         s/([[:lower:][:digit:]])([[:upper:]])/\1_\2/g
+        s/ = /_equals_/g
         s/[^[:alnum:]_]//g
     ' | tr '[:upper:]' '[:lower:]'
 }
@@ -87,30 +88,12 @@ odin run dev/tools/tagfixer -- "$test_file" "$metadata_file" "$out_file"
 sed -e '$!b' -e '/^\s*$/d' "$out_file" >"$out_file.tr"
 mv "$out_file.tr" "$out_file"
 
-# if ! diff "$test_file" "$out_file"; then
-#     diff_exit_code=$?
-#     if [ $diff_exit_code -gt 1 ]; then
-#         echo "Error: can't run diff on $test_file and $out_file (Exit code $diff_exit_code)" >&2
-#         exit $diff_exit_code
-#     fi
-# fi
-# mv "$out_file" "$test_file"
-# echo ""
-# echo "Updated tags written to $test_file"
-
 echo ""
 echo "Updated tags written to  :  $out_file"
 echo "Check result and move to :  $test_file"
 
-# Making it easy for developers on Mac.
+# Make it easy to compare original and updated test file for Mac developers.
 if [[ $OSTYPE = darwin* && -x "/usr/bin/opendiff" ]]; then
     echo "Opening files in opendiff for you ..."
     /usr/bin/opendiff "$test_file" "$out_file"
-fi
-
-# REMOVE before merging
-read -rp 'Stash for Pull Request? (yes/no) ' stash_yn
-if [[ $stash_yn == yes ]]; then
-  mv "$out_file" "temp/${exercise_snake_name}_test.odin"
-  echo "moving $out_file to temp"
 fi
