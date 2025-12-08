@@ -1,11 +1,12 @@
 package zebra_puzzle
 
 import "core:fmt"
+import "core:log"
 
 // We have 5 houses.
 //
-// We have 5 groups (color, nationality, animal, cigarette, and drink) or 5 variables.
-// Each variable in each group needs to be allocated to a different house.
+// We have 5 groups (color, nationality, animal, activity, and drink) of 5 variables
+// each. Each variable in each group needs to be allocated to a different house.
 //
 // We have a set of rules describing constraints on some of the variables and houses.
 //
@@ -25,14 +26,15 @@ import "core:fmt"
 // 14. The Japanese person plays chess.
 // 15. The Norwegian lives next to the blue house.
 //
-// We will be defining a puzzle as a set of house allocation for each of the 25 variables.
-// A variable can be un-allocated (assign to Hose.None) which means the puzzle is incomplete.
+// We will be defining a puzzle as allocating a house to each of the 25 variables
+// while respecting the 15 rules above.
+// A variable can be un-allocated (assign to House.None) which means the puzzle is incomplete.
 //
 // We will use a depth first search recursive backtracking algorithm.
-// After initializing the puzzle, we will try to assign one of the free variable to a house
-// still unassigned to that group, if it passes the constraints then we will (recursively)
+// After initializing the puzzle, we will try to assign one of the free variables to a house
+// still unassigned for that group, if it passes the constraints then we will (recursively)
 // repeat the operation with another un-assigned variable until either all variables are
-// assigned (success) or we violate a constraint (failure). In that case we will backtrack
+// assigned (success) or we violate a constraint (failure). In that later case we will backtrack
 // to the point where we still have a pair (variable, house) that we haven't tried and go back
 // down from there.
 //
@@ -45,9 +47,12 @@ import "core:fmt"
 // it would be easy to hard code Rule #15 "The Norwegian lives next to the blud house" but our algorithm is
 // already fast enough.
 
+// Turn VERBOSE true if you want to debug the steps to the solution.
+VERBOSE :: false
+
 who_drinks_water :: proc() -> string {
 
-	solved_puzzle, success := solve_puzzle()
+	solved_puzzle, success := solve_puzzle(VERBOSE)
 	if !success { return "nobody" }
 
 	water_drinker, found := in_the_same_house(solved_puzzle, NATIONALITIES, .Water)
@@ -58,7 +63,7 @@ who_drinks_water :: proc() -> string {
 
 who_owns_the_zebra :: proc() -> string {
 
-	solved_puzzle, success := solve_puzzle()
+	solved_puzzle, success := solve_puzzle(false)
 	if !success { return "nobody" }
 
 	zebra_owner, found := in_the_same_house(solved_puzzle, NATIONALITIES, .Zebra)
@@ -99,12 +104,12 @@ Variable :: enum u8 {
 	Horse,
 	Fox,
 	Zebra,
-	// Cigarette Brand
-	Old_Gold,
-	Kools,
-	Chesterfields,
-	Lucky_Strike,
-	Parliaments,
+	// Activities
+	Dancing,
+	Painting,
+	Reading,
+	Football,
+	Chess,
 	// Beverage
 	Coffee,
 	Tea,
@@ -126,10 +131,10 @@ Group :: [5]Variable
 COLORS :: Group{.Red, .Green, .Yellow, .Ivory, .Blue}
 NATIONALITIES :: Group{.Englishman, .Spaniard, .Ukrainian, .Norwegian, .Japanese}
 PETS :: Group{.Dog, .Snail, .Horse, .Fox, .Zebra}
-CIGARETTES :: Group{.Old_Gold, .Kools, .Chesterfields, .Lucky_Strike, .Parliaments}
+ACTIVITIES :: Group{.Dancing, .Painting, .Reading, .Football, .Chess}
 DRINKS :: Group{.Coffee, .Tea, .Milk, .Orange_Juice, .Water}
 
-// Retrieve the group assocatied with a Variable
+// Retrieve the group associated with a Variable
 group_of :: proc(v: Variable) -> (group: Group) {
 	switch v {
 	case .Red, .Green, .Yellow, .Ivory, .Blue:
@@ -138,8 +143,8 @@ group_of :: proc(v: Variable) -> (group: Group) {
 		group = NATIONALITIES
 	case .Dog, .Snail, .Horse, .Fox, .Zebra:
 		group = PETS
-	case .Old_Gold, .Kools, .Chesterfields, .Lucky_Strike, .Parliaments:
-		group = CIGARETTES
+	case .Dancing, .Painting, .Reading, .Football, .Chess:
+		group = ACTIVITIES
 	case .Coffee, .Tea, .Milk, .Orange_Juice, .Water:
 		group = DRINKS
 	}
@@ -159,16 +164,21 @@ Error :: union {
 
 // returns the first solution available
 // or false if none is found.
-solve_puzzle :: proc() -> (Puzzle, bool) {
+solve_puzzle :: proc(verbose: bool) -> (Puzzle, bool) {
 
 	initial_pb := setup_initial_puzzle()
-	return backtrack(initial_pb, "0")
+	solution, success, steps := step(initial_pb, "0", verbose)
+	perf_info := fmt.aprintf("Puzzle solved in %d steps", steps)
+	defer delete(perf_info)
+	log.info(perf_info)
+	return solution, success
 }
 
 // construct an initial problem.
 // It hard-codes rules with obvious solutions (9, 10) to reduce the search space.
 setup_initial_puzzle :: proc() -> Puzzle {
 
+	// Implicit Rule #1 - There are five houses.
 	p := Puzzle{}
 	// Rule #9 - Milk is drunk in the middle house.
 	p = assign(p, .Milk, .Middle)
@@ -199,24 +209,26 @@ is_free :: proc(p: Puzzle, v: Variable) -> bool {
 // the group of the variable and calling Backtrack() recursively. (depth first search).
 // If a completed puzzle is found, it is returned. If a solution is impossible we
 // backtrack to the brancing point and try another assignment.
-backtrack :: proc(p: Puzzle, id: string) -> (Puzzle, bool) {
+step :: proc(p: Puzzle, id: string, verbose: bool) -> (Puzzle, bool, int) {
+	steps := 1
 	v, avail := get_first_free_variable(p)
-	if !avail { return p, satifies_constraints(p) }
+	if !avail { return p, satifies_constraints(p), steps }
 	freeHouses := free_houses_for_group(p, group_of(v))
 	defer delete(freeHouses)
 	for h, i in freeHouses {
 		augmented_p := assign(p, v, h)
-		//new_id := dump(augmented_p, v, h, id, i)
 		new_id := ""
+		if verbose { new_id = dump(augmented_p, v, h, id, i) }
 		if satifies_constraints(augmented_p) {
-			// fmt.println(">>")
-			sol, ok := backtrack(augmented_p, new_id)
-			if ok { return sol, ok }
+			if verbose { fmt.println(">>") }
+			sol, ok, sub_steps := step(augmented_p, new_id, verbose)
+			steps += sub_steps
+			if ok { return sol, ok, steps }
 		} else {
-			// fmt.println("<<")
+			if verbose { fmt.println("<<") }
 		}
 	}
-	return p, false
+	return p, false, steps
 }
 
 // returns the first free variable for the given puzzle or false
@@ -264,13 +276,13 @@ satifies_constraints :: proc(p: Puzzle) -> bool {
 	}
 
 	// Rule #7 - The Old Gold smoker owns snails.
-	if not_in_the_same_house(p, .Old_Gold, .Snail) {
+	if not_in_the_same_house(p, .Dancing, .Snail) {
 		// fmt.println("    failed: The Old Gold smoker owns snails.")
 		return false
 	}
 
 	// Rule #8 - Kools are smoked in the Yellow house.
-	if not_in_the_same_house(p, .Kools, .Yellow) {
+	if not_in_the_same_house(p, .Painting, .Yellow) {
 		// fmt.println("    failed: Kools are smoked in the Yellow house.")
 		return false
 	}
@@ -282,7 +294,7 @@ satifies_constraints :: proc(p: Puzzle) -> bool {
 	// Implemented in setup_initial_problem() - always true
 
 	// Rule #11 - The man who smokes Chesterfields lives in the house next to the man with the fox.
-	if not_next_door(p, .Chesterfields, .Fox) {
+	if not_next_door(p, .Reading, .Fox) {
 		// fmt.println(
 		//	"    failed: The man who smokes Chesterfields lives in the house next to the man with the fox.",
 		//)
@@ -290,7 +302,7 @@ satifies_constraints :: proc(p: Puzzle) -> bool {
 	}
 
 	// Rule #12 - Kools are smoked in the house next to the house where the horse is kept.
-	if not_next_door(p, .Kools, .Horse) {
+	if not_next_door(p, .Painting, .Horse) {
 		//fmt.println(
 		//	"    failed: Kools are smoked in the house next to the house where the horse is kept.",
 		//)
@@ -298,13 +310,13 @@ satifies_constraints :: proc(p: Puzzle) -> bool {
 	}
 
 	// Rule #13 - The Lucky Strike smoker drinks orange juice.
-	if not_in_the_same_house(p, .Lucky_Strike, .Orange_Juice) {
+	if not_in_the_same_house(p, .Football, .Orange_Juice) {
 		// fmt.println("    failed: The Lucky Strike smoker drinks orange juice.")
 		return false
 	}
 
 	// Rule #14 - The Japanese smokes Parliaments.
-	if not_in_the_same_house(p, .Japanese, .Parliaments) {
+	if not_in_the_same_house(p, .Japanese, .Chess) {
 		// fmt.println("    failed: The Japanese smokes Parliaments.")
 		return false
 	}
@@ -371,32 +383,33 @@ in_the_same_house :: proc(p: Puzzle, group: Group, as: Variable) -> (Variable, b
 	return .Red, false
 }
 
+// Helper to print partial puzzle when debugging steps.
 VS := [Variable]rune {
-	.Red           = 'R',
-	.Green         = 'G',
-	.Yellow        = 'Y',
-	.Ivory         = 'I',
-	.Blue          = 'B',
-	.Englishman    = 'E',
-	.Spaniard      = 'S',
-	.Ukrainian     = 'U',
-	.Norwegian     = 'N',
-	.Japanese      = 'J',
-	.Dog           = 'D',
-	.Snail         = 'S',
-	.Horse         = 'H',
-	.Fox           = 'F',
-	.Zebra         = 'Z',
-	.Old_Gold      = 'O',
-	.Kools         = 'K',
-	.Chesterfields = 'C',
-	.Lucky_Strike  = 'L',
-	.Parliaments   = 'P',
-	.Coffee        = 'C',
-	.Tea           = 'T',
-	.Milk          = 'M',
-	.Orange_Juice  = 'O',
-	.Water         = 'W',
+	.Red          = 'R',
+	.Green        = 'G',
+	.Yellow       = 'Y',
+	.Ivory        = 'I',
+	.Blue         = 'B',
+	.Englishman   = 'E',
+	.Spaniard     = 'S',
+	.Ukrainian    = 'U',
+	.Norwegian    = 'N',
+	.Japanese     = 'J',
+	.Dog          = 'D',
+	.Snail        = 'S',
+	.Horse        = 'H',
+	.Fox          = 'F',
+	.Zebra        = 'Z',
+	.Dancing      = 'O',
+	.Painting     = 'K',
+	.Reading      = 'C',
+	.Football     = 'L',
+	.Chess        = 'P',
+	.Coffee       = 'C',
+	.Tea          = 'T',
+	.Milk         = 'M',
+	.Orange_Juice = 'O',
+	.Water        = 'W',
 }
 HS := [House]rune {
 	.None          = 'x',
