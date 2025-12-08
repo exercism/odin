@@ -71,6 +71,14 @@
         "difficulty": 2
       },
       {
+        "slug": "bank-account",
+        "name": "Bank Account",
+        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "bob",
         "name": "Bob",
         "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
