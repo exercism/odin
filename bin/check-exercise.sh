@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Exit script if any subcommands fail
+set -eou pipefail
+
 die () { echo "$*" >&2; exit 1; }
 
 expected_number_of_tests () {
@@ -33,16 +36,65 @@ check_format () {
     cp "${src_file}" "${tmp_file}"
     bin/odinfmt -w "${tmp_file}"
     if diffs=$( diff "${src_file}" "${tmp_file}" ); then
-        log_result "Exercise ${file_type} formatting" okay
+        log_result "Exercise ${file_type} formatting" "[OK]✅"
     else
-        echo "${src_file} is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
+        echo "❌[ERROR] ${src_file} is incorrectly formatted (run 'bin/odinfmt -w <filepath>'):"
         echo "$diffs"
         exit 1
     fi
 }
 
+check_for_missing_test_descriptions () {
+if awk_output=$(awk '
+BEGIN {
+    saw_test_line = 0
+    test_line_number = 0
+    exit_status = 0
+}
+/@\(test\)/ {
+    if (saw_test_line == 1) {
+        print "[ERROR] Missing /// description = ... for test starting at line " test_line_number
+        exit_status = 1
+    }
+    saw_test_line = 1
+    test_line_number = NR
+    next
+}
+/^\/\/\/ description = / {
+    if (saw_test_line == 1) {
+        saw_test_line = 0
+        test_line_number = 0
+    }
+    next
+}
+/ :: proc\(/ {
+    if (saw_test_line == 1) {
+        print "[ERROR] Missing /// description = ... for test starting at line " test_line_number
+        saw_test_line = 0
+        test_line_number = 0
+        exit_status = 1
+    }
+    next
+}
+END {
+    if (saw_test_line == 1) {
+        print "[ERROR] File ended unexpectedly after @(test) on line " test_line_number
+        exit_status = 1
+    }
+    exit exit_status
+};
+' "$1"); then
+  log_result "Exercise ${file_type} description tags" "[OK]✅"
+else
+  echo "❌[ERROR] $1 is missing description tags (run 'bin/fix-description-tags.sh')"
+  echo "$awk_output"
+  exit 1
+fi
+
+}
+
 log_result () {
-    printf '    %-30s: %s\n' "$1" "$2"
+    printf '    %-35s: %s\n' "$1" "$2"
 }
 
 if [[ $# -ne 1 || $1 == '-h' || $1 == '--help' ]]; then
@@ -69,22 +121,23 @@ if [[ "$exercise_path" == *"practice"* ]]; then
     log_result "Expected number of tests" "$num_expected_tests"
 
     if [[ $num_expected_tests -gt $num_actual_tests ]]; then
-        echo "    [WARNING]: More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
+        echo "⚠️[WARNING] More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
     elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
-        echo "    [INFO]: More actual tests than expected tests, looks like you over-achieved!"
+        echo "❓[INFO] More actual tests than expected tests, looks like you over-achieved!"
     fi
 fi
 
 if test_output=$( bin/run-test.sh "$exercise_path" 2>&1 ); then
-    log_result "Running tests" okay
+    log_result "Running tests" "[OK]✅"
 else
-    log_result "Running tests" "NOT OK"
-    echo "$test_output"
+    echo  "❌[ERROR] Tests fail"
+    echo "$test_output" | grep -v "\[INFO \]"
     exit 1
 fi
 
 check_format stub "${exercise_path}/${exercise_name}.odin"
 check_format tests "${exercise_path}/${exercise_name}_test.odin"
 check_format example "${exercise_path}/.meta/example.odin"
+check_for_missing_test_descriptions "${exercise_path}/${exercise_name}_test.odin"
 
 echo "Exercise $exercise_name pass all the checks!"
