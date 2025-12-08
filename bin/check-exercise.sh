@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Exit script if any subcommands fail
-# set -eou pipefail
+set -eou pipefail
 
 die () { echo "$*" >&2; exit 1; }
 

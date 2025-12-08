@@ -36,13 +36,13 @@ get_cache_dir() {
             fi
             ;;
         darwin*)
-            if [[ -e "$HOME/Library/Caches" && -d "$HOME/Library/Caches" ]]; then
+            if [[ -d "$HOME/Library/Caches" ]]; then
                 echo "$HOME/Library/Caches"
                 return
             fi
             ;;
         *)  # lump all the other *nix systems
-            if [[ -e "$HOME/.cache" && -d "$HOME/.cache" ]]; then
+            if [[ -d "$HOME/.cache" ]]; then
                 echo "$HOME/.cache"
                 return
             fi
@@ -226,7 +226,7 @@ if [[ "$extype" == "practice" ]]; then
   for ((i=0; i < canonical_data_length; i++)); do
     case=$( jq -c ".cases.[$i]" <<< "${canonical_data}" )
     english_desc=$(echo "$case" | jq -r '.description // ""')
-    snake_desc=$(echo "$case" | jq -r '.description // ""' | to_snake_case)
+    snake_desc=$(echo "$english_desc" | to_snake_case)
     property=$(echo "$case" | jq -r '.property // ""' | to_snake_case)
     input=$(echo "$case" | jq -c '.input // ""')
     expected=$(echo "$case" | jq -c '.expected // ""')
