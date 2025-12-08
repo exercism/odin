@@ -215,14 +215,6 @@
         "difficulty": 2
       },
       {
-        "slug": "reverse-string",
-        "name": "Reverse String",
-        "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 9
-      },
-      {
         "slug": "robot-name",
         "name": "Robot Name",
         "uuid": "fb0419f7-81d9-40a4-869c-9da05b4c3ef5",
@@ -234,6 +226,14 @@
         "slug": "robot-simulator",
         "name": "Robot Simulator",
         "uuid": "e03b34a7-596c-49c9-8ebb-5b0d6d338012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "series",
+        "name": "Series",
+        "uuid": "e94fb74d-2146-40a7-abc9-dee496db50fa",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -370,6 +370,14 @@
         "slug": "rational-numbers",
         "name": "Rational Numbers",
         "uuid": "9a66b396-5c35-49f7-917b-d6cf7c6be392",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+	  {
+        "slug": "reverse-string",
+        "name": "Reverse String",
+        "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
