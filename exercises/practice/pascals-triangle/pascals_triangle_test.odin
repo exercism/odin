@@ -124,7 +124,7 @@ test_seventy_five_rows :: proc(t: ^testing.T) {
 	// Added a check for nil (which is a failed value anyway, to bypass the bug)`
 	testing.expect(t, actual != nil)
 	if actual != nil {
-		testing.expect_value(t, actual[74][37], 17_46_130_564_335_626_209_832)
+		testing.expect_value(t, actual[74][37], 1_746_130_564_335_626_209_832)
 	}
 }
 
