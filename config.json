@@ -87,6 +87,14 @@
         "difficulty": 2
       },
       {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "uuid": "d08220e8-c3ea-4efc-a61d-fec936a2ac95",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "custom-set",
         "name": "Custom Set",
         "uuid": "e16e5910-d220-4162-b352-928067a70662",
