@@ -111,6 +111,14 @@
         "difficulty": 2
       },
       {
+        "slug": "dnd-character",
+        "name": "D&D Character",
+        "uuid": "64e89ff5-9517-430b-a747-ad85998651c0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "difference-of-squares",
         "name": "Difference Of Squares",
         "uuid": "ce45a52e-0541-4384-8abf-b787bd49cbf7",
