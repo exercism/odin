@@ -4,6 +4,7 @@ import "core:testing"
 import "core:thread"
 
 @(test)
+/// description = Newly opened account has zero balance
 test_newly_opened_account_has_zero_balance :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -12,6 +13,7 @@ test_newly_opened_account_has_zero_balance :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Single deposit
 test_single_deposit :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -21,6 +23,7 @@ test_single_deposit :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Multiple deposits
 test_multiple_deposits :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -31,6 +34,7 @@ test_multiple_deposits :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Withdraw once
 test_withdraw_once :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -41,6 +45,7 @@ test_withdraw_once :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Withdraw twice
 test_withdraw_twice :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -52,6 +57,7 @@ test_withdraw_twice :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Can do multiple operations sequentially
 test_can_do_multiple_operations_sequentially :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -65,6 +71,7 @@ test_can_do_multiple_operations_sequentially :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot check balance of closed account
 test_cannot_check_balance_of_closed_account :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -74,6 +81,7 @@ test_cannot_check_balance_of_closed_account :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot deposit into closed account
 test_cannot_deposit_into_closed_account :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -83,6 +91,7 @@ test_cannot_deposit_into_closed_account :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot deposit into unopened account
 test_cannot_deposit_into_unopened_account :: proc(t: ^testing.T) {
 	account: Account
 	result := deposit(&account, 50)
@@ -90,6 +99,7 @@ test_cannot_deposit_into_unopened_account :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot withdraw from closed account
 test_cannot_withdraw_from_closed_account :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -99,6 +109,7 @@ test_cannot_withdraw_from_closed_account :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot close an account that was not opened
 test_cannot_close_an_account_that_was_not_opened :: proc(t: ^testing.T) {
 	account: Account
 	result := close(&account)
@@ -106,6 +117,7 @@ test_cannot_close_an_account_that_was_not_opened :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot open an already opened account
 test_cannot_open_an_already_opened_account :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -114,6 +126,7 @@ test_cannot_open_an_already_opened_account :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Reopened account does not retain balance
 test_reopened_account_does_not_retain_balance :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -125,6 +138,7 @@ test_reopened_account_does_not_retain_balance :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot withdraw more than deposited
 test_cannot_withdraw_more_than_deposited :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -134,6 +148,7 @@ test_cannot_withdraw_more_than_deposited :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot withdraw zero
 test_cannot_withdraw_zero :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -143,6 +158,7 @@ test_cannot_withdraw_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Cannot deposit zero
 test_cannot_deposit_zero :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)
@@ -151,6 +167,7 @@ test_cannot_deposit_zero :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Can handle concurrent transactions
 test_can_handle_concurrent_transactions :: proc(t: ^testing.T) {
 	account: Account
 	open(&account)

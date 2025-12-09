@@ -51,7 +51,7 @@ BEGIN {
     test_line_number = 0
     exit_status = 0
 }
-/@\(test\)/ {
+/^@\(test\)/ {
     if (saw_test_line == 1) {
         print "[ERROR] Missing /// description = ... for test starting at line " test_line_number
         exit_status = 1
