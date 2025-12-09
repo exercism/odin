@@ -247,6 +247,14 @@
         "difficulty": 2
       },
       {
+        "slug": "queen-attack",
+        "name": "Queen Attack",
+        "uuid": "d30fb4a8-3c22-464d-be7e-668af7b6c683",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "raindrops",
         "name": "Raindrops",
         "uuid": "2ed59153-56cd-4327-bf05-fc8d2eb453eb",
