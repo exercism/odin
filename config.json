@@ -143,6 +143,14 @@
         "difficulty": 2
       },
       {
+        "slug": "hamming",
+        "name": "Hamming",
+        "uuid": "86bc8727-f353-44a5-b898-6f32d114a01e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "1eb2ad7e-4580-4be7-9ead-28a363a5af8e",
