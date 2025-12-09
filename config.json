@@ -175,6 +175,14 @@
         "difficulty": 2
       },
       {
+        "slug": "perfect-numbers",
+        "name": "Perfect Numbers",
+        "uuid": "032a0a31-8d69-48b5-aeca-ed8358e604a7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "protein-translation",
         "name": "Protein Translation",
         "uuid": "df6321a8-4972-43e3-82d2-ab5353af0d6c",
