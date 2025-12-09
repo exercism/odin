@@ -2,6 +2,9 @@
   "authors": [
     "gvrooyen"
   ],
+    "contributors": [
+    "rmonnet"
+  ],
   "files": {
     "solution": [
       "perfect_numbers.odin"
