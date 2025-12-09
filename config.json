@@ -71,14 +71,6 @@
         "difficulty": 2
       },
       {
-        "slug": "bank-account",
-        "name": "Bank Account",
-        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 5
-      },
-      {
         "slug": "bob",
         "name": "Bob",
         "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
@@ -90,6 +82,14 @@
         "slug": "clock",
         "name": "Clock",
         "uuid": "e3b71b22-1f49-49e6-9cf7-388dfebc400d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "uuid": "d08220e8-c3ea-4efc-a61d-fec936a2ac95",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -279,6 +279,14 @@
         "difficulty": 5
       },
       {
+        "slug": "bank-account",
+        "name": "Bank Account",
+        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "2f78a54b-08ca-407a-a5e3-f0f8afb66c94",
@@ -374,7 +382,7 @@
         "prerequisites": [],
         "difficulty": 5
       },
-	  {
+      {
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
