@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "gvrooyen"
+  ],
+  "files": {
+    "solution": [
+      "dnd_character.odin"
+    ],
+    "test": [
+      "dnd_character_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Randomly generate Dungeons & Dragons characters.",
+  "source": "Simon Shine, Erik Schierboom",
+  "source_url": "https://github.com/exercism/problem-specifications/issues/616#issuecomment-437358945"
+}
