@@ -71,14 +71,6 @@
         "difficulty": 2
       },
       {
-        "slug": "bank-account",
-        "name": "Bank Account",
-        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 5
-      },
-      {
         "slug": "bob",
         "name": "Bob",
         "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
@@ -130,6 +122,14 @@
         "slug": "grains",
         "name": "Grains",
         "uuid": "b5b9be18-9141-4176-8f8c-3dd14d14bed5",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
+        "slug": "hamming",
+        "name": "Hamming",
+        "uuid": "86bc8727-f353-44a5-b898-6f32d114a01e",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -279,6 +279,14 @@
         "difficulty": 5
       },
       {
+        "slug": "bank-account",
+        "name": "Bank Account",
+        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "2f78a54b-08ca-407a-a5e3-f0f8afb66c94",
@@ -374,7 +382,7 @@
         "prerequisites": [],
         "difficulty": 5
       },
-	  {
+      {
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
