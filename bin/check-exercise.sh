@@ -6,8 +6,12 @@ set -eou pipefail
 die () { echo "$*" >&2; exit 1; }
 
 expected_number_of_tests () {
-    num_tests=$(grep -c "description = " "${exercise_path}/.meta/tests.toml")
-    ignored_tests=$(grep -c "include = false" "${exercise_path}/.meta/tests.toml")
+    num_tests="0"
+    ignored_tests="0"
+    if [ -f "${exercise_path}/.meta/tests.toml" ]; then
+      num_tests=$(grep -c "description = " "${exercise_path}/.meta/tests.toml")
+      ignored_tests=$(grep -c "include = false" "${exercise_path}/.meta/tests.toml")
+    fi
     echo $(( num_tests - ignored_tests ))
 }
 

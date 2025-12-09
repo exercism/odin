@@ -103,17 +103,17 @@
         "difficulty": 2
       },
       {
-        "slug": "darts",
-        "name": "Darts",
-        "uuid": "43e5dc65-efd0-4e46-8e58-c3473d56a0fc",
+        "slug": "dnd-character",
+        "name": "D&D Character",
+        "uuid": "64e89ff5-9517-430b-a747-ad85998651c0",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
       },
       {
-        "slug": "dnd-character",
-        "name": "D&D Character",
-        "uuid": "64e89ff5-9517-430b-a747-ad85998651c0",
+        "slug": "darts",
+        "name": "Darts",
+        "uuid": "43e5dc65-efd0-4e46-8e58-c3473d56a0fc",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
@@ -293,6 +293,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
+      },
+      {
+        "slug": "space-age",
+        "name": "Space Age",
+        "uuid": "031f2fe0-e8b1-48c2-8ce3-f9ab8b76423c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
       },
       {
         "slug": "triangle",
