@@ -127,6 +127,14 @@
         "difficulty": 2
       },
       {
+        "slug": "eliuds-eggs",
+        "name": "Eliud's Eggs",
+        "uuid": "cc9d90c7-f03d-4370-8f97-cd48d2e821c8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "food-chain",
         "name": "Food Chain",
         "uuid": "ac98f0f1-85b3-4510-bf26-c84fd8baa147",
