@@ -4,6 +4,7 @@ import "core:testing"
 import "core:time/datetime"
 
 @(test)
+/// description = date only specification of time
 test_date_only_specification_of_time :: proc(t: ^testing.T) {
 	input := datetime.DateTime {
 		year  = 2011,
@@ -25,6 +26,7 @@ test_date_only_specification_of_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = second test for date only specification of time
 test_second_test_for_date_only_specification_of_time :: proc(t: ^testing.T) {
 	input := datetime.DateTime {
 		year  = 1977,
@@ -46,6 +48,7 @@ test_second_test_for_date_only_specification_of_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = third test for date only specification of time
 test_third_test_for_date_only_specification_of_time :: proc(t: ^testing.T) {
 	input := datetime.DateTime {
 		year  = 1959,
@@ -67,6 +70,7 @@ test_third_test_for_date_only_specification_of_time :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = full time specified
 test_full_time_specified :: proc(t: ^testing.T) {
 	input := datetime.DateTime {
 		year   = 2015,
@@ -91,6 +95,7 @@ test_full_time_specified :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = full time with day roll-over
 test_full_time_with_day_roll_over :: proc(t: ^testing.T) {
 	input := datetime.DateTime {
 		year   = 2015,

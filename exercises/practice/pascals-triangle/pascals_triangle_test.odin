@@ -119,7 +119,13 @@ test_ten_rows :: proc(t: ^testing.T) {
 test_seventy_five_rows :: proc(t: ^testing.T) {
 	actual := rows(75)
 	defer delete_array(actual)
-	testing.expect_value(t, actual[74][37], 17_46_130_564_335_626_209_832)
+	// There seems to be a bug in Odin 2025-10 on Darwin where it hangs on `actual[74][37]
+	// when actual == nil. This happens if we run the test against the stub solution.
+	// Added a check for nil (which is a failed value anyway, to bypass the bug)`
+	testing.expect(t, actual != nil)
+	if actual != nil {
+		testing.expect_value(t, actual[74][37], 17_46_130_564_335_626_209_832)
+	}
 }
 
 // Optional Benchmarking Code
