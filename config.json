@@ -71,14 +71,6 @@
         "difficulty": 2
       },
       {
-        "slug": "bank-account",
-        "name": "Bank Account",
-        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 5
-      },
-      {
         "slug": "bob",
         "name": "Bob",
         "uuid": "b5bcaa3c-42e2-44d7-a11f-3efdfef949e7",
@@ -183,6 +175,14 @@
         "difficulty": 2
       },
       {
+        "slug": "perfect-numbers",
+        "name": "Perfect Numbers",
+        "uuid": "032a0a31-8d69-48b5-aeca-ed8358e604a7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "protein-translation",
         "name": "Protein Translation",
         "uuid": "df6321a8-4972-43e3-82d2-ab5353af0d6c",
@@ -274,6 +274,14 @@
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "810131cd-859d-4119-a91c-ae4d4857e4ae",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "bank-account",
+        "name": "Bank Account",
+        "uuid": "2132f62a-e201-4687-9e74-4c27640d352e",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
@@ -374,7 +382,7 @@
         "prerequisites": [],
         "difficulty": 5
       },
-	  {
+      {
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
