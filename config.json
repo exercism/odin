@@ -279,6 +279,14 @@
         "difficulty": 2
       },
       {
+        "slug": "rna-transcription",
+        "name": "RNA Transcription",
+        "uuid": "6f0407a2-2050-47cf-969e-769728fed0d0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "robot-name",
         "name": "Robot Name",
         "uuid": "fb0419f7-81d9-40a4-869c-9da05b4c3ef5",
