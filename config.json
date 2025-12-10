@@ -47,6 +47,14 @@
         "difficulty": 1
       },
       {
+        "slug": "space-age",
+        "name": "Space Age",
+        "uuid": "031f2fe0-e8b1-48c2-8ce3-f9ab8b76423c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "198e81f2-67ac-4474-9306-18e8c8a40b46",
@@ -319,12 +327,12 @@
         "difficulty": 2
       },
       {
-        "slug": "space-age",
-        "name": "Space Age",
-        "uuid": "031f2fe0-e8b1-48c2-8ce3-f9ab8b76423c",
+        "slug": "simple-cipher",
+        "name": "Simple Cipher",
+        "uuid": "d8ab5e48-f9b3-4016-a576-c14f361d2db1",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 2
       },
       {
         "slug": "triangle",
