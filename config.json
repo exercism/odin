@@ -303,6 +303,14 @@
         "difficulty": 2
       },
       {
+        "slug": "space-age",
+        "name": "Space Age",
+        "uuid": "031f2fe0-e8b1-48c2-8ce3-f9ab8b76423c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
+      },
+      {
         "slug": "triangle",
         "name": "Triangle",
         "uuid": "b838c982-460a-46bb-bb3e-0e50ed99090b",
