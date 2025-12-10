@@ -79,6 +79,14 @@
         "difficulty": 2
       },
       {
+        "slug": "bottle-song",
+        "name": "Bottle Song",
+        "uuid": "7de07a09-8554-4521-99a7-24a4c051196e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "clock",
         "name": "Clock",
         "uuid": "e3b71b22-1f49-49e6-9cf7-388dfebc400d",
@@ -103,17 +111,17 @@
         "difficulty": 2
       },
       {
-        "slug": "darts",
-        "name": "Darts",
-        "uuid": "43e5dc65-efd0-4e46-8e58-c3473d56a0fc",
+        "slug": "dnd-character",
+        "name": "D&D Character",
+        "uuid": "64e89ff5-9517-430b-a747-ad85998651c0",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
       },
       {
-        "slug": "dnd-character",
-        "name": "D&D Character",
-        "uuid": "64e89ff5-9517-430b-a747-ad85998651c0",
+        "slug": "darts",
+        "name": "Darts",
+        "uuid": "43e5dc65-efd0-4e46-8e58-c3473d56a0fc",
         "practices": [],
         "prerequisites": [],
         "difficulty": 2
