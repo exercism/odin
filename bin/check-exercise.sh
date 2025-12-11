@@ -144,4 +144,12 @@ check_format tests "${exercise_path}/${exercise_name}_test.odin"
 check_format example "${exercise_path}/.meta/example.odin"
 check_for_missing_test_descriptions "${exercise_path}/${exercise_name}_test.odin"
 
+    if [ -f ODIN_VERSION ]; then
+        local_version=$(odin version | sed -E 's/:.*$//; s/^.*odin version //')
+        supported_version=$(sed -E 's/^odin version //' ODIN_VERSION)
+        if [[ "$local_version" != "$supported_version" ]]; then
+            echo "⚠️[WARNING] Project's Odin version is: $supported_version but your local version is: $local_version"
+        fi
+    fi
+
 echo "Exercise $exercise_name pass all the checks!"
