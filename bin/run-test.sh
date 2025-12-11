@@ -107,8 +107,8 @@ run_test() {
     fi
 
     if [ -f ODIN_VERSION ]; then
-        local_version=$(odin version | sed -E 's/:.*$//' | sed -E 's/^.*odin version //')
-        supported_version=$(cat ODIN_VERSION | sed -E 's/^odin version //')
+        local_version=$(odin version | sed -E 's/:.*$//; s/^.*odin version //')
+        supported_version=$(sed -E 's/^odin version //' ODIN_VERSION)
         if [[ "$local_version" != "$supported_version" ]]; then
             echo "[WARNING] Project's Odin version is: $supported_version but your local version is: $local_version"
         fi
