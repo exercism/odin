@@ -4,7 +4,7 @@
   "active": false,
   "status": {
     "concept_exercises": false,
-    "test_runner": false,
+    "test_runner": true,
     "representer": false,
     "analyzer": false
   },
@@ -13,6 +13,9 @@
   "online_editor": {
     "indent_style": "space",
     "indent_size": 4
+  },
+  "test_runner": {
+    "average_run_time": 2
   },
   "files": {
     "solution": [
