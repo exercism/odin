@@ -47,4 +47,5 @@ description = "Invalid inputs -> Zero is rejected (as it is not a positive integ
 
 [2d72ce2c-6802-49ac-8ece-c790ba3dae13]
 description = "Invalid inputs -> Negative integer is rejected (as it is not a positive integer)"
-ignore = true
+include = false
+comment = "The stub specifies the parameter as a uint: it cannot be negative"

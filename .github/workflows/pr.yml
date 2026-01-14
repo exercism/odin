@@ -45,7 +45,7 @@ jobs:
           # 3. then send the paths one-by-one to the check script
           gh api "$pr_endpoint/files" --paginate --jq '
               map(
-                select (.filename | endswith(".odin"))
+                select ((.filename | endswith(".odin")) or (.filename | endswith(".toml")))
                 | .filename
                 | scan("^exercises/[^/]+/[^/]+")
               )

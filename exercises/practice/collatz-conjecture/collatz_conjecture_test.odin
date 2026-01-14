@@ -41,3 +41,11 @@ test_zero_is_an_error :: proc(t: ^testing.T) {
 	testing.expect_value(t, s, 0)
 	testing.expect(t, !ok)
 }
+
+@(test)
+/// description = negative value is an error
+test_negative_value_is_an_error :: proc(t: ^testing.T) {
+	s, ok := steps(-15)
+	testing.expect_value(t, s, 0)
+	testing.expect(t, !ok)
+}
