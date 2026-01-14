@@ -122,12 +122,16 @@ log_result "Actual number of tests" "$num_actual_tests"
 if [[ "$exercise_path" == *"practice"* ]]; then
 
     num_expected_tests=$(expected_number_of_tests)
-    log_result "Expected number of tests" "$num_expected_tests"
+    if (( num_expected_tests == 0 )); then
+        echo "❓[INFO] No canonical tests for this exercise."
+    else
+        log_result "Expected number of tests" "$num_expected_tests"
 
-    if [[ $num_expected_tests -gt $num_actual_tests ]]; then
-        echo "⚠️[WARNING] More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
-    elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
-        echo "❓[INFO] More actual tests than expected tests, looks like you over-achieved!"
+        if [[ $num_expected_tests -gt $num_actual_tests ]]; then
+            echo "⚠️[WARNING] More expected tests than actuals, please check ${exercise_path}/.meta/tests.toml"
+        elif [[ $num_expected_tests -lt $num_actual_tests ]]; then
+            echo "❓[INFO] More actual tests than expected tests, looks like you over-achieved!"
+        fi
     fi
 fi
 

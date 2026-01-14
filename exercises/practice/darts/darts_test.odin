@@ -65,6 +65,18 @@ test_just_outside_the_middle_circle :: proc(t: ^testing.T) {
 }
 
 @(test)
+/// description = Just within the outer circle
+test_just_within_the_outer_circle :: proc(t: ^testing.T) {
+	testing.expect_value(t, score(-7.0, 7.0), 1)
+}
+
+@(test)
+/// description = Just outside the outer circle
+test_just_outside_the_outer_circle :: proc(t: ^testing.T) {
+	testing.expect_value(t, score(7.1, -7.1), 0)
+}
+
+@(test)
 /// description = Assymetric between inner and middle
 test_assymetric_between_inner_and_middle :: proc(t: ^testing.T) {
 	testing.expect_value(t, score(0.5, -4), 5)
