@@ -9,7 +9,7 @@ In addition to the [Learning][learning] resources, here are some other places to
   These provide some insight into the language's design principles.
 * [Style guide][style].
 * [Awesome Odin][awesome], a collection of links to Odin libraries and resources.
-* A [series of videos][vids] about Odin and using it for game development.
+* A [series of videos][vids] about Odin and how to use it for game development.
   By Karl Zylinski, the author of the "Understanding Odin" book.
 
 [learning]: ./learning
