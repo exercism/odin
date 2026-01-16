@@ -4,17 +4,18 @@ Hi!
 We are happy you are here.
 
 **exercism/odin** is one of many programming language tracks on [Exercism][exercism-website].
-This repo holds the instructions, tests, code, and support files for Odin exercises currently under development or implemented and available for students.
+This repo holds the instructions, tests, code, and support files for the Odin Exercism track.
 
 Exercises are grouped into **practice** exercises, which are unlocked by progressing through the syllabus tree and **concept** exercises teaching the Odin syllabus, which will eventually live [here][odin-syllabus].
-Practice exercises are open-ended, and can be used to practice concepts learned, try out new techniques, and _play_. These two exercise groupings can be found in the track [config.json][config-json], and under the `odin/exercises` directory.
+Practice exercises are open-ended, and can be used to practice concepts learned, try out new techniques, and _play_. These two exercise groupings can be found in the track [config.json][config-json], and under the [`odin/exercises`][odin-exercises] directory.
 Concept exercises are constrained to a small set of language or syntax features.
 
 ## Odin Version
 
 The track exercises are currently compiled and tested against the release of Odin listed in [ODIN_VERSION][odin-version].
+That version is periodically updated to keep up with the Odin releases.
 
-Odin is fairly stable but some minor incompatibilities still occurs from version to version. If you have a problem, try the version supported by the track, this will save you time when tracking down a problem.
+Odin is fairly stable but some minor incompatibilities may still occurs between versions. If you have a problem, try the version supported by the track, this will save you time when tracking down problems.
 
 ## Contributing
 
@@ -30,9 +31,9 @@ We are a diverse and welcoming community, please take a moment to read our [Code
 
 It might also be helpful to look at [Being a Good Community Member][being-a-good-community-member] & [The words that we use][the-words-that-we-use].
 
-## Before You Start Writing Code or documentation
+## Before You Start Writing Code or Documentation
 
-The Odin track maintainers have a set of planned features in the pipeline, the last thing we want is for you to duplicate some of the work we do being the scene and get discouraged.
+The Odin track maintainers have a set of planned features in the pipeline, the last thing we want is for you to duplicate some of the work already in progress and get discouraged.
 If you want your contribution to be useful, make sure you coordinate with us first.
 How to do this is explained in the [Contributing Guide][contributing-guide] and the [Developer FAQS][developer-faqs].
 
@@ -64,6 +65,7 @@ _Thoughtful suggestions will likely result in faster & more enthusiastic respons
 [freeing-maintainers]: https://exercism.org/blog/freeing-our-maintainers
 [git-for-windows]: https://gitforwindows.org/
 [odin-backlog]: https://github.com/exercism/odin/issues/53
+[odin-exercises]: https://github.com/exercism/odin/tree/main/exercises
 [odin-exercise-example]: https://github.com/exercism/odin/tree/main/exercises/practice/two-bucket
 [odin-exercism-repository]: https://github.com/exercism/odin
 [odin-installation-doc]: https://github.com/exercism/odin/blob/main/docs/INSTALLATION.md

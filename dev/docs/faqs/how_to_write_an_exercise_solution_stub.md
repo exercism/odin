@@ -9,8 +9,8 @@ If it doesn't then, instead of seeing a nice set of test reports, the student wi
 
 ## Procedure Stubs
 
-For procedures, the strategy we use is to add a comment asking them to implement the procedure body and, if the procedure has any return values, return zero values for the return types.
-Here is an example taken out of the High Score exercise.
+For procedures, the strategy we use is to add a comment asking them to implement the procedure body and, if the procedure has any return values, return the zero values associated with the return types.
+Here is an example taken out of the `High Score` exercise.
 
 ```odin
 scores :: proc(s: High_Scores) -> []int {
@@ -60,6 +60,8 @@ new_scores :: proc(initial_values: []int) -> High_Scores {...}
 personal_top_three :: proc(s: High_Scores) -> []int {...}
 ```
 
+When the solution stub contained a partial `struct`, you need to make sure that the tests are not dependent on the `struct` fields (this would cause a compile error anyway so it is easy to spot).
+
 ## Errors
 
 Errors in Odin are usually defined as enumerations.
@@ -84,7 +86,7 @@ rebase :: proc(input_base: int, digits: []int, output_base: int) -> ([]int, Erro
 ```
 
 Note the additional `Error` value of `Unimplemented`.
-It is only added to provide solution stubs that will fail the tests.
+It is added to provide the solution stubs with a return value that will fail the tests.
 
 ## Stub Procedures May Not Fail all the Tests
 

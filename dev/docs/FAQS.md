@@ -2,7 +2,7 @@
 
 This document captures decisions and rationales about how the Odin Exercism track exercises and documentation should be written, it complements the [Contributing guide][odin-contributing] (that you should read first).
 
-If your question is not covered in the contributing guide or any of the FAQ below or if after reading the documentation you still have questions, please see if there is already an open [issue][odin-issues] or post a question to the [Exercism forum](https://forum.exercism.org/c/support/8).
+If your question is not covered in the contributing guide or any of the FAQ documents below, or if after reading the documentation you still have questions, please see if there is already an open [issue][odin-issues] or post a question to the [Exercism forum](https://forum.exercism.org/c/support/8).
 
 ## Odin Exercism Github Repo
 - [Why only one exercise per Pull Request?][why-only-one-exercise-per-pull-request]
