@@ -1,7 +1,17 @@
 package anagram
 
-import "core:slice"
+import "core:fmt"
 import "core:testing"
+
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
+	result := fmt.aprintf("%v", actual)
+	exp_str := fmt.aprintf("%v", expected)
+	defer {
+		delete(result)
+		delete(exp_str)
+	}
+	testing.expect_value(t, result, exp_str, loc = loc)
+}
 
 @(test)
 /// description = no matches
@@ -13,7 +23,7 @@ test_no_matches :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -26,7 +36,7 @@ test_detects_two_anagrams :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -39,7 +49,7 @@ test_does_not_detect_anagram_subsets :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -52,7 +62,7 @@ test_detects_anagram :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -65,7 +75,7 @@ test_detects_three_anagrams :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -78,7 +88,7 @@ test_detects_multiple_anagrams_with_different_case :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -91,7 +101,7 @@ test_does_not_detect_non_anagrams_with_identical_checksum :: proc(t: ^testing.T)
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -104,7 +114,7 @@ test_detects_anagrams_case_insensitively :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -117,7 +127,7 @@ test_detects_anagrams_using_case_insensitive_subject :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -130,7 +140,7 @@ test_detects_anagrams_using_case_insensitive_possible_matches :: proc(t: ^testin
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -143,7 +153,7 @@ test_does_not_detect_an_anagram_if_the_original_word_is_repeated :: proc(t: ^tes
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -156,7 +166,7 @@ test_anagrams_must_use_all_letters_exactly_once :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -169,7 +179,7 @@ test_words_are_not_anagrams_of_themselves :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -184,7 +194,7 @@ test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_partially_diffe
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -199,7 +209,7 @@ test_words_are_not_anagrams_of_themselves_even_if_letter_case_is_completely_diff
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -212,7 +222,7 @@ test_words_other_than_themselves_can_be_anagrams :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -225,7 +235,7 @@ test_handles_case_of_greek_letters :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -238,5 +248,5 @@ test_different_characters_may_have_the_same_bytes :: proc(t: ^testing.T) {
 	result := find_anagrams(word, candidates[:])
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
