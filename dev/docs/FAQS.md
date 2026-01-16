@@ -32,5 +32,5 @@ If your question is not covered in the contributing guide or any of the FAQ docu
 [how-to-setup-your-machine-to-contribute-to-the-track]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/how_to_setup_your_machine_to_contribute_to_the_track.md
 [odin-track-tools]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/the_odin_track_tools.md
 [how-to-create-a-new-exercise]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/how_to_create_a_new_exercise.md
-[how-to-write-an-exercise-solution-stub]: https://github.com/exercism/odin/blob/main/dev/docs/faq/how_to_write_an_exercise_solution_stub.md
-[odin-track-status]: https://github.com/exercism/odin/blob/main/dev/docs/faq/how_to_check_the_odin_track_status.md
+[how-to-write-an-exercise-solution-stub]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/how_to_write_an_exercise_solution_stub.md
+[odin-track-status]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/how_to_check_the_odin_track_status.md
