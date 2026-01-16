@@ -1,10 +1,10 @@
 # The Odin Track Tools
 
-Note: in the text below, `$EXERCISM_ODIN` refers to your local copy of the Exercism Odin repository, see [How to Setup your Machine to Contribute to the track][how-to-setup-your-machine-to-contribute-to-the-track] for details.
+Note: in the text below, `$EXERCISM_ODIN` refers to the directory of your local copy of the Exercism Odin repository, see [How to Setup your Machine to Contribute to the track][how-to-setup-your-machine-to-contribute-to-the-track] for details.
 
 Here is a brief description of the tools you will find in `$EXERCISM_ODIN/bin`:
 
-- `bin/configlet` is the official Exercism tool, its options include:
+- `bin/configlet` is the official Exercism track maintenance tool, its options include:
   - `lint`: perform a general check on the track exercise and config.json file, it will flag updates to the exercise documentation or test description in the [Problem Specification repository][exercism-problem-specification-repository]
   - `sync`: if `configlet lint` reports inconsistencies with the [Problem Specification repository][exercism-problem-specification-repository], run `bin/configlet sync -u` to fix them.
 - `bin/format-all.sh` will run `odinfmt` on all `.odin` files in the repository, using the Odin track approved formatting rules.

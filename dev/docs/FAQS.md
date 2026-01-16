@@ -16,6 +16,7 @@ If your question is not covered in the contributing guide or any of the FAQ docu
 ## Tooling
 - [How to Setup Your Machine to Contribute to the Track?][how-to-setup-your-machine-to-contribute-to-the-track]
 - [The Odin Track Tools][odin-track-tools]
+- [How to Check the Track Status][odin-track-status]
 
 ## Documentation
 - [How To Develop Documentation for a Concept?][how-to-develop-documentation-for-a-concept]
@@ -32,3 +33,4 @@ If your question is not covered in the contributing guide or any of the FAQ docu
 [odin-track-tools]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/the_odin_track_tools.md
 [how-to-create-a-new-exercise]: https://github.com/exercism/odin/blob/main/dev/docs/faqs/how_to_create_a_new_exercise.md
 [how-to-write-an-exercise-solution-stub]: https://github.com/exercism/odin/blob/main/dev/docs/faq/how_to_write_an_exercise_solution_stub.md
+[odin-track-status]: https://github.com/exercism/odin/blob/main/dev/docs/faq/how_to_check_the_odin_track_status.md
