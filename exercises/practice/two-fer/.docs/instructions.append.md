@@ -65,3 +65,10 @@ If the arguments you need are in positional order, like in the example above, th
 ```odin
 greeting("John Doe", add_exclamation=true)
 ```
+
+---
+
+You may also be interested in the official Odin documentation about [default arguments][default-values] and Odin [named arguments][named-arguments].
+
+[named-arguments]: https://odin-lang.org/docs/overview/#named-arguments
+[default-values]: https://odin-lang.org/docs/overview/#default-values
