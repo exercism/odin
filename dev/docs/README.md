@@ -5,4 +5,4 @@ It also holds design decisions and their rationale to help future contributors u
 
 - The [Concept Roadmap][concept-roadmap] describes the planned set of concepts to be developed for the Track (and should be considered a work in progress)
 
-[concept-roadmap]: (concept_roadmap.md)
+[concept-roadmap]: https://github.com/exercism/odin/blob/main/dev/docs/concept_roadmap.md
