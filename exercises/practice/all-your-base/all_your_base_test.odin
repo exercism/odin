@@ -1,7 +1,17 @@
 package all_your_base
 
-import "core:slice"
+import "core:fmt"
 import "core:testing"
+
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
+	result := fmt.aprintf("%v", actual)
+	exp_str := fmt.aprintf("%v", expected)
+	defer {
+		delete(result)
+		delete(exp_str)
+	}
+	testing.expect_value(t, result, exp_str, loc = loc)
+}
 
 @(test)
 /// description = single bit one to decimal
@@ -13,7 +23,7 @@ test_single_bit_one_to_decimal :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{1}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -27,7 +37,7 @@ test_binary_to_single_decimal :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{5}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -41,7 +51,7 @@ test_single_decimal_to_binary :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{1, 0, 1}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -55,7 +65,7 @@ test_binary_to_multiple_decimal :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{4, 2}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -69,7 +79,7 @@ test_decimal_to_binary :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{1, 0, 1, 0, 1, 0}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -83,7 +93,7 @@ test_trinary_to_hexadecimal :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{2, 10}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -97,7 +107,7 @@ test_hexadecimal_to_trinary :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{1, 1, 2, 0}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -111,7 +121,7 @@ test_15_bit_integer :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{6, 10, 45}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -125,7 +135,7 @@ test_empty_list :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{0}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -139,7 +149,7 @@ test_single_zero :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{0}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -153,7 +163,7 @@ test_multiple_zeros :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{0}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
@@ -167,7 +177,7 @@ test_leading_zeros :: proc(t: ^testing.T) {
 	defer delete(result)
 
 	expected := [?]int{4, 2}
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 	testing.expect_value(t, err, Error.None)
 }
 
