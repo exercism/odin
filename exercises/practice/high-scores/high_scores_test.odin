@@ -1,7 +1,17 @@
 package high_scores
 
-import "core:slice"
+import "core:fmt"
 import "core:testing"
+
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
+	result := fmt.aprintf("%v", actual)
+	exp_str := fmt.aprintf("%v", expected)
+	defer {
+		delete(result)
+		delete(exp_str)
+	}
+	testing.expect_value(t, result, exp_str, loc = loc)
+}
 
 @(test)
 /// description = List of scores
@@ -14,7 +24,7 @@ test_list_of_scores :: proc(t: ^testing.T) {
 	result := scores(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -54,7 +64,7 @@ test_top_3_scores__personal_top_three_from_a_list_of_scores :: proc(t: ^testing.
 	result := personal_top_three(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -68,7 +78,7 @@ test_top_3_scores__personal_top_highest_to_lowest :: proc(t: ^testing.T) {
 	result := personal_top_three(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -82,7 +92,7 @@ test_top_3_scores__personal_top_when_there_is_a_tie :: proc(t: ^testing.T) {
 	result := personal_top_three(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -96,7 +106,7 @@ test_top_3_scores__personal_top_when_there_are_less_than_3 :: proc(t: ^testing.T
 	result := personal_top_three(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -110,7 +120,7 @@ test_top_3_scores__personal_top_when_there_is_only_one :: proc(t: ^testing.T) {
 	result := personal_top_three(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -141,7 +151,7 @@ test_top_3_scores__scores_after_personal_top_scores :: proc(t: ^testing.T) {
 	result := scores(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
 
 @(test)
@@ -170,5 +180,5 @@ test_top_3_scores__scores_after_personal_best :: proc(t: ^testing.T) {
 	result := scores(score_board)
 	defer delete(result)
 
-	testing.expect(t, slice.equal(result, expected[:]))
+	expect_slices_match(t, result, expected[:])
 }
