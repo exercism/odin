@@ -1,7 +1,3 @@
-//
-// This is only a SKELETON file for the 'High Scores' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
 package high_scores
 
 // Complete the HighScores data structure.
