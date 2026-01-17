@@ -3,9 +3,9 @@ package anagram
 import "core:fmt"
 import "core:testing"
 
-expect_slices_match :: proc(t: ^testing.T, actual, expected: []$E, loc := #caller_location) {
-	result := fmt.aprintf("%v", actual)
-	exp_str := fmt.aprintf("%v", expected)
+expect_slices_match :: proc(t: ^testing.T, actual, expected: []string, loc := #caller_location) {
+	result := fmt.aprintf("%s", actual)
+	exp_str := fmt.aprintf("%s", expected)
 	defer {
 		delete(result)
 		delete(exp_str)
