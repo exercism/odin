@@ -1,29 +1,40 @@
 # Concept Roadmap
 
 This document describes the draft for the Odin Track syllabus.
-It presents a reasonable list of concepts to be presented in the concept tree.
-As recommended in the [Exercism Syllabus Doc](https://exercism.org/docs/building/tracks/syllabus), the tree will be implemented incrementally and, in the process, the exact list of concepts may change.
+It presents an initial list of concepts to be developed in the Odin syllabus.
+As recommended in the [Exercism Syllabus Doc](https://exercism.org/docs/building/tracks/syllabus), the syllabus will be implemented incrementally and, in the process, the exact list of concepts may change.
 
-I looked at other tracks and, most of them, have between 35 and 45 concepts in their tree (with some going much higher - C-sharp has 62).
-Too many concepts may be intimidating to the student, too few may force us to bundle concepts that would better presented separately.
-The list below is mostly derived from the Go, Javascript, C++, C-sharp and Swift syllabus.
-Odin has a number of unique features which will be best addressed in their own unique concepts, for example "Memory Management and Allocators", "Structure of Arrays", "Matrix and SIMD Operations", etc.
-This increases the number of topics so, to try to keep the number in the 35-45 range, I bundled concepts which have been kept separate in other tracks where I thought they could be presented together.
-For example, I grouped integers and floating-point in a single topic (Number).
+Odin supports concepts that can be skipped when initially learning the language.
+These concepts are listed under the Advanced Concept section and are not part of the initial effort.
+They are kept here for future development.
 
-Some concepts are more important when getting started (core concepts) and other can be learned later.
-They may not even be needed in most of the practice exercises (advanced concepts).
+## Target Audience and Criteria to Split Knowledge into Concepts
 
-I listed the concepts in the order they should be introduced, with pre-requisite concepts being located higher in the list.
-Advanced concepts are marked with a `(+)`.
-They should be developed after the core concepts.
-There are a couple of places where concepts have circular dependencies (like "Context" and "Memory Management & Allocator").
-I picked an order for now but this may change once we start building the concept tree.
+Before we dive into the concept, let's decide who we are targeting with the syllabus.
+Odin is a niche language designed for experienced programmers who want a better way to write C code.
+For this reason, it is unlikely that it will be chosen by a beginner who wants to learn programming (even if the language has a strong Pascal heritage that makes it fit for this purpose).
 
-Also, because Odin is close to Go for most concepts (except interfaces/methods, garbage collection and goroutines), I was planning on borrowing heavily from the Go track concepts.
+We will then target programmers who have previous experience with at least one other language and are interested in picking up Odin, either for its game development libraries or because of its low-level capabilities (such as memory management or easy interface to C).
+This means that we can assume common knowledge about (primitive and composite) types, pointers and references, and control flow and scopes.
+We will then package quite a bit of information in each concept, for example, we will discuss integer and floating point types within a single concept.
+The real barrier between packaging knowledge into one or multiple concepts will be the amount we can pack into a single exercise.
+As an example, for relatively advanced users, we could discuss casting in the same concept as numbers but it is easier for the student to work a separate exercise focusing on casting after they got the concepts of numbers.
 
-The goal is to have one exercise per concept.
-There may be exception if there is too much material to introduce in a single exercise, but in this case, we should consider splitting the concept into two smaller, more focused concepts.
+## Which Language Tracks Are Good Sources of Inspiration?
+
+Odin is meant as a C replacement, it also draw heavily on Pascal, Go, and Oberon.
+While Exercism has C and Delphi Pascal tracks, none of these have a concept map.
+Go, which can be seen as Odin with garbage collection has a good set of concepts in Exercism so we will draw inspiration from the Go concept map.
+
+Other languages that have a concept map and can be used for examples are Java, C#, and Swift.
+These languages, contrary to Odin, are Object Oriented but there is still a lot of commonalities between them that can be exploited for concepts and concepts exercises.
+
+## One Exercise per Concept and one Concept per Exercise
+
+Looking at other tracks, some provide more than one exercise for a concept (Elixir) and some use the same exercise for related concepts (example: Go Type Assertion and Type Conversion).
+The goal for the Odin track is to have one exercise per concept.
+If the same exercise can be used to demonstrate both concepts, then the concepts should be merged (see the Go concepts of Type Conversion/Assertion).
+If there is more than one exercise that can be used to demonstrate a concept then we will pick the most appropriate.
 
 ## Overview
 
@@ -100,10 +111,14 @@ graph TD
     errors --> concurrency
 ```
 
-## Concepts (43)
+## Concepts
 
-There are currently 30 core concepts and 13 advanced concepts.
-Each section includes the concept name, slug, the concept `uuid`, and the list of Odin syntax elements that should be introduced.
+Each concept section includes:
+
+- Concept name and slug name
+- Concept `uuid`
+- List of Odin syntax elements to introduce
+- Brief Description of the exercise that demonstrate the concept
 
 ### Basics
 
@@ -311,22 +326,13 @@ Syntax covered: since errors are types, there is no special syntax to introduce 
 
 Aka: `errors`, `1d25068d-8760-45e0-bfe4-cd9c537ac470`
 
-### (+) Enumerated Arrays
+### Enumerated Arrays
 
 Discuss how you can index Odin’s fixed arrays with an enumerations and how this can be used as a “kind of static” `map` or with `switch` statements.
 
 Syntax covered: `<name> :: [<enum type>]<type>`
 
 Aka: `enum-arrays`, `52b4234e-2238-446d-b2be-f1d844eb581f`
-
-### (+) Bit Sets
-
-Explain how Odin can model finite sets of elements using a Bit Set with the elements being an integer range, a character range, or an enumeration.
-Discuss how the set behaves like a mathematical set (no duplicate elements) and list the different operators that act on sets and how to add/remove elements from the set.
-
-Syntax covered: `bit_set[<enum type>]`, `bit_set[<range>]`, `in`, `not_in`, `+=`, `-=`, `&`, `|`, `+`, `-`.
-
-Aka: `bit-sets`, `99f9d844-08bd-4bd2-a66c-6c8d9adad1b0`
 
 ### Implicit Context
 
@@ -444,15 +450,6 @@ Syntax covered: `using`.
 
 Aka: `composition`, `98cea22f-cade-47a6-bd94-f6f13983421c`
 
-### (+) `or_…` Statements
-
-Discuss the `or_else`, `or_return`, `or_continue`, and `or_break` operators and how they can be used to simplify Error Handling.
-Explain how the first two requires procedures using them to use named return values.
-
-Syntax covered: `or_else`, `or_return`, `or_continue`, `or_break`.
-
-Aka: `or-statements`, `81758e49-a550-4b5e-b1bc-d6c8213910cc`
-
 ### Variadic Parameters
 
 Explain Odin’s syntax for variadic parameters, how slice values can be passed as a set of variadic parameters and give an example of a variadic procedure where the variadic argument is passed down to a nested variadic procedure (use `fmt.printf(…)` as the nested procedure).
@@ -461,7 +458,27 @@ Syntax covered: `..<type>`, `..<value>`, `for in`
 
 Aka: `variadic-parameters`, `46cc7e5d-0e1c-47f3-9e65-36ece4bffc8f`
 
-### (+) Explicit Procedure Overloading
+## Advanced Concepts
+
+### Bit Sets
+
+Explain how Odin can model finite sets of elements using a Bit Set with the elements being an integer range, a character range, or an enumeration.
+Discuss how the set behaves like a mathematical set (no duplicate elements) and list the different operators that act on sets and how to add/remove elements from the set.
+
+Syntax covered: `bit_set[<enum type>]`, `bit_set[<range>]`, `in`, `not_in`, `+=`, `-=`, `&`, `|`, `+`, `-`.
+
+Aka: `bit-sets`, `99f9d844-08bd-4bd2-a66c-6c8d9adad1b0`
+
+### `or_…` Statements
+
+Discuss the `or_else`, `or_return`, `or_continue`, and `or_break` operators and how they can be used to simplify Error Handling.
+Explain how the first two requires procedures using them to use named return values.
+
+Syntax covered: `or_else`, `or_return`, `or_continue`, `or_break`.
+
+Aka: `or-statements`, `81758e49-a550-4b5e-b1bc-d6c8213910cc`
+
+### Explicit Procedure Overloading
 
 Describe how Odin doesn’t support implicit procedure overloading but allow for explicit overloading.
 
@@ -469,7 +486,7 @@ Syntax covered: `<name> :: proc {...}`
 
 Aka: `explicit-overloading`, `c9062752-fc34-46db-b112-dc3a413867c8`
 
-### (+) Matrix and SIMD Operations
+### Matrix and SIMD Operations
  
 Describe the matrix type and matrix operations, and explains how the compiler uses SIMD instruction for matrix operations.
 
@@ -477,7 +494,8 @@ Syntax covered: `matrix[<N>,<M>]`, `complexN`, `quaternionN`, `#simd[<N>]<type>`
 
 Aka: `matrix`, `58a82ae3-46bb-4b21-bfc9-4f1c40803443`
 
-### (+) Structure of Arrays
+
+### Structure of Arrays
 
 Explain how data-oriented programming often requires arrays of `struct` to be converted to `struct` of arrays to avoid cache misses.
 Show how Odin provides a simple directive to achieve this while leaving the programmer to deal with the more common array of `struct` syntax.
@@ -486,7 +504,7 @@ Syntax covered: `#soa`.
 
 Aka: `structure-of-arrays`, `cc399bab-d16a-4302-86e9-6e45310b5039`
 
-### (+) Conditional Compilation
+### Conditional Compilation
 
 Show how Odin supports conditional compilation with `when` to support multiple platforms.
 
@@ -496,7 +514,7 @@ Note: I am not sure how much of that can be exercised in the context of Exercism
 
 Aka: `conditional-compilation`, `30d11f54-af0a-4299-b374-50982b02c836`
 
-### (+) Foreign Function Interface
+### Foreign Function Interface
 
 Explain how Odin’s supports interfacing with any library that has a C ABI compatible interface.
 Show a simple example of calling either a user defined library or a function of the C library (probably posix to be available on the test-runner platform).
@@ -509,7 +527,7 @@ Syntax covered: `foreign import`, calling conventions, c types (including `cstri
 
 Aka: `ffi`, `aaf2e00b-ae08-4924-9d92-f1e25201ae68`
 
-### (+) Bit fields
+### Bit fields
 
 Explain how Odin let you specify the bit allocation of a `struct` within a segment of memory and how this can be used to specify exact memory layout when dealing with external interfaces.
 
@@ -517,7 +535,7 @@ Syntax covered: `<name> :: bit_field <type> {...}`.
 
 Aka: `bit-fields`, `55ee8e37-cc62-4ea5-af46-1e16193bb1b5`
 
-### (+) Attributes and Directives
+### Attributes and Directives
 
 Explain the difference between attributes (`@`) and directives (`#`) and introduce a couple of the most useful ones.
 
@@ -525,7 +543,7 @@ Syntax covered: `@(<attribute>)`, `#directive`.
 
 Aka: `attributes-directives`, `24074068-85a2-4884-9aa2-830c5077bd84`
 
-### (+) Tracking Allocator
+### Tracking Allocator
 
 Show how to use the tracking allocator to check for memory leaks and incorrect releases in your program.
 
@@ -533,7 +551,7 @@ Syntax covered: `mem.Tracking_Allocator`.
 
 Aka: `memory-tracking`, `649e39bb-db76-4058-945d-c4ffa813c45a`
 
-### (+) Test Framework
+### Test Framework
 
 Aka: `testing`, `e66f615c-9485-49e7-9cbf-6e804e265100`
 
@@ -542,7 +560,7 @@ Discuss the fact that `odin test` run with the tracking allocator turned on and 
 
 Syntax covered: `"core:testing"`, `testing.expect...()`
 
-### (+) Regular Expression
+### Regular Expression
 
 Aka: `regex`, `da6ef497-b0e8-49f3-9a58-0f969f315bee`
 
@@ -551,7 +569,7 @@ Describes Odin `regex` package and how to use it.
 
 Syntax covered `"core:text/regex"`
 
-### (+) Concurrency
+### Concurrency
 
 Explain how Odin supports concurrency via thread and synchronization objects.
 
