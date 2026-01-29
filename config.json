@@ -1,7 +1,7 @@
 {
   "language": "Odin",
   "slug": "odin",
-  "active": false,
+  "active": true,
   "status": {
     "concept_exercises": false,
     "test_runner": true,
@@ -18,18 +18,10 @@
     "average_run_time": 2
   },
   "files": {
-    "solution": [
-      "%{snake_slug}.odin"
-    ],
-    "test": [
-      "%{snake_slug}_test.odin"
-    ],
-    "example": [
-      ".meta/example.odin"
-    ],
-    "exemplar": [
-      ".meta/exemplar.odin"
-    ]
+    "solution": ["%{snake_slug}.odin"],
+    "test": ["%{snake_slug}_test.odin"],
+    "example": [".meta/example.odin"],
+    "exemplar": [".meta/exemplar.odin"]
   },
   "exercises": {
     "practice": [
