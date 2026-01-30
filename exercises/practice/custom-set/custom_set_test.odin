@@ -9,7 +9,7 @@ test_to_string__empty_set :: proc(t: ^testing.T) {
 	set := new_set()
 	result := to_string(set)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(result)
 	}
 	testing.expect_value(t, result, "[]")
@@ -22,7 +22,7 @@ test_to_string__non_empty_set :: proc(t: ^testing.T) {
 	set := new_set(2, 1, 3)
 	result := to_string(set)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(result)
 	}
 
@@ -36,7 +36,7 @@ test_to_string__set_with_duplicates :: proc(t: ^testing.T) {
 	set := new_set(1, 1)
 	result := to_string(set)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(result)
 	}
 
@@ -49,7 +49,7 @@ test_returns_true_if_the_set_contains_no_elements__sets_with_no_elements_are_emp
 ) {
 
 	set := new_set()
-	defer delete(set)
+	defer destroy_set(&set)
 	result := is_empty(set)
 
 	testing.expect_value(t, result, true)
@@ -62,7 +62,7 @@ test_returns_true_if_the_set_contains_no_elements__sets_with_elements_are_not_em
 ) {
 
 	set := new_set(1)
-	defer delete(set)
+	defer destroy_set(&set)
 	result := is_empty(set)
 
 	testing.expect_value(t, result, false)
@@ -75,7 +75,7 @@ test_sets_can_report_if_they_contain_an_element__nothing_is_contained_in_an_empt
 ) {
 
 	set := new_set()
-	defer delete(set)
+	defer destroy_set(&set)
 	result := contains(set, 1)
 
 	testing.expect_value(t, result, false)
@@ -88,7 +88,7 @@ test_sets_can_report_if_they_contain_an_element__when_the_element_is_in_the_set 
 ) {
 
 	set := new_set(1, 2, 3)
-	defer delete(set)
+	defer destroy_set(&set)
 	result := contains(set, 1)
 
 	testing.expect_value(t, result, true)
@@ -101,7 +101,7 @@ test_sets_can_report_if_they_contain_an_element__when_the_element_is_not_in_the_
 ) {
 
 	set := new_set(1, 2, 3)
-	defer delete(set)
+	defer destroy_set(&set)
 	result := contains(set, 4)
 
 	testing.expect_value(t, result, false)
@@ -117,7 +117,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__em
 	other := new_set()
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -134,7 +134,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__em
 	other := new_set(1)
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -151,7 +151,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__no
 	other := new_set()
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -168,7 +168,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__se
 	other := new_set(1, 2, 3)
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -185,7 +185,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__se
 	other := new_set(4, 1, 2, 3)
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -202,7 +202,7 @@ test_a_set_is_a_subset_if_all_of_its_elements_are_contained_in_the_other_set__se
 	other := new_set(4, 1, 3)
 	result := is_subset(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -219,7 +219,7 @@ test_sets_are_disjoint_if_they_share_no_elements__the_empty_set_is_disjoint_with
 	other := new_set()
 	result := is_disjoint(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -236,7 +236,7 @@ test_sets_are_disjoint_if_they_share_no_elements__empty_set_is_disjoint_with_non
 	other := new_set(1)
 	result := is_disjoint(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -253,7 +253,7 @@ test_sets_are_disjoint_if_they_share_no_elements__non_empty_set_is_disjoint_with
 	other := new_set()
 	result := is_disjoint(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -270,7 +270,7 @@ test_sets_are_disjoint_if_they_share_no_elements__sets_are_not_disjoint_if_they_
 	other := new_set(2, 3)
 	result := is_disjoint(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -287,7 +287,7 @@ test_sets_are_disjoint_if_they_share_no_elements__sets_are_disjoint_if_they_shar
 	other := new_set(3, 4)
 	result := is_disjoint(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -302,7 +302,7 @@ test_sets_with_the_same_elements_are_equal__empty_sets_are_equal :: proc(t: ^tes
 	other := new_set()
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -319,7 +319,7 @@ test_sets_with_the_same_elements_are_equal__empty_set_is_not_equal_to_non_empty_
 	other := new_set(1, 2, 3)
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -336,7 +336,7 @@ test_sets_with_the_same_elements_are_equal__non_empty_set_is_not_equal_to_empty_
 	other := new_set()
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -353,7 +353,7 @@ test_sets_with_the_same_elements_are_equal__sets_with_the_same_elements_are_equa
 	other := new_set(2, 1)
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -370,7 +370,7 @@ test_sets_with_the_same_elements_are_equal__sets_with_different_elements_are_not
 	other := new_set(1, 2, 4)
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -387,7 +387,7 @@ test_sets_with_the_same_elements_are_equal__set_is_not_equal_to_larger_set_with_
 	other := new_set(1, 2, 3, 4)
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
@@ -404,7 +404,7 @@ test_sets_with_the_same_elements_are_equal__set_is_equal_to_a_set_constructed_fr
 	other := new_set(1, 1)
 	result := equal(set, other)
 	defer {
-		delete(set)
+		destroy_set(&set)
 		delete(other)
 	}
 
