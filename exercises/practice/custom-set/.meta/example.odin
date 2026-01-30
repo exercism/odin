@@ -18,6 +18,11 @@ new_set :: proc(elements: ..int) -> Set {
 	return set
 }
 
+destroy_set :: proc(s: ^Set) {
+
+	delete(s^)
+}
+
 to_string :: proc(s: Set) -> string {
 
 	elements, err := slice.map_keys(s)

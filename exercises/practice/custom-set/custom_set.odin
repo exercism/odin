@@ -10,6 +10,10 @@ new_set :: proc(elements: ..int) -> Set {
 	return set
 }
 
+destroy_set :: proc(s: ^Set) {
+	// Implement this procedure.
+}
+
 to_string :: proc(s: Set) -> string {
 	// Implement this procedure.
 	return ""
