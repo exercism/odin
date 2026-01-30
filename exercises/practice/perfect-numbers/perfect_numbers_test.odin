@@ -39,6 +39,14 @@ test_abundant_numbers__large_abundant_number_is_classified_correctly :: proc(t: 
 }
 
 @(test)
+/// description = Abundant numbers -> Perfect square abundant number is classified correctly
+test_abundant_numbers__perfect_square_abundant_number_is_classified_correctly :: proc(
+	t: ^testing.T,
+) {
+	testing.expect_value(t, classify(196), Classification.Abundant)
+}
+
+@(test)
 /// description = Deficient numbers -> Smallest prime deficient number is classified correctly
 test_deficient_numbers__smallest_prime_deficient_number_is_classified_correctly :: proc(
 	t: ^testing.T,
