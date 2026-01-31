@@ -9,6 +9,7 @@ test_fly :: proc(t: ^testing.T) {
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(1, 1)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -20,6 +21,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(2, 2)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -32,6 +34,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(3, 3)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -45,6 +48,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(4, 4)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -59,6 +63,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(5, 5)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -74,6 +79,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(6, 6)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -90,6 +96,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(7, 7)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -99,6 +106,7 @@ test_horse :: proc(t: ^testing.T) {
 She's dead, of course!`
 
 	actual := recite(8, 8)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -119,6 +127,7 @@ She swallowed the spider to catch the fly.
 I don't know why she swallowed the fly. Perhaps she'll die.`
 
 	actual := recite(1, 3)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
 @(test)
@@ -176,5 +185,6 @@ I know an old lady who swallowed a horse.
 She's dead, of course!`
 
 	actual := recite(1, 8)
+	defer delete(actual)
 	testing.expect_value(t, actual, expected)
 }
