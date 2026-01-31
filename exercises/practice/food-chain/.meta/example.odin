@@ -84,7 +84,6 @@ generate_verse :: proc(builder: ^strings.Builder, i: int) {
 
 recite :: proc(start, end: int) -> string {
 	builder := strings.builder_make()
-	defer strings.builder_destroy(&builder)
 	for i in start - 1 ..< end {
 		generate_verse(&builder, i)
 		strings.write_rune(&builder, '\n')
