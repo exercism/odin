@@ -112,8 +112,14 @@ dfs_fill_names :: proc(storage: ^Robot_Storage, alloc: mem.Allocator) {
 test_no_name_collisions :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
-	dfs_fill_names(&storage, context.temp_allocator)
+
+	names_arena := mem.Dynamic_Arena{}
+	mem.dynamic_arena_init(&names_arena)
+	defer mem.dynamic_arena_destroy(&names_arena)
+	names_arena_alloc := mem.dynamic_arena_allocator(&names_arena)
+	defer mem.dynamic_arena_free_all(&names_arena)
+
+	dfs_fill_names(&storage, names_arena_alloc)
 	_, e := new_robot(&storage)
 	testing.expect_value(t, e, Error.Could_Not_Create_Name)
-	free_all(context.temp_allocator)
 }
