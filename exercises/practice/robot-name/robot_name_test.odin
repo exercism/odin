@@ -1,5 +1,6 @@
 package robotname
 
+import "core:mem"
 import "core:strings"
 import "core:testing"
 import "core:text/regex"
@@ -65,7 +66,7 @@ test_multiple_names :: proc(t: ^testing.T) {
 
 // TODO: find a good way to solve this without assuming Robot_Storage will contains `names`
 // this code will not compile if user decide to use other name than `names` on Robot_Storage
-dfs_fill_names :: proc(storage: ^Robot_Storage) {
+dfs_fill_names :: proc(storage: ^Robot_Storage, alloc: mem.Allocator) {
 	GO_BACK_SENTINEL := u8('-')
 	NAME_LENGTH := 5
 	LETTERS := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -89,7 +90,7 @@ dfs_fill_names :: proc(storage: ^Robot_Storage) {
 		depth += 1
 		if depth == NAME_LENGTH {
 			key := string(current)
-			storage.names[strings.clone(key)] = true
+			storage.names[strings.clone(key, alloc)] = true
 			depth -= 1
 			continue
 		}
@@ -111,7 +112,8 @@ dfs_fill_names :: proc(storage: ^Robot_Storage) {
 test_no_name_collisions :: proc(t: ^testing.T) {
 	storage := make_storage()
 	defer delete_storage(&storage)
-	dfs_fill_names(&storage)
+	dfs_fill_names(&storage, context.temp_allocator)
 	_, e := new_robot(&storage)
 	testing.expect_value(t, e, Error.Could_Not_Create_Name)
+	free_all(context.temp_allocator)
 }
