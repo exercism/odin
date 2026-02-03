@@ -164,6 +164,26 @@ test_return_a_list_of_elements_whose_values_equal_the_list_value_transformed_by_
 }
 
 @(test)
+/// description = foldl (reduces) the given list to the type of accumulator
+test_foldl_reduces_the_given_list_to_the_type_of_accumulator :: proc(t: ^testing.T) {
+	sum_f64_and_int :: proc(acc: f64, el: int) -> f64 { return acc + f64(el) }
+
+	list := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	result := ls_foldl(list, f64(0), sum_f64_and_int)
+	testing.expect_value(t, result, 55.0)
+}
+
+@(test)
+/// description = foldr (reduces) the given list to the type of accumulator
+test_foldr_reduces_the_given_list_to_the_type_of_accumulator :: proc(t: ^testing.T) {
+	sum_f64_and_int :: proc(acc: f64, el: int) -> f64 { return acc + f64(el) }
+
+	list := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	result := ls_foldr(list, f64(0), sum_f64_and_int)
+	testing.expect_value(t, result, 55.0)
+}
+
+@(test)
 /// description = folds (reduces) the given list from the left with a function -> empty list
 test_folds_reduces_the_given_list_from_the_left_with_a_function__empty_list :: proc(
 	t: ^testing.T,
