@@ -592,6 +592,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
+      },
+      {
+        "slug": "zipper",
+        "name": "Zipper",
+        "uuid": "88f207d3-997c-4497-9a7a-9d112d1aa4cd",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 9
       }
     ]
   },

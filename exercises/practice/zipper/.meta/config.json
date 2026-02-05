@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "rmonnet"
+  ],
+  "files": {
+    "solution": [
+      "zipper.odin"
+    ],
+    "test": [
+      "zipper_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Creating a zipper for a binary tree."
+}
