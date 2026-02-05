@@ -570,6 +570,14 @@
         "difficulty": 9
       },
       {
+        "slug": "intergalactic-transmission",
+        "name": "Intergalactic Transmission",
+        "uuid": "1fc2f497-ddd8-4826-bffe-01023efe6bd7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 9
+      },
+      {
         "slug": "zebra-puzzle",
         "name": "Zebra Puzzle",
         "uuid": "46c4a1a8-6725-466e-9eb2-a4541dc709f2",
