@@ -18,6 +18,6 @@ roll :: proc(g: ^Game, pins: int) -> Error {
 }
 
 score :: proc(g: Game) -> (int, Error) {
-	// Implement the `roll` procedure.
+	// Implement the `score` procedure.
 	return 0, .Unimplemented
 }
