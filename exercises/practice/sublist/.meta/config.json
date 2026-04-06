@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "74508026"
+  ],
+  "files": {
+    "solution": [
+      "sublist.odin"
+    ],
+    "test": [
+      "sublist_test.odin"
+    ],
+    "example": [
+      ".meta/example.odin"
+    ]
+  },
+  "blurb": "Write a function to determine if a list is a sublist of another list."
+}
