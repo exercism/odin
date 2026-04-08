@@ -55,11 +55,7 @@ test_format_non_exceptional_ordinal_numeral_6 :: proc(t: ^testing.T) {
 test_format_non_exceptional_ordinal_numeral_7 :: proc(t: ^testing.T) {
 	formatted := format("Kate", 7)
 	defer delete(formatted)
-	testing.expect_value(
-		t,
-		formatted,
-		"Kate, you are the 7th customer we serve today. Thank you!",
-	)
+	testing.expect_value(t, formatted, "Kate, you are the 7th customer we serve today. Thank you!")
 }
 
 @(test)
@@ -79,11 +75,7 @@ test_format_non_exceptional_ordinal_numeral_8 :: proc(t: ^testing.T) {
 test_format_exceptional_ordinal_numeral_1 :: proc(t: ^testing.T) {
 	formatted := format("Mary", 1)
 	defer delete(formatted)
-	testing.expect_value(
-		t,
-		formatted,
-		"Mary, you are the 1st customer we serve today. Thank you!",
-	)
+	testing.expect_value(t, formatted, "Mary, you are the 1st customer we serve today. Thank you!")
 }
 
 @(test)
