@@ -66,6 +66,18 @@ If the arguments you need are in positional order, like in the example above, th
 greeting("John Doe", add_exclamation=true)
 ```
 
+## Memory management
+
+In this exercise you will implement a procedure which is meant to allocate the string it returns. Deallocating the string is the responsibility of the prodecure's caller.
+
+```odin
+// The procedure will be called like that:
+str := two_fer("Alice")
+// ...
+// and eventually the caller will delete the string
+delete(str)
+```
+
 ---
 
 You may also be interested in the official Odin documentation about [default arguments][default-values] and Odin [named arguments][named-arguments].
