@@ -21,7 +21,7 @@ suffix :: proc(number: int) -> string {
 }
 
 format :: proc(name: string, number: int) -> string {
-	return fmt.tprintf(
+	return fmt.aprintf(
 		"%s, you are the %d%s customer we serve today. Thank you!",
 		name,
 		number,
