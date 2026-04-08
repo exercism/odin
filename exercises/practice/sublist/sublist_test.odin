@@ -9,7 +9,7 @@ test_empty_lists :: proc(t: ^testing.T) {
 	b: []int = {}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Equal)
+	testing.expect_value(t, result, Comparison.Equal)
 }
 
 @(test)
@@ -19,7 +19,7 @@ test_empty_list_within_non_empty_list :: proc(t: ^testing.T) {
 	b := []int{1, 2, 3}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -29,7 +29,7 @@ test_non_empty_list_contains_empty_list :: proc(t: ^testing.T) {
 	b: []int = {}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }
 
 @(test)
@@ -39,7 +39,7 @@ test_list_equals_itself :: proc(t: ^testing.T) {
 	b := []int{1, 2, 3}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Equal)
+	testing.expect_value(t, result, Comparison.Equal)
 }
 
 @(test)
@@ -49,7 +49,7 @@ test_different_lists :: proc(t: ^testing.T) {
 	b := []int{2, 3, 4}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -59,7 +59,7 @@ test_false_start :: proc(t: ^testing.T) {
 	b := []int{0, 1, 2, 3, 1, 2, 5, 6}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -69,7 +69,7 @@ test_consecutive :: proc(t: ^testing.T) {
 	b := []int{0, 1, 1, 1, 2, 1, 2}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -79,7 +79,7 @@ test_sublist_at_start :: proc(t: ^testing.T) {
 	b := []int{0, 1, 2, 3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -89,7 +89,7 @@ test_sublist_in_middle :: proc(t: ^testing.T) {
 	b := []int{0, 1, 2, 3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -99,7 +99,7 @@ test_sublist_at_end :: proc(t: ^testing.T) {
 	b := []int{0, 1, 2, 3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -109,7 +109,7 @@ test_at_start_of_superlist :: proc(t: ^testing.T) {
 	b := []int{0, 1, 2}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }
 
 @(test)
@@ -119,7 +119,7 @@ test_in_middle_of_superlist :: proc(t: ^testing.T) {
 	b := []int{2, 3}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }
 
 @(test)
@@ -129,7 +129,7 @@ test_at_end_of_superlist :: proc(t: ^testing.T) {
 	b := []int{3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }
 
 @(test)
@@ -139,7 +139,7 @@ test_first_list_missing_element_from_second_list :: proc(t: ^testing.T) {
 	b := []int{1, 2, 3}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -149,7 +149,7 @@ test_second_list_missing_element_from_first_list :: proc(t: ^testing.T) {
 	b := []int{1, 3}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -159,7 +159,7 @@ test_first_list_missing_additional_digits_from_second_list :: proc(t: ^testing.T
 	b := []int{1, 22}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -169,7 +169,7 @@ test_order_matters_to_a_list :: proc(t: ^testing.T) {
 	b := []int{3, 2, 1}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -179,7 +179,7 @@ test_same_digits_but_different_numbers :: proc(t: ^testing.T) {
 	b := []int{10, 1}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -189,7 +189,7 @@ test_recurring_values_sublist :: proc(t: ^testing.T) {
 	b := []int{1, 2, 3, 1, 2, 1, 2, 3, 2, 1}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -199,7 +199,7 @@ test_recurring_values_unequal :: proc(t: ^testing.T) {
 	b := []int{1, 2, 3, 1, 2, 3, 2, 3, 2, 1}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -209,7 +209,7 @@ test_at_end_of_partially_matching_superlist :: proc(t: ^testing.T) {
 	b := []int{1, 1, 2}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }
 
 @(test)
@@ -219,7 +219,7 @@ test_partially_matching_sublist_at_end :: proc(t: ^testing.T) {
 	b := []int{1, 1, 1, 2}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -236,7 +236,7 @@ test_huge_equal_lists :: proc(t: ^testing.T) {
 	}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Equal)
+	testing.expect_value(t, result, Comparison.Equal)
 }
 
 @(test)
@@ -251,7 +251,7 @@ test_sublist_early_in_huge_list :: proc(t: ^testing.T) {
 	a := []int{3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Sublist)
+	testing.expect_value(t, result, Comparison.Sublist)
 }
 
 @(test)
@@ -268,7 +268,7 @@ test_huge_sublist_not_in_huge_list :: proc(t: ^testing.T) {
 	}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Unequal)
+	testing.expect_value(t, result, Comparison.Unequal)
 }
 
 @(test)
@@ -283,5 +283,5 @@ test_superlist_early_in_huge_list :: proc(t: ^testing.T) {
 	b := []int{3, 4, 5}
 	result := compare(a, b)
 
-	testing.expect(t, result == .Superlist)
+	testing.expect_value(t, result, Comparison.Superlist)
 }

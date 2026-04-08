@@ -1,6 +1,7 @@
 package sublist
 
 Comparison :: enum {
+	Unimplemented,
 	Equal,
 	Sublist,
 	Superlist,
@@ -9,5 +10,5 @@ Comparison :: enum {
 
 compare :: proc(list_a: []$T, list_b: []T) -> Comparison {
 	// Implement this procedure.
-	return .Unequal
+	return .Unimplemented
 }
