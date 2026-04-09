@@ -362,14 +362,6 @@
         "difficulty": 2
       },
       {
-        "slug": "sublist",
-        "name": "Sublist",
-        "uuid": "374bd84a-59a0-496d-8695-a7270ad5c3f4",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 5
-      },
-      {
         "slug": "acronym",
         "name": "Acronym",
         "uuid": "31f4ded1-c2cd-41de-a12c-e3cf8ded0a97",
@@ -514,6 +506,14 @@
         "difficulty": 5
       },
       {
+        "slug": "relative-distance",
+        "name": "Relative Distance",
+        "uuid": "5f4a4aa8-c4ae-4260-bfd5-e97320a2bf55",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "37db974f-c540-4b4b-8621-fc826372ce71",
@@ -533,6 +533,14 @@
         "slug": "sieve",
         "name": "Sieve",
         "uuid": "aff33286-6b23-4f7f-9ad8-34695aba99ec",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "sublist",
+        "name": "Sublist",
+        "uuid": "374bd84a-59a0-496d-8695-a7270ad5c3f4",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
