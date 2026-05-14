@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup Odin
-        uses: laytan/setup-odin@1e0d12e3bffd1aa07e586a3d9effb2d991a19d36
+        uses: laytan/setup-odin@8536d8fa450ec6f1bd9ddc84bbaaf16296c0051d
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           llvm-version: 18
