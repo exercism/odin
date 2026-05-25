@@ -1,5 +1,7 @@
 # Instructions append
 
+## Implementation
+
 You will need to use Odin parameter polymorphism (more commonly called generics) for this exercise .
 If you haven't seen this feature before, here is a quick run-down to get you started.
 

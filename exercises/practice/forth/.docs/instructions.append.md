@@ -1,5 +1,7 @@
 # Instructions append
 
+## Implementation
+
 In Forth functions are called `words`, they operate on a data stack.
 Each word takes its parameter(s) from the stack and return its result(s) on the stack.
 
