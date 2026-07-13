@@ -14,11 +14,11 @@ jobs:
       - name: Set install script permissions
         run: chmod u+x llvm.sh
 
-      - name: Install Clang 18
-        run: sudo ./llvm.sh 18
+      - name: Install Clang 21
+        run: sudo ./llvm.sh 21
 
       - name: Setup default version
-        run: sudo ln -f /usr/bin/clang-18 /usr/bin/clang
+        run: sudo ln -f /usr/bin/clang-21 /usr/bin/clang
 
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
@@ -27,8 +27,8 @@ jobs:
         uses: laytan/setup-odin@8536d8fa450ec6f1bd9ddc84bbaaf16296c0051d
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          llvm-version: 18
-          release: dev-2026-05
+          llvm-version: 21
+          release: dev-2026-07
 
       - name: Install odinfmt
         run: bin/fetch-ols-odinfmt.sh
