@@ -28,7 +28,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           llvm-version: 21
-          release: dev-2026-07
+          release: dev-2026-07a
 
       - name: Install odinfmt
         run: bin/fetch-ols-odinfmt.sh
