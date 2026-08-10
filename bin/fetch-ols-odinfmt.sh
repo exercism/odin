@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="dev-2026-05"
+version="dev-2026-06"
 bin_dir="bin"
 name="ols"
 
