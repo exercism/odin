@@ -1,0 +1,12 @@
+most_common_word :: proc(text: string) -> string {
+	counts := make(map[string]int, context.temp_allocator)
+	best := ""
+	lower := strings.to_lower(text, context.temp_allocator)
+	for word in strings.split(lower, " ", context.temp_allocator) {
+		counts[word] += 1
+		if counts[word] > counts[best] {
+			best = word
+		}
+	}
+	return fmt.aprintf("\"%s\" appears %d times", best, counts[best])
+}
